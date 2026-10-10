@@ -1422,6 +1422,7 @@ function podTable(){return `<h3>🖨 Print-on-demand unit economics (Etsy, per o
 function brainHtml(){const o=S.okr,ex=(S.exps||[]).slice(0,3),cf=fcConf(),c13=S.cf13||[];const mn=c13.length?Math.min(...c13):null;
  const bar=p=>`<span class="kb"><i style="width:${Math.round(clamp(p,0,1)*100)}%"></i></span>`;
  return `<div class="brain"><b>🧠 Brain</b> <small>${S.co.traitName||''}</small>
+ ${(window.RF_BRAIN||[]).length?`<div>🛰 <b>Live Ops</b>: ${window.RF_BRAIN.slice(0,2).map(b=>`${b.what} <small>— ${b.why.slice(0,90)}</small>`).join('<br>')}</div>`:''}
  <div>🎯 ${o?`<b>${o.O}</b> <small>${o.q}</small>`:'Setting first OKRs…'}</div>${o?o.krs.map(k=>`<div class="kr">${bar(k.p)} ${k.n}</div>`).join(''):''}
  <div>🧪 ${ex.length?ex.map(e=>e.type==='price'?`${S.co.skus[e.k].n}: $${e.A} vs $${e.B} <small>wk ${e.wk+1}/${e.len}</small>`:`${e.ch==='etsy'?'Etsy':'Shopify'} ads ${fmt(e.A)} vs ${fmt(e.B)}/day <small>wk ${e.wk+1}/${e.len}</small>`).join('<br>'):'No test running'}</div>
  <div>📈 Forecast conf ${cf==null?'— (learning)':Math.round(cf*100)+'%'} · next 13 wk ${fmt(Math.round((S.fcRev||[]).reduce((a,x)=>a+x.rev,0)))}</div>

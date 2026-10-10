@@ -20,7 +20,13 @@ wrangler deploy                          # MODE stays "mock"
 ```
 Visit `/oauth/etsy/start` and `/oauth/shopify/start` to link. Paste the Worker URL into the game's Connections panel. Run a week in mock, then set `MODE="live"` and redeploy.
 
-## TODO before live
-- Catalog: creating Printify product drafts is allowed; publishing (Printify publish, Etsy/Shopify listing create/update/images, sales/promotions) is `golive` and always needs Dom's approval.
-- Add login (Cloudflare Access or passkey) so only Dom's browser can call `/api/*`.
-- Deliver approval links by email/SMS; Etsy token refresh job; Shopify/Printify webhook signature verification.
+## Backend security (implemented in robot-founder-server, tested offline with `npm test`)
+- **Game → worker auth:** every `/api/*` request carries `x-rf-ts` + `x-rf-sig` = HMAC-SHA256(GAME_SHARED_SECRET, ts⏎method⏎path⏎body); 5-minute window, replayed signatures rejected. Dom types the key into the game once per tab; it is held in memory only.
+- **One route contract:** the game converts real API paths to canonical paths (`canon()` in liveops.js, e.g. `/v3/application/shops/{shop_id}/listings` → `/listings`); the worker allow-list lives in `src/routes.js`; `test/client-paths.json` is captured from a real simulation run and checked against it.
+- **Webhooks verified:** Shopify `X-Shopify-Hmac-Sha256` (base64 HMAC of raw body with app secret); Printify `X-Pfy-Signature: sha256=<hex>` (PRINTIFY_WEBHOOK_SECRET); deduped by webhook id.
+- **Etsy token refresh:** tokens saved with expiry; refreshed on demand 2 min before expiry and by a 30-min cron.
+- **Approvals enforced server-side:** golive (publish/edit/retire listings, photos, sales), spend over AUTO_SPEND_CAP (or unknown cost), refunds over AUTO_REFUND_CAP → stored, Dom gets a signed link via the pluggable notifier (`src/notify.js`: log | webhook e.g. ntfy/Pushover/Slack | email e.g. Resend/Postmark). Links expire after 7 days.
+- Etsy has no refund API: refunds become a notification for Dom to tap in Shop Manager.
+
+## Still TODO before live
+- Wire a real notifier provider; ads budget connector (Etsy Ads / Meta have no simple budget API for this — robot proposes, Dom sets); Shopify customer messaging via an email app.
