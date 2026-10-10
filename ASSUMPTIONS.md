@@ -68,6 +68,33 @@ All numbers live in [`economics.js`](economics.js) (each entry names its source 
 | Share of Shopify orders shipped inside Florida | 7% | **ESTIMATE** |
 | Income tax | Pass-through LLC (no FL income tax); 25% of positive YTD profit set aside for SE tax (15.3%) + federal | https://venturesmarter.com/file-llc-taxes/florida/ — the 25% set-aside is an **ESTIMATE** |
 
+## 4b. Digital + Print-on-Demand mode (added Oct 10, 2026; all accessed 2026-10-10)
+| Item | Value used | Source |
+|---|---|---|
+| Etsy fees (digital and physical alike) | $0.20 listing, 6.5% transaction, 3% + $0.25 processing, offsite ads 15%/12% when attributed | https://www.etsy.com/legal/fees , https://help.etsy.com/hc/en-us/articles/115015628847 |
+| Etsy instant downloads | up to 5 files, 20 MB each per listing; Etsy may charge a one-time setup fee that varies by country | https://help.etsy.com/hc/en-us/articles/115015628347-How-to-Manage-Your-Digital-Listings |
+| Shopify digital delivery | free Shopify "Digital Downloads" app; Basic plan $39/mo (in config) | https://www.shopify.com/pricing |
+| Florida sales tax on electronically delivered digital goods | not taxable (not tangible personal property); prints are taxable | https://floridarevenue.com/TaxLaw/Documents/03A-020.pdf |
+| Printify canvas 0.75" (12x16) | from $11.26 base + $9.19 US shipping (one US provider; prices vary by provider) | https://podl.me/products/98642/canvas-stretched-075 |
+| Printify canvas 16x20 | $15.50 base + $10.50 ship — **ESTIMATE** (listing shows "from $11.26" across sizes; larger sizes usually cost more) | same |
+| Printify 11oz mug | $4.69 Free / $3.50 Premium base; US ship $4.39–$7.99 (used $4.39, SwiftPOD) | https://podvector.ai/articles/printify/costs-and-charges/printify-mug-base-cost-full-breakdown-for-pod-sellers |
+| Printify 18x24 matte poster | $4.73 base; shipping $5.99 **ESTIMATE** | search summary of Printify catalog (Oct 2026) |
+| Printify fleece blanket | Arctic Fleece from $12.84 ($9.32 Premium); shipping $9.50 **ESTIMATE** | https://printify.com/custom-blankets/ |
+| Printify Premium | $24.99/mo billed yearly ($39 monthly); ~20% typical base discount (up to 33% advertised) | https://printify.com/pricing/ , podvector (Jul 2026) |
+| Printful comparison (not used in game prices) | canvas 12x16 $25.75, 16x20 $31.25; 11oz mug $5.95 + $6.69 US ship; 18x24 poster $13.15; fleece blanket ~$24.62; Growth plan $24.99/mo (free after $12k/yr sales) | https://podl.me/products/98055/canvas-in , https://www.printful.com/shipping , https://www.printful.com/pricing |
+| POD fulfillment time | 2–5 business days + shipping | https://help.printful.com/hc/en-us/articles/50265287600913 |
+| POD reprints | free reshipment/refund for damaged, defective or misprinted items reported within 30 days; no buyer's-remorse returns | https://help.printful.com/hc/en-us/articles/50263870468753 |
+| Partner defect rate | 2% — **ESTIMATE** (reprinted at partner's cost; costs us a late order and goodwill) | est |
+| AI generation | Midjourney Standard $30/mo (in fixed costs); gpt-image-1 high quality 1024x1536 $0.25/image → $1.00 per finished portrait (~4 tries) **ESTIMATE**; revisions 30% of custom orders, +$0.50 AI and +8 min each **ESTIMATE** | https://docs.midjourney.com/hc/en-us/articles/27870484040333 , https://developers.openai.com/api/docs/models/gpt-image-1 |
+| Pet-portrait price anchors | Etsy digital pet portraits $25–$75 (e.g. $32.50 listing); Pet on Canvas $24.99 digital, $49.99–$99.99 canvas; Pet Canvas AI $19.99 digital, $79.99–$99.99 canvas | https://www.etsy.com/listing/1279918249 , https://petoncanvas.com/pricing/ , https://create.petcanvas.art/blog/how-much-does-pet-portrait-cost |
+| Game prices | printables pack $8, digital portrait $29, poster $39, canvas 12x16 $69, canvas 16x20 $89, mug $24, blanket $69, Space Coast poster $29 / mug $19 / canvas $59 — set inside the comparable ranges (**ESTIMATE**) | above |
+| Refunds | custom portraits 3%, digital printables 1% — **ESTIMATE** | est |
+| Design/QA time | 14–16 robot minutes per custom portrait, 1 min per instant download — **ESTIMATE**; costed at a customer-service wage in unit economics | est |
+| Pop-up market booth | $75 fee, 300 visitors, 4% buy, no booths Jun–Sep (heat) — **ESTIMATE** | est |
+| Founder salary (sensitivity run only) | $41,600/yr ($20/hr full time) — **ESTIMATE** | est |
+
+**Demand caveat:** POD mode reuses the game's generic Etsy/Shopify traffic and conversion model. Digital printables are a very crowded Etsy category, so real traffic for a new shop is probably lower than the game shows. Treat the POD sim as an upper-middle case, not a forecast.
+
 ## 5. Demand & operations
 | Item | Value used | Source |
 |---|---|---|
