@@ -80,9 +80,9 @@ function genCompany(){
  const nm=/^[.l]/.test(sf)?name+sf:name+' '+sf;
  return {name:FORCE_LINE!=null&&ln.mode==='pod'?pick(['Benji & Co. Portraits','Space Coast Pet Prints','Benji Paws Studio']):nm,mode:ln.mode||'make',unlockRD:ln.unlockRD||null,line:li,industry:ln.n,unit:ln.u,shape:ln.shape,risk:ln.risk,skus:mkSkus(ln),color:col[0],dark:col[1],model:pick(MODELS),robot:pick(RNAMES)+'-'+RI(1,99),perk:perk.id,perkName:perk.n,perkDesc:perk.d};
 }
-let FORCE_LINE=null,SAL_PICK='auto',COF_ON=false,WI=null;
+let FORCE_LINE=null,SAL_PICK='auto',AI_LEVEL='base',COF_ON=false,WI=null;
 const salMode=()=>(S&&S.salMode)||(EC.founderSalaryOn?'full':'off');
-function founderH(){const m=salMode(),F=EC.founder;if(m==='side')return (S.salHours||F.side.hoursWk)/7;if(m==='full')return F.full.hoursWk/7*(has('efficient')?1.2:1);return has('efficient')?12:EC.founderHours}
+function founderH(){const m=salMode(),F=EC.founder;if(m==='ai')return EC.ai.hours;if(m==='side')return (S.salHours||F.side.hoursWk)/7;if(m==='full')return F.full.hoursWk/7*(has('efficient')?1.2:1);return has('efficient')?12:EC.founderHours}
 const POD=()=>!!(S&&S.co&&S.co.mode==='pod');const unlockRD=()=>(S&&S.co&&S.co.unlockRD)||EC.skuUnlockRD;
 const mkSkus=ln=>ln.skus.map(([n,m,b,p,w,q],i)=>{const k={n,m,b,p,p0:p,w,q,i,c:LINE_COL[i]};if(ln.kinds)k.kind=ln.kinds[i];if(ln.variants&&ln.variants[i]){k.v=ln.variants[i].map(([vn,vp,base,ship,wt])=>({n:vn,p:vp,base,ship,wt}));k.p=k.p0=Math.round(k.v.reduce((a,v)=>a+v.p*v.wt,0))}return k});
 // ---------- layouts ----------
@@ -153,7 +153,7 @@ function newState(){
   done:false,outcome:null,peakTTM:0,peakCash:0,insured:true,lifetime:{rev:0,orders:0,units:0}};
  S=s;s.mo=newMonth(mkey(dateOf(0)));s.mo.cash0=s.cash;
  s.mo.lic+=EC.licenses.llc+EC.licenses.btrYr;s.cash-=EC.licenses.llc+EC.licenses.btrYr; // LLC formation + Brevard BTR
- s.salMode=WI?WI.salMode:(SAL_PICK==='auto'?(s.co.mode==='pod'?'side':'off'):SAL_PICK);s.salHours=WI&&WI.hours?WI.hours:EC.founder.side.hoursWk;s.salRate=WI&&WI.rate?WI.rate:EC.founder.side.rate;
+ s.salMode=WI?WI.salMode:(SAL_PICK==='auto'?'ai':SAL_PICK);s.aiLevel=WI&&WI.aiLevel?WI.aiLevel:AI_LEVEL;s.overH=WI&&WI.oversight!=null?WI.oversight:EC.ai.oversightHrs;s.humanQC=WI&&WI.humanQC!=null?WI.humanQC:true;s.salHours=WI&&WI.hours?WI.hours:EC.founder.side.hoursWk;s.salRate=WI&&WI.rate?WI.rate:EC.founder.side.rate;
  if(COF_ON&&!WI){const t2=pick(TRAITS.filter(x=>x.id!==s.co.trait));s.cof={trait:t2.id,name:pick(RNAMES)+'-'+RI(1,99),traitName:t2.n,color:pick(COLORS),wins:0,debates:0}}
  if(WI){s.co.skus.forEach(k=>{const m=WI.price[k.i];if(m)k.p=Math.max(1,Math.round(k.p0*m))});if(WI.mix>=.5)s.ch.shopify.open=0}
  brainInit();return s;
@@ -184,7 +184,7 @@ function unitEcon(k,ch){// per-unit contribution for a single-item order on a ch
  else if(ch==='shopify'){const P=EC.shopify.plans[S.ch.shopify.plan||0];fee=P.pct*(p+shipChg)*(1+tax*EC.salesTax.shopifyInStateShare)+P.fixed}
  else if(ch==='store'){fee=(EC.pos.pct*p*(1+tax)+EC.pos.fixed)*.85}
  else if(ch==='wholesale'){return {p:p*.5,mat,lab,pack:0,label:0,shipChg:0,fee:0,net:p*.5-mat-lab,m:(p*.5-mat-lab)/(p*.5)}}
- const ret=(POD()?(k.kind==='digital'||k.kind==='pod'?EC.pod.refundDigital:EC.pod.refundCustom):ch==='store'?EC.returns.store:EC.returns.online)*p;
+ const ret=(POD()?(k.kind==='digital'||k.kind==='pod'?EC.pod.refundDigital:EC.pod.refundCustom*(salMode()==='ai'&&S.humanQC?1-EC.ai.humanQC.refundCut:1)):ch==='store'?EC.returns.store:EC.returns.online)*p;
  const net=p+shipChg-mat-lab-pack-label-fee-ret;
  return {p,mat:r2(mat),lab:r2(lab),pack:r2(pack),label:r2(label),shipChg:r2(shipChg),fee:r2(fee),ret:r2(ret),net:r2(net),m:net/p};
 }
@@ -214,13 +214,13 @@ function econDay(){
   const pay=h*hourly(s.role);labor+=pay;const P=EC.payroll,ytd=S.ytdWages[s.name]||0;
   let b=pay*burdenRate(s.role)+Math.max(0,Math.min(pay,P.futaBase-ytd))*(P.futa+P.suta);burden+=b;S.ytdWages[s.name]=ytd+pay;
   s.morale=clamp(s.morale-(s.role==='retail'&&D.store.visitors>120?.25:.06)+(S.flags.perks?.05:0),0,100)});
- D.hours=H;const sm=salMode();let robotH=founderH()+(sm==='side'?0:(S.up.battery?2:0)+(S.flags.longH?EC.strategy.longHours:0));if(sm==='side'&&storeOpenToday(t))robotH+=EC.founder.boothHours;
- {const fp=sm==='side'?robotH*(S.salRate||EC.founder.side.rate):sm==='full'?EC.founder.full.salary/365:0;if(fp){S.mo.wages+=fp;S.mo.founderPay=(S.mo.founderPay||0)+fp;S.cash-=fp;D.founderPay=fp}}if(S.mods.breakT>0)robotH-=2;if(S.flags.gig){robotH-=EC.strategy.gigHours;const g=EC.strategy.gigRate*EC.strategy.gigHours*(dow>0&&dow<6?1:0);S.cash+=g;S.mo.eqIn+=g;S.lifetime.gig=(S.lifetime.gig||0)+g}
+ D.hours=H;const sm=salMode();let robotH=founderH()+(sm==='side'?0:(S.up.battery?2:0)+(S.flags.longH?EC.strategy.longHours:0));if(sm==='side'&&storeOpenToday(t))robotH+=EC.founder.boothHours;const AIM=sm==='ai';let phys=AIM?EC.ai.physDayH+(!POD()&&S.rd>=EC.ai.nightRD?EC.ai.nightBatchH:0):1e9;
+ {const fp=AIM?((S.overH||0)/7+(storeOpenToday(t)?EC.founder.boothHours:0))*(S.salRate||EC.founder.side.rate):sm==='side'?robotH*(S.salRate||EC.founder.side.rate):sm==='full'?EC.founder.full.salary/365:0;if(fp){S.mo.wages+=fp;S.mo.founderPay=(S.mo.founderPay||0)+fp;S.cash-=fp;D.founderPay=fp}}if(S.mods.breakT>0)robotH-=2;if(S.flags.gig){robotH-=EC.strategy.gigHours;const g=EC.strategy.gigRate*EC.strategy.gigHours*(dow>0&&dow<6?1:0);S.cash+=g;S.mo.eqIn+=g;S.lifetime.gig=(S.lifetime.gig||0)+g}
  // ---- store ----
  if(storeOpenToday(t)){D.store.open=true;
   const dowF=[0,.8,.85,.9,1,1.15,1.45][dow],wf=D.rain?.8:1;
   const vis=pois((WI?WI.traffic:1)*(POD()?EC.pod.booth.visitors:EC.store.footfall[S.stage])*(.45+S.rep/90)*sea*dowF*wf*(S.mods.press>0?1.25:1));D.store.visitors=vis;
-  let cover=H.retail;if(cover<7){const need=Math.min(8-cover,robotH);D.robot.store=need;robotH-=need;cover+=need}
+  let cover=H.retail;if(cover<7){const need=Math.min(8-cover,robotH,AIM&&POD()?(cover=Math.max(cover,EC.founder.boothHours),0):phys);if(!(AIM&&POD()))phys-=need;D.robot.store=need;robotH-=need;cover+=need}
   const cap=cover*10;// ~10 checkouts/hour per staffed hour (est)
   const conv=(POD()?EC.pod.booth.conv:EC.store.conv)*qf*pf*(has('charmer')?1.1:1);let buyers=binom(vis,clamp(conv,0,.6));
   if(buyers>cap){D.store.walk+=buyers-cap;buyers=Math.floor(cap)}
@@ -229,20 +229,22 @@ function econDay(){
  }
  // ---- online demand ----
  const ord=[];
- if(S.ch.etsy.open>=0){const v=etsyViews(t);S.mo.traffic.etsy+=v;const c=(WI?WI.traffic:1)*EC.etsy.conv*qf*pf*S.mods.knock*(has('gpu')?1.1:1)*(S.mods.star?1.1:1);const n=pois(v*c);for(let i=0;i<n;i++)ord.push({ch:'etsy',k:pickSku(),day:S.day,t:R(0,1)});D.ev=v}
- if(S.ch.shopify.open>=0){const v=shopSessions(t);S.mo.traffic.shopify+=v;const c=(WI?WI.traffic:1)*EC.shopify.conv*qf*pf*S.mods.knock*(has('gpu')?1.1:1);const n=pois(v*c);for(let i=0;i<n;i++)ord.push({ch:'shopify',k:pickSku(),day:S.day,t:R(0,1)});D.sv=v}
+ if(S.ch.etsy.open>=0){const v=etsyViews(t);S.mo.traffic.etsy+=v;const c=(WI?WI.traffic:1)*(AIM?1+EC.ai.replyLift:1)*EC.etsy.conv*qf*pf*S.mods.knock*(has('gpu')?1.1:1)*(S.mods.star?1.1:1);const n=pois(v*c);for(let i=0;i<n;i++)ord.push({ch:'etsy',k:pickSku(),day:S.day,t:R(0,1)});D.ev=v}
+ if(S.ch.shopify.open>=0){const v=shopSessions(t);S.mo.traffic.shopify+=v;const c=(WI?WI.traffic:1)*(AIM?1+EC.ai.replyLift:1)*EC.shopify.conv*qf*pf*S.mods.knock*(has('gpu')?1.1:1);const n=pois(v*c);for(let i=0;i<n;i++)ord.push({ch:'shopify',k:pickSku(),day:S.day,t:R(0,1)});D.sv=v}
  if(D.store.open)S.mo.traffic.store+=D.store.visitors;
  D.online=ord;S.backlog.push(...ord);
  // ---- packing / shipping ----
  const podMin=POD()&&S.backlog.length?S.backlog.reduce((a,o)=>a+buildMin(S.co.skus[o.k]),0)/S.backlog.length:0;const packMin=POD()?Math.max(.5,podMin):EC.packMin*(has('fast')?.7:1);let packCap=Math.floor((POD()?H.cs*.6+H.ship:H.ship)*60/packMin);
  const needPack=S.backlog.filter(o=>POD()||S.inv.o[o.k]>0).length;
- if(needPack>packCap){const h=Math.min(robotH,(needPack-packCap)*packMin/60);D.robot.pack=h;robotH-=h;packCap+=Math.floor(h*60/packMin)}
+ if(needPack>packCap){const h=Math.min(robotH,POD()?1e9:phys,(needPack-packCap)*packMin/60);if(!POD())phys-=h;D.robot.pack=h;robotH-=h;packCap+=Math.floor(h*60/packMin)}
  const keep=[];for(const o of S.backlog){if(packCap>0&&(POD()||S.inv.o[o.k]>0)){if(!POD())S.inv.o[o.k]--;packCap--;D.shipped++;shipOrder(o,D);if(S.day-o.day>3){D.late++}}else if(S.day-o.day>10){D.cancel++;refundCancel(o)}else keep.push(o)}
  S.backlog=keep;
  // ---- customer service ----
  D.tickets=Math.round((ord.length+D.store.sales.length*.2)*EC.supportTicketRate+D.late*.5+R(0,.6));let csCap=H.cs*60/EC.ticketMin;
- if(D.tickets>csCap){const h=Math.min(robotH,1.5,(D.tickets-csCap)*EC.ticketMin/60);D.robot.cs=h;robotH-=h;csCap+=h*60/EC.ticketMin}
+ if(D.tickets>csCap){const h=Math.min(robotH,AIM?24:1.5,(D.tickets-csCap)*EC.ticketMin/60);D.robot.cs=h;robotH-=h;csCap+=h*60/EC.ticketMin}
  D.unans=Math.max(0,Math.round(D.tickets-csCap));
+ if(AIM){const L=EC.ai.levels[S.aiLevel||'base'],c=L.base/30.4+D.online.length*L.perOrder+D.tickets*L.perMsg;S.mo.aiOp=(S.mo.aiOp||0)+c;S.cash-=c;D.aiOp=c;
+  if(S.humanQC&&POD()){const nC=D.online.filter(o=>{const k=S.co.skus[o.k];return k.kind==='custom'||k.kind==='podCustom'}).length,q=nC*EC.ai.humanQC.minPerOrder/60*(S.salRate||EC.founder.side.rate);if(q){S.mo.wages+=q;S.mo.founderPay=(S.mo.founderPay||0)+q;S.cash-=q}}}
  // ---- admin (books, listings, reorders) ----
  const adm=Math.min(robotH,(salMode()==='side'?.1:.5)+S.staff.length*.1);D.robot.admin=adm;robotH-=adm;
  // ---- design minimum (trait) ----
@@ -251,13 +253,13 @@ function econDay(){
  let makerMin=H.maker*60;const u=unlocked();let robotMade=0;
  const want=u.map(k=>{const T0=targets(k.i);return {k,need:Math.max(0,T0.s-S.inv.s[k.i])+Math.max(0,T0.o-S.inv.o[k.i]+S.backlog.filter(o=>o.k===k.i).length)}}).filter(w=>w.need>0&&!POD()).sort((a,b)=>{const pa=S.mixPM?S.mixPM.indexOf(a.k.i):0,pb=S.mixPM?S.mixPM.indexOf(b.k.i):0;return b.need/Math.max(.1,usage(b.k.i))*(1-pb*.1)-a.need/Math.max(.1,usage(a.k.i))*(1-pa*.1)});
  const dr=defectRate();
- for(const w of want){let n=0;const bm=buildMin(w.k);while(n<w.need&&S.kits[w.k.i]>0){if(makerMin>=bm)makerMin-=bm;else if(robotH*60>=bm){robotH-=bm/60;robotMade+=bm/60}else break;S.kits[w.k.i]--;n++;
+ for(const w of want){let n=0;const bm=buildMin(w.k);while(n<w.need&&S.kits[w.k.i]>0){if(makerMin>=bm)makerMin-=bm;else if(robotH*60>=bm&&phys*60>=bm){robotH-=bm/60;phys-=bm/60;robotMade+=bm/60}else break;S.kits[w.k.i]--;n++;
    if(Math.random()<dr){if(Math.random()<EC.qcCatch){D.scrap++;S.mo.scrap+=matCost(w.k);continue}else S.flags.escaped=(S.flags.escaped||0)+1}
    D.produced[w.k.i]++;const T0=targets(w.k.i);if(S.inv.s[w.k.i]<T0.s&&S.ch.store.open>=0)S.inv.s[w.k.i]++;else S.inv.o[w.k.i]++}}
  D.robot.make=robotMade;
  // ---- R&D ----
- const soc=robotH*.45;D.robot.social=soc;robotH-=soc;S.audience=(S.audience||0)*.995+soc*EC.socialPerHour*(has('viral')?1.5:1);// content marketing hours → followers (est)
- const rdH=H.eng+dmin+robotH;D.robot.design=dmin+robotH;robotH=0;
+ const soc=robotH*.45;D.robot.social=soc;robotH-=soc;S.audience=(S.audience||0)*.995+(AIM?Math.min(soc,EC.ai.socialCapH):soc)*EC.socialPerHour*(has('viral')?1.5:1);// content marketing hours → followers (est)
+ const rdH=H.eng+dmin+robotH;D.robot.design=dmin+robotH;if(AIM)D.robot.design=Math.min(D.robot.design,EC.ai.designCapH);robotH=0;
  const rd0=S.rd;S.rd+=(H.eng*.5+(dmin+D.robot.design-dmin)*.12*(POD()?3:1))*(has('coder')?1.5:1)*(S.up.chip?1.3:1);D.rd=S.rd-rd0;
  // ---- store revenue ----
  let rv=0,fees=0,cogs=0;for(const s of D.store.sales){const k=S.co.skus[s.k],p=k.p*s.n;rv+=p;const tax=p*EC.salesTax.rate;S.taxDue+=tax;S.mo.taxCol+=tax;const f=Math.random()<.85?EC.pos.pct*(p+tax)+EC.pos.fixed:0;fees+=f;cogs+=matCost(k)*s.n;S.mo.units.store+=s.n;S.mo.orders.store++;S.customers+=Math.random()<.7?1:0;if(Math.random()<.25)S.emails++}
@@ -300,7 +302,7 @@ function shipOrder(o,D){const k=S.co.skus[o.k],p=k.p,w=k.w,pd=POD(),lab=pd?0:lab
  if(S.flags.bundle&&Math.random()<EC.brain.attach){const ks=unlocked().filter(x=>x.i!==o.k&&(pd||S.inv.o[x.i]>0)).sort((a,b)=>a.p-b.p)[0];if(ks){const p2=ks.p*(1-EC.brain.bundleDisc),f2=o.ch==='etsy'?(EC.etsy.txnPct+EC.etsy.payPct)*p2:EC.shopify.plans[S.ch.shopify.plan||0].pct*p2;if(!pd)S.inv.o[ks.i]--;M.rev[o.ch]+=p2;M.units[o.ch]++;M.cogs+=matCost(ks);M.cogsBy[o.ch]+=matCost(ks);M.fees[o.ch]+=f2;S.cash+=p2-f2;D.rev+=p2;S.lifetime.bundles=(S.lifetime.bundles||0)+1}}
  // returns & chargebacks (resolved immediately, simplified)
  const esc=S.flags.escaped>0?(S.flags.escaped--,.5):0;
- if(Math.random()<(pd?(k.kind==='digital'||k.kind==='pod'?EC.pod.refundDigital:EC.pod.refundCustom):EC.returns.online)+esc){M.refunds+=p;M.returns++;S.cash-=p;D.returns++;if(esc)review(1.5)}
+ if(Math.random()<(pd?(k.kind==='digital'||k.kind==='pod'?EC.pod.refundDigital:EC.pod.refundCustom*(salMode()==='ai'&&S.humanQC?1-EC.ai.humanQC.refundCut:1)):EC.returns.online)+esc){M.refunds+=p;M.returns++;S.cash-=p;D.returns++;if(esc)review(1.5)}
  if(Math.random()<EC.chargeback.rate){M.refunds+=p;M.other+=EC.chargeback.fee;M.cbs++;S.cash-=p+EC.chargeback.fee;D.cbs++}
 }
 function refundCancel(o){review(1.2);S.mo.late++}
@@ -321,7 +323,7 @@ function monthCosts(){// fixed monthly costs charged on the 1st
 }
 function pnl(m){const rev=m.rev.etsy+m.rev.shopify+m.rev.store+m.rev.wholesale;const net_rev=rev-m.refunds;const shipNet=m.labels-m.shipInc;
  const cogs=m.cogs+m.pack+shipNet+m.scrap;const gm=net_rev-cogs;const fees=m.fees.etsy+m.fees.shopify+m.fees.store+m.subs;const labor=m.wages+m.burden;
- const opex=fees+labor+m.rent+m.util+m.ins+m.lic+m.ads+m.other;const ebit=gm-opex;const net=ebit-m.interest;return {rev,net_rev,cogs,gm,gmPct:net_rev?gm/net_rev:0,fees,labor,opex,ebit,net,shipNet}}
+ const opex=fees+labor+m.rent+m.util+m.ins+m.lic+m.ads+m.other+(m.aiOp||0);const ebit=gm-opex;const net=ebit-m.interest;return {rev,net_rev,cogs,gm,gmPct:net_rev?gm/net_rev:0,fees,labor,opex,ebit,net,shipNet}}
 function closeMonth(){const m=S.mo;const P=pnl(m);
  // income tax set-aside: 25% of positive YTD net not yet reserved (simplified; paid as estimates)
  const yr=m.k.slice(0,4),ytd=S.months.filter(x=>x.k.startsWith(yr));const ytdNet=ytd.reduce((a,x)=>a+x.P.net,0)+P.net,ytdTax=ytd.reduce((a,x)=>a+x.incomeTax,0);
@@ -557,17 +559,17 @@ function hireLessonPos(){const v=S.staff.filter(x=>S.day-x.hired>300);if(v.lengt
 function hireLesson(s){if(S.day-s.hired<120)learn('hireEarly',`Hired a ${ROLES[s.role].n.toLowerCase()} too early (let go after ${S.day-s.hired} days). Require more forecast headroom.`,1.3)}
 // ================= What-if lab (separate from the watched run) =================
 function whatIf(cfg){const sv=S,svH=HEADLESS,svV=vday,svF=FORCE_LINE,svM=SIMMEM,keep={r:EC.retailRentSfYr,f:EC.flexRentSfYr};const n=cfg.seeds||EC.lab.seeds,months=36;
- EC.retailRentSfYr=keep.r*(cfg.rent||1);EC.flexRentSfYr=keep.f*(cfg.rent||1);FORCE_LINE=cfg.line;WI={price:cfg.price||[],ads:cfg.ads,mix:cfg.mix==null?.3:cfg.mix,premium:cfg.premium,hours:cfg.hours,rate:cfg.rate,salMode:cfg.salMode||'off',traffic:EC.lab.traffic[cfg.traffic||'base']||1,boothWeeks:cfg.boothWeeks};
- const runs=[];try{for(let i=0;i<n;i++){SIMMEM=[];const s=runHeadless(months*30.5|0);runs.push(s.months.map(m=>({rev:m.P.rev,net:m.P.net,fp:m.founderPay||0})))}}
+ EC.retailRentSfYr=keep.r*(cfg.rent||1);EC.flexRentSfYr=keep.f*(cfg.rent||1);FORCE_LINE=cfg.line;WI={aiLevel:cfg.aiLevel||'base',oversight:cfg.oversight,humanQC:cfg.humanQC,price:cfg.price||[],ads:cfg.ads,mix:cfg.mix==null?.3:cfg.mix,premium:cfg.premium,hours:cfg.hours,rate:cfg.rate,salMode:cfg.salMode||'off',traffic:EC.lab.traffic[cfg.traffic||'base']||1,boothWeeks:cfg.boothWeeks};
+ const runs=[];try{for(let i=0;i<n;i++){SIMMEM=[];const s=runHeadless(months*30.5|0);runs.push(s.months.map(m=>({rev:m.P.rev,net:m.P.net,fp:m.founderPay||0,ai:m.aiOp||0})))}}
  finally{WI=null;FORCE_LINE=svF;SIMMEM=svM;EC.retailRentSfYr=keep.r;EC.flexRentSfYr=keep.f;S=sv;HEADLESS=svH;vday=svV}
  const q=(a,p)=>{const b=a.slice().sort((x,y)=>x-y);return b[Math.min(b.length-1,Math.floor(p*(b.length-1)+.5))]};const out={cfg,n,m:[]};
- for(let i=0;i<months;i++){const r=runs.filter(x=>x[i]).map(x=>x[i]);if(!r.length)break;const rv=r.map(x=>x.rev),nt=r.map(x=>x.net);out.m.push({i,rev:q(rv,.5),rev25:q(rv,.25),rev75:q(rv,.75),net:q(nt,.5),net25:q(nt,.25),net75:q(nt,.75),fp:q(r.map(x=>x.fp),.5)})}
+ for(let i=0;i<months;i++){const r=runs.filter(x=>x[i]).map(x=>x[i]);if(!r.length)break;const rv=r.map(x=>x.rev),nt=r.map(x=>x.net);out.m.push({i,rev:q(rv,.5),rev25:q(rv,.25),rev75:q(rv,.75),net:q(nt,.5),net25:q(nt,.25),net75:q(nt,.75),fp:q(r.map(x=>x.fp),.5),ai:q(r.map(x=>x.ai),.5)})}
  const be=out.m.findIndex((x,i)=>x.net>0&&out.m.slice(i,i+3).every(y=>y.net>0));out.breakEven=be<0?null:be+1;
  const cum=runs.map(x=>{let c=0;const k=x.findIndex(m=>(c+=m.net)>=0&&c>0);return k<0?null:k+1}).filter(x=>x!=null);out.payback=cum.length>=n/2?q(cum,.5):null;
  out.years=[0,1,2].map(y=>{const yr=runs.map(x=>x.slice(y*12,y*12+12)).filter(x=>x.length===12);const rv=yr.map(x=>x.reduce((a,m)=>a+m.rev,0)),nt=yr.map(x=>x.reduce((a,m)=>a+m.net,0));return rv.length?{rev:[q(rv,.25),q(rv,.5),q(rv,.75)],net:[q(nt,.25),q(nt,.5),q(nt,.75)]}:null});
  return out}
 let LAB={cfg:null,res:null};
-function labDefaults(li){const ln=EC.lines[li],pod=ln.mode==='pod';return {line:li,price:[1,1,1,1],ads:60,mix:.3,premium:pod?null:null,hours:EC.founder.side.hoursWk,rate:EC.founder.side.rate,salMode:pod?'side':'off',traffic:'base',boothWeeks:pod?null:null,rent:1,seeds:EC.lab.seeds}}
+function labDefaults(li){const ln=EC.lines[li],pod=ln.mode==='pod';return {line:li,price:[1,1,1,1],ads:60,mix:.3,premium:pod?null:null,hours:EC.founder.side.hoursWk,rate:EC.founder.side.rate,salMode:'ai',aiLevel:'base',oversight:EC.ai.oversightHrs,humanQC:true,traffic:'base',boothWeeks:pod?null:null,rent:1,seeds:EC.lab.seeds}}
 function openLab(){if(!LAB.cfg)LAB.cfg=labDefaults(S&&S.co?S.co.line:EC.lines.findIndex(l=>l.mode==='pod'));$('labwrap').classList.remove('hidden');renderLab()}
 function renderLab(){const c=LAB.cfg,ln=EC.lines[c.line],pod=ln.mode==='pod',sk=ln.skus.map((x,i)=>{const v=ln.variants&&ln.variants[i];return {n:x[0],p:v?Math.round(v.reduce((a,w)=>a+w[1]*w[4],0)):x[3]}});
  const sl=(id,lab,min,max,step,val,fmtv)=>`<label class="lr"><span>${lab}</span><input type="range" id="${id}" min="${min}" max="${max}" step="${step}" value="${val}"><b id="${id}v">${fmtv(val)}</b></label>`;
@@ -575,7 +577,8 @@ function renderLab(){const c=LAB.cfg,ln=EC.lines[c.line],pod=ln.mode==='pod',sk=
  <div class="labgrid"><div>
  <label class="lr"><span>Business</span><select id="lLine">${EC.lines.map((l,i)=>`<option value="${i}" ${i===c.line?'selected':''}>${l.mode==='pod'?'🐶 ':''}${l.n}</option>`).join('')}</select></label>
  <label class="lr"><span>Traffic</span><select id="lTr">${[['conservative','Conservative (crowded Etsy niche)'],['low','Low'],['base','Base'],['high','High']].map(([v,t])=>`<option value="${v}" ${c.traffic===v?'selected':''}>${t} ×${EC.lab.traffic[v]}</option>`).join('')}</select></label>
- <label class="lr"><span>Founder pay</span><select id="lSal">${[['off','OFF (robot works free)'],['side','Side hustle'],['full','Full-time salary']].map(([v,t])=>`<option value="${v}" ${c.salMode===v?'selected':''}>${t}</option>`).join('')}</select></label>
+ <label class="lr"><span>Founder pay</span><select id="lSal">${[['ai','🤖 AI 24/7 (you oversee)'],['off','OFF (robot works free)'],['side','Side hustle'],['full','Full-time salary']].map(([v,t])=>`<option value="${v}" ${c.salMode===v?'selected':''}>${t}</option>`).join('')}</select></label>
+ ${sl('lOv','Oversight h/week (AI 24/7)',0,15,.5,c.oversight,v=>v+' h')}<label class="lr"><span>AI cost level</span><select id="lAi">${['lean','base','heavy'].map(v=>`<option value="${v}" ${c.aiLevel===v?'selected':''}>${v} — $${EC.ai.levels[v].base}/mo + $${EC.ai.levels[v].perOrder}/order</option>`).join('')}</select></label>
  ${sl('lHrs','Hours/week (side hustle)',2,30,1,c.hours,v=>v+' h')}${sl('lRate','Your hourly rate',0,60,1,c.rate,v=>'$'+v)}
  ${sl('lAds','Ad spend / month',0,1500,10,c.ads,v=>'$'+v)}${sl('lMix','Etsy ↔ Shopify mix',0,100,5,Math.round(c.mix*100),v=>(100-v)+'% Etsy / '+v+'% Shopify')}
  </div><div>
@@ -587,16 +590,16 @@ function renderLab(){const c=LAB.cfg,ln=EC.lines[c.line],pod=ln.mode==='pod',sk=
  <div class="labbar"><button id="lRun">▶ Run 3-year projection (${c.seeds} seeds)</button><button id="lCsv" class="mini" ${LAB.res?'':'disabled'}>⬇ CSV</button><button id="lClose" class="mini">✕ Close</button></div>
  <div id="labres">${LAB.res?labResHtml(LAB.res):'<p class="why">Pick assumptions and press Run. Results are medians with the middle-half range (25th–75th percentile) across seeds.</p>'}</div>`;
  const num=id=>+$(id).value,bind=(id,f)=>{const e=$(id);if(e)e.oninput=e.onchange=()=>{f(e.value);const v=$(id+'v');if(v)renderLabVals()}};
- bind('lLine',v=>{LAB.cfg=labDefaults(+v);LAB.res=null;renderLab()});bind('lTr',v=>c.traffic=v);bind('lSal',v=>c.salMode=v);bind('lHrs',v=>c.hours=+v);bind('lRate',v=>c.rate=+v);bind('lAds',v=>c.ads=+v);bind('lMix',v=>c.mix=v/100);
+ bind('lLine',v=>{LAB.cfg=labDefaults(+v);LAB.res=null;renderLab()});bind('lTr',v=>c.traffic=v);bind('lSal',v=>c.salMode=v);bind('lHrs',v=>c.hours=+v);bind('lOv',v=>c.oversight=+v);bind('lAi',v=>c.aiLevel=v);bind('lRate',v=>c.rate=+v);bind('lAds',v=>c.ads=+v);bind('lMix',v=>c.mix=v/100);
  sk.forEach((k,i)=>bind('lP'+i,v=>c.price[i]=v/100));bind('lPrem',v=>c.premium=v==='auto'?null:v==='1');bind('lBooth',v=>c.boothWeeks=v==='auto'?null:+v);bind('lRent',v=>c.rent=v/100);
- $('lCons').onclick=()=>{c.traffic='conservative';if(pod){c.salMode='side';c.premium=null}c.ads=Math.min(c.ads,30);renderLab()};$('lReset').onclick=()=>{LAB.cfg=labDefaults(c.line);renderLab()};
+ $('lCons').onclick=()=>{c.traffic='conservative';if(pod){c.premium=null}c.ads=Math.min(c.ads,30);renderLab()};$('lReset').onclick=()=>{LAB.cfg=labDefaults(c.line);renderLab()};
  $('lClose').onclick=()=>$('labwrap').classList.add('hidden');$('lCsv').onclick=()=>LAB.res&&download('whatif-'+EC.lines[c.line].n.replace(/\W+/g,'-')+'.csv',labCsv(LAB.res),'text/csv');
  $('lRun').onclick=()=>{$('labres').innerHTML='<p class="why">Running '+c.seeds+' companies × 3 years…</p>';setTimeout(()=>{LAB.res=whatIf(JSON.parse(JSON.stringify(c)));renderLab()},30)};
- function renderLabVals(){const vals={lHrs:v=>v+' h',lRate:v=>'$'+v,lAds:v=>'$'+v,lMix:v=>(100-v)+'% Etsy / '+v+'% Shopify',lRent:v=>v+'%'};Object.keys(vals).forEach(id=>{if($(id))$(id+'v').textContent=vals[id]($(id).value)});sk.forEach((k,i)=>{const v=$('lP'+i).value;$('lP'+i+'v').textContent='$'+Math.round(k.p*v/100)+' ('+v+'%)'})}
+ function renderLabVals(){const vals={lOv:v=>v+' h',lHrs:v=>v+' h',lRate:v=>'$'+v,lAds:v=>'$'+v,lMix:v=>(100-v)+'% Etsy / '+v+'% Shopify',lRent:v=>v+'%'};Object.keys(vals).forEach(id=>{if($(id))$(id+'v').textContent=vals[id]($(id).value)});sk.forEach((k,i)=>{const v=$('lP'+i).value;$('lP'+i+'v').textContent='$'+Math.round(k.p*v/100)+' ('+v+'%)'})}
  if(LAB.res)drawLabChart(LAB.res)}
 function labResHtml(r){const m=r.m,at=i=>m[i-1]?`${fmt(Math.round(m[i-1].net))} <small>(${fmt(Math.round(m[i-1].net25))} to ${fmt(Math.round(m[i-1].net75))})</small>`:'—',rg=a=>a?`${fmt(Math.round(a[1]))} <small>(${fmt(Math.round(a[0]))} to ${fmt(Math.round(a[2]))})</small>`:'—';
  return `<canvas id="labc" width="860" height="220" style="width:100%"></canvas>
- <table class="pnl"><tr class="b"><td>Median monthly profit</td><td>Month 6</td><td>Month 12</td><td>Month 24</td><td>Month 36</td></tr><tr><td>${r.cfg.salMode!=='off'?'after founder pay':'founder unpaid'}</td><td>${at(6)}</td><td>${at(12)}</td><td>${at(24)}</td><td>${at(36)}</td></tr>${r.cfg.salMode!=='off'?`<tr><td>before founder pay</td>${[6,12,24,36].map(i=>`<td>${m[i-1]?fmt(Math.round(m[i-1].net+m[i-1].fp)):'—'}</td>`).join('')}</tr><tr><td>founder pay (median)</td>${[6,12,24,36].map(i=>`<td>${m[i-1]?fmt(Math.round(m[i-1].fp)):'—'}</td>`).join('')}</tr>`:''}</table>
+ <table class="pnl"><tr class="b"><td>Median monthly profit</td><td>Month 6</td><td>Month 12</td><td>Month 24</td><td>Month 36</td></tr><tr><td>${r.cfg.salMode!=='off'?'after founder pay':'founder unpaid'}</td><td>${at(6)}</td><td>${at(12)}</td><td>${at(24)}</td><td>${at(36)}</td></tr>${r.cfg.salMode!=='off'?`<tr><td>before founder pay</td>${[6,12,24,36].map(i=>`<td>${m[i-1]?fmt(Math.round(m[i-1].net+m[i-1].fp)):'—'}</td>`).join('')}</tr><tr><td>founder pay (median)</td>${[6,12,24,36].map(i=>`<td>${m[i-1]?fmt(Math.round(m[i-1].fp)):'—'}</td>`).join('')}</tr>${r.cfg.salMode==='ai'?`<tr><td>AI operator cost (median)</td>${[6,12,24,36].map(i=>`<td>${m[i-1]?fmt(Math.round(m[i-1].ai)):'—'}</td>`).join('')}</tr>`:''}<tr style="display:none"><td></td>${[6,12,24,36].map(i=>`<td>${m[i-1]?fmt(Math.round(m[i-1].fp)):'—'}</td>`).join('')}</tr>`:''}</table>
  <table class="pnl"><tr class="b"><td>Year</td><td>Revenue (median, middle half)</td><td>Profit (median, middle half)</td></tr>${r.years.map((y,i)=>y?`<tr><td>Year ${i+1}</td><td>${rg(y.rev)}</td><td>${rg(y.net)}</td></tr>`:'').join('')}</table>
  <p><b>Break-even month:</b> ${r.breakEven?'month '+r.breakEven+' (median monthly profit turns positive and stays positive 3+ months)':'not within 3 years at the median'} · <b>Cumulative payback:</b> ${r.payback?'month '+r.payback:'not within 3 years at the median'}</p>
  <p class="why">${r.n} simulated companies, ${EC.lines[r.cfg.line].n}, traffic ×${EC.lab.traffic[r.cfg.traffic]}. Ranges are the 25th–75th percentile. Uses the same cited economics as the game; the robot still makes all other decisions.</p>`}
@@ -607,8 +610,8 @@ function drawLabChart(r){const c=$('labc');if(!c)return;const g=c.getContext('2d
  const line=(k,col)=>{g.strokeStyle=col;g.lineWidth=2;g.beginPath();m.forEach((x,i)=>i?g.lineTo(X(i),Y(x[k])):g.moveTo(X(i),Y(x[k])));g.stroke()};line('rev','#7dd3ff');line('net','#7dff8a');
  g.strokeStyle='#ffffff40';g.lineWidth=1;g.beginPath();g.moveTo(40,Y(0));g.lineTo(W-10,Y(0));g.stroke();g.fillStyle='#ddd';g.font='11px monospace';g.fillText('median monthly revenue',50,14);g.fillStyle='#7dff8a';g.fillText('median monthly profit',240,14);g.fillStyle='#aaa';g.fillText(fmt(Math.round(mx)),2,24);g.fillText('$0',2,Y(0)+4);
  [12,24,36].forEach(k=>{if(m[k-1]){g.fillStyle='#888';g.fillText('m'+k,X(k-1)-10,H-4)}});if(r.breakEven){g.strokeStyle='#ffd76a';g.setLineDash([4,3]);g.beginPath();g.moveTo(X(r.breakEven-1),20);g.lineTo(X(r.breakEven-1),H-20);g.stroke();g.setLineDash([]);g.fillStyle='#ffd76a';g.fillText('break-even',X(r.breakEven-1)+3,30)}}
-function labCsv(r){const c=r.cfg,L=[['What-if lab',EC.lines[c.line].n],['traffic',c.traffic],['founder pay',c.salMode],['hours/week',c.hours],['hourly rate',c.rate],['ads/month',c.ads],['shopify mix',c.mix],['price multipliers',c.price.join('|')],['premium',c.premium==null?'auto':c.premium],['booth weeks',c.boothWeeks==null?'auto':c.boothWeeks],['rent',c.rent],['seeds',r.n],['break-even month',r.breakEven||''],['payback month',r.payback||''],[],['month','rev_p25','rev_median','rev_p75','profit_p25','profit_median','profit_p75','founder_pay_median']];
- r.m.forEach(x=>L.push([x.i+1,...[x.rev25,x.rev,x.rev75,x.net25,x.net,x.net75,x.fp].map(v=>Math.round(v))]));return L.map(a=>a.join(',')).join('\n')}
+function labCsv(r){const c=r.cfg,L=[['What-if lab',EC.lines[c.line].n],['traffic',c.traffic],['founder pay',c.salMode],['ai level',c.aiLevel],['oversight h/wk',c.oversight],['hours/week',c.hours],['hourly rate',c.rate],['ads/month',c.ads],['shopify mix',c.mix],['price multipliers',c.price.join('|')],['premium',c.premium==null?'auto':c.premium],['booth weeks',c.boothWeeks==null?'auto':c.boothWeeks],['rent',c.rent],['seeds',r.n],['break-even month',r.breakEven||''],['payback month',r.payback||''],[],['month','rev_p25','rev_median','rev_p75','profit_p25','profit_median','profit_p75','founder_pay_median','ai_cost_median']];
+ r.m.forEach(x=>L.push([x.i+1,...[x.rev25,x.rev,x.rev75,x.net25,x.net,x.net75,x.fp,x.ai].map(v=>Math.round(v))]));return L.map(a=>a.join(',')).join('\n')}
 function download(name,text,type){const b=new Blob([text],{type}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
 // ================= weekly news recap card =================
 function showRecap(){if(HEADLESS||window.__rfFast)return;const w=S.daily.slice(-7);if(w.length<3)return;const rev=w.reduce((a,d)=>a+d.rev,0),o=w.reduce((a,d)=>a+d.oe+d.os+d.ss,0);
@@ -881,12 +884,12 @@ function startVisualDay(D,er,snap){
   vday.shop.sort((a,b)=>a.at-b.at)}
  vday.ord=D.online.map(o=>({at:o.t*.9,ch:o.ch,k:o.k,done:0})).sort((a,b)=>a.at-b.at);
  // robot task plan
- const L=LAY(),r=D.robot,tot=Object.values(r).reduce((a,b)=>a+b,0)||1,dl=DAY_LEN*.86;const cs=L.cashiers[0];
+ const L=LAY(),r=D.robot,AI=salMode()==='ai',tot=Object.values(r).reduce((a,b)=>a+b,0)||1,dl=DAY_LEN*(AI?.6:.86);const cs=L.cashiers[0];
  const st=id=>{const s=ST(id);return s?[s.sx,s.sy]:[3,4]};
  const tk=[];const add=(id,h,spot,label)=>{if(h>.05)tk.push({id,d:h/tot*dl,spot,label})};
  const pd=POD();add('admin',r.admin,st('board'),'Doing the books…');add('make',r.make,st('bench0'),'Building '+S.co.unit+'…');add('pack',r.pack,st(pd?'desk':'pack'),pd?'Approving AI portraits ✅ → sending to print partner':'Packing orders…');add('cs',r.cs,st('desk'),pd?'Answering customer messages 💬 (photo requests, revisions)':'Answering support tickets…');add('design',r.design,st('desk'),pd?'Designing at the screen 🎨 (new printables & styles)':'Designing / R&D…');add('social',r.social||0,st('board'),'Filming content for socials 📱');
  if(r.store>.05){const h=r.store/tot*dl;tk.splice(1,0,{id:'store',d:h*.55,spot:cs,label:'Working the register'});tk.push({id:'store',d:h*.45,spot:cs,label:'Working the register'})}
- tk.splice(Math.floor(tk.length/2),0,{id:'dock',d:DAY_LEN*.05,spot:st('dock'),label:'Recharging…'});tk.push({id:'dock',d:99,spot:st('dock'),label:'Recharging overnight'});
+ tk.splice(Math.floor(tk.length/2),0,{id:'dock',d:DAY_LEN*.05,spot:st('dock'),label:'Recharging…'});if(AI){tk.push({id:'dock',d:DAY_LEN*.02,spot:st('dock'),label:'Hot-swapping battery 🔋 (30 sec)'});tk.push({id:'cs',d:DAY_LEN*.08,spot:st('desk'),label:pd?'🌙 Night shift: replying to messages in minutes':'🌙 Night shift: answering tickets & writing SEO'});tk.push({id:'design',d:DAY_LEN*.08,spot:st('desk'),label:pd?'🌙 Night shift: generating portrait proofs':'🌙 Night shift: listings, books & experiments'});tk.push({id:'admin',d:99,spot:st('board'),label:'🌙 Night shift: monitoring orders & experiments (plugged in)'});vday.nightLog={done:0,txt:`🌙 Night shift (${S.aiLevel} AI): answered ${D.tickets} message${D.tickets===1?'':'s'} within minutes, ${pd?'checked '+D.online.length+' order'+(D.online.length===1?'':'s')+' & proofs':'updated listings & books'}, filed ${D.reprints||0} reprint claim${(D.reprints||0)===1?'':'s'}. AI cost today ${fmt(Math.round((D.aiOp||0)*100)/100)}.`}}else tk.push({id:'dock',d:99,spot:st('dock'),label:'Recharging overnight'});
  vday.tasks=tk;queue=[];shoppers=[];
  if(er)showEvent(er);
 }
@@ -984,7 +987,7 @@ function pnlTable(ms,cur){const cols=ms.map(m=>({k:mname(m.k),m,P:m.P||pnl(m)}))
  ${row('Refunds & chargebacks',c=>f0(-c.m.refunds))}${row('Net revenue',c=>f0(c.P.net_rev),1)}
  ${row('Materials (COGS)',c=>f0(-c.m.cogs-c.m.scrap))}${row('Packaging',c=>f0(-c.m.pack))}${row('Shipping labels (net)',c=>f0(-c.P.shipNet))}${row('Gross margin',c=>`${f0(c.P.gm)} <small>${Math.round(c.P.gmPct*100)}%</small>`,1)}
  ${row('Channel & card fees',c=>f0(-(c.m.fees.etsy+c.m.fees.shopify+c.m.fees.store)))}${row('Shopify plan + apps',c=>f0(-c.m.subs))}${row('Wages',c=>f0(-c.m.wages))}${row('Payroll tax + WC',c=>f0(-c.m.burden))}
- ${row('Rent (NNN)',c=>f0(-c.m.rent))}${row('Utilities',c=>f0(-c.m.util))}${row('Insurance',c=>f0(-c.m.ins))}${row('Licenses & fees',c=>f0(-c.m.lic))}${row('Advertising',c=>f0(-c.m.ads))}${row('Other / events',c=>f0(-c.m.other))}
+ ${row('Rent (NNN)',c=>f0(-c.m.rent))}${row('Utilities',c=>f0(-c.m.util))}${row('Insurance',c=>f0(-c.m.ins))}${row('Licenses & fees',c=>f0(-c.m.lic))}${row('Advertising',c=>f0(-c.m.ads))}${row('🤖 AI operator (24/7 agent)',c=>f0(-(c.m.aiOp||0)))}${row('👤 Founder pay (incl. above in labor)',c=>f0(-(c.m.founderPay||0)))}${row('Other / events',c=>f0(-c.m.other))}
  ${row('Interest',c=>f0(-c.m.interest))}${row('Net income',c=>`<span style="color:${c.P.net>=0?'#7dff8a':'#ff7d7d'}">${f0(c.P.net)}</span>`,1)}${row('Income tax set-aside',c=>f0(-(c.m.incomeTax||0)))}
  ${row('Sales tax collected → remitted',c=>`${f0(c.m.taxCol)} → ${f0(c.m.taxRem)}`)}${row('Inventory purchased',c=>f0(-c.m.matBuy))}${row('Loans in / principal out',c=>`${f0(c.m.loanIn+c.m.ffIn+c.m.eqIn)} / ${f0(-c.m.loanOut)}`)}${row('Cash end of month',c=>f0(c.m.cash1||S.cash),1)}</table>`}
 const c0=cols=>cols.some(c=>c.m.rev.wholesale>0);
@@ -1174,8 +1177,8 @@ document.querySelectorAll('#ctl [data-sp]').forEach(b=>b.onclick=()=>setSpeed(+b
 $('bHL').onclick=()=>{highlights=!highlights;syncCtl();toast(highlights?'Highlights: quiet days fly by, big moments play out':'Highlights off — every day plays out')};
 $('bPause').onclick=togglePause;$('bFollow').onclick=()=>{follow=!follow;syncCtl()};$('bMute').onclick=toggleMute;$('bMute').textContent=muted?'×':'♪';
 $('bDash').onclick=()=>{dashOpen=!dashOpen;$('dash').classList.toggle('hidden',!dashOpen);syncCtl()};$('bBooks').onclick=()=>openBooks();
-$('bNew').onclick=()=>{Music.start();SFX.click();FORCE_LINE=null;newCompany()};if($('salSel'))$('salSel').onchange=e=>SAL_PICK=e.target.value;if($('cofChk'))$('cofChk').onchange=e=>COF_ON=e.target.checked;if($('bLabT'))$('bLabT').onclick=()=>openLab();if($('bLab'))$('bLab').onclick=()=>openLab();if($('bPhoto'))$('bPhoto').onclick=()=>S&&photo();
-if($('bSal'))$('bSal').onclick=()=>{if(!S)return;const order=['off','side','full'];S.salMode=order[(order.indexOf(salMode())+1)%3];toast('💼 Founder pay: '+({off:'OFF (robot works free)',side:`Side hustle (${S.salHours} h/wk at $${S.salRate}/hr)`,full:'Full-time salary ($41.6k/yr)'})[S.salMode]);log('💼 Founder pay set to '+S.salMode+'. Robot work hours now '+founderH().toFixed(1)+' h/day.','y')};if($('bDom'))$('bDom').onclick=()=>{Music.start();SFX.click();FORCE_LINE=EC.lines.findIndex(l=>l.mode==='pod');newCompany();FORCE_LINE=null};$('bCont').onclick=()=>{Music.start();SFX.click();cont()};$('bHall').onclick=()=>showHall(false);
+$('bNew').onclick=()=>{Music.start();SFX.click();FORCE_LINE=null;newCompany()};if($('salSel'))$('salSel').onchange=e=>SAL_PICK=e.target.value;if($('aiSel'))$('aiSel').onchange=e=>AI_LEVEL=e.target.value;if($('cofChk'))$('cofChk').onchange=e=>COF_ON=e.target.checked;if($('bLabT'))$('bLabT').onclick=()=>openLab();if($('bLab'))$('bLab').onclick=()=>openLab();if($('bPhoto'))$('bPhoto').onclick=()=>S&&photo();
+if($('bSal'))$('bSal').onclick=()=>{if(!S)return;const order=['ai','off','side','full'];S.salMode=order[(order.indexOf(salMode())+1)%4];toast('💼 Founder pay: '+({off:'OFF (robot works free)',side:`Side hustle (${S.salHours} h/wk at $${S.salRate}/hr)`,full:'Full-time salary ($41.6k/yr)',ai:`AI 24/7 (${S.aiLevel} AI cost, you oversee ${S.overH} h/wk)`})[S.salMode]);log('💼 Founder pay set to '+S.salMode+'. Robot work hours now '+founderH().toFixed(1)+' h/day.','y')};if($('bDom'))$('bDom').onclick=()=>{Music.start();SFX.click();FORCE_LINE=EC.lines.findIndex(l=>l.mode==='pod');newCompany();FORCE_LINE=null};$('bCont').onclick=()=>{Music.start();SFX.click();cont()};$('bHall').onclick=()=>showHall(false);
 addEventListener('keydown',e=>{if(!running)return;const m={Digit1:1,Digit2:2,Digit3:4,Digit4:8}[e.code];if(m)setSpeed(m);if(e.code==='KeyH')$('bHL').click();if(e.code==='KeyP'||e.code==='Space'){togglePause();e.preventDefault()}if(e.code==='KeyF')$('bFollow').click();if(e.code==='KeyM')toggleMute();if(e.code==='KeyD')$('bDash').click();if(e.code==='KeyB')openBooks()});
 // ---------- simulation driver ----------
 function wantVisual(r){if(!highlights)return true;const f=S.flags.visualNext;S.flags.visualNext=0;return f||S.day<=2||(r.er&&r.er.big)||S.day%30===12}
@@ -1313,10 +1316,11 @@ function drawWorld(){
  Ly.deco.forEach(([tx,ty])=>{const x=tx*T,y=ty*T;rect(x+10,y+18,12,12,'#8b5a2b');rect(x+6,y+4,20,16,'#2ecc71');rect(x+10,y,12,8,'#27ae60')});
  drawTruck();drawVan();
 }
-function lights(){const d=darkness();if(d<=.02)return;const W=worldW();
+function lights(){const d=darkness();if(S&&salMode()==='ai'){S.energy=Math.max(S.energy,70);if(vday&&vday.nightLog&&!vday.nightLog.done&&S.time/DAY_LEN>.7){vday.nightLog.done=1;log(vday.nightLog.txt,'t')}}if(d<=.02)return;const W=worldW();
  cx.fillStyle=`rgba(10,8,40,${d})`;cx.fillRect(0,0,W*T,13*T);if(d<.12)return;
  cx.globalCompositeOperation='lighter';const glow=(x,y,r,c)=>{const g=cx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,c);g.addColorStop(1,'rgba(0,0,0,0)');cx.fillStyle=g;cx.fillRect(x-r,y-r,r*2,r*2)};
  const a=d*.6;glow(ST('desk').x*T+16,ST('desk').y*T,70,`rgba(90,160,255,${a})`);glow(ST('dock').x*T+16,ST('dock').y*T+16,50,`rgba(120,255,140,${a})`);
+ if(salMode()==='ai'&&d>.15){const f=S.face||1,ex=S.x+(f>0?14:12),ey=S.y+9;glow(ex,ey,14,'rgba(120,230,255,.9)');glow(ex+5,ey,14,'rgba(120,230,255,.9)');glow(ex+2,ey,40,`rgba(80,200,255,${a})`)}
  if(ST('coffee'))glow(ST('coffee').x*T+16,ST('coffee').y*T+10,40,`rgba(255,120,80,${a*.7})`);if(ST('rack'))glow(ST('rack').x*T+16,ST('rack').y*T,60,`rgba(140,255,170,${a*.7})`);
  stations().filter(s=>s.type==='disp').forEach(s=>glow(s.x*T+16,s.y*T,55,`rgba(255,230,160,${a*.8})`));glow(ST('till').x*T+16,ST('till').y*T,50,`rgba(255,220,120,${a})`);glow(ST('pack').x*T+30,ST('pack').y*T-6,40,`rgba(90,200,255,${a})`);
  glow(S.x+16,S.y+12,40,`rgba(255,230,150,${a*.6})`);

@@ -110,6 +110,21 @@ All numbers live in [`economics.js`](economics.js) (each entry names its source 
 | Laser-Cut Wood Signs | materials $5–40, prices $35–220 (laser equipment not modeled) | **ESTIMATE** (name signs $30–45, wedding signs $90–150) |
 | Sterling Silver Jewelry | materials $6–60, prices $38–240 | **ESTIMATE** (studs $30–45, pendants $70–110, gemstone rings $180–300) |
 
+## 4d. AI 24/7 operator mode (added Oct 10, 2026; default for new companies and Dom's plan)
+| Item | Value | Source (accessed 2026-10-10) |
+|---|---|---|
+| LLM pricing | Claude Sonnet 5 $2 in / $10 out per 1M tokens; Haiku 5.5 $0.10 / $0.50 | https://platform.claude.com/docs/en/about-claude/pricing |
+| LLM pricing | GPT-5 mini $0.25 in / $2.00 out per 1M tokens | https://developers.openai.com/api/docs/pricing |
+| AI operator cost: lean | $25/mo + $0.03/order + $0.005/message | **ESTIMATE** usage volume |
+| AI operator cost: base | $80/mo + $0.10/order + $0.015/message (24/7 loop every 15 min ≈ 58M mostly cached input + 3M output tokens ≈ $45, plus ~$35 hosting/automation) | **ESTIMATE** usage volume, priced from the links above |
+| AI operator cost: heavy | $250/mo + $0.30/order + $0.05/message | **ESTIMATE** |
+| Image generation | stays in COGS per portrait (gpt-image-1 estimate, see POD section) + Midjourney sub | see POD section |
+| Fast replies | +3% Etsy/Shopify conversion; no unanswered-message review hits. Etsy Star Seller asks for replies to 95% of first messages within 24 h | **ESTIMATE**; https://help.etsy.com/hc/en-us/articles/360057884693 |
+| Dom's oversight | 2 h/week (configurable) at $20/hr in the P&L; booth days +6 h (he must be there) | **ESTIMATE** |
+| Optional human QC | Dom checks custom portraits: 2 min each, 40% fewer custom refunds | **ESTIMATE** |
+| What the AI can't do alone | market booths (needs Dom), physical making/packing (physical modes: robot body only in a 10 h day shift; machines run 4 h night batches only after automation R&D) | game rule |
+| No demand inflation | extra hours don't create traffic: content and design benefits capped at 3 h and 6 h a day. Revenue is demand-limited (in sims it matches the unlimited-hours robot) | game rule |
+
 ## 5. Demand & operations
 | Item | Value used | Source |
 |---|---|---|

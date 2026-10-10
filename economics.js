@@ -2,7 +2,7 @@
 // "est" = estimate by the game author (no direct source); edit freely. Accessed 2026-10-10 unless noted.
 window.ECON={
  accessed:'2026-10-10',
- sources:{
+ sources:{aiOps:'https://platform.claude.com/docs/en/about-claude/pricing',aiOpsOpenAI:'https://developers.openai.com/api/docs/pricing',etsyStar:'https://help.etsy.com/hc/en-us/articles/360057884693',
   etsyFees:'https://www.etsy.com/legal/fees',
   etsyPay:'https://help.etsy.com/hc/en-us/articles/115015628847-What-are-Payment-Processing-Fees-for-Selling-on-Etsy',
   etsyOffsite:'https://handandkin.com/guides/fee-audit/etsy-fees-2026',
@@ -115,6 +115,15 @@ window.ECON={
   micro:{max:50000,apr:[.08,.13],years:6,src:'sbaMicro'},sba7a:{max:350000,apr:[.1025,.1325],years:10,src:'sba'},
   seed:{amt:500000,post:12500000,src:'seedVal',note:'Carta median pre-seed SAFE cap; rarely available to maker businesses (est probability)'}},
  exit:{shopifyMult:[2.0,3.4],etsyMult:[1.0,2.5],src:'exitMult',etsySrc:'etsyMult'},
+ // ---------- AI 24/7 operator ----------
+ ai:{hours:23.5,hoursNote:'agent runs around the clock; hot-swap batteries / works while docked (game visual)',physDayH:10,physNote:'in-game robot body does physical work in a 10 h day shift only; in the real world physical making/packing/booths need you, staff or machines',
+  nightRD:60,nightBatchH:4,nightNote:'machines run 4 h night batches only after automation R&D (rd≥60) — physical modes',
+  oversightHrs:2,oversightNote:'Dom: ~2 h/week oversight (configurable) at his hourly rate; booth days add 6 h because he must be there',
+  levels:{lean:{base:25,perOrder:.03,perMsg:.005,n:'lean (small model, mostly batch/cached)'},base:{base:80,perOrder:.10,perMsg:.015,n:'base (Sonnet-class agent + tooling)'},heavy:{base:250,perOrder:.30,perMsg:.05,n:'heavy (frontier model, lots of retries)'}},
+  levelsNote:'ESTIMATE usage volume; priced from Claude Sonnet 5 $2/$10 per MTok (Haiku 5.5 $0.10/$0.50) and GPT-5 mini $0.25/$2 per MTok. Base: 24/7 loop every 15 min ≈ 58M mostly-cached input + 3M output tokens/mo ≈ $45 + ~$35 automation/hosting; ~$0.015 per customer message (≈5k in/500 out); ~$0.10 per order (proofs, listing tweaks, claims, bookkeeping). Image generation stays in COGS (per portrait)',
+  replyLift:.03,replyNote:'ESTIMATE: replies within minutes → +3% Etsy/Shopify conversion and fewer unanswered-message review hits; Etsy Star Seller asks for replies to 95% of first messages within 24 h',
+  socialCapH:3,designCapH:6,capNote:'extra hours do NOT create demand: content/design benefit capped at 3 h/6 h per day (diminishing returns)',
+  humanQC:{minPerOrder:2,refundCut:.4,note:'optional final human check of custom portraits by Dom: 2 min each, ESTIMATE 40% fewer custom refunds'},src:'aiOps'},
  // ---------- founder pay (toggle) ----------
  founder:{side:{hoursWk:8,rate:20,note:'Side hustle: Dom\'s real 6–10 h/week (8 used) valued at $20/hr (ESTIMATE, matches FL entry-level ops wages)'},
   full:{salary:41600,hoursWk:45,note:'Full-time: $41,600/yr ($20/hr × 2,080 h, ESTIMATE); robot works 45 h/week'},boothHours:6,src:'est'},
