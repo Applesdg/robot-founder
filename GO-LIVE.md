@@ -21,5 +21,6 @@ wrangler deploy                          # MODE stays "mock"
 Visit `/oauth/etsy/start` and `/oauth/shopify/start` to link. Paste the Worker URL into the game's Connections panel. Run a week in mock, then set `MODE="live"` and redeploy.
 
 ## TODO before live
+- Catalog: creating Printify product drafts is allowed; publishing (Printify publish, Etsy/Shopify listing create/update/images, sales/promotions) is `golive` and always needs Dom's approval.
 - Add login (Cloudflare Access or passkey) so only Dom's browser can call `/api/*`.
 - Deliver approval links by email/SMS; Etsy token refresh job; Shopify/Printify webhook signature verification.
