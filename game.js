@@ -149,7 +149,7 @@ function newState(){
   done:false,outcome:null,peakTTM:0,peakCash:0,insured:true,lifetime:{rev:0,orders:0,units:0}};
  S=s;s.mo=newMonth(mkey(dateOf(0)));s.mo.cash0=s.cash;
  s.mo.lic+=EC.licenses.llc+EC.licenses.btrYr;s.cash-=EC.licenses.llc+EC.licenses.btrYr; // LLC formation + Brevard BTR
- return s;
+ brainInit();return s;
 }
 const has=p=>S.co.perk===p;
 const trait=()=>TRAITS.find(t=>t.id===S.co.trait)||TRAITS[0];
@@ -183,7 +183,7 @@ function unitEcon(k,ch){// per-unit contribution for a single-item order on a ch
 // ---------- daily economics ----------
 const usage=k=>S.use.s[k]+S.use.o[k];
 const leadDays=()=>RI(...EC.leadDays)+S.mods.leadAdd;
-function targets(k){const st=S.ch.store.open>=0?Math.max(2,Math.ceil(S.use.s[k]*8)):0;const on=Math.max(2,Math.ceil(S.use.o[k]*8))+(S.flags.whole&&S.flags.whole.k===k&&!S.flags.whole.shipped?S.flags.whole.n:0);return {s:st,o:on}}
+function targets(k){const F=S.fd,z=EC.brain?EC.brain.z:1.65,us=F?Math.max(S.use.s[k]*.6,F.s[k]):S.use.s[k],uo=F?Math.max(S.use.o[k]*.6,F.o[k]):S.use.o[k],ssd=F?z*F.sd[k]*Math.SQRT2:0;const st=S.ch.store.open>=0?Math.max(2,Math.ceil(F?us*6+ssd*.4:us*8)):0;const on=Math.max(2,Math.ceil(F?uo*6+ssd*.6:uo*8))+(S.flags.whole&&S.flags.whole.k===k&&!S.flags.whole.shipped?S.flags.whole.n:0);return {s:st,o:on}}
 function storeOpenToday(t){return S.stage>=1&&S.ch.store.open>=0&&t.getDay()!==0&&S.mods.closed<=0}
 function priceF(){const u=unlocked();const avg=u.reduce((a,k)=>a+(k.p0||k.p),0)/Math.max(1,u.length),rel=u.reduce((a,k)=>a+k.p/((k.p0||k.p)*(S.cpi||1)),0)/Math.max(1,u.length);
  return clamp(Math.pow(45/avg,EC.priceExp),.3,1.4)*clamp(Math.pow(rel,-EC.elasticity),.4,1.5)}
@@ -193,7 +193,7 @@ function etsyViews(t){const E=EC.etsy,u=unlocked().length,listings=u*3;const sal
  v+=(S.audience||0)*EC.socialSessions/2;v*=EC.season[t.getMonth()]*(S.mods.viralT>0?S.mods.viral:1);return Math.min(E.maxViews,v)+S.ads.etsy/.45}
 function shopSessions(t){const P=EC.shopify;S.emails*=1-P.emailChurn;let org=(P.organicBase+S.emails*P.emailRate+S.rep*.6)*(has('viral')?1.5:1)+(S.mods.press>0?40:0)+roleCount('mkt')*45;
  org+=(S.audience||0)*EC.socialSessions;org*=EC.season[t.getMonth()]*(S.mods.viralT>0?S.mods.viral:1);return org+S.ads.shopify/P.cpc}
-function pickSku(){const u=unlocked();const w=u.map(k=>1/(1+k.i*.7));let r=Math.random()*w.reduce((a,b)=>a+b,0);for(let i=0;i<u.length;i++){r-=w[i];if(r<=0)return u[i].i}return u[0].i}
+function pickSku(){const u=unlocked();const w=u.map(k=>1/(1+k.i*.7)*Math.pow(clamp(k.p/((k.p0||k.p)*(S.cpi||1)),.5,2),-EC.elasticity)*(S.feature===k.i?1+EC.brain.featureBoost:1));let r=Math.random()*w.reduce((a,b)=>a+b,0);for(let i=0;i<u.length;i++){r-=w[i];if(r<=0)return u[i].i}return u[0].i}
 function econDay(){
  const t=dateOf(),dow=t.getDay(),mon=t.getMonth(),sea=EC.season[mon];
  const D={d:S.day,date:dstr(),dow,mon,store:{open:false,visitors:0,sales:[],stockout:0,walk:0},online:[],shipped:0,late:0,cancel:0,produced:[0,0,0,0],scrap:0,tickets:0,unans:0,rd:0,hours:{},robot:{store:0,pack:0,cs:0,make:0,design:0,admin:0},
@@ -202,7 +202,7 @@ function econDay(){
  // staff hours today
  let H={retail:0,ship:0,maker:0,cs:0,eng:0,mkt:0},labor=0,burden=0;const yr=t.getFullYear();if(S.ytdYear!==yr){S.ytdYear=yr;S.ytdWages={}}
  S.staff.forEach(s=>{const R0=ROLES[s.role];const works=R0.days===6?dow!==0:(dow>0&&dow<6);if(!works||s.leaveT>0)return;
-  const eff=s.morale<30?.6:s.morale<50?.85:1,h=EC.hoursPerDay;H[s.role]+=h*eff;
+  const eff=s.morale<30?.6:s.morale<50?.85:1,h=s.role==='retail'&&S.sched?S.sched.retail:EC.hoursPerDay;H[s.role]+=h*eff;
   const pay=h*hourly(s.role);labor+=pay;const P=EC.payroll,ytd=S.ytdWages[s.name]||0;
   let b=pay*burdenRate(s.role)+Math.max(0,Math.min(pay,P.futaBase-ytd))*(P.futa+P.suta);burden+=b;S.ytdWages[s.name]=ytd+pay;
   s.morale=clamp(s.morale-(s.role==='retail'&&D.store.visitors>120?.25:.06)+(S.flags.perks?.05:0),0,100)});
@@ -240,7 +240,7 @@ function econDay(){
  const dmin=Math.min(robotH,tr.design*(S.day<5?0:1));robotH-=dmin;
  // ---- production ----
  let makerMin=H.maker*60;const u=unlocked();let robotMade=0;
- const want=u.map(k=>{const T0=targets(k.i);return {k,need:Math.max(0,T0.s-S.inv.s[k.i])+Math.max(0,T0.o-S.inv.o[k.i]+S.backlog.filter(o=>o.k===k.i).length)}}).filter(w=>w.need>0).sort((a,b)=>b.need/Math.max(.1,usage(b.k.i))-a.need/Math.max(.1,usage(a.k.i)));
+ const want=u.map(k=>{const T0=targets(k.i);return {k,need:Math.max(0,T0.s-S.inv.s[k.i])+Math.max(0,T0.o-S.inv.o[k.i]+S.backlog.filter(o=>o.k===k.i).length)}}).filter(w=>w.need>0).sort((a,b)=>{const pa=S.mixPM?S.mixPM.indexOf(a.k.i):0,pb=S.mixPM?S.mixPM.indexOf(b.k.i):0;return b.need/Math.max(.1,usage(b.k.i))*(1-pb*.1)-a.need/Math.max(.1,usage(a.k.i))*(1-pa*.1)});
  const dr=defectRate();
  for(const w of want){let n=0;const bm=buildMin(w.k);while(n<w.need&&S.kits[w.k.i]>0){if(makerMin>=bm)makerMin-=bm;else if(robotH*60>=bm){robotH-=bm/60;robotMade+=bm/60}else break;S.kits[w.k.i]--;n++;
    if(Math.random()<dr){if(Math.random()<EC.qcCatch){D.scrap++;S.mo.scrap+=matCost(w.k);continue}else S.flags.escaped=(S.flags.escaped||0)+1}
@@ -264,13 +264,14 @@ function econDay(){
  // ---- MCA remittance ----
  if(S.mca){const pay=Math.min(S.mca.bal,D.rev*.15+5);S.mca.bal-=pay;S.cash-=pay;S.mo.loanOut+=pay*.77;S.mo.interest+=pay*.23;if(S.mca.bal<=1)S.mca=null}
  // ---- reviews & rating ----
- const revs=binom(D.shipped+D.store.sales.length,.12);// ~12% of orders leave a review (est)
- for(let i=0;i<revs;i++){const u2=unlocked();const k=pick(u2);let r=quality(k)+R(-.6,.5)-(D.late?.6*D.late/Math.max(1,D.shipped):0)-(D.unans?.4:0)-(D.store.walk>3?.2:0);review(r)}
+ const revs=binom(D.shipped+D.store.sales.length,S.flags.revReq?EC.brain.reviewReqRate:EC.brain.reviewRate);// ~12% of orders leave a review (est)
+ for(let i=0;i<revs;i++){const u2=unlocked();const k=pick(u2);let r=quality(k)+R(-.6,.5)-(D.late?.6*D.late/Math.max(1,D.shipped):0)-(D.unans?.4:0)-(D.store.walk>3?.2:0);if(r<3&&S.flags.revReq&&Math.random()<EC.brain.replyFix)r+=1.5;review(r)}
  if(D.unans>3)S.rep=clamp(S.rep-.1,0,100);
  S.rep=clamp(S.rep+(D.store.sales.length*.015+D.shipped*.01)*(1-S.rep/100)+(S.mods.press>0?.15:0)+roleCount('mkt')*.05-(S.rep>40?.02:0),0,100);
  // ---- usage EMA ----
  const sold=[0,0,0,0],soldO=[0,0,0,0];D.store.sales.forEach(s=>sold[s.k]+=s.n);ord.forEach(o=>soldO[o.k]++);
  for(let k=0;k<4;k++){if(S.ch.store.open>=0&&D.store.open)S.use.s[k]=S.use.s[k]*.9+sold[k]*.1;S.use.o[k]=S.use.o[k]*.93+soldO[k]*.07}
+ brainDay(sold,ord,D);
  // ---- decay mods ----
  const M=S.mods;['press','viralT','knockT','etsyAlgoT','closed','breakT','editors'].forEach(x=>{if(M[x]>0)M[x]--});if(M.knockT<=0)M.knock=1;if(M.etsyAlgoT<=0)M.etsyAlgo=1;
  S.staff.forEach(s=>{if(s.leaveT>0){s.leaveT--}});
@@ -286,6 +287,7 @@ function shipOrder(o,D){const k=S.co.skus[o.k],p=k.p,w=k.w,lab=labelCost(w),pk=p
  else{const P=EC.shopify.plans[S.ch.shopify.plan||0];const inState=Math.random()<EC.salesTax.shopifyInStateShare;const tx=inState?p*tax:0;if(tx){S.taxDue+=tx;S.mo.taxCol+=tx}fee=P.pct*(p+chg+tx)+P.fixed;S.emails+=Math.random()<.6?1:0}
  const M=S.mo;M.rev[o.ch]+=p;M.shipInc+=chg;M.orders[o.ch]++;M.units[o.ch]++;M.fees[o.ch]+=fee;M.labels+=lab;M.pack+=pk;M.cogs+=matCost(k);M.cogsBy[o.ch]+=matCost(k);M.labelsBy[o.ch]+=lab-chg;M.packBy[o.ch]+=pk;
  S.cash+=p+chg-fee-lab-pk;D.rev+=p;S.customers++;S.lifetime.orders++;if(!S.tiers.sale){S.tiers.sale=S.day;moment('🎉 First sale! ('+o.ch+')');milestone('First sale')}
+ if(S.flags.bundle&&Math.random()<EC.brain.attach){const ks=unlocked().filter(x=>x.i!==o.k&&S.inv.o[x.i]>0).sort((a,b)=>a.p-b.p)[0];if(ks){const p2=ks.p*(1-EC.brain.bundleDisc),f2=o.ch==='etsy'?(EC.etsy.txnPct+EC.etsy.payPct)*p2:EC.shopify.plans[S.ch.shopify.plan||0].pct*p2;S.inv.o[ks.i]--;M.rev[o.ch]+=p2;M.units[o.ch]++;M.cogs+=matCost(ks);M.cogsBy[o.ch]+=matCost(ks);M.fees[o.ch]+=f2;S.cash+=p2-f2;D.rev+=p2;S.lifetime.bundles=(S.lifetime.bundles||0)+1}}
  // returns & chargebacks (resolved immediately, simplified)
  const esc=S.flags.escaped>0?(S.flags.escaped--,.5):0;
  if(Math.random()<EC.returns.online+esc){M.refunds+=p;M.returns++;S.cash-=p;D.returns++;if(esc)review(1.5)}
@@ -353,13 +355,13 @@ function planner(D0){
  const t=dateOf(),tr=trait(),u=unlocked();
  // 1) reorder materials using reorder point = usage × (lead time + safety days)
  for(const k of u){const use=Math.max(.15,usage(k.i)),inbound=S.po.filter(p=>p.k===k.i).reduce((a,p)=>a+p.q,0),avgLead=(EC.leadDays[0]+EC.leadDays[1])/2+S.mods.leadAdd;
-  const rop=Math.ceil(use*(avgLead+4)+S.backlog.filter(o=>o.k===k.i).length);const pos=S.kits[k.i]+inbound;
-  if(pos<rop){let q=Math.max(8,Math.ceil(use*30));const c=matCost(k);let terms=false;if(q*c>liquidity()*.4)q=Math.max(3,Math.floor(liquidity()*.4/c));if(liquidity()<q*c||q<3){if(!S.crisis||S.lifetime.orders<40||(S.ap||[]).reduce((x,y)=>x+y.amt,0)>monthlyFixed()*2+5000)continue;q=Math.max(3,Math.ceil(use*14));terms=true}
+  const F=S.fd,fu=F?Math.max(use*.5,F.s[k.i]+F.o[k.i],.15):use,ss=F?EC.brain.z*Math.max(.3,F.sd[k.i])*Math.sqrt(avgLead):use*4;const rop=Math.ceil(fu*avgLead+ss+S.backlog.filter(o=>o.k===k.i).length);const pos=S.kits[k.i]+inbound;
+  if(pos<rop){let q=Math.max(8,Math.ceil(fu*30));const c=matCost(k);let terms=false;if(q*c>liquidity()*.4)q=Math.max(3,Math.floor(liquidity()*.4/c));if(liquidity()<q*c||q<3){if(!S.crisis||S.lifetime.orders<40||(S.ap||[]).reduce((x,y)=>x+y.amt,0)>monthlyFixed()*2+5000)continue;q=Math.max(3,Math.ceil(use*14));terms=true}
    const L=leadDays();S.po.push({k:k.i,q,eta:S.day+L,cost:q*c});S.mo.matBuy+=q*c;if(terms){(S.ap=S.ap||[]).push({due:S.day+30,amt:q*c});if(!S.flags.termsT||S.day-S.flags.termsT>60){S.flags.termsT=S.day;smove('terms',`Cash is tight, so ${k.n} kits go on net-30 supplier terms (${fmt(Math.round(q*c))}) to keep production running.`)}}else spend(q*c);dec('reorder');
    if(Math.random()<.35||S.day<3)think(L>9?`${k.n} kits: ${pos} on hand+inbound vs reorder point ${rop}. Ordering ${q} (${fmt(q*c)}); supplier says ${L} days. Safety stock it is.`:`Reorder point hit for ${k.n} (${pos} ≤ ${rop}). Ordering ${q} kits for ${fmt(q*c)}, ETA ${L} days.`)}}
  // 2) weekly review on Mondays
  if(S.ap&&S.ap.length){S.ap=S.ap.filter(x=>{if(x.due<=S.day){spend(x.amt);return false}return true})}
- if(t.getDay()===1&&S.day>0){weekly();strategy()}
+ if(t.getDay()===1&&S.day>0){weekly();strategy();brainWeek()}
  if(S.promo&&S.day>=S.promo.end){S.co.skus.forEach((k,i)=>k.p=S.promo.p[i]);S.promo=null;think('Black Friday weekend is over. Prices back to normal.','t')}
  // 3) cash crunch → financing or layoffs or closure
  if(S.cash<0||liquidity()<1500)crunch();
@@ -372,7 +374,7 @@ function weekly(){const tr=trait(),H=lastDays(14);if(!H.length)return;
  const rStore=avg(d=>d.robot.store),rPack=avg(d=>d.robot.pack),rMake=avg(d=>d.robot.make),rCS=avg(d=>d.robot.cs),bl=avg(d=>d.bl),unans=avg(d=>d.unans),walk=avg(d=>d.walk),so=avg(d=>d.so),rdes=avg(d=>d.robot.design);
  const runway=runwayMo(),mf=monthlyFixed(),gm=S.months.length?S.months[S.months.length-1].P.gm:0;
  // channels: open Shopify once Etsy proves demand (or cash is comfortable)
- if(S.ch.shopify.open<0&&((S.day>=35&&S.mo.orders.etsy+(S.months.length?S.months[S.months.length-1].orders.etsy:0)>=12)||(S.cash>12000&&S.day>20))){S.ch.shopify.open=S.day;dec('open shopify');moment('🛍️ Opened Shopify store (Basic, $39/mo)');milestone('Shopify store live');think(`Etsy proved people want ${S.co.unit}. Opening our own Shopify site: $${EC.shopify.plans[0].mo}/mo + ~$${EC.shopify.appsMo}/mo in apps, 2.9%+30¢ per order, but no 6.5% marketplace cut and we own the customer list.`,'g');news(`${S.co.name} launches its own web store`)}
+ if(S.ch.shopify.open<0&&((S.day>=(S.flags.shopifyEarly?21:35)&&S.mo.orders.etsy+(S.months.length?S.months[S.months.length-1].orders.etsy:0)>=12)||(S.cash>12000&&S.day>20))){S.ch.shopify.open=S.day;dec('open shopify');moment('🛍️ Opened Shopify store (Basic, $39/mo)');milestone('Shopify store live');think(`Etsy proved people want ${S.co.unit}. Opening our own Shopify site: $${EC.shopify.plans[0].mo}/mo + ~$${EC.shopify.appsMo}/mo in apps, 2.9%+30¢ per order, but no 6.5% marketplace cut and we own the customer list.`,'g');news(`${S.co.name} launches its own web store`)}
  if(S.ch.shopify.open>=0&&S.ch.shopify.plan===0&&S.mo.rev.shopify>30000){S.ch.shopify.plan=1;think('Shopify sales over $33k/mo — Grow plan\'s lower card rate now pays for itself.','g');dec('shopify grow')}
  // ads: spend only where marginal ROAS > 1 (contribution per click vs cost per click)
  const ue=u=>unitEcon(u,'shopify');const u0=unlocked();const avgNet=u0.reduce((a,k)=>a+ue(k).net,0)/u0.length;
@@ -386,15 +388,15 @@ function weekly(){const tr=trait(),H=lastDays(14);if(!H.length)return;
  const next=EC.stages[S.stage+1];
  if(next&&S.day-(S.flags.stageDay||0)>90){const nf=(next.retailSf*(EC.retailRentSfYr+EC.nnnSfYr)+next.flexSf*(EC.flexRentSfYr+EC.nnnSfYr))/12+next.retailSf*EC.utilRetailSfMo+next.flexSf*EC.utilFlexSfMo;
   const recent=S.months.slice(-3),gm3=recent.length===3?recent.reduce((a,m)=>a+m.P.gm,0)/3:0,net3=recent.length===3?recent.reduce((a,m)=>a+m.P.net,0)/3:-1;
-  const need=next.buildout+nf*4;const reqGM=[1,1.2,1.5][S.stage]*nf*(1/ tr.hire);
-  if(gm3>reqGM&&net3>0&&(S.cash>need||(S.cash+loanCapacity()>need&&tr.loan>.7))){if(S.cash<need&&!getLoan(need-S.cash+5000,'expansion'))return;
+  const need=next.buildout+nf*4;const reqGM=[1,1.2,1.5][S.stage]*nf*(1/ tr.hire)*(S.flags.storeGate||1);
+  if(gm3>reqGM&&net3>0&&(S.cash>need||(S.cash+loanCapacity()>need&&tr.loan>.7))&&leaseGo(next,nf)){if(S.cash<need&&!getLoan(need-S.cash+5000,'expansion'))return;
    S.cash-=next.buildout;S.mo.capex+=next.buildout;S.stage++;S.flags.stageDay=S.day;if(S.stage===1){S.ch.store.open=S.day}
    dec('expand');moment(`🏬 Moved into: ${next.n} (${next.retailSf+next.flexSf} sq ft, ~${fmt(nf)}/mo)`);milestone(next.n);setLevel(S.stage);
    think(`Gross margin is ${fmt(gm3)}/mo — enough to carry ${fmt(nf)}/mo of rent+utilities. Signing the lease. Buildout: ${fmt(next.buildout)}.`,'g');news(`${S.co.name} opens ${next.n.toLowerCase()} in Melbourne`);S.flags.visualNext=1}}
  // hiring by bottleneck (robot has ~10h/day; hire when a role eats its time for weeks)
  const can=role=>roleCount(role)<ROLE_CAP[role][S.stage];
  const cost=role=>hourly(role)*(1+burdenRate(role)+.03)*EC.hoursPerDay*(ROLES[role].days===6?26:21.7);
- const afford=role=>!S.flags.freeze&&runway>tr.buf+1&&(burnMo()>-cost(role)*.1||S.cash>cost(role)*8)&&S.cash>cost(role)*1.5;
+ const afford=role=>!S.flags.freeze&&(EC.brain.noGates||EC.brain.noCf||!S.cf13||!S.cf13.length||Math.min(...S.cf13)>cost(role))&&runway>tr.buf+1&&(burnMo()>-cost(role)*.1||S.cash>cost(role)*8)&&S.cash>cost(role)*1.5;
  const cands=[];
  if(S.ch.store.open>=0&&rStore>5)cands.push(['retail',rStore*1.2,`I've spent ${rStore.toFixed(1)}h/day behind the counter. Hiring a retail associate at ${fmt(hourly('retail'))}/hr so I can build.`]);
  if(walk>3)cands.push(['retail',walk,`${walk.toFixed(1)} shoppers/day walk out of the checkout line. Another retail associate.`]);
@@ -405,7 +407,7 @@ function weekly(){const tr=trait(),H=lastDays(14);if(!H.length)return;
  if(S.stage>=2&&ttmRev()>400000&&can('mkt'))cands.push(['mkt',2.5,'Hiring marketing to grow owned traffic (email, social) instead of renting clicks.']);
  cands.sort((a,b)=>b[1]-a[1]);
  for(const [role,sc,why] of cands){if(!can(role)||S.day-(S.flags['laid'+role]||-999)<75)continue;if(!afford(role)){if(!S.flags['nohire'+role]||S.day-S.flags['nohire'+role]>40){S.flags['nohire'+role]=S.day;think(`I need a ${ROLES[role].n.toLowerCase()} (${why.split('.')[0].toLowerCase()}), but at ${fmt(cost(role))}/mo fully loaded we can't afford it yet. Working longer instead.`,'t')}continue}
-  hire(role,why);break}
+  if(!hireGo(role,cost(role)))continue;hire(role,why);break}
  // layoffs if runway collapses
  if(runway<1.2&&S.staff.length&&burnMo()<0&&S.day-S.staff[S.staff.length-1].hired>45){const s=S.staff[S.staff.length-1];S.flags['laid'+s.role]=S.day;fireStaff(s,`Runway is ${runway.toFixed(1)} months. Laying off ${s.name} (${ROLES[s.role].n}). Worst part of the job.`)}
  // robot upgrades when rich
@@ -414,16 +416,141 @@ function weekly(){const tr=trait(),H=lastDays(14);if(!H.length)return;
  if(S.staff.length>=3&&!S.flags.perks&&burnMo()>2000){S.flags.perks=1;think('Profitable enough for team perks: free coffee and a real break room. Morale matters.','g')}
  if(S.staff.length&&avg(d=>d.mor)<35&&S.cash>5000){S.staff.forEach(s=>s.morale=clamp(s.morale+20,0,100));spend(150*S.staff.length);S.mo.other+=150*S.staff.length;think('Team looks burnt out. Pizza Friday and a half-day off. Cheaper than turnover.','t');dec('morale')}
 }
+// ================= BRAIN: forecasting · experiments · memory · planning · smarter ops =================
+const B_=()=>EC.brain,CHS=['etsy','shopify','store'];
+const fmtPct=n=>(n>=0?'+':'')+Math.round(n)+'%';
+let SIMMEM=null;const MEMKEY='robotFounderMemory_v1';
+function memLoad(){if(HEADLESS)return SIMMEM||(SIMMEM=[]);try{return JSON.parse(localStorage.getItem(MEMKEY))||[]}catch(e){return []}}
+function memSave(m){m=m.slice(-60);if(HEADLESS){SIMMEM=m;return}try{localStorage.setItem(MEMKEY,JSON.stringify(m))}catch(e){}}
+function learn(key,text,val){S.kb=S.kb||[];const L={key,text,val,co:S.co.name,line:S.co.line,d:S.day};const i=S.kb.findIndex(x=>x.key===key);if(i>=0){if(S.kb[i].text===text)return;S.kb[i]=L}else S.kb.push(L);
+ const m=memLoad().filter(x=>!(x.key===key&&x.co===S.co.name));m.push(L);memSave(m);think('📚 Lesson learned: '+text,'g')}
+function recall(key){const m=memLoad().filter(x=>x.key===key&&x.co!==(S&&S.co.name));return m.length?m[m.length-1]:null}
+function recallAvg(key){const m=memLoad().filter(x=>x.key===key&&x.co!==(S&&S.co.name)).slice(-5);return m.length?m.reduce((a,x)=>a+x.val,0)/m.length:null}
+function aov(){const ms=S.months.slice(-2);const r=ms.reduce((a,m)=>a+m.rev.etsy+m.rev.shopify+m.rev.store,0),o=ms.reduce((a,m)=>a+m.orders.etsy+m.orders.shopify+m.orders.store,0);if(o>5)return r/o;const u=unlocked();return u.reduce((a,k)=>a+k.p,0)/Math.max(1,u.length)}
+function cmRatio(){const ms=S.months.slice(-2);const nr=ms.reduce((a,m)=>a+m.P.net_rev,0);if(nr<500)return .45;const v=ms.reduce((a,m)=>a+m.P.gm-(m.fees.etsy+m.fees.shopify+m.fees.store),0);return clamp(v/nr,.05,.85)}
+const newWacc=()=>({u:{etsy:[0,0,0,0],shopify:[0,0,0,0],store:[0,0,0,0]},rev:0,days:0});
+function brainInit(light){Object.assign(S,{fc:{},wh:[],wacc:newWacc(),fcLog:[],exps:[],expDone:[],kb:[],okr:null,okrHist:[],scen:null,scenHist:[],hod:[0,0,0,0,0,0,0,0],sched:{retail:8},adPin:{},inherit:[]});if(light)return;
+ const inh=S.inherit;
+ S.co.skus.forEach(k=>{const r=recall('price:'+S.co.line+':'+k.i);if(r&&r.val>.8&&r.val<1.4){k.p=Math.round(k.p0*r.val);inh.push(`Lesson from ${r.co}: ${k.n} sells best around ${fmtPct((r.val-1)*100)} vs launch price → starting at $${k.p}.`)}});
+ [['etsyAdsAOV',v=>S.flags.etsyAdsMinAOV=v],['shopifyEarly',v=>S.flags.shopifyEarly=v],['storeGate',()=>S.flags.storeGate=recallAvg('storeGate')],['hireEarly',()=>S.flags.hireStrict=recallAvg('hireEarly')],['topTactic',()=>0],['emailWorks',()=>0]].forEach(([k,f])=>{const r=recall(k);if(r){f(r.val);inh.push(`Lesson from ${r.co}: ${r.text}`)}})}
+function brainDay(sold,ord,D){if(!S.wacc)brainInit(true);const W=S.wacc;sold.forEach((n,k)=>W.u.store[k]+=n);ord.forEach(o=>W.u[o.ch][o.k]++);W.rev+=D.rev;W.days++;
+ if(D.store.open)D.store.sales.forEach(s=>{S.hod[Math.min(7,Math.floor(s.t*8))]+=s.n});
+ const sea=EC.season[dateOf().getMonth()];
+ for(const e of S.exps){const A=e.d[e.arm];if(!A)continue;A.days++;A.season+=sea;
+  if(e.type==='price'){const n=sold[e.k]+ord.filter(o=>o.k===e.k).length;A.u+=n;A.c+=sold.reduce((a,q,k)=>a+q*unitEcon(S.co.skus[k],'store').net,0)+ord.reduce((a,o)=>a+unitEcon(S.co.skus[o.k],o.ch).net,0)}
+  else{const o=ord.filter(x=>x.ch===e.ch);A.u+=o.length;A.c+=o.reduce((a,x)=>a+unitEcon(S.co.skus[x.k],e.ch).net,0)-S.ads[e.ch]}}
+ emailDay()}
+function fcU(c,k,h){const f=S.fc[c]&&S.fc[c][k];if(!f)return 0;let tr=0,p=1;for(let i=1;i<=h;i++){p*=B_().phi;tr+=p}return Math.max(0,f.L+tr*f.T)*EC.season[dateOf(S.day+h*7).getMonth()]}
+function fcWeekly(n){const out=[];for(let h=1;h<=n;h++){let u=0,rev=0;CHS.forEach(c=>{if(S.ch[c].open<0)return;for(let k=0;k<4;k++){const x=fcU(c,k,h);u+=x;rev+=x*S.co.skus[k].p}});out.push({h,u,rev})}return out}
+function fcConf(){const L=(S.fcLog||[]).filter(x=>x.a!=null&&x.a>50).slice(-8);if(L.length<3)return null;const mape=L.reduce((a,x)=>a+Math.abs(x.f-x.a)/x.a,0)/L.length;return clamp(1-mape,0,1)}
+function cashForecast(){const cm=cmRatio(),wk=monthlyFixed()*12/52+(S.ads.etsy+S.ads.shopify)*7;let c=S.cash;const ap=S.ap||[];return (S.fcRev||[]).map((x,i)=>{c+=x.rev*cm-wk-ap.filter(a=>a.due>S.day+i*7&&a.due<=S.day+(i+1)*7).reduce((s,a)=>s+a.amt,0);return Math.round(c)})}
+function brainWeek(){const X=B_(),W=S.wacc;if(!W||!W.days){S.wacc=newWacc();return}
+ if(S.inherit&&S.inherit.length&&!S.flags.inhLogged){S.flags.inhLogged=1;S.inherit.slice(0,4).forEach(t=>think('📚 '+t,'g'))}
+ const sea=EC.season[dateOf(S.day-3).getMonth()],tot=CHS.reduce((a,c)=>a+W.u[c].reduce((x,y)=>x+y,0),0),scale=7/W.days;
+ const last=S.fcLog[S.fcLog.length-1];if(last&&last.a==null){last.a=W.rev*scale;last.au=tot*scale}
+ S.wh.push({d:S.day,rev:Math.round(W.rev*scale),u:Math.round(tot*scale)});if(S.wh.length>60)S.wh.shift();
+ CHS.forEach(c=>{S.fc[c]=S.fc[c]||[];for(let k=0;k<4;k++){const y=W.u[c][k]*scale/sea;const f=S.fc[c][k];if(!f){if(y>0||S.ch[c].open>=0)S.fc[c][k]={L:y,T:0,v:Math.max(.5,y*y*.3)};continue}
+  const pred=f.L+X.phi*f.T,err=y-pred;f.L=Math.max(0,pred+X.alpha*err);f.T=X.phi*f.T+X.beta*X.alpha*err;f.v=f.v*.85+.15*err*err}});
+ S.fcRev=fcWeekly(13);S.fcLog.push({d:S.day,f:Math.round(S.fcRev[0].rev),a:null});if(S.fcLog.length>60)S.fcLog.shift();S.cf13=cashForecast();
+ S.fd={s:[0,0,0,0],o:[0,0,0,0],sd:[0,0,0,0]};for(let k=0;k<4;k++){S.fd.s[k]=(fcU('store',k,1)+fcU('store',k,2))/14;S.fd.o[k]=(fcU('etsy',k,1)+fcU('etsy',k,2)+fcU('shopify',k,1)+fcU('shopify',k,2))/14;S.fd.sd[k]=Math.sqrt(CHS.reduce((a,c)=>a+(S.fc[c]&&S.fc[c][k]?S.fc[c][k].v:0),0)/7)}
+ S.wacc=newWacc();
+ for(const ch of ['etsy','shopify']){const p=S.adPin[ch];if(p&&p.until>S.day&&!S.exps.some(e=>e.type==='ads'&&e.ch===ch)&&!S.crisis)S.ads[ch]=p.v}
+ experiments();loanTiming();opsWeek();okrs();lessonsWeek();nextDecision()}
+// ---- loan timing from the 13-week cash forecast ----
+function loanTiming(){const cf=S.cf13||[];if(!cf.length)return;const mn=Math.min(...cf),wk=cf.indexOf(mn)+1,buf=monthlyFixed()*.5;
+ if(mn<buf&&wk>=3&&S.day-(S.flags.loanTry||-999)>45&&(S.conf=fcConf())!==0){S.flags.loanTry=S.day;const ok=getLOC()||getLoan(Math.max(8000,buf-mn+monthlyFixed()),'forecast gap');
+  smove('loan',`13-week forecast: cash bottoms at ${fmt(mn)} in week ${wk}. ${ok?'Lined up financing now — lenders take weeks.':'Applied for financing early; cutting discretionary spend meanwhile.'}`)}}
+// ---- experiments: alternating-week A/B tests ----
+function experiments(){const X=B_(),t=dateOf(),hol=(t.getMonth()===10&&t.getDate()>=8)||t.getMonth()===11,tr=trait();
+ for(const e of S.exps.slice()){if(S.crisis&&e.type==='ads'){S.exps=S.exps.filter(x=>x!==e);continue}e.wk++;if(e.wk>=e.len){finishExp(e);continue}e.arm=e.wk%2?'B':'A';applyArm(e)}
+ if(S.crisis||hol||S.promo||S.exps.length>=3||S.months.length<2||EC.brain.noTests)return;
+ const u=unlocked();if(!S.exps.some(e=>e.type==='price')){const mc=mainCh();const cand=u.filter(k=>S.day-(k.tested||-999)>90&&!k.md&&usage(k.i)>.25).sort((a,b)=>usage(b.i)-usage(a.i))[0];
+  if(cand){const step=X.testPct*(tr.id==='reckless'?1.5:tr.id==='cautious'?.6:1),dir=cand.lastWin==='down'?-1:1;let pB=Math.min(Math.round(cand.p0*(S.cpi||1)*X.testCap),Math.max(Math.round(cand.p0*(S.cpi||1)*.75),Math.round(cand.p*(1+dir*step))));
+   if(Math.abs(pB-cand.p)>=1){const e={id:'p'+S.day,type:'price',k:cand.i,ch:mc,A:cand.p,B:pB,wk:0,len:X.testWeeks,arm:'A',d:{A:{u:0,c:0,days:0,season:0},B:{u:0,c:0,days:0,season:0}}};cand.test=e.id;S.exps.push(e);applyArm(e);think(`🧪 Price test on ${cand.n}: $${e.A} vs $${e.B}, alternating weeks for ${e.len} weeks.`,'t')}}}
+ for(const ch of ['shopify','etsy']){if(S.ch[ch].open<0||S.exps.some(e=>e.type==='ads'&&e.ch===ch)||S.day-(S.flags['adT'+ch]||-999)<84||runwayMo()<3)continue;
+  const base=Math.round(S.ads[ch]),Bv=base>0?Math.round(base*1.5+2):(ch==='etsy'?5:10);if(ch==='etsy'&&S.flags.etsyAdsMinAOV&&aov()<S.flags.etsyAdsMinAOV&&base===0)continue;if(liquidity()<Bv*60)continue;
+  S.flags['adT'+ch]=S.day;const e={id:'a'+ch+S.day,type:'ads',ch,A:base,B:Bv,wk:0,len:X.testWeeks,arm:'A',d:{A:{u:0,c:0,days:0,season:0},B:{u:0,c:0,days:0,season:0}}};S.exps.push(e);applyArm(e);think(`🧪 Ad budget test on ${ch==='etsy'?'Etsy':'Shopify'}: ${fmt(base)}/day vs ${fmt(Bv)}/day.`,'t');break}}
+function applyArm(e){const v=e[e.arm];if(e.type==='price')S.co.skus[e.k].p=v;else S.ads[e.ch]=v}
+function finishExp(e){S.exps=S.exps.filter(x=>x!==e);const per=(x,f)=>x.days?f(x)/x.days/(x.season/x.days):0;
+ const cA=per(e.d.A,x=>x.c),cB=per(e.d.B,x=>x.c),uA=per(e.d.A,x=>x.u),uB=per(e.d.B,x=>x.u),nU=e.d.A.u+e.d.B.u;
+ const clear=Math.abs(cB-cA)>.08*Math.max(Math.abs(cA),Math.abs(cB),5)&&(e.type==='ads'||nU>=12);const win=clear&&cB>cA?'B':'A',lose=win==='A'?'B':'A';
+ const uw=win==='A'?uA:uB,ul=win==='A'?uB:uA,du=ul?(uw-ul)/ul*100:0,dd=(win==='A'?cA-cB:cB-cA);
+ const r={type:e.type,ch:e.ch,k:e.k,A:e.A,B:e.B,win,clear,du,dd,cA,cB,uA,uB,end:S.day,start:S.day-e.len*7};S.expDone.push(r);if(S.expDone.length>40)S.expDone.shift();
+ if(e.type==='price'){const k=S.co.skus[e.k],wp=e[win],lp=e[lose];k.tested=S.day;k.test=null;k.p=wp;k.lastWin=clear?(wp>lp?'up':'down'):(k.lastWin==='up'?'down':'up');
+  if(clear&&uA>0&&uB>0){const el=Math.log(uB/uA)/Math.log(e.B/e.A);if(isFinite(el)){k.el=k.el==null?el:k.el*.6+el*.4;k.eln=(k.eln||0)+1}}
+  const mw=(k.p=wp,unitEcon(k,e.ch).net),ml=(k.p=lp,unitEcon(k,e.ch).net);k.p=wp;const dm=ml?(mw-ml)/Math.abs(ml)*100:0,nm=S.co.unit.replace(/s$/,'');
+  r.msg=clear?`Price test: $${Math.min(e.A,e.B)} vs $${Math.max(e.A,e.B)} ${nm} (${k.n}). $${wp} won: ${fmtPct(dm)} margin, ${fmtPct(du)} units (${dd>=0?'+':''}${fmt(Math.round(dd*7))}/wk contribution).`:`Price test: $${Math.min(e.A,e.B)} vs $${Math.max(e.A,e.B)} ${nm} (${k.n}). No clear winner (${nU} units) — keeping $${wp}.`;
+  smove('test',r.msg+(clear&&k.el!=null?` Elasticity estimate ≈ ${k.el.toFixed(1)}.`:''),clear);
+  if(clear)learn('price:'+S.co.line+':'+k.i,`${k.n} sells best near $${wp} (${fmtPct((wp/(k.p0*(S.cpi||1))-1)*100)} vs launch).`,wp/(k.p0*(S.cpi||1)))}
+ else{const v=e[win];S.adPin[e.ch]={v,until:S.day+84};S.ads[e.ch]=v;const nm=e.ch==='etsy'?'Etsy':'Shopify';
+  r.msg=clear?`Ad test (${nm}): ${fmt(e.A)}/day vs ${fmt(e.B)}/day. ${fmt(v)}/day won: ${dd>=0?'+':''}${fmt(Math.round(dd*7))}/wk contribution after ad spend, ${fmtPct(du)} orders.`:`Ad test (${nm}): ${fmt(e.A)} vs ${fmt(e.B)}/day — no clear difference; keeping ${fmt(v)}/day.`;smove('test',r.msg,clear);
+  const hi=e.A>e.B?'A':'B';if(e.ch==='etsy'&&clear){const av=Math.round(aov());if(win!==hi)learn('etsyAdsAOV',`Etsy ads lose money under ~$${av+5} AOV.`,Math.max(av+5,(recall('etsyAdsAOV')||{}).val||0));else learn('etsyAdsAOV',`Etsy ads paid off at a $${av} AOV.`,Math.min(av-5,(recall('etsyAdsAOV')||{}).val||av-5))}}}
+// ---- smarter ops: mix, scheduling, email, bundles, reviews, aging ----
+function opsWeek(){const X=B_(),u=unlocked(),mc=mainCh();if(!u.length)return;
+ const sc=u.map(k=>{const e=unitEcon(k,mc),dem=S.fd?S.fd.s[k.i]+S.fd.o[k.i]:usage(k.i);return {k,e,dem,s:e.net*Math.max(.05,dem),pm:e.net/Math.max(1,buildMin(k))}}).sort((a,b)=>b.s-a.s);
+ S.mix=sc.map(x=>x.k.i);S.mixPM=sc.slice().sort((a,b)=>b.pm-a.pm).map(x=>x.k.i);const top=sc[0];
+ const cur=sc.find(x=>x.k.i===S.feature);if(top&&S.feature!==top.k.i&&top.e.net>0&&(!cur||top.s>cur.s*1.2)){S.feature=top.k.i;smove('mix',`Product mix: featuring ${top.k.n} — ${fmt(top.e.net)}/unit × ${(top.dem*7).toFixed(1)}/wk forecast is our best margin × demand. Build queue prioritises contribution per build-minute.`)}
+ // labor scheduling by hour-of-day traffic
+ if(roleCount('retail')){const h=S.hod,tot=h.reduce((a,b)=>a+b,0),sd=S.fd?S.fd.s.reduce((a,b)=>a+b,0):0;let pk=0;h.forEach((v,i)=>{if(v>h[pk])pk=i});const want=sd<X.fullShiftUnits?6:8;
+  if(tot>20&&want!==S.sched.retail){S.sched.retail=want;S.sched.peak=pk;smove('schedule',want<8?`Store forecast is ${(sd*7).toFixed(0)} sales/wk with a ${10+pk}:00–${12+pk}:00 peak. Scheduling retail ${Math.max(10,9+pk)}:00–${Math.max(10,9+pk)+6}:00 around it; I cover open/close.`:`Forecast store traffic needs full coverage: retail back to 8h shifts.`)}}
+ // email campaigns once Shopify has a list
+ if(S.ch.shopify.open>=0&&S.emails>=50&&!S.flags.emailOn){S.flags.emailOn=1;smove('email',`Starting weekly Shopify Messaging campaigns to ${Math.round(S.emails)} subscribers (first 10k sends/mo free; benchmark 0.16% placed-order rate).`)}
+ if(u.length>=2&&(S.ch.shopify.open>=0||S.ch.etsy.open>=0)&&!S.flags.bundle&&S.lifetime.orders>40){S.flags.bundle=1;smove('bundle',`Added a "complete the set" bundle and checkout upsell: cheapest add-on at ${Math.round(X.bundleDisc*100)}% off (~${Math.round(X.attach*100)}% attach, est).`)}
+ if(!S.flags.revReq&&S.lifetime.orders>20){S.flags.revReq=1;smove('reviews','Reviews management on: follow-up emails asking for a review, and I reply to every ≤3★ review with a fix or replacement.')}
+ // inventory aging & markdowns
+ for(const k of S.co.skus){if(k.test)continue;const inv=S.inv.s[k.i]+S.inv.o[k.i],d=Math.max(.05,S.fd?S.fd.s[k.i]+S.fd.o[k.i]:usage(k.i)),cov=inv/d;
+  if(!k.md&&cov>X.markdownDays&&inv>=6&&!k.off){k.md=k.p;k.p=Math.max(1,Math.round(k.p*(1-X.markdownPct)));smove('markdown',`Inventory aging: ${k.n} has ${Math.round(cov)} days of cover. ${Math.round(X.markdownPct*100)}% markdown to $${k.p} until it's under ${X.restoreDays} days.`)}
+  else if(k.md&&cov<X.restoreDays){k.p=k.md;k.md=null;think(`${k.n} stock is back to ${Math.round(cov)} days of cover. Markdown ended.`,'t')}}
+ S.clv=Math.round(aov()*cmRatio()*X.ordersPerCustomer)}
+function emailDay(){if(!S.flags.emailOn||S.ch.shopify.open<0)return;const t=dateOf(),dw=t.getDay(),q4=t.getMonth()>=10;if(!(dw===2||(q4&&dw===5)))return;const X=B_(),n=Math.round(S.emails);
+ const mk=S.mo.k;if(S.emailMo!==mk){S.emailMo=mk;S.emailSent=0}S.emailSent+=n;const over=Math.max(0,Math.min(n,S.emailSent-X.emailFree));const cost=over*X.emailPer1k/1000;if(cost){S.mo.subs+=cost;S.cash-=cost}
+ const o=binom(n,X.emailOrderRate*qualF()*priceF());for(let i=0;i<o;i++)S.backlog.push({ch:'shopify',k:pickSku(),day:S.day,t:R(0,1),em:1});S.lifetime.emailOrders=(S.lifetime.emailOrders||0)+o;S.lifetime.campaigns=(S.lifetime.campaigns||0)+1}
+// ---- OKRs ----
+const qkey=t=>t.getFullYear()+' Q'+(Math.floor(t.getMonth()/3)+1);
+function qMonths(q){const [y,qq]=q.split(' Q');return [...S.months,S.mo].filter(m=>m.k.slice(0,4)===y&&Math.floor((+m.k.slice(5)-1)/3)+1===+qq)}
+function qSum(q){const ms=qMonths(q);return ms.reduce((a,m)=>{const P=m.P||pnl(m);a.rev+=P.rev;a.net+=P.net;a.gm+=P.gm;a.nr+=P.net_rev;return a},{rev:0,net:0,gm:0,nr:0})}
+function okrProgress(){const o=S.okr;if(!o)return;const s=qSum(o.q);o.krs.forEach(k=>{k.p=k.id==='rev'?s.rev/k.t:k.id==='rating'?(S.reviews?S.rating:0)/k.t:k.id==='tests'?(S.expDone.length-o.base.tests)/k.t:k.id==='net'?(s.net>0?1:Math.max(0,1+s.net/Math.max(1,s.rev))*.5):k.id==='margin'?(s.nr?s.gm/s.nr:0)/k.t:k.id==='runway'?Math.min(99,runwayMo())/k.t:k.id==='netm'?(s.rev?s.net/s.rev:0)/k.t:k.id==='email'?S.emails/k.t:0;k.p=clamp(k.p,0,1)})}
+function okrs(){const q=qkey(dateOf());if(S.okr&&S.okr.q===q){okrProgress();return}
+ if(S.okr){okrProgress();const sc=S.okr.krs.reduce((a,k)=>a+k.p,0)/S.okr.krs.length;S.okr.score=sc;S.okrHist.push(S.okr);if(S.okrHist.length>16)S.okrHist.shift();smove('okr',`${S.okr.q} OKRs ("${S.okr.O}") scored ${sc.toFixed(1)}: ${S.okr.krs.map(k=>`${k.n} ${Math.round(k.p*100)}%`).join(' · ')}.`)}
+ const fq=(S.fcRev||[]).reduce((a,x)=>a+x.rev,0),rv=Math.max(1000,Math.round(fq*1.1/100)*100),tm=EC.strategy.targetMargin;let O,krs;
+ if(ttmRev()<30000){O='Prove demand';krs=[{id:'rev',n:`Revenue ≥ ${fmt(rv)}`,t:rv},{id:'rating',n:'Rating ≥ 4.5★',t:4.5},{id:'tests',n:'Finish 2 experiments',t:2}]}
+ else if(ttmNet()<0||runwayMo()<4){O='Get profitable';krs=[{id:'net',n:'Positive quarterly net',t:1},{id:'margin',n:`Gross margin ≥ ${Math.round((tm+.3)*100)}%`,t:tm+.3},{id:'runway',n:'Runway ≥ 4 months',t:4}]}
+ else{const em=Math.round(S.emails*1.2+50);O='Scale profitably';krs=[{id:'rev',n:`Revenue ≥ ${fmt(rv)}`,t:rv},{id:'netm',n:'Net margin ≥ 8%',t:.08},{id:'email',n:`Email list ≥ ${em}`,t:em}]}
+ S.okr={q,O,krs,start:S.day,base:{tests:S.expDone.length}};okrProgress();think(`🎯 ${q} objective: ${O}. KRs: ${krs.map(k=>k.n).join('; ')}.`,'g')}
+// ---- strategic plan, scenarios, next decision ----
+function stratPlan(){const st=[{n:'Etsy shop',done:S.ch.etsy.open>=0,gate:'day 1'},{n:'Shopify site',done:S.ch.shopify.open>=0,gate:S.flags.shopifyEarly?'lesson: open early (day 21)':'12+ Etsy orders/mo or $12k cash'},
+  {n:'Email campaigns',done:!!S.flags.emailOn,gate:'Shopify + 50 subscribers'},{n:'First hire',done:!!S.firstHire,gate:'2-week bottleneck + scenario GO'}];
+ EC.stages.slice(1).forEach((s,i)=>st.push({n:s.n,done:S.stage>=i+1,gate:'3-mo gross margin covers new rent + scenario GO'}));return st}
+function nextDecision(){const s=stratPlan().find(x=>!x.done);const sc=S.scen&&S.day-S.scen.d<60?` · last scenario: ${S.scen.label} → ${S.scen.go?'GO':'NO-GO'}`:'';S.nextBig=s?`${s.n} (gate: ${s.gate})${sc}`:`Grow the flagship${sc}`}
+function scenario(kind,label,addMo,capex,upRev){const tr=trait(),cm=cmRatio(),fixed=monthlyFixed();const base12=S.fcRev&&S.fcRev.length?S.fcRev.reduce((a,x)=>a+x.rev,0)*4:ttmRev();
+ const mk=(f,up)=>{let cash=S.cash-capex,mn=cash;for(let m=0;m<12;m++){cash+=(base12/12*f+up*Math.min(1,(m+1)/4))*cm-fixed-addMo;mn=Math.min(mn,cash)}return {net:Math.round(cash-(S.cash-capex)),min:Math.round(mn)}};
+ const r={kind,label,addMo:Math.round(addMo),capex,up:Math.round(upRev),best:mk(1.2,upRev*1.3),base:mk(1,upRev),worst:mk(.8,upRev*.5),d:S.day};
+ const cushion=tr.id==='cautious'?-S.cc.limit*.5:tr.id==='reckless'?-(loanCapacity()+S.cc.limit):-(loanCapacity()*.6+S.cc.limit*.5);r.cushion=Math.round(cushion);
+ r.go=r.base.net>0&&r.worst.min>cushion;r.why=r.go?`GO — base case ${fmt(r.base.net)} over 12 months; worst-case cash low ${fmt(r.worst.min)} stays above our ${fmt(r.cushion)} limit.`:`NO-GO — ${r.base.net<=0?`base case loses ${fmt(-r.base.net)} over 12 months`:`worst case drops cash to ${fmt(r.worst.min)} (limit ${fmt(r.cushion)})`}. Revisit in 30 days.`;
+ S.scen=r;S.scenHist.push(r);if(S.scenHist.length>12)S.scenHist.shift();smove('scenario',`Scenario before we ${label}: best ${fmt(r.best.net)} · base ${fmt(r.base.net)} · worst ${fmt(r.worst.net)}. ${r.why}`,r.go);return r}
+function storeUplift(next){const st=S.stage,f=EC.store.footfall,add=(f[st+1]||0)-(st>=1?f[st]:0);return Math.max(0,add*(.45+S.rep/90)*EC.store.conv*qualF()*priceF()*aov()*26)}
+function leaseGo(next,nf){if(!S.wacc||EC.brain.noGates||EC.brain.noLease)return true;if(S.day-(S.flags.scenL||-999)<30)return false;S.flags.scenL=S.day;return scenario('lease',`sign the ${next.n.toLowerCase()} lease`,nf,next.buildout,storeUplift(next)).go}
+function hireGo(role,cost){if(!S.wacc||EC.brain.noGates||EC.brain.noHire)return true;if(S.day-(S.flags['scenH'+role]||-999)<30)return false;S.flags['scenH'+role]=S.day;const H=lastDays(14),lost=H.length?H.reduce((a,d)=>a+d.walk+d.so,0)/H.length*aov()*26:0;
+ const strict=S.flags.hireStrict||1;return scenario('hire',`hire a ${ROLES[role].n.toLowerCase()} (${fmt(Math.round(cost))}/mo)`,cost*strict,200,lost+cost*1.05/cmRatio()).go}
+// ---- lessons ----
+function lessonsWeek(){const u=unlocked();
+ if(S.months.length>=4&&S.ch.shopify.open>=0&&u.length){const avgM=c=>u.reduce((a,k)=>a+unitEcon(k,c).m,0)/u.length,me=avgM('etsy'),ms=avgM('shopify');if(ms-me>.08)learn('shopifyEarly',`Open Shopify early — it keeps ${Math.round(ms*100)}% per sale vs Etsy's ${Math.round(me*100)}%.`,1)}
+ if(S.ch.store.open>=0&&S.day-S.ch.store.open>=180&&!S.flags.storeLesson){S.flags.storeLesson=1;const ms=S.months.slice(-3);const st=ms.reduce((a,m)=>a+m.rev.store-m.cogsBy.store-m.fees.store,0)/3,rent=ms.reduce((a,m)=>a+m.rent+m.util,0)/3;
+  if(st>=rent)learn('storeGate',`A storefront paid its own rent within 6 months (${fmt(Math.round(st))}/mo store contribution vs ${fmt(Math.round(rent))} rent).`,.9);else learn('storeGate',`Store opened too early: in-store contribution covered ${Math.round(st/Math.max(1,rent)*100)}% of rent after 6 months — wait for more margin.`,1.25)}
+ if(S.lifetime.campaigns>=8&&!S.flags.emailLesson){S.flags.emailLesson=1;learn('emailWorks',S.lifetime.emailOrders>=3?`Weekly email campaigns brought ${S.lifetime.emailOrders} orders from ${S.lifetime.campaigns} sends — build the list from day one.`:`Email campaigns barely moved sales (${S.lifetime.emailOrders} orders from ${S.lifetime.campaigns} sends) — grow the list before counting on email.`,S.lifetime.emailOrders)}
+ if(S.months.length&&S.months.length%6===0&&S.flags.ttM!==S.months.length){S.flags.ttM=S.months.length;const r=stratReport().find(x=>x.k>=2&&x.d>0);if(r)learn('topTactic',`${r.n} paid off: ${fmt(Math.round(r.d))}/mo on average.`,r.d);hireLessonPos()}}
+function hireLessonPos(){const v=S.staff.filter(x=>S.day-x.hired>300);if(v.length&&ttmNet()>0)learn('hireEarly',`Hiring paid off: ${v.length} staff with 10+ months tenure and a profitable trailing year.`,.9)}
+function hireLesson(s){if(S.day-s.hired<120)learn('hireEarly',`Hired a ${ROLES[s.role].n.toLowerCase()} too early (let go after ${S.day-s.hired} days). Require more forecast headroom.`,1.3)}
 // ---------- strategy engine: weekly review of unit economics + runway, legitimate tactics only ----------
 function smove(type,why,big){S.strat.push({d:S.day,type,why,net0:S.months.length?S.months[S.months.length-1].P.net:0,m:S.months.length});if(S.strat.length>500)S.strat.shift();dec('strat '+type);if(S.crisis)S.crisis.moves.push(STRAT_N[type]||type);think('🧠 '+why,big?'g':(type==='rescue'?'r':'y'));if(big)moment('🧠 '+why.split('. ').slice(-1)[0].slice(0,90),false)}
-const STRAT_N={price:'price raise',drop:'dropping a loser SKU',focus:'doubling down on a winner',channel:'shifting to higher-margin channels',negotiate:'supplier volume discount',batch:'batch production',freeze:'hiring freeze',loan:'financing',promo:'Q4 promotion',wholesale:'wholesale/B2B',custom:'custom orders',pivot:'product pivot',hours:'longer hours',clear:'clearance sale',sublet:'subleasing space',downsize:'downsizing',equip:'selling equipment',savings:'robot savings injection',gig:'freelance contract work',layoff:'layoffs',comeback:'comeback',insure:'keeping insurance',terms:'net-30 supplier terms',restructure:'loan modification',ads:'cutting ads'};
+const STRAT_N={price:'price raise',drop:'dropping a loser SKU',focus:'doubling down on a winner',channel:'shifting to higher-margin channels',negotiate:'supplier volume discount',batch:'batch production',freeze:'hiring freeze',loan:'financing',promo:'Q4 promotion',wholesale:'wholesale/B2B',custom:'custom orders',pivot:'product pivot',hours:'longer hours',clear:'clearance sale',sublet:'subleasing space',downsize:'downsizing',equip:'selling equipment',savings:'robot savings injection',gig:'freelance contract work',layoff:'layoffs',comeback:'comeback',insure:'keeping insurance',test:'A/B experiments',okr:'OKR review',scenario:'scenario planning',mix:'product-mix optimisation',schedule:'labor scheduling',email:'email campaigns',bundle:'bundles & upsells',reviews:'reviews management',markdown:'aging-stock markdowns',terms:'net-30 supplier terms',restructure:'loan modification',ads:'cutting ads'};
 const rwTxt=()=>{const r=runwayMo();return r>=99?'Cash-flow positive':r<2?`Runway ${Math.max(0,Math.round(r*4.3))} weeks`:`Runway ${r.toFixed(1)} months`};
 function openCh(){return ['etsy','shopify','store'].filter(c=>S.ch[c].open>=0)}
 function mainCh(){const L=S.months[S.months.length-1],o=openCh();return L?o.slice().sort((a,b)=>L.rev[b]-L.rev[a])[0]:'etsy'}
 function bestMargin(k){return Math.max(...openCh().map(c=>unitEcon(k,c).m))}
 function strategy(){const X=EC.strategy,rw=runwayMo(),u=unlocked(),mc=mainCh(),L=S.months[S.months.length-1];if(!u.length)return;
  // 1) pricing: lift low-margin SKUs toward target margin (capped vs inflation-adjusted launch price)
- for(const k of u){if(S.day-(k.pd||-999)<X.priceCooldown)continue;const e=unitEcon(k,mc),cap=Math.round(k.p0*(S.cpi||1)*X.priceCap);
+ for(const k of u){if(k.test||k.md||S.day-(k.pd||-999)<X.priceCooldown||S.day-(k.tested||-999)<120)continue;const e=unitEcon(k,mc),cap=Math.round(k.p0*(S.cpi||1)*X.priceCap);
   if(e.m<X.targetMargin&&k.p<cap){const np=Math.min(cap,Math.max(k.p+1,Math.round(k.p*(1+X.priceStep)))),d=np-k.p;if(d<1)continue;k.pd=S.day;const old=k.p;k.p=np;
    let extra='';if(rw<4&&S.ads.etsy>0){S.ads.etsy=0;S.flags.etsyAdsOff=S.day;extra=' and pausing Etsy ads'}
    smove('price',`${rwTxt()}. ${k.n} only keeps ${Math.round(e.m*100)}% on ${mc} at $${old}. Raising the ${S.co.unit.replace(/s$/,'')} price $${d} (to $${np})${extra}.`);break}}
@@ -505,7 +632,7 @@ function chapter(){const n=S.months.length/36;S.chapter=n;moment(`📖 Chapter $
 function hire(role,why){const nm=pick(HUMANS.filter(n=>!S.staff.some(s=>s.name===n)))||'Alex';
  const s={role,name:nm,morale:85,hired:S.day,look:LOOKS()};S.staff.push(s);S.mo.other+=200;S.cash-=200;// recruiting/onboarding (est)
  dec('hire '+role);think(why,'g');if(!S.firstHire){S.firstHire=nm;moment(`🤝 First hire: ${nm} (${ROLES[role].n})`);milestone('First hire')}else moment(`${ROLES[role].e} Hired ${nm} — ${ROLES[role].n}`,false);if(!HEADLESS)addNpc(s)}
-function fireStaff(s,why){S.staff=S.staff.filter(x=>x!==s);think(why,'r');dec('layoff');S.staff.forEach(x=>x.morale=clamp(x.morale-12,0,100));if(!HEADLESS){const i=npcs.findIndex(n=>n.ref===s);if(i>=0)npcs.splice(i,1)}}
+function fireStaff(s,why){hireLesson(s);S.staff=S.staff.filter(x=>x!==s);think(why,'r');dec('layoff');S.staff.forEach(x=>x.morale=clamp(x.morale-12,0,100));if(!HEADLESS){const i=npcs.findIndex(n=>n.ref===s);if(i>=0)npcs.splice(i,1)}}
 function loanCapacity(){let c=0;const mo=S.months.length,rv=S.months.slice(-3).reduce((a,m)=>a+m.P.rev,0)/3;
  if(mo>=6&&rv>2500&&!S.loans.some(l=>l.k==='micro'))c+=EC.funding.micro.max;if(mo>=12&&ttmRev()>200000&&!S.loans.some(l=>l.k==='7a'))c+=Math.min(EC.funding.sba7a.max,ttmRev()*.4);return c}
 function amort(P,apr,yrs){const r=apr/12,n=yrs*12;return P*r/(1-Math.pow(1+r,-n))}
@@ -801,7 +928,7 @@ function showHall(fromSummary){if(S&&!HEADLESS&&S.months)upsertHall();const h=ha
 // ---------- books (P&L, channels, unit economics, export) ----------
 let booksTab='pnl';
 function openBooks(tab){booksTab=tab||booksTab;$('bookswrap').classList.remove('hidden');renderBooks()}
-function renderBooks(){if(!S)return;const tabs=[['pnl','📒 Monthly P&L'],['ch','🛍 Channels'],['unit','🧮 Unit economics'],['cash','💵 Cash & break-even'],['strat','🧠 Strategy'],['miles','🏆 Milestones'],['exp','⬇ Export']];
+function renderBooks(){if(!S)return;const tabs=[['pnl','📒 Monthly P&L'],['ch','🛍 Channels'],['unit','🧮 Unit economics'],['cash','💵 Cash & break-even'],['strat','🧠 Strategy'],['fc','📈 Forecast'],['tests','🧪 Experiments'],['plan','🎯 Plan & OKRs'],['lessons','📚 Lessons'],['miles','🏆 Milestones'],['exp','⬇ Export']];
  let body='';const ms=[...S.months.slice(-5),S.mo];
  if(booksTab==='pnl')body=`<p class="why">Last ${ms.length} months (* = month to date). All amounts USD.</p><div class="scroll">${pnlTable(ms,S.mo)}</div>`;
  else if(booksTab==='ch'){const m=S.mo,L=S.months[S.months.length-1]||m;const chs=[['etsy','Etsy shop'],['shopify','Shopify site'],['store','In-store POS']];
@@ -820,6 +947,20 @@ function renderBooks(){if(!S)return;const tabs=[['pnl','📒 Monthly P&L'],['ch'
   <p class="why">Etsy: $0.20 listing + 6.5% transaction + 3% + $0.25 processing (+15%/12% Offsite Ads on ~8% of orders). Shopify Basic $39/mo + ~$42/mo apps, 2.9% + 30¢. Square in-person 2.6% + 15¢. Labor & shared costs are not allocated to channels.</p>`}
  else if(booksTab==='unit'){body=`<table class="pnl"><tr class="b"><td>SKU</td><td>Ch</td><td>Price</td><td>Mat.</td><td>Labor</td><td>Pack</td><td>Label−chg</td><td>Fees</td><td>Returns</td><td>Contribution</td></tr>${S.co.skus.map(k=>['etsy','shopify','store'].map(ch=>{const u=unitEcon(k,ch);return `<tr style="opacity:${unlocked().includes(k)?1:.45}"><td>${ch==='etsy'?`<span style="color:${k.c}">■</span> ${k.n}${unlocked().includes(k)?'':' 🔒'}<br><small>${k.w} lb · ${Math.round(buildMin(k))} min</small>`:''}</td><td style="color:${CHC[ch]}">${ch}</td><td>$${u.p}</td><td>${u.mat}</td><td>${u.lab}</td><td>${u.pack}</td><td>${r2(u.label-u.shipChg)}</td><td>${u.fee}</td><td>${u.ret}</td><td style="color:${u.net>=0?'#7dff8a':'#ff7d7d'}">$${u.net} <small>${Math.round(u.m*100)}%</small></td></tr>`}).join('')).join('')}</table>
   <p class="why">Labor = build minutes × maker wage ${fmt(hourly('maker'))}/hr incl. payroll tax/WC (robot labor is free in-game, but a real business pays someone). Labels: USPS Ground Advantage commercial, zone 5; orders ≥ $${EC.freeShipOver} ship free.</p>`}
+ else if(booksTab==='fc'){const c13=S.cf13||[],fu=S.fcRev||[],cf=fcConf();body=`<p class="why">Holt damped-trend smoothing on de-seasonalised weekly units per SKU × channel, times the seasonal index. Confidence = 1 − MAPE of the last 8 one-week-ahead forecasts: <b>${cf==null?'still learning':Math.round(cf*100)+'%'}</b>.</p><canvas id="fcbig" width="760" height="170" style="width:100%"></canvas>
+  <table class="pnl"><tr class="b"><td>Week</td>${fu.map(x=>`<td>+${x.h}</td>`).join('')}</tr><tr><td>Units</td>${fu.map(x=>`<td>${Math.round(x.u)}</td>`).join('')}</tr><tr><td>Revenue</td>${fu.map(x=>`<td>${fmt(Math.round(x.rev))}</td>`).join('')}</tr><tr class="b"><td>Cash</td>${c13.map(v=>`<td style="color:${v<0?'#ff7d7d':'#7dff8a'}">${fmt(v)}</td>`).join('')}</tr></table>
+  <p class="why">Used for: production targets & dynamic safety stock (z=${EC.brain.z}), reorder points, hiring (13-week cash must stay above the hire's monthly cost) and loan timing.</p>`}
+ else if(booksTab==='tests'){const run=S.exps||[],done=(S.expDone||[]).slice().reverse();body=`<p class="why">Alternating-week A/B tests, season-adjusted. Winner = higher contribution per day (after ad spend for ad tests); adopted automatically. No new tests during Q4 or a cash crisis.</p>
+  <table class="pnl"><tr class="b"><td>Running</td><td>A</td><td>B</td><td>Week</td></tr>${run.map(e=>`<tr><td>${e.type==='price'?'Price · '+S.co.skus[e.k].n:'Ads · '+e.ch}</td><td>${e.type==='price'?'$'+e.A:fmt(e.A)+'/d'}</td><td>${e.type==='price'?'$'+e.B:fmt(e.B)+'/d'}</td><td>${e.wk+1}/${e.len}</td></tr>`).join('')||'<tr><td>none</td></tr>'}</table>
+  <div class="scroll">${done.map(r=>`<p class="mini"><b>${dstr(r.end).slice(4)}</b> · ${r.msg}</p>`).join('')||'<p class="mini">No finished tests yet.</p>'}</div>
+  <table class="pnl"><tr class="b"><td>SKU</td><td>Price</td><td>Launch (infl.-adj.)</td><td>Learned elasticity</td><td>Tests</td></tr>${unlocked().map(k=>`<tr><td>${k.n}${S.feature===k.i?' ⭐':''}${k.md?' 🏷️':''}</td><td>$${k.p}</td><td>$${Math.round(k.p0*(S.cpi||1))}</td><td>${k.el!=null?k.el.toFixed(2):'—'}</td><td>${k.eln||0}</td></tr>`).join('')}</table>`}
+ else if(booksTab==='plan'){const o=S.okr,sc=S.scen;body=`<h3>🎯 OKRs ${o?o.q:''}: ${o?o.O:'—'}</h3><table class="pnl">${o?o.krs.map(k=>`<tr><td>${k.n}</td><td>${Math.round(k.p*100)}%</td></tr>`).join(''):''}${(S.okrHist||[]).slice(-4).reverse().map(h=>`<tr><td><small>${h.q} · ${h.O}</small></td><td><small>score ${h.score.toFixed(1)}</small></td></tr>`).join('')}</table>
+  <h3>🗺 Strategic plan</h3><table class="pnl">${stratPlan().map(x=>`<tr><td>${x.done?'✅':'⬜'} ${x.n}</td><td><small>${x.done?'done':x.gate}</small></td></tr>`).join('')}</table>
+  <h3>🔮 Latest scenario${sc?': '+sc.label:''}</h3>${sc?`<table class="pnl"><tr class="b"><td>12 months</td><td>Best</td><td>Base</td><td>Worst</td></tr><tr><td>Change in cash</td><td>${fmt(sc.best.net)}</td><td>${fmt(sc.base.net)}</td><td>${fmt(sc.worst.net)}</td></tr><tr><td>Lowest cash</td><td>${fmt(sc.best.min)}</td><td>${fmt(sc.base.min)}</td><td>${fmt(sc.worst.min)}</td></tr><tr><td>Assumptions</td><td colspan="3"><small>revenue ×1.2 / ×1.0 / ×0.8 of forecast; new fixed ${fmt(sc.addMo)}/mo; capex ${fmt(sc.capex)}; uplift ${fmt(sc.up)}/mo ramping over 4 months</small></td></tr></table><p><b>${sc.go?'✅':'⛔'} ${sc.why}</b></p>`:'<p>No big commitment evaluated yet.</p>'}
+  <p class="why">Next big decision: ${S.nextBig||'—'}</p>`}
+ else if(booksTab==='lessons'){const mem=memLoad().filter(x=>x.co!==S.co.name).slice(-12).reverse();body=`<h3>📚 This company's knowledge base</h3><div class="scroll">${(S.kb||[]).slice().reverse().map(l=>`<p class="mini">${l.text} <small>(${dstr(l.d).slice(4)})</small></p>`).join('')||'<p class="mini">Nothing learned yet.</p>'}</div>
+  <h3>🧬 Inherited from earlier companies</h3><div class="scroll">${(S.inherit||[]).map(t=>`<p class="mini">✔ applied · ${t}</p>`).join('')}${mem.map(l=>`<p class="mini">Lesson from ${l.co}: ${l.text}</p>`).join('')||'<p class="mini">First company — no memory yet.</p>'}</div>
+  <p class="why">Customer lifetime value ≈ ${fmt(S.clv||0)} (AOV ${fmt(Math.round(aov()))} × contribution ${Math.round(cmRatio()*100)}% × ${EC.brain.ordersPerCustomer} orders). Email campaigns: ${S.lifetime.campaigns||0} sends → ${S.lifetime.emailOrders||0} orders. Bundles sold: ${S.lifetime.bundles||0}.</p>`}
  else if(booksTab==='strat'){const rep=stratReport();body=`<p class="why">Every Monday the robot reviews unit economics and cash runway, then acts. ${rwTxt()}. Moves so far: ${S.strat.length}.</p>
   <table class="pnl"><tr class="b"><td>Tactic</td><td>Times</td><td>Avg Δ monthly net, 2 mo later</td></tr>${rep.map(r=>`<tr><td>${r.n}</td><td>${r.c}</td><td style="color:${r.d>=0?'#7dff8a':'#ff7d7d'}">${r.k?fmt(Math.round(r.d)):'—'}</td></tr>`).join('')||'<tr><td>No moves yet</td></tr>'}</table>
   <div class="scroll">${S.strat.slice(-40).reverse().map(x=>`<p class="mini"><b>${dstr(x.d).slice(4)}</b> · ${STRAT_N[x.type]||x.type}: ${x.why}</p>`).join('')}</div>`}
@@ -830,6 +971,7 @@ function renderBooks(){if(!S)return;const tabs=[['pnl','📒 Monthly P&L'],['ch'
  else body=`<p>Download this run's numbers: monthly P&L, channel results and SKU unit economics as CSV, plus a plain-language business plan (Markdown) you can edit into a real one.</p><div class="ch"><button id="bExpCsv">⬇ Download CSV (P&L + unit economics)</button><button id="bExpMd">⬇ Download business plan (.md)</button></div><p class="why">Every assumption is listed with sources in ASSUMPTIONS.md and economics.js in the repo.</p><pre id="mdprev">${planMarkdown().slice(0,1400).replace(/</g,'&lt;')}…</pre>`;
  $('booksbox').innerHTML=`<div class="tabs">${tabs.map(t=>`<button data-t="${t[0]}" class="${t[0]===booksTab?'on':''}">${t[1]}</button>`).join('')}<button id="bBooksX">✕</button></div><h2>${S.co.name} — ${dstr()}</h2>${body}`;
  document.querySelectorAll('#booksbox [data-t]').forEach(b=>b.onclick=()=>{booksTab=b.dataset.t;renderBooks()});$('bBooksX').onclick=()=>$('bookswrap').classList.add('hidden');
+ if($('fcbig'))drawFc($('fcbig').getContext('2d'),0,0,760,170,true);
  if($('bExpCsv')){$('bExpCsv').onclick=()=>download(slug()+'-numbers.csv',planCsv(),'text/csv');$('bExpMd').onclick=()=>download(slug()+'-business-plan.md',planMarkdown(),'text/markdown')}}
 const slug=()=>S.co.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 function download(name,text,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500);window.__rfLastExport={name,len:text.length}}
@@ -840,7 +982,7 @@ function planCsv(){const ms=[...S.months,S.mo];const q=v=>typeof v==='number'?Ma
  rows.push([]);rows.push(['unit_economics','sku','channel','price','materials','labor','packaging','label_minus_shipping_charged','fees','returns_allowance','contribution','margin_pct']);
  S.co.skus.forEach(k=>['etsy','shopify','store','wholesale'].forEach(ch=>{const u=unitEcon(k,ch);rows.push(['unit_economics',k.n,ch,u.p,u.mat,u.lab,u.pack,r2((u.label||0)-(u.shipChg||0)),u.fee,u.ret||0,u.net,Math.round(u.m*1000)/10])}));
  return rows.map(r=>r.map(q).join(',')).join('\n')}
-function stratReport(){const g={};S.strat.forEach(x=>{if(x.type==='comeback')return;const r=g[x.type]=g[x.type]||{n:STRAT_N[x.type]||x.type,c:0,d:0,k:0};r.c++;const a=S.months[x.m+1];if(a&&x.m>0){r.d+=a.P.net-x.net0;r.k++}});
+function stratReport(){const g={};S.strat.forEach(x=>{if(['comeback','okr','scenario','mix','schedule'].includes(x.type))return;const r=g[x.type]=g[x.type]||{n:STRAT_N[x.type]||x.type,c:0,d:0,k:0};r.c++;const a=S.months[x.m+1];if(a&&x.m>0){r.d+=a.P.net-x.net0;r.k++}});
  return Object.values(g).map(r=>({...r,d:r.k?r.d/r.k:0})).sort((a,b)=>b.d-a.d)}
 function planMarkdown(){const ms=S.months,L=ms[ms.length-1],tr=ttmRev(),be=breakEven(),u=unlocked();const best=u.map(k=>({k,e:unitEcon(k,'shopify')})).sort((a,b)=>b.e.net-a.e.net)[0];
  const f=n=>fmt(Math.round(n));const ch=['etsy','shopify','store'].filter(c=>S.ch[c].open>=0);
@@ -898,10 +1040,16 @@ ${S.comebacks?`- Survived ${S.comebacks} cash crisis${S.comebacks>1?'es':''} wit
 Recent moves:
 ${S.strat.slice(-8).map(x=>`- ${dstr(x.d).slice(4)}: ${x.why}`).join('\n')||'- none'}
 
-## 10. Milestones hit
+## 10. Forecast, OKRs & lessons
+- 13-week revenue forecast: **${f((S.fcRev||[]).reduce((a,x)=>a+x.rev,0))}** (forecast confidence ${fcConf()==null?'n/a':Math.round(fcConf()*100)+'%'}); 13-week cash low ${S.cf13&&S.cf13.length?f(Math.min(...S.cf13)):'n/a'}.
+- Current objective: ${S.okr?`**${S.okr.O}** (${S.okr.q}) — ${S.okr.krs.map(k=>`${k.n}: ${Math.round(k.p*100)}%`).join('; ')}`:'n/a'}
+- Experiments: ${(S.expDone||[]).slice(-5).map(r=>'\n  - '+r.msg).join('')||'none yet'}
+- Lessons: ${(S.kb||[]).slice(-6).map(l=>'\n  - '+l.text).join('')||'none yet'}
+
+## 11. Milestones hit
 ${EC.tiers.filter(x=>S.tiers[x.id]).map(x=>`- ${TIER_ICON[x.id]} ${x.n} (${dstr(S.tiers[x.id]).slice(4)})`).join('\n')||'- none yet'}
 
-## 11. Key risks
+## 12. Key risks
 Platform dependence (Etsy algorithm changes), supplier price hikes & lead times, product liability (${S.co.risk} risk category — insure it), hurricane season (Jun–Nov), Q4 seasonality (Nov–Dec ≈19%+ of retail sales), and the fact that a real founder must be paid: the in-game robot works ${EC.founderHours}h/day for free.
 `}
 // ---------- flow ----------
@@ -954,10 +1102,10 @@ function finishVisual(){vday=null;bot.task=null;busy=0;shoppers=[];queue=[];V.or
 // ---------- headless balance ----------
 function runHeadless(maxDays=3*365){HEADLESS=true;S=newState();S.dh=[];let guard=0,neg=0,streak=0,low=0;while(!S.done&&guard++<maxDays){stepDay();if(S.cash<0){neg++;streak++;low=Math.min(low,S.cash)}else streak=0;S.maxNeg=Math.max(S.maxNeg||0,streak)}S.negDays=neg;S.lowCash=low;return S}
 // dev tool only (not shown in UI): __rf.balance(n)
-function balance(n=200,ov,days){const keep=JSON.stringify(EC.lines);if(ov)ov(EC);const out=[];for(let i=0;i<n;i++){const s=runHeadless(days);const ms=s.months;
+function balance(n=200,ov,days,mem){const keep=JSON.stringify(EC.lines);if(ov)ov(EC);SIMMEM=[];const out=[];for(let i=0;i<n;i++){if(mem==='fresh')SIMMEM=[];const s=runHeadless(days);const ms=s.months;
   out.push({tiers:Object.keys(s.tiers),ttm:Math.round(s.peakTTM),best:Math.round(Math.max(0,...ms.map(m=>m.P.rev))),rev:Math.round(ms.reduce((a,m)=>a+m.P.rev,0)),net:Math.round(ms.reduce((a,m)=>a+m.P.net,0)),lastTTMnet:Math.round(ttmNet()),stage:s.stage,staff:s.staff.length,line:s.co.industry,
    gm:ms.length?Math.round(ms.reduce((a,m)=>a+m.P.gm,0)/Math.max(1,ms.reduce((a,m)=>a+m.P.net_rev,0))*100):0,moves:s.strat.reduce((a,x)=>(a[x.type]=(a[x.type]||0)+1,a),{}),comebacks:s.comebacks,crisisOpen:!!s.crisis,cash:Math.round(s.cash),debt:Math.round(debt()),negDays:s.negDays,maxNeg:s.maxNeg,low:Math.round(s.lowCash),
-   gig:!!s.flags.gig,gigRev:Math.round(s.lifetime.gig||0),sav:s.robotSav,pivots:s.lifetime.pivots||0,ue:Math.round(unitEcon(s.co.skus.find(k=>!k.off)||s.co.skus[0],'etsy').m*100),ueS:Math.round(unitEcon(s.co.skus.find(k=>!k.off)||s.co.skus[0],'shopify').m*100)})}
+   gig:!!s.flags.gig,gigRev:Math.round(s.lifetime.gig||0),sav:s.robotSav,pivots:s.lifetime.pivots||0,tests:(s.expDone||[]).length,conf:(()=>{const sv=S;S=s;const c=fcConf();S=sv;return c})(),kb:(s.kb||[]).length,inh:(s.inherit||[]).length,emailOrders:s.lifetime.emailOrders||0,bundles:s.lifetime.bundles||0,okr:(s.okrHist||[]).length?s.okrHist.reduce((a,o)=>a+o.score,0)/s.okrHist.length:0,scen:(s.scenHist||[]).length,ue:Math.round(unitEcon(s.co.skus.find(k=>!k.off)||s.co.skus[0],'etsy').m*100),ueS:Math.round(unitEcon(s.co.skus.find(k=>!k.off)||s.co.skus[0],'shopify').m*100)})}
  EC.lines=JSON.parse(keep);HEADLESS=false;S=null;return out}
 // ---------- sprites ----------
 function drawItem(g,shape,col,x,y,s=1){const p=(a,b,w,h,c)=>{g.fillStyle=c;g.fillRect(Math.round(x+a*s),Math.round(y+b*s),Math.max(1,w*s),Math.max(1,h*s))};
@@ -1158,6 +1306,22 @@ function drawHUD(){const t=dateOf(),q=Math.floor(t.getMonth()/3)+1,mtd=S.mo.rev.
  <span>💵 <b style="color:${cash<0?'#ff6b6b':'#ffd76a'}">${fmt(Math.round(cash))}</b></span><span>📈 MTD ${fmt(Math.round(mtd))}</span>
  <span>${S.reviews?'★'+S.rating.toFixed(2)+` <small>(${S.reviews})</small>`:'★ no reviews'}</span><span>🏪 ${V.s.reduce((a,b)=>a+b,0)} · 🌐 ${V.o.reduce((a,b)=>a+b,0)} · 🧾 ${vday?V.orders:S.backlog.length}</span>
  <span>👥 ${S.staff.length}</span><span>${chIcons()}</span><span>🏠 ${stageInfo().n}</span><span>🤖 ${S.co.traitName}</span>`}
+function drawFc(g,x,y,w,h,big){const wh=(S.wh||[]).slice(-26),fl=(S.fcLog||[]).slice(-27),fu=S.fcRev||[];g.fillStyle='#ffffff10';g.fillRect(x,y,w,h);
+ const act=wh.map(v=>v.rev),past=fl.slice(0,-1).map(v=>v.f),n=act.length+fu.length;const mx=Math.max(1,...act,...past,...fu.map(v=>v.rev));const X=i=>x+4+i*(w-8)/Math.max(1,n-1),Y=v=>y+h-6-v/mx*(h-18);
+ // past forecasts aligned to the week they predicted
+ g.strokeStyle='#ffb86b';g.setLineDash([3,2]);g.beginPath();let st=0;fl.slice(0,-1).forEach((v,i)=>{const j=i+(act.length-(fl.length-1));if(j<0)return;st++?g.lineTo(X(j),Y(v.f)):g.moveTo(X(j),Y(v.f))});
+ fu.forEach((v,i)=>{const j=act.length+i;st++?g.lineTo(X(j),Y(v.rev)):g.moveTo(X(j),Y(v.rev))});g.stroke();g.setLineDash([]);
+ g.strokeStyle='#7dd3ff';g.lineWidth=1.5;g.beginPath();act.forEach((v,i)=>i?g.lineTo(X(i),Y(v)):g.moveTo(X(i),Y(v)));g.stroke();g.lineWidth=1;
+ if(act.length){g.strokeStyle='#ffffff30';g.beginPath();g.moveTo(X(act.length-1),y+10);g.lineTo(X(act.length-1),y+h-4);g.stroke()}
+ const cf=fcConf();g.font=(big?11:9)+'px monospace';g.fillStyle='#7dd3ff';g.fillText('weekly rev',x+4,y+10);g.fillStyle='#ffb86b';g.fillText('forecast',x+70,y+10);g.fillStyle='#ddd';g.fillText(cf==null?'conf —':'conf '+Math.round(cf*100)+'%',x+w-62,y+10)}
+function brainHtml(){const o=S.okr,ex=(S.exps||[]).slice(0,3),cf=fcConf(),c13=S.cf13||[];const mn=c13.length?Math.min(...c13):null;
+ const bar=p=>`<span class="kb"><i style="width:${Math.round(clamp(p,0,1)*100)}%"></i></span>`;
+ return `<div class="brain"><b>🧠 Brain</b> <small>${S.co.traitName||''}</small>
+ <div>🎯 ${o?`<b>${o.O}</b> <small>${o.q}</small>`:'Setting first OKRs…'}</div>${o?o.krs.map(k=>`<div class="kr">${bar(k.p)} ${k.n}</div>`).join(''):''}
+ <div>🧪 ${ex.length?ex.map(e=>e.type==='price'?`${S.co.skus[e.k].n}: $${e.A} vs $${e.B} <small>wk ${e.wk+1}/${e.len}</small>`:`${e.ch==='etsy'?'Etsy':'Shopify'} ads ${fmt(e.A)} vs ${fmt(e.B)}/day <small>wk ${e.wk+1}/${e.len}</small>`).join('<br>'):'No test running'}</div>
+ <div>📈 Forecast conf ${cf==null?'— (learning)':Math.round(cf*100)+'%'} · next 13 wk ${fmt(Math.round((S.fcRev||[]).reduce((a,x)=>a+x.rev,0)))}</div>
+ <div>💵 13-wk cash low ${mn==null?'—':fmt(mn)+' (wk '+(c13.indexOf(mn)+1)+')'}</div>
+ <div>⏭ ${S.nextBig||'—'}</div></div>`}
 function drawDash(){const c=$('dashc'),g=c.getContext('2d');g.clearRect(0,0,c.width,c.height);const d=S.daily.slice(-120);
  spark(g,4,4,232,60,d.map(x=>x.cash),'#ffd76a','cash (120 days)',fmt(Math.round(S.cash)));
  // monthly revenue by channel (stacked)
@@ -1165,9 +1329,9 @@ function drawDash(){const c=$('dashc'),g=c.getContext('2d');g.clearRect(0,0,c.wi
  ms.forEach((m,i)=>{let y=top+h-12;[['etsy'],['shopify'],['store'],['wholesale']].forEach(([k])=>{const v=m.rev[k]/mx*(h-26);g.fillStyle=CHC[k];g.fillRect(6+i*bw,y-v,bw-3,v);y-=v});g.fillStyle='#888';g.font='7px monospace';g.fillText(MON[+m.k.slice(5)-1][0],8+i*bw,top+h-3)});
  g.fillStyle='#ddd';g.font='9px monospace';g.fillText('revenue/mo  ',8,top+10);g.fillStyle=CHC.etsy;g.fillText('Etsy',80,top+10);g.fillStyle=CHC.shopify;g.fillText('Shopify',110,top+10);g.fillStyle=CHC.store;g.fillText('Store',160,top+10);g.fillStyle='#ddd';g.fillText(fmt(Math.round(mx)),196,top+20);
  spark2(g,4,176,232,56,d.map(x=>x.inv),d.map(x=>x.bl),'#7dff8a','#ff6fb5','inventory vs backlog',`${invTotal()} / ${S.backlog.length}`);
- spark(g,4,240,232,56,d.map(x=>x.rev),'#7dd3ff','daily revenue',fmt(d.length?d[d.length-1].rev:0));
+ drawFc(g,4,240,232,56);
  const roles=Object.keys(ROLES).map(r=>[r,roleCount(r)]).filter(x=>x[1]);const be=breakEven(),L=S.months[S.months.length-1];
- $('dasht').innerHTML=`<div>${chIcons()}</div>
+ $('dasht').innerHTML=brainHtml()+`<div>${chIcons()}</div>
  <div>🧮 Last month: ${L?`${fmt(Math.round(L.P.rev))} rev · <b style="color:${L.P.net>=0?'#7dff8a':'#ff7d7d'}">${fmt(Math.round(L.P.net))}</b> net · GM ${Math.round(L.P.gmPct*100)}%`:'—'}</div>
  <div>⚖️ Break-even: ${be?fmt(Math.round(be))+'/mo':'—'} · Fixed ${fmt(Math.round(monthlyFixed()))}/mo</div>
  <div>📆 TTM revenue ${fmt(Math.round(ttmRev()))} · season ×${EC.season[dateOf().getMonth()]}</div>
@@ -1190,6 +1354,6 @@ function loop(t){const rdt=Math.min(.1,(t-last)/1000);last=t;anim+=rdt;
 window.__rf={get S(){return S},get V(){return V},get vday(){return vday},get shoppers(){return shoppers},get queue(){return queue},get npcs(){return npcs},get van(){return van},EC,balance,runHeadlessDbg:()=>{const s=runHeadless();HEADLESS=false;return s},runHeadless,stepDay,unitEcon,pnl,planCsv,planMarkdown,openBooks,renderBooks,breakEven,monthlyFixed,ttmRev,get highlights(){return highlights},setHL:v=>{highlights=v;syncCtl()},newCompany,hall,LAYOUTS,
  ff:n=>{for(let i=0;i<n&&!S.done;i++)stepDay();V.s=[...S.inv.s];V.o=[...S.inv.o];V.kits=S.kits.reduce((a,b)=>a+b,0);V.cash=S.cash;V.orders=S.backlog.length;save();return S.day},
  setStage:n=>{S.stage=n;if(n>=1&&S.ch.store.open<0)S.ch.store.open=S.day;if(S.ch.shopify.open<0)S.ch.shopify.open=S.day;setLevel(n);npcs.forEach(x=>x.home=null);S.rep=Math.max(S.rep,35);S.use.s=S.use.s.map(()=>2);unlocked().forEach(k=>{S.inv.s[k.i]+=12;S.inv.o[k.i]+=6;S.kits[k.i]+=30});S.flags.visualNext=1},
- hireTest:r=>hire(r,'test hire'),get overlay(){return overlay}};
+ hireTest:r=>hire(r,'test hire'),memLoad,fcConf,brainWeek,scenario,stratPlan,get SIMMEM(){return SIMMEM},get overlay(){return overlay}};
 $('bCont').classList.toggle('hidden',!load());syncCtl();requestAnimationFrame(loop);
 })();

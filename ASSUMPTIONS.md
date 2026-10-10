@@ -111,6 +111,21 @@ All numbers live in [`economics.js`](economics.js) (each entry names its source 
 
 **Milestones (the score):** first sale → first profitable month → ramen profitable (≥ $2,500 net in a month, **ESTIMATE**) → $10k revenue month → $100k trailing-12-month revenue → $1M TTM → acquisition offer received (the robot declines and keeps building) → IPO (legendary: ≥ $10M TTM revenue plus luck). Runs never end on their own; every 3 years a chapter recap appears. A run ends only when the player starts a new company.
 
+## 6a. Robot brain: forecasting, experiments, ops (added Oct 10, 2026)
+| Item | Value | Source (accessed 2026-10-10) |
+|---|---|---|
+| Email campaign placed-order rate | 0.16% of recipients per send (avg; top 10% 0.36%) | https://www.klaviyo.com/products/email-marketing/benchmarks |
+| Shopify Messaging email cost | 10,000 sends/mo free, then $1 per 1,000 | https://help.shopify.com/en/manual/promoting-marketing/create-marketing/shopify-messaging/email/pricing |
+| Forecast model | Holt damped trend (α .35, β .1, φ .9) on de-seasonalised weekly units × seasonal index | method choice (est) |
+| Safety stock | z = 1.65 (≈95% service level) × σ(daily demand) × √lead time | standard formula (est σ from forecast errors) |
+| Per-SKU price response | the existing price elasticity is also applied to each SKU's share of demand (substitution between SKUs) | est |
+| Bundle/upsell attach rate | 6% of online orders add the cheapest other SKU at 10% off | est |
+| Review requests | review rate 12% → 16%; 30% of replied ≤3★ reviews improve | est |
+| Aging markdown | 15% off when > 45 days of cover, restored < 20 days | est |
+| Featured SKU | +15% share of demand for the product the robot merchandises | est |
+| Orders per customer (CLV) | 1.4 | est |
+| Scenario ranges | best/base/worst = 120/100/80% of forecast revenue | est |
+
 ## 6b. Robot strategy engine (weekly review)
 | Tactic | Parameter | Source |
 |---|---|---|

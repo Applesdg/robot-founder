@@ -63,3 +63,5 @@ table.pnl{border-collapse:collapse;width:100%;font-size:12px}table.pnl td{paddin
 #mbox button.pick{background:#27ae60;border-color:#ffd76a}
 @media (max-width:700px){#booksbox{font-size:11px;padding:8px}table.pnl td{padding:1px 3px;font-size:10.5px}}
 body:has(#bookswrap:not(.hidden)) #toast{display:none}
+
+#dasht .brain{border:1px solid #6c5ce7;border-radius:5px;padding:4px;margin:2px 0 6px;background:#1a1530}#dasht .brain div{margin:2px 0}.kb{display:inline-block;width:46px;height:6px;background:#333;border-radius:3px;vertical-align:middle}.kb i{display:block;height:100%;background:#7dff8a;border-radius:3px}#dasht .kr{font-size:10.5px;padding-left:6px}#booksbox h3{margin:8px 0 4px;color:#ffd76a;font-size:13px}

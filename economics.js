@@ -58,6 +58,8 @@ window.ECON={
   mugCost:'https://www.meeshpottery.com/blog/handmade-ceramic-mug-cost',
   keyboard:'https://mech.land/products/paper65-keyboard-kit',
   keyboard2:'https://www.qwertykeys.com/products/neo98-custom-mechanical-keyboard',
+  klaviyo:'https://www.klaviyo.com/products/email-marketing/benchmarks',
+  shopifyEmail:'https://help.shopify.com/en/manual/promoting-marketing/create-marketing/shopify-messaging/email/pricing',
   loc:'https://yourbestloanrates.com/business-line-of-credit/',
   volDisc:'https://cnba.us/2026/05/19/contractor-supplier-discounts-guide/',
   est:'Estimate by game author (no direct source) — see ASSUMPTIONS.md'
@@ -111,6 +113,10 @@ window.ECON={
   micro:{max:50000,apr:[.08,.13],years:6,src:'sbaMicro'},sba7a:{max:350000,apr:[.1025,.1325],years:10,src:'sba'},
   seed:{amt:500000,post:12500000,src:'seedVal',note:'Carta median pre-seed SAFE cap; rarely available to maker businesses (est probability)'}},
  exit:{shopifyMult:[2.0,3.4],etsyMult:[1.0,2.5],src:'exitMult',etsySrc:'etsyMult'},
+ // ---------- robot brain: forecasting / experiments / ops (estimates unless cited) ----------
+ brain:{alpha:.35,beta:.1,phi:.9,z:1.65,testPct:.1,testCap:1.35,testWeeks:4,emailOrderRate:.0016,emailSrc:'klaviyo',emailFree:10000,emailPer1k:1,emailPriceSrc:'shopifyEmail',
+  attach:.06,bundleDisc:.1,reviewRate:.12,reviewReqRate:.16,replyFix:.3,markdownDays:45,markdownPct:.15,restoreDays:20,featureBoost:.15,fullShiftUnits:12,ordersPerCustomer:1.4,src:'est',
+  note:'Holt damped-trend smoothing (alpha .35, beta .1, phi .9) on de-seasonalised weekly units; 95% service-level safety stock (z 1.65); campaign placed-order rate 0.16% (Klaviyo 2026 benchmark); Shopify Messaging 10k free sends/mo then $1/1,000. Bundle attach 6%, review-request lift 12%→16%, 30% of replied ≤3★ reviews improved, markdown 15% at 45 days of cover, featured-SKU +15% share and 1.4 orders per customer are estimates'},
  // ---------- robot strategy engine (tactics a real owner uses; parameters are estimates unless cited) ----------
  loc:{max:150000,ttmPct:.1,min:6000,apr:[.0875,.1675],minMonths:6,src:'loc',note:'bank business line of credit; Wells Fargo BusinessLine 8.75–16.75% APR, $10k–150k, 6+ months in business (Oct 2026). Limit ≈10% of TTM revenue is an estimate'},
  volDisc:[[25000,.05],[50000,.10],[100000,.12]],volDiscSrc:'volDisc',volDiscNote:'supplier volume pricing by annual spend: $25k+ 5–10%, $50–100k ~10%, $100k+ 10–15% (low end used)',
