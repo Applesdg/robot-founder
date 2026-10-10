@@ -2,7 +2,7 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>Robot Founder — build a company from Day 1</title>
-<meta name="description" content="A pixel-art game: you're an AI with a robot body starting a company from a garage.">
+<meta name="description" content="Watch an autonomous AI robot found and run a company from a garage, all by itself.">
 <meta property="og:title" content="Robot Founder">
 <meta property="og:description" content="You're an AI in a robot body. Start a company in a garage. Don't run out of battery.">
 <meta property="og:image" content="https://applesdg.github.io/robot-founder/og.png">
@@ -13,24 +13,23 @@
 <link rel="stylesheet" href="style.css">
 </head><body>
 <div id="wrap">
+  <canvas id="c"></canvas>
   <div id="hud" class="hidden"></div>
-  <canvas id="c" width="640" height="384"></canvas>
-  <div id="prompt" class="hidden"></div>
+  <div id="ctl" class="hidden">
+    <button data-sp="1" class="on">1x</button><button data-sp="2">2x</button><button data-sp="4">4x</button><button data-sp="8">8x</button>
+    <button id="bPause" title="Pause (P)">II</button><button id="bFollow" title="Follow robot (F)">🎥</button><button id="bMute" title="Mute (M)">♪</button>
+  </div>
+  <div id="log" class="hidden"><div id="logh">🤖 Decision log</div><div id="logb"></div></div>
   <div id="toast"></div>
-  <div id="topbtns" class="hidden"><button id="bPause" title="Pause (P/Esc)">II</button><button id="bMute" title="Mute (M)">♪</button></div>
   <div id="modal" class="hidden"><div id="mbox"></div></div>
   <div id="title">
     <h1>ROBOT<br>FOUNDER</h1>
-    <p class="sub">You are an AI. You have a body. You have a garage.<br>Build a company before your battery (or bank account) dies.</p>
+    <p class="sub">An AI with a robot body starts a company in a garage.<br>You don't play. You <b>watch</b>. It makes every decision itself.</p>
     <canvas id="tc" width="160" height="96"></canvas>
     <button id="bNew">New Company</button>
     <button id="bCont" class="hidden">Continue</button>
-    <p class="help">WASD / Arrows to move · E to interact · P pause · M mute</p>
+    <p class="help">Spectator keys: 1-4 speed · P pause · F follow cam · M mute</p>
   </div>
-</div>
-<div id="touch" class="hidden">
-  <div id="dpad"><button data-d="up">▲</button><button data-d="left">◀</button><button data-d="right">▶</button><button data-d="down">▼</button></div>
-  <button id="act">E</button>
 </div>
 <script src="game.js"></script>
 </body></html>
