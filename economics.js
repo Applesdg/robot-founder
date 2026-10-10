@@ -115,6 +115,10 @@ window.ECON={
   micro:{max:50000,apr:[.08,.13],years:6,src:'sbaMicro'},sba7a:{max:350000,apr:[.1025,.1325],years:10,src:'sba'},
   seed:{amt:500000,post:12500000,src:'seedVal',note:'Carta median pre-seed SAFE cap; rarely available to maker businesses (est probability)'}},
  exit:{shopifyMult:[2.0,3.4],etsyMult:[1.0,2.5],src:'exitMult',etsySrc:'etsyMult'},
+ // ---------- founder pay (toggle) ----------
+ founder:{side:{hoursWk:8,rate:20,note:'Side hustle: Dom\'s real 6–10 h/week (8 used) valued at $20/hr (ESTIMATE, matches FL entry-level ops wages)'},
+  full:{salary:41600,hoursWk:45,note:'Full-time: $41,600/yr ($20/hr × 2,080 h, ESTIMATE); robot works 45 h/week'},boothHours:6,src:'est'},
+ lab:{traffic:{conservative:.45,low:.7,base:1,high:1.3},trafficNote:'What-if lab traffic presets scale Etsy/Shopify conversion and booth traffic. Conservative (×0.45) is an ESTIMATE for crowded Etsy niches (printables, pet portraits) where a new shop gets a fraction of category-average traffic',seeds:50,src:'est'},
  // ---------- Digital + Print-on-Demand mode (Printify/Printful; see ASSUMPTIONS §4b) ----------
  pod:{premiumMo:24.99,premiumMoSrc:'printifyPricing',premiumNote:'Printify Premium $24.99/mo billed yearly ($39 month-to-month)',premiumDisc:.2,premiumDiscNote:'Printify advertises up to 33% off; ~20% typical on common items (podvector, Jul 2026)',
   printfulGrowthMo:24.99,printfulSrc:'printfulPricing',aiSubMo:30,aiSubSrc:'midjourney',aiPerPortrait:1.0,aiNote:'ESTIMATE: ~4 high-quality gpt-image-1 generations at $0.25 (1024x1536) per finished portrait',
@@ -146,6 +150,12 @@ window.ECON={
   {n:'Skateboards',u:'boards',shape:'board',risk:'high',src:'est',skus:[['Custom Deck',30,120,89,5,3.9],['Cruiser Complete',70,180,159,8,4.0],['E-Board DIY Kit',290,300,499,15,4.1],['Complete E-Board',520,480,899,20,4.3]]},
   {n:'Indie Board Games',u:'games',shape:'game',risk:'low',src:'est',skus:[['Card Game',6,15,25,1,3.9],['Small Box Game',11,30,40,2,4.0],['Big Box Game',22,45,65,5,4.1],['Wooden Deluxe Edition',40,120,120,5,4.3]]},
   {n:'Bike Lights',u:'bike lights',shape:'bulb',risk:'med',src:'est',skus:[['Clip Light',7,20,24,1,3.8],['USB Headlight',14,30,45,1,4.0],['Turn-Signal Pack',28,60,79,2,4.1],['Laser Lane Kit',45,90,119,1,4.2]]},
+  {n:'Leather Wallets',u:'wallets',shape:'board',risk:'low',src:'est',note:'ESTIMATE: veg-tan leather + hardware; Etsy comparables card holders $25–45, bifolds $55–90, totes $180–260',skus:[['Card Sleeve',6,40,35,1,3.9],['Bifold Wallet',14,90,65,1,4.0],['Long Wallet',22,140,95,1,4.1],['Leather Tote',55,360,220,3,4.3]]},
+  {n:'Handmade Soap',u:'soaps',shape:'candle',risk:'low',src:'est',note:'ESTIMATE: oils/lye/fragrance ~$1.50/bar; Etsy bars $7–10, gift sets $25–65',skus:[['Cold-Process Bar',1.6,6,8,1,3.9],['Gift Box 3-Pack',6,20,26,1,4.0],['Shampoo Bar Set',8,25,32,1,4.1],['Spa Gift Basket',18,40,65,3,4.2]]},
+  {n:'Resin Coasters & Decor',u:'resin pieces',shape:'mug',risk:'low',src:'est',note:'ESTIMATE: epoxy ~$25–35/gal; Etsy coaster sets $28–40, trays $45–70, epoxy side tables $350–600',skus:[['Coaster Set of 4',7,45,32,2,3.9],['Ocean Serving Tray',14,90,58,3,4.0],['Resin Wall Clock',28,150,95,4,4.1],['Epoxy Side Table',120,600,450,30,4.3]]},
+  {n:'Custom Dog Collars',u:'collars',shape:'toy',risk:'low',src:'est',note:'ESTIMATE: webbing/leather + brass hardware; Etsy collars $20–45, sets $55–90',skus:[['Nylon Name Collar',4,25,22,1,3.9],['Leather Collar',10,50,42,1,4.0],['Collar + Leash Set',16,70,62,1,4.1],['Engraved Brass Set',24,90,85,1,4.2]]},
+  {n:'Laser-Cut Wood Signs',u:'signs',shape:'board',risk:'low',src:'est',note:'ESTIMATE: birch ply + finish; laser ~$5k equipment not modeled separately; Etsy name signs $30–45, wedding signs $90–150',skus:[['12" Name Sign',5,30,35,2,3.9],['24" Family Sign',14,60,75,4,4.0],['Wedding Welcome Sign',22,90,120,6,4.1],['Layered Wall Map',40,180,220,8,4.3]]},
+  {n:'Sterling Silver Jewelry',u:'jewelry pieces',shape:'bulb',risk:'low',src:'est',note:'ESTIMATE: sterling ~$1–2/g + findings/stones; Etsy studs $30–45, pendants $70–110, gemstone rings $180–300',skus:[['Stud Earrings',6,40,38,1,3.9],['Stacking Ring',9,50,45,1,4.0],['Pendant Necklace',18,90,85,1,4.1],['Gemstone Ring',60,180,240,1,4.3]]},
   {n:'Digital + Print-on-Demand',u:'portraits',shape:'mug',risk:'low',mode:'pod',src:'podCosts',note:'digital downloads + AI pet portraits printed & shipped by a POD partner (Printify); Space Coast designs unlock later',
    kinds:['digital','custom','podCustom','pod'],unlockRD:[0,0,30,180],
    skus:[['Printable Planner & Wall-Art Pack',0,1,8,0,4.2],['Custom Pet Portrait (digital file)',1.0,14,29,0,4.3],['Pet Portrait Print / Gift',1.0,16,59,0,4.3],['Space Coast Launch Designs',0,1,29,0,4.1]],

@@ -80,7 +80,10 @@ function genCompany(){
  const nm=/^[.l]/.test(sf)?name+sf:name+' '+sf;
  return {name:FORCE_LINE!=null&&ln.mode==='pod'?pick(['Benji & Co. Portraits','Space Coast Pet Prints','Benji Paws Studio']):nm,mode:ln.mode||'make',unlockRD:ln.unlockRD||null,line:li,industry:ln.n,unit:ln.u,shape:ln.shape,risk:ln.risk,skus:mkSkus(ln),color:col[0],dark:col[1],model:pick(MODELS),robot:pick(RNAMES)+'-'+RI(1,99),perk:perk.id,perkName:perk.n,perkDesc:perk.d};
 }
-let FORCE_LINE=null;const POD=()=>!!(S&&S.co&&S.co.mode==='pod');const unlockRD=()=>(S&&S.co&&S.co.unlockRD)||EC.skuUnlockRD;
+let FORCE_LINE=null,SAL_PICK='auto',COF_ON=false,WI=null;
+const salMode=()=>(S&&S.salMode)||(EC.founderSalaryOn?'full':'off');
+function founderH(){const m=salMode(),F=EC.founder;if(m==='side')return (S.salHours||F.side.hoursWk)/7;if(m==='full')return F.full.hoursWk/7*(has('efficient')?1.2:1);return has('efficient')?12:EC.founderHours}
+const POD=()=>!!(S&&S.co&&S.co.mode==='pod');const unlockRD=()=>(S&&S.co&&S.co.unlockRD)||EC.skuUnlockRD;
 const mkSkus=ln=>ln.skus.map(([n,m,b,p,w,q],i)=>{const k={n,m,b,p,p0:p,w,q,i,c:LINE_COL[i]};if(ln.kinds)k.kind=ln.kinds[i];if(ln.variants&&ln.variants[i]){k.v=ln.variants[i].map(([vn,vp,base,ship,wt])=>({n:vn,p:vp,base,ship,wt}));k.p=k.p0=Math.round(k.v.reduce((a,v)=>a+v.p*v.wt,0))}return k});
 // ---------- layouts ----------
 const LCFG=[{ws:7,ss:5,dk:0,b:1,d:1,th:1},{ws:7,ss:5,dk:0,b:1,d:1,th:1},{ws:9,ss:8,dk:0,b:2,d:2,th:1},{ws:10,ss:10,dk:0,b:3,d:3,th:2},{ws:10,ss:11,dk:6,b:4,d:4,th:2,m:2}];
@@ -150,6 +153,9 @@ function newState(){
   done:false,outcome:null,peakTTM:0,peakCash:0,insured:true,lifetime:{rev:0,orders:0,units:0}};
  S=s;s.mo=newMonth(mkey(dateOf(0)));s.mo.cash0=s.cash;
  s.mo.lic+=EC.licenses.llc+EC.licenses.btrYr;s.cash-=EC.licenses.llc+EC.licenses.btrYr; // LLC formation + Brevard BTR
+ s.salMode=WI?WI.salMode:(SAL_PICK==='auto'?(s.co.mode==='pod'?'side':'off'):SAL_PICK);s.salHours=WI&&WI.hours?WI.hours:EC.founder.side.hoursWk;s.salRate=WI&&WI.rate?WI.rate:EC.founder.side.rate;
+ if(COF_ON&&!WI){const t2=pick(TRAITS.filter(x=>x.id!==s.co.trait));s.cof={trait:t2.id,name:pick(RNAMES)+'-'+RI(1,99),traitName:t2.n,color:pick(COLORS),wins:0,debates:0}}
+ if(WI){s.co.skus.forEach(k=>{const m=WI.price[k.i];if(m)k.p=Math.max(1,Math.round(k.p0*m))});if(WI.mix>=.5)s.ch.shopify.open=0}
  brainInit();return s;
 }
 const has=p=>S.co.perk===p;
@@ -208,11 +214,12 @@ function econDay(){
   const pay=h*hourly(s.role);labor+=pay;const P=EC.payroll,ytd=S.ytdWages[s.name]||0;
   let b=pay*burdenRate(s.role)+Math.max(0,Math.min(pay,P.futaBase-ytd))*(P.futa+P.suta);burden+=b;S.ytdWages[s.name]=ytd+pay;
   s.morale=clamp(s.morale-(s.role==='retail'&&D.store.visitors>120?.25:.06)+(S.flags.perks?.05:0),0,100)});
- D.hours=H;let robotH=(has('efficient')?12:EC.founderHours)+(S.up.battery?2:0)+(S.flags.longH?EC.strategy.longHours:0);if(S.mods.breakT>0)robotH-=2;if(S.flags.gig){robotH-=EC.strategy.gigHours;const g=EC.strategy.gigRate*EC.strategy.gigHours*(dow>0&&dow<6?1:0);S.cash+=g;S.mo.eqIn+=g;S.lifetime.gig=(S.lifetime.gig||0)+g}
+ D.hours=H;const sm=salMode();let robotH=founderH()+(sm==='side'?0:(S.up.battery?2:0)+(S.flags.longH?EC.strategy.longHours:0));if(sm==='side'&&storeOpenToday(t))robotH+=EC.founder.boothHours;
+ {const fp=sm==='side'?robotH*(S.salRate||EC.founder.side.rate):sm==='full'?EC.founder.full.salary/365:0;if(fp){S.mo.wages+=fp;S.mo.founderPay=(S.mo.founderPay||0)+fp;S.cash-=fp;D.founderPay=fp}}if(S.mods.breakT>0)robotH-=2;if(S.flags.gig){robotH-=EC.strategy.gigHours;const g=EC.strategy.gigRate*EC.strategy.gigHours*(dow>0&&dow<6?1:0);S.cash+=g;S.mo.eqIn+=g;S.lifetime.gig=(S.lifetime.gig||0)+g}
  // ---- store ----
  if(storeOpenToday(t)){D.store.open=true;
   const dowF=[0,.8,.85,.9,1,1.15,1.45][dow],wf=D.rain?.8:1;
-  const vis=pois((POD()?EC.pod.booth.visitors:EC.store.footfall[S.stage])*(.45+S.rep/90)*sea*dowF*wf*(S.mods.press>0?1.25:1));D.store.visitors=vis;
+  const vis=pois((WI?WI.traffic:1)*(POD()?EC.pod.booth.visitors:EC.store.footfall[S.stage])*(.45+S.rep/90)*sea*dowF*wf*(S.mods.press>0?1.25:1));D.store.visitors=vis;
   let cover=H.retail;if(cover<7){const need=Math.min(8-cover,robotH);D.robot.store=need;robotH-=need;cover+=need}
   const cap=cover*10;// ~10 checkouts/hour per staffed hour (est)
   const conv=(POD()?EC.pod.booth.conv:EC.store.conv)*qf*pf*(has('charmer')?1.1:1);let buyers=binom(vis,clamp(conv,0,.6));
@@ -222,8 +229,8 @@ function econDay(){
  }
  // ---- online demand ----
  const ord=[];
- if(S.ch.etsy.open>=0){const v=etsyViews(t);S.mo.traffic.etsy+=v;const c=EC.etsy.conv*qf*pf*S.mods.knock*(has('gpu')?1.1:1)*(S.mods.star?1.1:1);const n=pois(v*c);for(let i=0;i<n;i++)ord.push({ch:'etsy',k:pickSku(),day:S.day,t:R(0,1)});D.ev=v}
- if(S.ch.shopify.open>=0){const v=shopSessions(t);S.mo.traffic.shopify+=v;const c=EC.shopify.conv*qf*pf*S.mods.knock*(has('gpu')?1.1:1);const n=pois(v*c);for(let i=0;i<n;i++)ord.push({ch:'shopify',k:pickSku(),day:S.day,t:R(0,1)});D.sv=v}
+ if(S.ch.etsy.open>=0){const v=etsyViews(t);S.mo.traffic.etsy+=v;const c=(WI?WI.traffic:1)*EC.etsy.conv*qf*pf*S.mods.knock*(has('gpu')?1.1:1)*(S.mods.star?1.1:1);const n=pois(v*c);for(let i=0;i<n;i++)ord.push({ch:'etsy',k:pickSku(),day:S.day,t:R(0,1)});D.ev=v}
+ if(S.ch.shopify.open>=0){const v=shopSessions(t);S.mo.traffic.shopify+=v;const c=(WI?WI.traffic:1)*EC.shopify.conv*qf*pf*S.mods.knock*(has('gpu')?1.1:1);const n=pois(v*c);for(let i=0;i<n;i++)ord.push({ch:'shopify',k:pickSku(),day:S.day,t:R(0,1)});D.sv=v}
  if(D.store.open)S.mo.traffic.store+=D.store.visitors;
  D.online=ord;S.backlog.push(...ord);
  // ---- packing / shipping ----
@@ -237,7 +244,7 @@ function econDay(){
  if(D.tickets>csCap){const h=Math.min(robotH,1.5,(D.tickets-csCap)*EC.ticketMin/60);D.robot.cs=h;robotH-=h;csCap+=h*60/EC.ticketMin}
  D.unans=Math.max(0,Math.round(D.tickets-csCap));
  // ---- admin (books, listings, reorders) ----
- const adm=Math.min(robotH,.5+S.staff.length*.1);D.robot.admin=adm;robotH-=adm;
+ const adm=Math.min(robotH,(salMode()==='side'?.1:.5)+S.staff.length*.1);D.robot.admin=adm;robotH-=adm;
  // ---- design minimum (trait) ----
  const dmin=Math.min(robotH,tr.design*(S.day<5?0:1));robotH-=dmin;
  // ---- production ----
@@ -251,7 +258,7 @@ function econDay(){
  // ---- R&D ----
  const soc=robotH*.45;D.robot.social=soc;robotH-=soc;S.audience=(S.audience||0)*.995+soc*EC.socialPerHour*(has('viral')?1.5:1);// content marketing hours → followers (est)
  const rdH=H.eng+dmin+robotH;D.robot.design=dmin+robotH;robotH=0;
- const rd0=S.rd;S.rd+=(H.eng*.5+(dmin+D.robot.design-dmin)*.12)*(has('coder')?1.5:1)*(S.up.chip?1.3:1);D.rd=S.rd-rd0;
+ const rd0=S.rd;S.rd+=(H.eng*.5+(dmin+D.robot.design-dmin)*.12*(POD()?3:1))*(has('coder')?1.5:1)*(S.up.chip?1.3:1);D.rd=S.rd-rd0;
  // ---- store revenue ----
  let rv=0,fees=0,cogs=0;for(const s of D.store.sales){const k=S.co.skus[s.k],p=k.p*s.n;rv+=p;const tax=p*EC.salesTax.rate;S.taxDue+=tax;S.mo.taxCol+=tax;const f=Math.random()<.85?EC.pos.pct*(p+tax)+EC.pos.fixed:0;fees+=f;cogs+=matCost(k)*s.n;S.mo.units.store+=s.n;S.mo.orders.store++;S.customers+=Math.random()<.7?1:0;if(Math.random()<.25)S.emails++}
  S.mo.rev.store+=rv;S.mo.fees.store+=fees;S.mo.cogs+=cogs;S.mo.cogsBy.store+=cogs;D.rev+=rv;
@@ -303,7 +310,7 @@ function monthCosts(){// fixed monthly costs charged on the 1st
  if(S.stage>0){rent=(st.retailSf*(EC.retailRentSfYr+EC.nnnSfYr)+st.flexSf*(EC.flexRentSfYr+EC.nnnSfYr)*(1-(S.mods.sublet?EC.strategy.subletShare:0)))/12*S.mods.rentEsc;util=st.retailSf*EC.utilRetailSfMo+st.flexSf*EC.utilFlexSfMo}else util=EC.homeUtilMo;
  if(has('solar'))util*=.7;
  const ins=S.insured?(EC.insurance.glMo+EC.insurance.plMo[S.co.risk])*S.mods.ins*(1+S.stage*.5):0;
- let subs=0;if(S.ch.shopify.open>=0)subs+=EC.shopify.plans[S.ch.shopify.plan].mo+EC.shopify.appsMo+S.mods.apps;if(S.flags.qc)subs+=0;if(POD()){subs+=EC.pod.aiSubMo+(S.flags.premium?EC.pod.premiumMo:0)}if(EC.founderSalaryOn){const fs=EC.pod.founderSalary/12;M.wages+=fs;S.cash-=fs}
+ let subs=0;if(S.ch.shopify.open>=0)subs+=EC.shopify.plans[S.ch.shopify.plan].mo+EC.shopify.appsMo+S.mods.apps;if(S.flags.qc)subs+=0;if(POD()){subs+=EC.pod.aiSubMo+(S.flags.premium?EC.pod.premiumMo:0)}
  M.rent+=rent;M.util+=util;M.ins+=ins;M.subs+=subs;S.cash-=rent+util+ins+subs;
  // loans
  S.loans.forEach(l=>{if(l.bal<=0)return;const int=l.bal*l.apr/12,pr=(S.deferTo||0)>S.day?0:Math.min(l.bal,l.pay-int);l.bal-=pr;M.interest+=int;M.loanOut+=pr;S.cash-=int+pr});S.loans=S.loans.filter(l=>l.bal>1);
@@ -458,6 +465,7 @@ function brainWeek(){const X=B_(),W=S.wacc;if(!W||!W.days){S.wacc=newWacc();retu
  S.fd={s:[0,0,0,0],o:[0,0,0,0],sd:[0,0,0,0]};for(let k=0;k<4;k++){S.fd.s[k]=(fcU('store',k,1)+fcU('store',k,2))/14;S.fd.o[k]=(fcU('etsy',k,1)+fcU('etsy',k,2)+fcU('shopify',k,1)+fcU('shopify',k,2))/14;S.fd.sd[k]=Math.sqrt(CHS.reduce((a,c)=>a+(S.fc[c]&&S.fc[c][k]?S.fc[c][k].v:0),0)/7)}
  S.wacc=newWacc();
  for(const ch of ['etsy','shopify']){const p=S.adPin[ch];if(p&&p.until>S.day&&!S.exps.some(e=>e.type==='ads'&&e.ch===ch)&&!S.crisis)S.ads[ch]=p.v}
+ if(WI&&WI.ads!=null&&!S.crisis){const d=WI.ads/30;S.ads.etsy=S.ch.etsy.open>=0?d*(1-WI.mix):0;S.ads.shopify=S.ch.shopify.open>=0?d*WI.mix:0}
  experiments();loanTiming();opsWeek();okrs();lessonsWeek();nextDecision()}
 // ---- loan timing from the 13-week cash forecast ----
 function loanTiming(){const cf=S.cf13||[];if(!cf.length)return;const mn=Math.min(...cf),wk=cf.indexOf(mn)+1,buf=monthlyFixed()*.5;
@@ -466,7 +474,7 @@ function loanTiming(){const cf=S.cf13||[];if(!cf.length)return;const mn=Math.min
 // ---- experiments: alternating-week A/B tests ----
 function experiments(){const X=B_(),t=dateOf(),hol=(t.getMonth()===10&&t.getDate()>=8)||t.getMonth()===11,tr=trait();
  for(const e of S.exps.slice()){if(S.crisis&&e.type==='ads'){S.exps=S.exps.filter(x=>x!==e);continue}e.wk++;if(e.wk>=e.len){finishExp(e);continue}e.arm=e.wk%2?'B':'A';applyArm(e)}
- if(S.crisis||hol||S.promo||S.exps.length>=3||S.months.length<2||EC.brain.noTests)return;
+ if(S.crisis||hol||S.promo||S.exps.length>=3||S.months.length<2||EC.brain.noTests||WI)return;
  const u=unlocked();if(!S.exps.some(e=>e.type==='price')){const mc=mainCh();const cand=u.filter(k=>S.day-(k.tested||-999)>90&&!k.md&&usage(k.i)>.25).sort((a,b)=>usage(b.i)-usage(a.i))[0];
   if(cand){const step=X.testPct*(tr.id==='reckless'?1.5:tr.id==='cautious'?.6:1),dir=cand.lastWin==='down'?-1:1;let pB=Math.min(Math.round(cand.p0*(S.cpi||1)*X.testCap),Math.max(Math.round(cand.p0*(S.cpi||1)*.75),Math.round(cand.p*(1+dir*step))));
    if(Math.abs(pB-cand.p)>=1){const e={id:'p'+S.day,type:'price',k:cand.i,ch:mc,A:cand.p,B:pB,wk:0,len:X.testWeeks,arm:'A',d:{A:{u:0,c:0,days:0,season:0},B:{u:0,c:0,days:0,season:0}}};cand.test=e.id;S.exps.push(e);applyArm(e);think(`🧪 Price test on ${cand.n}: $${e.A} vs $${e.B}, alternating weeks for ${e.len} weeks.`,'t')}}}
@@ -490,8 +498,8 @@ function finishExp(e){S.exps=S.exps.filter(x=>x!==e);const per=(x,f)=>x.days?f(x
   const hi=e.A>e.B?'A':'B';if(e.ch==='etsy'&&clear){const av=Math.round(aov());if(win!==hi)learn('etsyAdsAOV',`Etsy ads lose money under ~$${av+5} AOV.`,Math.max(av+5,(recall('etsyAdsAOV')||{}).val||0));else learn('etsyAdsAOV',`Etsy ads paid off at a $${av} AOV.`,Math.min(av-5,(recall('etsyAdsAOV')||{}).val||av-5))}}}
 // ---- smarter ops: mix, scheduling, email, bundles, reviews, aging ----
 function podWeek(){if(!POD())return;const P=EC.pod,L=S.months[S.months.length-1],t=dateOf();
- if(!S.flags.premium&&L){const save=L.cogs*.6*P.premiumDisc;if(save>P.premiumMo*1.2){S.flags.premium=1;smove('negotiate',`Printify Premium: ~${fmt(Math.round(save))}/mo saved on base costs vs the ${fmt(P.premiumMo)}/mo fee. Subscribing.`,true)}}
- const mo=t.getMonth();if(S.lifetime.orders>=15&&!P.boothOffMonths.includes(mo)&&liquidity()>P.booth.fee*6&&S.day-(S.flags.boothLast||-99)>=14&&runwayMo()>2){S.flags.booth=S.day+5;S.flags.boothLast=S.day;S.cash-=P.booth.fee;S.mo.other+=P.booth.fee;if(S.ch.store.open<0)S.ch.store.open=S.day;S.lifetime.booths=(S.lifetime.booths||0)+1;smove('booth',`Booked a pop-up booth at ${pick(['the Eau Gallie Arts District market','Cocoa Village Saturday market','Melbourne Main Street market','a Satellite Beach pet adoption fair'])} this Saturday (${fmt(P.booth.fee)}). Sample portraits on the table, orders taken on a tablet.`)}}
+ if(WI&&WI.premium!=null)S.flags.premium=WI.premium;else if(!S.flags.premium&&L){const save=L.cogs*.6*P.premiumDisc;if(save>P.premiumMo*1.2){S.flags.premium=1;smove('negotiate',`Printify Premium: ~${fmt(Math.round(save))}/mo saved on base costs vs the ${fmt(P.premiumMo)}/mo fee. Subscribing.`,true)}}
+ const mo=t.getMonth();if(S.lifetime.orders>=15&&!P.boothOffMonths.includes(mo)&&(WI&&WI.boothWeeks!=null?WI.boothWeeks>0&&S.day-(S.flags.boothLast||-999)>=WI.boothWeeks*7&&S.ch.etsy.open>=0:liquidity()>P.booth.fee*6&&S.day-(S.flags.boothLast||-99)>=14&&runwayMo()>2)){S.flags.booth=S.day+5;S.flags.boothLast=S.day;S.cash-=P.booth.fee;S.mo.other+=P.booth.fee;if(S.ch.store.open<0)S.ch.store.open=S.day;S.lifetime.booths=(S.lifetime.booths||0)+1;smove('booth',`Booked a pop-up booth at ${pick(['the Eau Gallie Arts District market','Cocoa Village Saturday market','Melbourne Main Street market','a Satellite Beach pet adoption fair'])} this Saturday (${fmt(P.booth.fee)}). Sample portraits on the table, orders taken on a tablet.`)}}
 function opsWeek(){podWeek();const X=B_(),u=unlocked(),mc=mainCh();if(!u.length)return;
  const sc=u.map(k=>{const e=unitEcon(k,mc),dem=S.fd?S.fd.s[k.i]+S.fd.o[k.i]:usage(k.i);return {k,e,dem,s:e.net*Math.max(.05,dem),pm:e.net/Math.max(1,buildMin(k))}}).sort((a,b)=>b.s-a.s);
  S.mix=sc.map(x=>x.k.i);S.mixPM=sc.slice().sort((a,b)=>b.pm-a.pm).map(x=>x.k.i);const top=sc[0];
@@ -505,7 +513,7 @@ function opsWeek(){podWeek();const X=B_(),u=unlocked(),mc=mainCh();if(!u.length)
  if(!S.flags.revReq&&S.lifetime.orders>20){S.flags.revReq=1;smove('reviews','Reviews management on: follow-up emails asking for a review, and I reply to every ≤3★ review with a fix or replacement.')}
  // inventory aging & markdowns
  for(const k of S.co.skus){if(k.test)continue;const inv=S.inv.s[k.i]+S.inv.o[k.i],d=Math.max(.05,S.fd?S.fd.s[k.i]+S.fd.o[k.i]:usage(k.i)),cov=inv/d;
-  if(!k.md&&cov>X.markdownDays&&inv>=6&&!k.off){k.md=k.p;k.p=Math.max(1,Math.round(k.p*(1-X.markdownPct)));smove('markdown',`Inventory aging: ${k.n} has ${Math.round(cov)} days of cover. ${Math.round(X.markdownPct*100)}% markdown to $${k.p} until it's under ${X.restoreDays} days.`)}
+  if(!WI&&!k.md&&cov>X.markdownDays&&inv>=6&&!k.off){k.md=k.p;k.p=Math.max(1,Math.round(k.p*(1-X.markdownPct)));smove('markdown',`Inventory aging: ${k.n} has ${Math.round(cov)} days of cover. ${Math.round(X.markdownPct*100)}% markdown to $${k.p} until it's under ${X.restoreDays} days.`)}
   else if(k.md&&cov<X.restoreDays){k.p=k.md;k.md=null;think(`${k.n} stock is back to ${Math.round(cov)} days of cover. Markdown ended.`,'t')}}
  S.clv=Math.round(aov()*cmRatio()*X.ordersPerCustomer)}
 function emailDay(){if(!S.flags.emailOn||S.ch.shopify.open<0)return;const t=dateOf(),dw=t.getDay(),q4=t.getMonth()>=10;if(!(dw===2||(q4&&dw===5)))return;const X=B_(),n=Math.round(S.emails);
@@ -532,7 +540,7 @@ function scenario(kind,label,addMo,capex,upRev){const tr=trait(),cm=cmRatio(),fi
  const mk=(f,up)=>{let cash=S.cash-capex,mn=cash;for(let m=0;m<12;m++){cash+=(base12/12*f+up*Math.min(1,(m+1)/4))*cm-fixed-addMo;mn=Math.min(mn,cash)}return {net:Math.round(cash-(S.cash-capex)),min:Math.round(mn)}};
  const r={kind,label,addMo:Math.round(addMo),capex,up:Math.round(upRev),best:mk(1.2,upRev*1.3),base:mk(1,upRev),worst:mk(.8,upRev*.5),d:S.day};
  const cushion=tr.id==='cautious'?-S.cc.limit*.5:tr.id==='reckless'?-(loanCapacity()+S.cc.limit):-(loanCapacity()*.6+S.cc.limit*.5);r.cushion=Math.round(cushion);
- r.go=r.base.net>0&&r.worst.min>cushion;r.why=r.go?`GO — base case ${fmt(r.base.net)} over 12 months; worst-case cash low ${fmt(r.worst.min)} stays above our ${fmt(r.cushion)} limit.`:`NO-GO — ${r.base.net<=0?`base case loses ${fmt(-r.base.net)} over 12 months`:`worst case drops cash to ${fmt(r.worst.min)} (limit ${fmt(r.cushion)})`}. Revisit in 30 days.`;
+ r.go=r.base.net>0&&r.worst.min>cushion;if(S.cof)r.go=debate(r);r.why=r.go?`GO — base case ${fmt(r.base.net)} over 12 months; worst-case cash low ${fmt(r.worst.min)} stays above our ${fmt(r.cushion)} limit.`:`NO-GO — ${r.base.net<=0?`base case loses ${fmt(-r.base.net)} over 12 months`:`worst case drops cash to ${fmt(r.worst.min)} (limit ${fmt(r.cushion)})`}. Revisit in 30 days.`;
  S.scen=r;S.scenHist.push(r);if(S.scenHist.length>12)S.scenHist.shift();smove('scenario',`Scenario before we ${label}: best ${fmt(r.best.net)} · base ${fmt(r.base.net)} · worst ${fmt(r.worst.net)}. ${r.why}`,r.go);return r}
 function storeUplift(next){const st=S.stage,f=EC.store.footfall,add=(f[st+1]||0)-(st>=1?f[st]:0);return Math.max(0,add*(.45+S.rep/90)*EC.store.conv*qualF()*priceF()*aov()*26)}
 function leaseGo(next,nf){if(!S.wacc||EC.brain.noGates||EC.brain.noLease)return true;if(S.day-(S.flags.scenL||-999)<30)return false;S.flags.scenL=S.day;return scenario('lease',`sign the ${next.n.toLowerCase()} lease`,nf,next.buildout,storeUplift(next)).go}
@@ -547,16 +555,95 @@ function lessonsWeek(){const u=unlocked();
  if(S.months.length&&S.months.length%6===0&&S.flags.ttM!==S.months.length){S.flags.ttM=S.months.length;const r=stratReport().find(x=>x.k>=2&&x.d>0);if(r)learn('topTactic',`${r.n} paid off: ${fmt(Math.round(r.d))}/mo on average.`,r.d);hireLessonPos()}}
 function hireLessonPos(){const v=S.staff.filter(x=>S.day-x.hired>300);if(v.length&&ttmNet()>0)learn('hireEarly',`Hiring paid off: ${v.length} staff with 10+ months tenure and a profitable trailing year.`,.9)}
 function hireLesson(s){if(S.day-s.hired<120)learn('hireEarly',`Hired a ${ROLES[s.role].n.toLowerCase()} too early (let go after ${S.day-s.hired} days). Require more forecast headroom.`,1.3)}
+// ================= What-if lab (separate from the watched run) =================
+function whatIf(cfg){const sv=S,svH=HEADLESS,svV=vday,svF=FORCE_LINE,svM=SIMMEM,keep={r:EC.retailRentSfYr,f:EC.flexRentSfYr};const n=cfg.seeds||EC.lab.seeds,months=36;
+ EC.retailRentSfYr=keep.r*(cfg.rent||1);EC.flexRentSfYr=keep.f*(cfg.rent||1);FORCE_LINE=cfg.line;WI={price:cfg.price||[],ads:cfg.ads,mix:cfg.mix==null?.3:cfg.mix,premium:cfg.premium,hours:cfg.hours,rate:cfg.rate,salMode:cfg.salMode||'off',traffic:EC.lab.traffic[cfg.traffic||'base']||1,boothWeeks:cfg.boothWeeks};
+ const runs=[];try{for(let i=0;i<n;i++){SIMMEM=[];const s=runHeadless(months*30.5|0);runs.push(s.months.map(m=>({rev:m.P.rev,net:m.P.net,fp:m.founderPay||0})))}}
+ finally{WI=null;FORCE_LINE=svF;SIMMEM=svM;EC.retailRentSfYr=keep.r;EC.flexRentSfYr=keep.f;S=sv;HEADLESS=svH;vday=svV}
+ const q=(a,p)=>{const b=a.slice().sort((x,y)=>x-y);return b[Math.min(b.length-1,Math.floor(p*(b.length-1)+.5))]};const out={cfg,n,m:[]};
+ for(let i=0;i<months;i++){const r=runs.filter(x=>x[i]).map(x=>x[i]);if(!r.length)break;const rv=r.map(x=>x.rev),nt=r.map(x=>x.net);out.m.push({i,rev:q(rv,.5),rev25:q(rv,.25),rev75:q(rv,.75),net:q(nt,.5),net25:q(nt,.25),net75:q(nt,.75),fp:q(r.map(x=>x.fp),.5)})}
+ const be=out.m.findIndex((x,i)=>x.net>0&&out.m.slice(i,i+3).every(y=>y.net>0));out.breakEven=be<0?null:be+1;
+ const cum=runs.map(x=>{let c=0;const k=x.findIndex(m=>(c+=m.net)>=0&&c>0);return k<0?null:k+1}).filter(x=>x!=null);out.payback=cum.length>=n/2?q(cum,.5):null;
+ out.years=[0,1,2].map(y=>{const yr=runs.map(x=>x.slice(y*12,y*12+12)).filter(x=>x.length===12);const rv=yr.map(x=>x.reduce((a,m)=>a+m.rev,0)),nt=yr.map(x=>x.reduce((a,m)=>a+m.net,0));return rv.length?{rev:[q(rv,.25),q(rv,.5),q(rv,.75)],net:[q(nt,.25),q(nt,.5),q(nt,.75)]}:null});
+ return out}
+let LAB={cfg:null,res:null};
+function labDefaults(li){const ln=EC.lines[li],pod=ln.mode==='pod';return {line:li,price:[1,1,1,1],ads:60,mix:.3,premium:pod?null:null,hours:EC.founder.side.hoursWk,rate:EC.founder.side.rate,salMode:pod?'side':'off',traffic:'base',boothWeeks:pod?null:null,rent:1,seeds:EC.lab.seeds}}
+function openLab(){if(!LAB.cfg)LAB.cfg=labDefaults(S&&S.co?S.co.line:EC.lines.findIndex(l=>l.mode==='pod'));$('labwrap').classList.remove('hidden');renderLab()}
+function renderLab(){const c=LAB.cfg,ln=EC.lines[c.line],pod=ln.mode==='pod',sk=ln.skus.map((x,i)=>{const v=ln.variants&&ln.variants[i];return {n:x[0],p:v?Math.round(v.reduce((a,w)=>a+w[1]*w[4],0)):x[3]}});
+ const sl=(id,lab,min,max,step,val,fmtv)=>`<label class="lr"><span>${lab}</span><input type="range" id="${id}" min="${min}" max="${max}" step="${step}" value="${val}"><b id="${id}v">${fmtv(val)}</b></label>`;
+ $('labbox').innerHTML=`<h2>🧪 What-if lab <small>— separate from the run you're watching</small></h2>
+ <div class="labgrid"><div>
+ <label class="lr"><span>Business</span><select id="lLine">${EC.lines.map((l,i)=>`<option value="${i}" ${i===c.line?'selected':''}>${l.mode==='pod'?'🐶 ':''}${l.n}</option>`).join('')}</select></label>
+ <label class="lr"><span>Traffic</span><select id="lTr">${[['conservative','Conservative (crowded Etsy niche)'],['low','Low'],['base','Base'],['high','High']].map(([v,t])=>`<option value="${v}" ${c.traffic===v?'selected':''}>${t} ×${EC.lab.traffic[v]}</option>`).join('')}</select></label>
+ <label class="lr"><span>Founder pay</span><select id="lSal">${[['off','OFF (robot works free)'],['side','Side hustle'],['full','Full-time salary']].map(([v,t])=>`<option value="${v}" ${c.salMode===v?'selected':''}>${t}</option>`).join('')}</select></label>
+ ${sl('lHrs','Hours/week (side hustle)',2,30,1,c.hours,v=>v+' h')}${sl('lRate','Your hourly rate',0,60,1,c.rate,v=>'$'+v)}
+ ${sl('lAds','Ad spend / month',0,1500,10,c.ads,v=>'$'+v)}${sl('lMix','Etsy ↔ Shopify mix',0,100,5,Math.round(c.mix*100),v=>(100-v)+'% Etsy / '+v+'% Shopify')}
+ </div><div>
+ ${sk.map((k,i)=>sl('lP'+i,k.n,50,150,5,Math.round(c.price[i]*100),v=>'$'+Math.round(k.p*v/100)+' ('+v+'%)')).join('')}
+ ${pod?`<label class="lr"><span>Printify Premium</span><select id="lPrem"><option value="auto" ${c.premium==null?'selected':''}>Robot decides</option><option value="1" ${c.premium===true?'selected':''}>On</option><option value="0" ${c.premium===false?'selected':''}>Off</option></select></label>
+ <label class="lr"><span>Booth frequency</span><select id="lBooth">${[['auto','Robot decides'],['0','Never'],['4','Every 4 weeks'],['2','Every 2 weeks'],['1','Weekly']].map(([v,t])=>`<option value="${v}" ${String(c.boothWeeks==null?'auto':c.boothWeeks)===v?'selected':''}>${t}</option>`).join('')}</select></label>`:sl('lRent','Rent (vs Brevard avg)',50,150,5,Math.round(c.rent*100),v=>v+'%')}
+ <div class="presets"><button id="lCons" class="mini">🧊 Conservative preset</button><button id="lReset" class="mini">↺ Defaults</button></div>
+ </div></div>
+ <div class="labbar"><button id="lRun">▶ Run 3-year projection (${c.seeds} seeds)</button><button id="lCsv" class="mini" ${LAB.res?'':'disabled'}>⬇ CSV</button><button id="lClose" class="mini">✕ Close</button></div>
+ <div id="labres">${LAB.res?labResHtml(LAB.res):'<p class="why">Pick assumptions and press Run. Results are medians with the middle-half range (25th–75th percentile) across seeds.</p>'}</div>`;
+ const num=id=>+$(id).value,bind=(id,f)=>{const e=$(id);if(e)e.oninput=e.onchange=()=>{f(e.value);const v=$(id+'v');if(v)renderLabVals()}};
+ bind('lLine',v=>{LAB.cfg=labDefaults(+v);LAB.res=null;renderLab()});bind('lTr',v=>c.traffic=v);bind('lSal',v=>c.salMode=v);bind('lHrs',v=>c.hours=+v);bind('lRate',v=>c.rate=+v);bind('lAds',v=>c.ads=+v);bind('lMix',v=>c.mix=v/100);
+ sk.forEach((k,i)=>bind('lP'+i,v=>c.price[i]=v/100));bind('lPrem',v=>c.premium=v==='auto'?null:v==='1');bind('lBooth',v=>c.boothWeeks=v==='auto'?null:+v);bind('lRent',v=>c.rent=v/100);
+ $('lCons').onclick=()=>{c.traffic='conservative';if(pod){c.salMode='side';c.premium=null}c.ads=Math.min(c.ads,30);renderLab()};$('lReset').onclick=()=>{LAB.cfg=labDefaults(c.line);renderLab()};
+ $('lClose').onclick=()=>$('labwrap').classList.add('hidden');$('lCsv').onclick=()=>LAB.res&&download('whatif-'+EC.lines[c.line].n.replace(/\W+/g,'-')+'.csv',labCsv(LAB.res),'text/csv');
+ $('lRun').onclick=()=>{$('labres').innerHTML='<p class="why">Running '+c.seeds+' companies × 3 years…</p>';setTimeout(()=>{LAB.res=whatIf(JSON.parse(JSON.stringify(c)));renderLab()},30)};
+ function renderLabVals(){const vals={lHrs:v=>v+' h',lRate:v=>'$'+v,lAds:v=>'$'+v,lMix:v=>(100-v)+'% Etsy / '+v+'% Shopify',lRent:v=>v+'%'};Object.keys(vals).forEach(id=>{if($(id))$(id+'v').textContent=vals[id]($(id).value)});sk.forEach((k,i)=>{const v=$('lP'+i).value;$('lP'+i+'v').textContent='$'+Math.round(k.p*v/100)+' ('+v+'%)'})}
+ if(LAB.res)drawLabChart(LAB.res)}
+function labResHtml(r){const m=r.m,at=i=>m[i-1]?`${fmt(Math.round(m[i-1].net))} <small>(${fmt(Math.round(m[i-1].net25))} to ${fmt(Math.round(m[i-1].net75))})</small>`:'—',rg=a=>a?`${fmt(Math.round(a[1]))} <small>(${fmt(Math.round(a[0]))} to ${fmt(Math.round(a[2]))})</small>`:'—';
+ return `<canvas id="labc" width="860" height="220" style="width:100%"></canvas>
+ <table class="pnl"><tr class="b"><td>Median monthly profit</td><td>Month 6</td><td>Month 12</td><td>Month 24</td><td>Month 36</td></tr><tr><td>${r.cfg.salMode!=='off'?'after founder pay':'founder unpaid'}</td><td>${at(6)}</td><td>${at(12)}</td><td>${at(24)}</td><td>${at(36)}</td></tr>${r.cfg.salMode!=='off'?`<tr><td>before founder pay</td>${[6,12,24,36].map(i=>`<td>${m[i-1]?fmt(Math.round(m[i-1].net+m[i-1].fp)):'—'}</td>`).join('')}</tr><tr><td>founder pay (median)</td>${[6,12,24,36].map(i=>`<td>${m[i-1]?fmt(Math.round(m[i-1].fp)):'—'}</td>`).join('')}</tr>`:''}</table>
+ <table class="pnl"><tr class="b"><td>Year</td><td>Revenue (median, middle half)</td><td>Profit (median, middle half)</td></tr>${r.years.map((y,i)=>y?`<tr><td>Year ${i+1}</td><td>${rg(y.rev)}</td><td>${rg(y.net)}</td></tr>`:'').join('')}</table>
+ <p><b>Break-even month:</b> ${r.breakEven?'month '+r.breakEven+' (median monthly profit turns positive and stays positive 3+ months)':'not within 3 years at the median'} · <b>Cumulative payback:</b> ${r.payback?'month '+r.payback:'not within 3 years at the median'}</p>
+ <p class="why">${r.n} simulated companies, ${EC.lines[r.cfg.line].n}, traffic ×${EC.lab.traffic[r.cfg.traffic]}. Ranges are the 25th–75th percentile. Uses the same cited economics as the game; the robot still makes all other decisions.</p>`}
+function drawLabChart(r){const c=$('labc');if(!c)return;const g=c.getContext('2d'),W=c.width,H=c.height,m=r.m;g.clearRect(0,0,W,H);g.fillStyle='#0d0b16';g.fillRect(0,0,W,H);
+ const mx=Math.max(1,...m.map(x=>x.rev75)),mn=Math.min(0,...m.map(x=>x.net25)),X=i=>40+i*(W-50)/Math.max(1,m.length-1),Y=v=>H-20-(v-mn)/(mx-mn)*(H-40);
+ const band=(a,b,col)=>{g.fillStyle=col;g.beginPath();m.forEach((x,i)=>i?g.lineTo(X(i),Y(x[a])):g.moveTo(X(i),Y(x[a])));for(let i=m.length-1;i>=0;i--)g.lineTo(X(i),Y(m[i][b]));g.fill()};
+ band('rev25','rev75','#7dd3ff33');band('net25','net75','#7dff8a33');
+ const line=(k,col)=>{g.strokeStyle=col;g.lineWidth=2;g.beginPath();m.forEach((x,i)=>i?g.lineTo(X(i),Y(x[k])):g.moveTo(X(i),Y(x[k])));g.stroke()};line('rev','#7dd3ff');line('net','#7dff8a');
+ g.strokeStyle='#ffffff40';g.lineWidth=1;g.beginPath();g.moveTo(40,Y(0));g.lineTo(W-10,Y(0));g.stroke();g.fillStyle='#ddd';g.font='11px monospace';g.fillText('median monthly revenue',50,14);g.fillStyle='#7dff8a';g.fillText('median monthly profit',240,14);g.fillStyle='#aaa';g.fillText(fmt(Math.round(mx)),2,24);g.fillText('$0',2,Y(0)+4);
+ [12,24,36].forEach(k=>{if(m[k-1]){g.fillStyle='#888';g.fillText('m'+k,X(k-1)-10,H-4)}});if(r.breakEven){g.strokeStyle='#ffd76a';g.setLineDash([4,3]);g.beginPath();g.moveTo(X(r.breakEven-1),20);g.lineTo(X(r.breakEven-1),H-20);g.stroke();g.setLineDash([]);g.fillStyle='#ffd76a';g.fillText('break-even',X(r.breakEven-1)+3,30)}}
+function labCsv(r){const c=r.cfg,L=[['What-if lab',EC.lines[c.line].n],['traffic',c.traffic],['founder pay',c.salMode],['hours/week',c.hours],['hourly rate',c.rate],['ads/month',c.ads],['shopify mix',c.mix],['price multipliers',c.price.join('|')],['premium',c.premium==null?'auto':c.premium],['booth weeks',c.boothWeeks==null?'auto':c.boothWeeks],['rent',c.rent],['seeds',r.n],['break-even month',r.breakEven||''],['payback month',r.payback||''],[],['month','rev_p25','rev_median','rev_p75','profit_p25','profit_median','profit_p75','founder_pay_median']];
+ r.m.forEach(x=>L.push([x.i+1,...[x.rev25,x.rev,x.rev75,x.net25,x.net,x.net75,x.fp].map(v=>Math.round(v))]));return L.map(a=>a.join(',')).join('\n')}
+function download(name,text,type){const b=new Blob([text],{type}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
+// ================= weekly news recap card =================
+function showRecap(){if(HEADLESS||window.__rfFast)return;const w=S.daily.slice(-7);if(w.length<3)return;const rev=w.reduce((a,d)=>a+d.rev,0),o=w.reduce((a,d)=>a+d.oe+d.os+d.ss,0);
+ const hi=[...S.strat.filter(x=>x.d>S.day-8&&!['okr','mix'].includes(x.type)).map(x=>'🧠 '+x.why),...(S.moments||[]).filter(x=>x.d>S.day-8).map(x=>'⭐ '+x.t)].filter(x=>x.length>3).slice(-3);
+ const el=$('recap');el.innerHTML=`<div class="rh">📰 WEEK IN REVIEW · ${dstr(S.day-7).slice(4)}</div><div class="rb"><canvas id="recc" width="120" height="50"></canvas><div><b>${fmt(rev)}</b> revenue · ${o} orders<br>cash ${fmt(Math.round(S.cash))} · ★${S.reviews?S.rating.toFixed(2):'—'}</div></div><ul>${(hi.length?hi:['Quiet week: shipping orders and making content.']).map(t=>`<li>${t.length>110?t.slice(0,108)+'…':t}</li>`).join('')}</ul>`;
+ const g=$('recc').getContext('2d'),mx=Math.max(1,...w.map(d=>d.rev));w.forEach((d,i)=>{const h=d.rev/mx*40;g.fillStyle=i===w.length-1?'#ffd76a':'#7dd3ff';g.fillRect(4+i*16,46-h,12,h)});
+ el.classList.remove('hidden');el.classList.add('show');clearTimeout(showRecap.t);showRecap.t=setTimeout(()=>el.classList.add('hidden'),7000)}
+// ================= co-founder debates =================
+const cushionFor=id=>id==='cautious'?-S.cc.limit*.5:id==='reckless'?-(loanCapacity()+S.cc.limit):-(loanCapacity()*.6+S.cc.limit*.5);
+function debate(r){const c=S.cof;if(!c)return r.go;const A=trait(),B=TRAITS.find(t=>t.id===c.trait)||TRAITS[0],ca=cushionFor(A.id),cb=cushionFor(B.id);
+ const goA=r.base.net>0&&r.worst.min>ca,goB=r.base.net>0&&r.worst.min>cb;c.debates++;
+ const goArg=`base case ${fmt(r.base.net)} over 12 months${r.best.net>r.base.net?`, upside ${fmt(r.best.net)}`:''}`,noArg=r.base.net<=0?`base case loses ${fmt(-r.base.net)}`:`worst case drops cash to ${fmt(r.worst.min)}`;
+ if(goA===goB){S.cofSay={t:`Agreed: ${goA?'GO':'NO-GO'} on ${r.label}.`,until:Date.now()+5000};log(`🤝 ${S.co.robot} and ${c.name} agree: ${goA?'GO':'NO-GO'} on ${r.label}.`,'t');return goA}
+ const goScore=Math.max(0,r.base.net)/12/Math.max(500,monthlyFixed())+(r.best.net-r.base.net)/24/Math.max(500,monthlyFixed())+(r.worst.min>0?1:0),noScore=Math.max(0,-r.worst.min)/Math.max(1000,S.cash+loanCapacity())*2+Math.max(0,-r.base.net)/12/Math.max(500,monthlyFixed())+(runwayMo()<4?.5:0);
+ const win=goScore>=noScore,meGo=goA,iWin=win===meGo,cofLine=`${c.name} (${c.traitName}): "${goB?'GO':'NO-GO'} — ${goB?goArg:noArg}."`,myLine=`${S.co.robot} (${S.co.traitName}): "${goA?'GO':'NO-GO'} — ${goA?goArg:noArg}."`;
+ if(!iWin)c.wins++;S.cofSay={t:(goB?'GO! ':'NO-GO. ')+(goB?goArg:noArg),until:Date.now()+6000};think((goA?'GO. ':'NO-GO. ')+(goA?goArg:noArg),'t');
+ smove('debate',`Debate on ${r.label}: ${myLine} vs ${cofLine} Vote split; stronger argument (${win?'upside':'risk'} score ${(win?goScore:noScore).toFixed(2)} vs ${(win?noScore:goScore).toFixed(2)}) wins → ${win?'GO':'NO-GO'} (${iWin?S.co.robot:c.name}'s call).`,win);return win}
+function drawCof(){if(!S.cof)return;const d=ST('board')||ST('desk');if(!d)return;const e={x:(d.x+1.2)*T,y:(d.y+.6)*T,face:-1};drawRobotAt(e,{color:S.cof.color[0],dark:S.cof.color[1]},.85,cx,false);cx.fillStyle='#fff';cx.font='7px monospace';cx.fillText(S.cof.name,e.x-4,e.y-4);
+ if(S.cofSay&&S.cofSay.until>Date.now()){const t=S.cofSay.t,ls=[];let cur='';t.split(' ').forEach(w=>{if((cur+' '+w).length>28){ls.push(cur);cur=w}else cur=(cur?cur+' ':'')+w});if(cur)ls.push(cur);cx.font='9px monospace';const w=Math.max(...ls.map(l=>cx.measureText(l).width))+10,h=ls.length*11+6,bx=e.x+20,by=e.y-h-6;cx.fillStyle='#fff5d6';cx.fillRect(bx,by,w,h);cx.strokeStyle='#8f7cff';cx.strokeRect(bx,by,w,h);cx.fillStyle='#222';ls.forEach((l,i)=>cx.fillText(l,bx+5,by+12+i*11))}}
+// ================= photo mode =================
+function photo(){const W=cv.width,H=cv.height,pad=Math.round(70*dpr),o=document.createElement('canvas');o.width=W;o.height=H+pad;const g=o.getContext('2d');g.drawImage(cv,0,0);g.fillStyle='#120f22';g.fillRect(0,H,W,pad);
+ const L=S.months[S.months.length-1],f=Math.round(14*dpr);g.fillStyle='#ffd76a';g.font=`bold ${f}px monospace`;g.fillText(`${S.co.name} · ${S.co.industry}`,12*dpr,H+20*dpr);g.fillStyle='#ddd';g.font=`${Math.round(12*dpr)}px monospace`;
+ g.fillText(`${dstr()} · cash ${fmt(Math.round(S.cash))} · TTM revenue ${fmt(Math.round(ttmRev()))} · last month net ${L?fmt(Math.round(L.P.net)):'—'} · ★${S.reviews?S.rating.toFixed(2):'—'} (${S.reviews})`,12*dpr,H+40*dpr);
+ g.fillText(`${EC.tiers.filter(t=>S.tiers[t.id]).map(t=>TIER_ICON[t.id]).join(' ')}  ${S.co.robot} (${S.co.traitName})${S.cof?' & '+S.cof.name:''} · Robot Founder`,12*dpr,H+60*dpr);
+ const a=document.createElement('a');a.href=o.toDataURL('image/png');a.download=`robot-founder-${S.co.name.replace(/\W+/g,'-')}-${ymd(dateOf())}.png`;document.body.appendChild(a);a.click();a.remove();toast('📸 Saved a snapshot PNG')}
 // ---------- strategy engine: weekly review of unit economics + runway, legitimate tactics only ----------
 function smove(type,why,big){S.strat.push({d:S.day,type,why,net0:S.months.length?S.months[S.months.length-1].P.net:0,m:S.months.length});if(S.strat.length>500)S.strat.shift();dec('strat '+type);if(S.crisis)S.crisis.moves.push(STRAT_N[type]||type);think('🧠 '+why,big?'g':(type==='rescue'?'r':'y'));if(big)moment('🧠 '+why.split('. ').slice(-1)[0].slice(0,90),false)}
-const STRAT_N={price:'price raise',drop:'dropping a loser SKU',focus:'doubling down on a winner',channel:'shifting to higher-margin channels',negotiate:'supplier volume discount',batch:'batch production',freeze:'hiring freeze',loan:'financing',promo:'Q4 promotion',wholesale:'wholesale/B2B',custom:'custom orders',pivot:'product pivot',hours:'longer hours',clear:'clearance sale',sublet:'subleasing space',downsize:'downsizing',equip:'selling equipment',savings:'robot savings injection',gig:'freelance contract work',layoff:'layoffs',comeback:'comeback',insure:'keeping insurance',booth:'pop-up market booths',test:'A/B experiments',okr:'OKR review',scenario:'scenario planning',mix:'product-mix optimisation',schedule:'labor scheduling',email:'email campaigns',bundle:'bundles & upsells',reviews:'reviews management',markdown:'aging-stock markdowns',terms:'net-30 supplier terms',restructure:'loan modification',ads:'cutting ads'};
+const STRAT_N={price:'price raise',drop:'dropping a loser SKU',focus:'doubling down on a winner',channel:'shifting to higher-margin channels',negotiate:'supplier volume discount',batch:'batch production',freeze:'hiring freeze',loan:'financing',promo:'Q4 promotion',wholesale:'wholesale/B2B',custom:'custom orders',pivot:'product pivot',hours:'longer hours',clear:'clearance sale',sublet:'subleasing space',downsize:'downsizing',equip:'selling equipment',savings:'robot savings injection',gig:'freelance contract work',layoff:'layoffs',comeback:'comeback',insure:'keeping insurance',debate:'co-founder debates',booth:'pop-up market booths',test:'A/B experiments',okr:'OKR review',scenario:'scenario planning',mix:'product-mix optimisation',schedule:'labor scheduling',email:'email campaigns',bundle:'bundles & upsells',reviews:'reviews management',markdown:'aging-stock markdowns',terms:'net-30 supplier terms',restructure:'loan modification',ads:'cutting ads'};
 const rwTxt=()=>{const r=runwayMo();return r>=99?'Cash-flow positive':r<2?`Runway ${Math.max(0,Math.round(r*4.3))} weeks`:`Runway ${r.toFixed(1)} months`};
 function openCh(){return ['etsy','shopify','store'].filter(c=>S.ch[c].open>=0)}
 function mainCh(){const L=S.months[S.months.length-1],o=openCh();return L?o.slice().sort((a,b)=>L.rev[b]-L.rev[a])[0]:'etsy'}
 function bestMargin(k){return Math.max(...openCh().map(c=>unitEcon(k,c).m))}
 function strategy(){const X=EC.strategy,rw=runwayMo(),u=unlocked(),mc=mainCh(),L=S.months[S.months.length-1];if(!u.length)return;
  // 1) pricing: lift low-margin SKUs toward target margin (capped vs inflation-adjusted launch price)
- for(const k of u){if(k.test||k.md||S.day-(k.pd||-999)<X.priceCooldown||S.day-(k.tested||-999)<120)continue;const e=unitEcon(k,mc),cap=Math.round(k.p0*(S.cpi||1)*X.priceCap);
+ for(const k of (WI?[]:u)){if(k.test||k.md||S.day-(k.pd||-999)<X.priceCooldown||S.day-(k.tested||-999)<120)continue;const e=unitEcon(k,mc),cap=Math.round(k.p0*(S.cpi||1)*X.priceCap);
   if(e.m<X.targetMargin&&k.p<cap){const np=Math.min(cap,Math.max(k.p+1,Math.round(k.p*(1+X.priceStep)))),d=np-k.p;if(d<1)continue;k.pd=S.day;const old=k.p;k.p=np;
    let extra='';if(rw<4&&S.ads.etsy>0){S.ads.etsy=0;S.flags.etsyAdsOff=S.day;extra=' and pausing Etsy ads'}
    smove('price',`${rwTxt()}. ${k.n} only keeps ${Math.round(e.m*100)}% on ${mc} at $${old}. Raising the ${S.co.unit.replace(/s$/,'')} price $${d} (to $${np})${extra}.`);break}}
@@ -1087,7 +1174,8 @@ document.querySelectorAll('#ctl [data-sp]').forEach(b=>b.onclick=()=>setSpeed(+b
 $('bHL').onclick=()=>{highlights=!highlights;syncCtl();toast(highlights?'Highlights: quiet days fly by, big moments play out':'Highlights off — every day plays out')};
 $('bPause').onclick=togglePause;$('bFollow').onclick=()=>{follow=!follow;syncCtl()};$('bMute').onclick=toggleMute;$('bMute').textContent=muted?'×':'♪';
 $('bDash').onclick=()=>{dashOpen=!dashOpen;$('dash').classList.toggle('hidden',!dashOpen);syncCtl()};$('bBooks').onclick=()=>openBooks();
-$('bNew').onclick=()=>{Music.start();SFX.click();FORCE_LINE=null;newCompany()};if($('bDom'))$('bDom').onclick=()=>{Music.start();SFX.click();FORCE_LINE=EC.lines.findIndex(l=>l.mode==='pod');newCompany();FORCE_LINE=null};$('bCont').onclick=()=>{Music.start();SFX.click();cont()};$('bHall').onclick=()=>showHall(false);
+$('bNew').onclick=()=>{Music.start();SFX.click();FORCE_LINE=null;newCompany()};if($('salSel'))$('salSel').onchange=e=>SAL_PICK=e.target.value;if($('cofChk'))$('cofChk').onchange=e=>COF_ON=e.target.checked;if($('bLabT'))$('bLabT').onclick=()=>openLab();if($('bLab'))$('bLab').onclick=()=>openLab();if($('bPhoto'))$('bPhoto').onclick=()=>S&&photo();
+if($('bSal'))$('bSal').onclick=()=>{if(!S)return;const order=['off','side','full'];S.salMode=order[(order.indexOf(salMode())+1)%3];toast('💼 Founder pay: '+({off:'OFF (robot works free)',side:`Side hustle (${S.salHours} h/wk at $${S.salRate}/hr)`,full:'Full-time salary ($41.6k/yr)'})[S.salMode]);log('💼 Founder pay set to '+S.salMode+'. Robot work hours now '+founderH().toFixed(1)+' h/day.','y')};if($('bDom'))$('bDom').onclick=()=>{Music.start();SFX.click();FORCE_LINE=EC.lines.findIndex(l=>l.mode==='pod');newCompany();FORCE_LINE=null};$('bCont').onclick=()=>{Music.start();SFX.click();cont()};$('bHall').onclick=()=>showHall(false);
 addEventListener('keydown',e=>{if(!running)return;const m={Digit1:1,Digit2:2,Digit3:4,Digit4:8}[e.code];if(m)setSpeed(m);if(e.code==='KeyH')$('bHL').click();if(e.code==='KeyP'||e.code==='Space'){togglePause();e.preventDefault()}if(e.code==='KeyF')$('bFollow').click();if(e.code==='KeyM')toggleMute();if(e.code==='KeyD')$('bDash').click();if(e.code==='KeyB')openBooks()});
 // ---------- simulation driver ----------
 function wantVisual(r){if(!highlights)return true;const f=S.flags.visualNext;S.flags.visualNext=0;return f||S.day<=2||(r.er&&r.er.big)||S.day%30===12}
@@ -1098,7 +1186,7 @@ function advance(rdt){// called each frame
  // fast-forward days: highlights ~8 days/sec; manual speeds go straight to visual days
  ffAcc+=rdt*(highlights?8:999)*fast;let n=0;
  while(ffAcc>=1&&n<60&&!S.done){ffAcc-=1;n++;const snap=snapshot();const r=stepDay();if(!r)break;
-  if(r.D&&dateOf(S.day-1).getDay()===0&&highlights)weekToast();
+  if(r.D&&dateOf(S.day-1).getDay()===0){if(highlights)weekToast();showRecap()}
   if(r.D&&r.D.closedMonth){save();if(!S.done){showMonth(r.D.closedMonth)}}
   if(S.done)break;
   if(wantVisual(r)&&r.D){startVisualDay(r.D,r.er,snap);ffAcc=0;break}
@@ -1221,7 +1309,7 @@ function drawWorld(){
  const m=ST('mat');rect(m.x*T-4,11*T-2,T+8,T*.5+2,'#222');for(let i=0;i<3;i++)rect(m.x*T,11*T+i*5,T,3,'#888');cx.fillStyle='#ffd76a';cx.font='6px monospace';cx.fillText('LOADING',m.x*T+1,11*T+14);
  // material crates
  const nc=Math.min(8,Math.ceil(V.kits/6));for(let i=0;i<nc;i++){const cx0=(m.sx+1)*T+(i%4)*9-4,cy0=10*T+14-Math.floor(i/4)*9;rect(cx0,cy0,9,9,'#b5835a');rect(cx0,cy0,9,2,'#9a6d48');rect(cx0+4,cy0,1,9,'#8a5d38')}
- if(V.kits<=0){cx.fillStyle='#ff6b6b';cx.font='bold 8px monospace';cx.fillText('NO KITS',(m.sx+.6)*T,10*T+16)}
+ if(V.kits<=0&&!POD()){cx.fillStyle='#ff6b6b';cx.font='bold 8px monospace';cx.fillText('NO KITS',(m.sx+.6)*T,10*T+16)}
  Ly.deco.forEach(([tx,ty])=>{const x=tx*T,y=ty*T;rect(x+10,y+18,12,12,'#8b5a2b');rect(x+6,y+4,20,16,'#2ecc71');rect(x+10,y,12,8,'#27ae60')});
  drawTruck();drawVan();
 }
@@ -1244,7 +1332,8 @@ function viewport(){const top=$('hud').getBoundingClientRect().bottom||0,mob=inn
 function updCam(rdt){
  const vp=viewport(),ww=worldW()*T,wh=13*T,fw=vp.w/ww,fh=vp.h/wh,mn=Math.min(fw,fh),mx=Math.max(fw,fh);
  let s=Math.min(mx,mn*(vp.w<vp.h?2.6:1));if(follow)s*=1.7;
- const cxw=S.x+T/2,cyw=S.y+T/2,vw=vp.w/s,vh=vp.h/s;
+ let cxw=S.x+T/2,cyw=S.y+T/2;if(!follow&&vp.w<vp.h){const L=LAY(),pts=['desk','pack','board'].map(id=>L.st[id]).filter(Boolean).map(p=>[p.x*T,p.y*T]).concat((L.cashiers||[]).slice(0,1).map(c=>[c[0]*T,c[1]*T]),[[S.x,S.y]]);const x0=Math.min(...pts.map(p=>p[0]))-T,x1=Math.max(...pts.map(p=>p[0]))+2*T,y0=Math.min(...pts.map(p=>p[1]))-T,y1=Math.max(...pts.map(p=>p[1]))+2*T;s=Math.max(mn,Math.min(s,vp.w/(x1-x0),vp.h/(y1-y0)));cxw=(x0+x1)/2;cyw=(y0+y1)/2}
+ const vw=vp.w/s,vh=vp.h/s;
  let tx=ww<=vw?(ww-vw)/2:clamp(cxw-vw/2,0,ww-vw),ty=wh<=vh?(wh-vh)/2:clamp(cyw-vh/2,0,wh-vh);
  const k=Math.min(1,rdt*4);cam.s+=(s-cam.s)*Math.min(1,rdt*6);cam.x+=(tx-cam.x)*k;cam.y+=(ty-cam.y)*k;cam.vp=vp}
 // sky & light
@@ -1298,7 +1387,7 @@ function render(rdt){
  const items=stations().map(s=>({y:s.y*T+T,f:()=>drawStation(s)}));
  npcs.forEach(n=>items.push({y:n.y+T+1,f:()=>drawStaff(n)}));
  shoppers.forEach(s=>items.push({y:s.y+T+1,f:()=>drawPerson(s.x+4,s.y-2,s.look,{walk:s.path.length?s.walkT:0,item:s.sku||s.carry,mood:s.st==='leave'?(s.happy?1:-1):0})}));
- items.push({y:S.y+T,f:()=>drawRobotAt(S,S.co,1,cx,true)});
+ items.push({y:S.y+T,f:()=>drawRobotAt(S,S.co,1,cx,true)});if(S.cof){const d=ST('board')||ST('desk');if(d)items.push({y:(d.y+1.6)*T,f:drawCof})}
  items.sort((a,b)=>a.y-b.y).forEach(i=>i.f());
  lights();
  particles.forEach(p=>rect(p.x,p.y,3,3,p.c));
@@ -1366,6 +1455,6 @@ function loop(t){const rdt=Math.min(.1,(t-last)/1000);last=t;anim+=rdt;
 window.__rf={get S(){return S},get V(){return V},get vday(){return vday},get shoppers(){return shoppers},get queue(){return queue},get npcs(){return npcs},get van(){return van},EC,balance,runHeadlessDbg:()=>{const s=runHeadless();HEADLESS=false;return s},runHeadless,stepDay,unitEcon,pnl,planCsv,planMarkdown,openBooks,renderBooks,breakEven,monthlyFixed,ttmRev,get highlights(){return highlights},setHL:v=>{highlights=v;syncCtl()},newCompany,hall,LAYOUTS,
  ff:n=>{for(let i=0;i<n&&!S.done;i++)stepDay();V.s=[...S.inv.s];V.o=[...S.inv.o];V.kits=S.kits.reduce((a,b)=>a+b,0);V.cash=S.cash;V.orders=S.backlog.length;save();return S.day},
  setStage:n=>{S.stage=n;if(n>=1&&S.ch.store.open<0)S.ch.store.open=S.day;if(S.ch.shopify.open<0)S.ch.shopify.open=S.day;setLevel(n);npcs.forEach(x=>x.home=null);S.rep=Math.max(S.rep,35);S.use.s=S.use.s.map(()=>2);unlocked().forEach(k=>{S.inv.s[k.i]+=12;S.inv.o[k.i]+=6;S.kits[k.i]+=30});S.flags.visualNext=1},
- hireTest:r=>hire(r,'test hire'),memLoad,fcConf,brainWeek,podRows,setForce:i=>FORCE_LINE=i,POD:()=>POD(),scenario,stratPlan,get SIMMEM(){return SIMMEM},get overlay(){return overlay}};
+ hireTest:r=>hire(r,'test hire'),memLoad,fcConf,brainWeek,whatIf,openLab,showRecap,photo,debate,setSal:m=>{S.salMode=m},setCof:v=>COF_ON=v,setSalPick:v=>SAL_PICK=v,founderH:()=>founderH(),get LAB(){return LAB},podRows,setForce:i=>FORCE_LINE=i,POD:()=>POD(),scenario,stratPlan,get SIMMEM(){return SIMMEM},get overlay(){return overlay}};
 $('bCont').classList.toggle('hidden',!load());syncCtl();requestAnimationFrame(loop);
 })();

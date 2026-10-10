@@ -95,6 +95,21 @@ All numbers live in [`economics.js`](economics.js) (each entry names its source 
 
 **Demand caveat:** POD mode reuses the game's generic Etsy/Shopify traffic and conversion model. Digital printables are a very crowded Etsy category, so real traffic for a new shop is probably lower than the game shows. Treat the POD sim as an upper-middle case, not a forecast.
 
+## 4c. Founder pay, What-if lab, extra product lines (added Oct 10, 2026)
+| Item | Value | Source |
+|---|---|---|
+| Founder pay: OFF | robot works 10 h/day unpaid (game default for random companies) | est |
+| Founder pay: Side hustle | 8 h/week (Dom's 6–10 h) at $20/hr, plus 6 h on booth days; paid hours = robot work hours; hits P&L as wages | **ESTIMATE** |
+| Founder pay: Full-time | $41,600/yr ($20/hr × 2,080 h); robot works 45 h/week | **ESTIMATE** |
+| What-if lab traffic presets | conservative ×0.45, low ×0.7, base ×1.0, high ×1.3 on Etsy/Shopify conversion and booth traffic | **ESTIMATE** (conservative = crowded Etsy niche) |
+| POD design speed | design hours count 3× toward unlocking new POD products (mockups/listings, not physical prototyping) | game mechanic |
+| Leather Wallets | materials $6–55, prices $35–220 (card sleeve → tote) | **ESTIMATE** from Etsy comparables (card holders $25–45, bifolds $55–90, totes $180–260) |
+| Handmade Soap | materials $1.60–18, prices $8–65 | **ESTIMATE** (Etsy bars $7–10, gift sets $25–65) |
+| Resin Coasters & Decor | materials $7–120, prices $32–450 | **ESTIMATE** (coaster sets $28–40, trays $45–70, epoxy tables $350–600) |
+| Custom Dog Collars | materials $4–24, prices $22–85 | **ESTIMATE** (collars $20–45, sets $55–90) |
+| Laser-Cut Wood Signs | materials $5–40, prices $35–220 (laser equipment not modeled) | **ESTIMATE** (name signs $30–45, wedding signs $90–150) |
+| Sterling Silver Jewelry | materials $6–60, prices $38–240 | **ESTIMATE** (studs $30–45, pendants $70–110, gemstone rings $180–300) |
+
 ## 5. Demand & operations
 | Item | Value used | Source |
 |---|---|---|

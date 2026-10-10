@@ -18,7 +18,7 @@
   <div id="ctl" class="hidden">
     <button id="bHL" title="Highlights mode (H): fast-forward quiet stretches, 1x for big moments">★</button>
     <button data-sp="1">1x</button><button data-sp="2">2x</button><button data-sp="4">4x</button><button data-sp="8">8x</button>
-    <button id="bPause" title="Pause (P)">II</button><button id="bFollow" title="Follow robot (F)">🎥</button><button id="bDash" title="Dashboard (D)">📊</button><button id="bBooks" title="Books: P&amp;L, channels, unit economics, export (B)">📒</button><button id="bMute" title="Mute (M)">♪</button>
+    <button id="bPause" title="Pause (P)">II</button><button id="bFollow" title="Follow robot (F)">🎥</button><button id="bDash" title="Dashboard (D)">📊</button><button id="bBooks" title="Books: P&amp;L, channels, unit economics, export (B)">📒</button><button id="bMute" title="Mute (M)">♪</button><button id="bSal" title="Founder pay: OFF / side hustle / full-time">💼</button><button id="bLab" title="What-if lab">🧪</button><button id="bPhoto" title="Photo mode: save a PNG of the scene + stats">📸</button>
   </div>
   <div id="dash" class="hidden"><div class="dh">📊 Dashboard</div><canvas id="dashc" width="240" height="300"></canvas><div id="dasht"></div></div>
   <div id="log" class="hidden"><div id="logh">🤖 Decision log</div><div id="logb"></div></div>
@@ -33,10 +33,15 @@
     <button id="bDom" title="Digital downloads + AI pet portraits on print-on-demand">🐶 Dom's real plan</button>
     <button id="bCont" class="hidden">Continue</button>
     <button id="bHall">🏛 Hall of Fame</button>
+    <button id="bLabT">🧪 What-if lab</button>
+    <div class="tset"><label>💼 Founder pay <select id="salSel"><option value="auto">Auto (Dom's plan → side hustle)</option><option value="off">OFF — robot works free</option><option value="side">Side hustle (~8 h/wk, $20/hr)</option><option value="full">Full-time salary ($41.6k)</option></select></label>
+    <label><input type="checkbox" id="cofChk"> 🤖🤖 Robot co-founder (debates big decisions)</label></div>
     <p class="help">Spectator keys: H highlights · 1-4 speed · P pause · F follow cam · D dashboard · B books · M mute</p>
   </div>
   <div id="hallwrap" class="hidden"><div id="hallbox"></div></div>
   <div id="bookswrap" class="hidden"><div id="booksbox"></div></div>
+  <div id="labwrap" class="hidden"><div id="labbox"></div></div>
+  <div id="recap" class="hidden"></div>
 </div>
 <script src="economics.js"></script>
 <script src="game.js"></script>
