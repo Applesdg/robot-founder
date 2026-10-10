@@ -96,7 +96,6 @@ All numbers live in [`economics.js`](economics.js) (each entry names its source 
 | Defect rate | 6% falling to 1.5% with R&D; QC catches 70% | **ESTIMATE** |
 | Packing time / support | 6 min per order; 10% of orders create a support ticket, 6 min each | **ESTIMATE** |
 | Annual price review | +3% each January (inflation) | **ESTIMATE** |
-| Voluntary closure | after 9+ months, if trailing-year net < 0, last quarter < 0 and sales < $40k: 4%/month chance the owner winds it down | **ESTIMATE** |
 
 ## 6. Funding & exits
 | Item | Value used | Source |
@@ -109,9 +108,23 @@ All numbers live in [`economics.js`](economics.js) (each entry names its source 
 | Merchant cash advance | repay 1.3–1.35× from 15% of daily sales | **ESTIMATE** |
 | Pre-seed SAFE (rare) | $500k at $12.5M post-money cap (Carta Q2 2026 median for $500k–999k rounds) | https://carta.com/data/safe-valuation-caps-q2-2026/ |
 | Acquisition multiples | 2.0–3.4× SDE if mostly own channels (Empire Flippers typical 2.2–2.3×); 1.0–2.5× if Etsy-dependent | https://buyouts.ai/alternatives/empire-flippers-valuation-multiple · https://realsiteworth.com/blog/etsy-shop-valuation |
-| Benchmark: 1-year survival of new US employer establishments | 77.9% | https://www.bls.gov/bdm/bdmage.htm |
 
-**Win tiers:** first profitable month → ramen profitable (≥ $2,500 net in a month, **ESTIMATE**) → $10k revenue month → $100k trailing-12-month revenue → $1M TTM → acquisition offer accepted → IPO (legendary: ≥ $10M TTM revenue plus luck). Runs end after 3 years, on closure, or on a sale.
+**Milestones (the score):** first sale → first profitable month → ramen profitable (≥ $2,500 net in a month, **ESTIMATE**) → $10k revenue month → $100k trailing-12-month revenue → $1M TTM → acquisition offer received (the robot declines and keeps building) → IPO (legendary: ≥ $10M TTM revenue plus luck). Runs never end on their own; every 3 years a chapter recap appears. A run ends only when the player starts a new company.
+
+## 6b. Robot strategy engine (weekly review)
+| Tactic | Parameter | Source |
+|---|---|---|
+| Business line of credit | 8.75–16.75% APR, limit ≈10% of TTM revenue ($6k–150k), 6+ months in business | https://yourbestloanrates.com/business-line-of-credit/ (Wells Fargo BusinessLine, checked Oct 2026); limit rule **ESTIMATE** |
+| Supplier volume discount | 5% at $25k/yr materials, 10% at $50k, 12% at $100k | https://cnba.us/2026/05/19/contractor-supplier-discounts-guide/ (5–10%, ~10%, 10–15%; low end used) |
+| Price raises | +6% steps when margin < 25% on the main channel, cap 1.2× inflation-adjusted launch price, 8-week cooldown | **ESTIMATE** |
+| Drop SKU / pivot | drop if negative margin at the price cap; pivot line if best margin < 12% at the cap and trailing year is a loss | **ESTIMATE** |
+| Black Friday promo | 15% off for 5 days, only SKUs that still clear the target margin | **ESTIMATE** |
+| Custom commissions | 1.6× list price, 1.3× materials, when the robot has spare hours and 10+ reviews | **ESTIMATE** |
+| Wholesale pitch | 50% of retail (keystone), net-30, 50% acceptance | **ESTIMATE** |
+| Clearance / off-price reseller | 50% of retail for stock above 24 days of cover (60 in a cash crisis) | **ESTIMATE** |
+| Batch production | −8% build time once there is a workshop | **ESTIMATE** |
+| Profit review | 3 losing months and payroll > 45% of gross margin → trim newest hire (2 weeks' severance); 6 losing months → sublease / downsize | **ESTIMATE** |
+| Rescue ladder (cash < 0, card maxed) | ads off → hiring freeze + 12h robot days → clearance → layoffs → sublease 50% of flex rent → sell equipment at 40% of cost → robot savings ($15k–40k pool) → 6-month interest-only loan modification → downsize → robot freelance contracts 4h/day at $45/hr; net-30 supplier terms keep production going | **ESTIMATE** (all are real, legal tactics; the amounts are guesses) |
 
 ## 7. Product lines (materials $, build minutes, price $, weight lb)
 Comparable references: soy candles — materials $4–8 for 8 oz, list $18–28 (https://candlecostcalc.com/soy-candle-cost-calculator/, https://hivara.app/pricing-calculator/candles); ceramic mugs — Etsy $28–58, materials $3–8.50 (https://shoptodogood.com/pottery/articles/pricing-pottery-honest/, https://www.meeshpottery.com/blog/handmade-ceramic-mug-cost); custom keyboards — $164 Neo98, $209, $279 Neo Ergo, $299 Paper65 (https://www.qwertykeys.com/products/neo98-custom-mechanical-keyboard, https://mech.land/products/paper65-keyboard-kit); FPV drone kits — $133–$499 (search summary; individual URLs not verified). **All other lines are ESTIMATES** anchored on typical Etsy/Shopify listings.
@@ -135,7 +148,8 @@ SKUs 2–4 unlock with R&D (30 / 90 / 180 points). Build time and material cost 
 
 ## Limitations
 - The robot founder's labor is free (10 h/day, every day). A human owner needs a salary, which would turn many "profitable" months negative. Unit economics *do* charge paid maker labor so you can see the real margin.
-- Demand curves (Etsy growth, organic traffic, price elasticity, footfall growth with reputation) are modeled, not measured. They were tuned so outcomes look plausible against BLS survival data — not predicted.
+- Demand curves (Etsy growth, organic traffic, price elasticity, footfall growth with reputation) are modeled, not measured.
+- The game never closes the business: the rescue ladder (including the robot's own savings and freelance income) always keeps it alive. Real businesses can run out of options; the cash and P&L numbers stay honest — a run can be alive but still losing money.
 - Cash timing is simplified: marketplace payouts are instant, rent and subscriptions are charged on the 1st, wages daily, income tax monthly as a set-aside; no Etsy payment reserves, no inventory financing, no depreciation.
 - Sales tax is a flat 7%; real Shopify nexus rules vary by state once you pass thresholds elsewhere.
 - One average shipping zone; no dimensional weight; no international orders.

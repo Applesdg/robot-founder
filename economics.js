@@ -58,6 +58,8 @@ window.ECON={
   mugCost:'https://www.meeshpottery.com/blog/handmade-ceramic-mug-cost',
   keyboard:'https://mech.land/products/paper65-keyboard-kit',
   keyboard2:'https://www.qwertykeys.com/products/neo98-custom-mechanical-keyboard',
+  loc:'https://yourbestloanrates.com/business-line-of-credit/',
+  volDisc:'https://cnba.us/2026/05/19/contractor-supplier-discounts-guide/',
   est:'Estimate by game author (no direct source) — see ASSUMPTIONS.md'
  },
  // ---------- channel fees ----------
@@ -109,7 +111,12 @@ window.ECON={
   micro:{max:50000,apr:[.08,.13],years:6,src:'sbaMicro'},sba7a:{max:350000,apr:[.1025,.1325],years:10,src:'sba'},
   seed:{amt:500000,post:12500000,src:'seedVal',note:'Carta median pre-seed SAFE cap; rarely available to maker businesses (est probability)'}},
  exit:{shopifyMult:[2.0,3.4],etsyMult:[1.0,2.5],src:'exitMult',etsySrc:'etsyMult'},
- quitBelowTTM:40000,quitProb:.04,quitSrc:'est',quitNote:'voluntary shutdown when trailing-year net is negative on small sales (most closures are voluntary; probability is an estimate)',
+ // ---------- robot strategy engine (tactics a real owner uses; parameters are estimates unless cited) ----------
+ loc:{max:150000,ttmPct:.1,min:6000,apr:[.0875,.1675],minMonths:6,src:'loc',note:'bank business line of credit; Wells Fargo BusinessLine 8.75–16.75% APR, $10k–150k, 6+ months in business (Oct 2026). Limit ≈10% of TTM revenue is an estimate'},
+ volDisc:[[25000,.05],[50000,.10],[100000,.12]],volDiscSrc:'volDisc',volDiscNote:'supplier volume pricing by annual spend: $25k+ 5–10%, $50–100k ~10%, $100k+ 10–15% (low end used)',
+ strategy:{targetMargin:.25,priceStep:.06,priceCap:1.2,priceCooldown:56,dropMargin:0,pivotMargin:.12,freezeRunway:3,loanRunway:4,longHours:2,
+  promoPct:.15,promoDays:5,customMult:1.6,customMatMult:1.3,customHours:6,clearPct:.5,clearDays:60,surplusDays:24,deferDays:180,subletShare:.5,equipResale:.4,batchSave:.08,
+  robotSavings:[15000,40000],gigRate:45,gigHours:4,src:'est',note:'all strategy parameters are game-author estimates: price steps/caps, promo depth, custom-order premium, liquidation at 50% of retail, sublease recovering 50% of flex rent, net-30 supplier terms during a crisis, 6-month interest-only loan modification, used equipment at 40% of cost, 8% batch setup savings, robot savings pool and $45/hr freelance contract work'},
  benchmarkSurvival1y:.779,survivalSrc:'survival',
  // ---------- product lines: [name, materials $, build minutes, retail $, weight lb, base quality 1-5] ----------
  lines:[
@@ -127,5 +134,5 @@ window.ECON={
   {n:'Bike Lights',u:'bike lights',shape:'bulb',risk:'med',src:'est',skus:[['Clip Light',7,20,24,1,3.8],['USB Headlight',14,30,45,1,4.0],['Turn-Signal Pack',28,60,79,2,4.1],['Laser Lane Kit',45,90,119,1,4.2]]}],
  priceExp:.5,elasticity:1.5,priceSrc:'est',priceNote:'demand falls with price: category factor (45/avg price)^0.5 and own-price elasticity −1.5 vs. original price (inflation-adjusted)',
  skuUnlockRD:[0,30,90,180], rdNote:'R&D points to unlock SKUs (game mechanic)',
- tiers:[{id:'profit',n:'First profitable month'},{id:'ramen',n:'Ramen profitable (≥$2,500 net in a month)',v:2500,src:'est'},{id:'k10',n:'$10k revenue month',v:10000},{id:'k100',n:'$100k trailing-12-month revenue',v:100000},{id:'m1',n:'$1M trailing-12-month revenue',v:1000000},{id:'acq',n:'Acquisition offer accepted'},{id:'ipo',n:'IPO (legendary)',v:10000000,note:'TTM revenue ≥$10M plus luck — essentially fantasy for a maker brand'}]
+ tiers:[{id:'sale',n:'First sale'},{id:'profit',n:'First profitable month'},{id:'ramen',n:'Ramen profitable (≥$2,500 net in a month)',v:2500,src:'est'},{id:'k10',n:'$10k revenue month',v:10000},{id:'k100',n:'$100k trailing-12-month revenue',v:100000},{id:'m1',n:'$1M trailing-12-month revenue',v:1000000},{id:'acq',n:'Acquisition offer received'},{id:'ipo',n:'IPO (legendary)',v:10000000,note:'TTM revenue ≥$10M plus luck — essentially fantasy for a maker brand'}]
 };
