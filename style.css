@@ -33,7 +33,7 @@ button:hover{background:#5643a0}
 #hud{padding-right:440px}
 #ctl{flex-wrap:wrap;justify-content:flex-end;max-width:440px}
 #dash{position:absolute;right:6px;top:44px;bottom:30px;width:252px;background:#000c;border:2px solid #4a3f6b;border-radius:6px;z-index:3;padding:4px;font-size:11.5px;overflow-y:auto}
-#dash .dh{color:#ffd76a;padding:2px 4px}#dashc{width:240px;height:184px;display:block}#dasht div{margin:3px 2px;line-height:1.3}#dash .bar{width:60px}
+#dash .dh{color:#ffd76a;padding:2px 4px}#dashc{width:240px;height:300px;display:block}#dasht div{margin:3px 2px;line-height:1.3}#dash .bar{width:60px}
 #log{bottom:30px}
 #ticker{position:absolute;left:0;right:0;bottom:0;height:24px;background:#c0392b;color:#fff;z-index:4;display:flex;align-items:center;overflow:hidden;font-size:13px;border-top:2px solid #ffd76a}
 #ticker .tl{background:#ffd76a;color:#000;font-weight:bold;padding:0 8px;height:100%;display:flex;align-items:center;z-index:2}
