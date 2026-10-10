@@ -85,7 +85,7 @@ const RIVALCO=['MegaCorp Dynamics','OmniBot Inc','Synergex','Globotron','Hypersc
 const RIVALCEO=['MAXIMUS-9','CHAD-3000','Lord Servo','EXECUTRON','Baron Von Bytes','ALPHA-PRIME'];
 const HUMANS=['Priya','Marcus','Jun','Elena','Dave','Fatima','Kofi','Sam','Olga','Leo','Rosa','Tariq','Mei','Bjorn'];
 const WEATHERS=[['sunny','☀️'],['sunny','☀️'],['cloudy','☁️'],['rain','🌧️'],['storm','⛈️'],['snow','❄️']];
-const E={sal:600,bot:350,rents:[100,140,900,2500,6000],base:150,stg:500,rounds:[40000,220000,900000],legal:.4,nofit:.5,traffic:5,online:5,matMul:1,ipo:.7,rd:1.5};
+const E={sal:600,bot:350,rents:[100,140,900,2500,6000],base:150,stg:500,rounds:[40000,220000,900000],legal:.4,nofit:.5,traffic:5,online:5,matMul:1,ipo:.65,rd:1.5};
 const LEVELS=[{n:'Garage Table Sale'},{n:'Garage Shop (with coffee!)'},{n:'Small Shop + Workshop'},{n:'Big Store + Workshop'},{n:'Flagship Store + Factory + Shipping Dock'}];
 const ROUNDS=[
  {n:'Seed Round',ok:s=>s.product>=20&&s.customers>=25,req:'20 R&D & 25 customers',need:{product:20,customers:25}},
