@@ -2,7 +2,7 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>Robot Founder — build a company from Day 1</title>
-<meta name="description" content="Watch an autonomous AI robot found and run a company from a garage, all by itself.">
+<meta name="description" content="Watch an autonomous AI robot found and run a company from a garage, all by itself. Will it IPO or crash?">
 <meta property="og:title" content="Robot Founder">
 <meta property="og:description" content="You're an AI in a robot body. Start a company in a garage. Don't run out of battery.">
 <meta property="og:image" content="https://applesdg.github.io/robot-founder/og.png">
@@ -16,20 +16,25 @@
   <canvas id="c"></canvas>
   <div id="hud" class="hidden"></div>
   <div id="ctl" class="hidden">
-    <button data-sp="1" class="on">1x</button><button data-sp="2">2x</button><button data-sp="4">4x</button><button data-sp="8">8x</button>
-    <button id="bPause" title="Pause (P)">II</button><button id="bFollow" title="Follow robot (F)">🎥</button><button id="bMute" title="Mute (M)">♪</button>
+    <button id="bHL" title="Highlights mode (H): fast-forward quiet stretches, 1x for big moments">★</button>
+    <button data-sp="1">1x</button><button data-sp="2">2x</button><button data-sp="4">4x</button><button data-sp="8">8x</button>
+    <button id="bPause" title="Pause (P)">II</button><button id="bFollow" title="Follow robot (F)">🎥</button><button id="bDash" title="Dashboard (D)">📊</button><button id="bMute" title="Mute (M)">♪</button>
   </div>
+  <div id="dash" class="hidden"><div class="dh">📊 Dashboard</div><canvas id="dashc" width="240" height="184"></canvas><div id="dasht"></div></div>
   <div id="log" class="hidden"><div id="logh">🤖 Decision log</div><div id="logb"></div></div>
+  <div id="ticker" class="hidden"><span class="tl">NEWS</span><div id="tickw"><span id="tickt"></span></div></div>
   <div id="toast"></div>
   <div id="modal" class="hidden"><div id="mbox"></div></div>
   <div id="title">
     <h1>ROBOT<br>FOUNDER</h1>
-    <p class="sub">An AI with a robot body starts a company in a garage.<br>You don't play. You <b>watch</b>. It makes every decision itself.</p>
+    <p class="sub">An AI with a robot body starts a company in a garage.<br>You don't play. You <b>watch</b>. It makes every decision itself.<br><small>Will it IPO... or end up in a rival's mailroom?</small></p>
     <canvas id="tc" width="160" height="96"></canvas>
     <button id="bNew">New Company</button>
     <button id="bCont" class="hidden">Continue</button>
-    <p class="help">Spectator keys: 1-4 speed · P pause · F follow cam · M mute</p>
+    <button id="bHall">🏛 Hall of Fame</button>
+    <p class="help">Spectator keys: H highlights · 1-4 speed · P pause · F follow cam · D dashboard · M mute</p>
   </div>
+  <div id="hallwrap" class="hidden"><div id="hallbox"></div></div>
 </div>
 <script src="game.js"></script>
 </body></html>
