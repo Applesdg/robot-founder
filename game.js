@@ -1,7 +1,7 @@
 // Robot Founder — plain JS + canvas. All art procedural.
 (()=>{
 'use strict';
-const T=32,DAY_LEN=75,SAVE='robotFounderSave_v4',HALL='rfHallOfFame';let HEADLESS=false;
+const T=32,DAY_LEN=60,SAVE='robotFounderSave_v5',HALL='rfHallOfFame';let HEADLESS=false;
 const cv=document.getElementById('c'),cx=cv.getContext('2d');
 const $=id=>document.getElementById(id);
 const R=(a,b)=>a+Math.random()*(b-a),RI=(a,b)=>Math.floor(R(a,b+1)),pick=a=>a[Math.floor(Math.random()*a.length)];
@@ -27,37 +27,9 @@ const SFX={
 const PRE=['Hyper','Quantum','Rusty','Bolt','Neon','Sprocket','Giga','Tiny','Cosmic','Turbo','Pixel','Chrome','Fuzzy','Mega','Lazy','Atomic','Velvet','Sneaky'];
 const SUF=['Labs','Works','ly','Dynamics','Systems','Corp','Collective','& Sons (all robots)','.ai','Industries','Foundry','Co.','Ventures','Unlimited'];
 const NOUN=['Toaster','Waffle','Gizmo','Otter','Cog','Llama','Pancake','Widget','Banana','Rocket','Pigeon','Noodle','Sock','Cactus'];
-const IND=[
- {n:'Robot-Made Sneakers',u:'sneakers',shape:'shoe',mc:14,skus:[['Basic Kicks',1,4,45,2.8,'#e74c3c'],['Hi-Tops',2,6,95,3.2,'#3498db'],['Smart Sneakers',3,8,210,3.6,'#2ecc71'],['Moon Boots',4,11,450,4,'#f1c40f']]},
- {n:'Smart Planters',u:'planters',shape:'pot',mc:10,skus:[['Tiny Pot',1,3,32,2.8,'#c0392b'],['Self-Watering Pot',2,5,75,3.1,'#16a085'],['Talking Planter',3,8,160,3.5,'#8e44ad'],['Bonsai Biodome',4,11,380,4,'#27ae60']]},
- {n:'Artisanal Toasters',u:'toasters',shape:'toaster',mc:16,skus:[['2-Slot Classic',1,4,55,2.9,'#bdc3c7'],['Bagel Pro',2,6,110,3.2,'#e67e22'],['Toast-Printer 3000',3,9,240,3.6,'#e74c3c'],['Sentient Toaster',4,12,520,4.1,'#9b59b6']]},
- {n:'Drone Kits',u:'drones',shape:'drone',mc:18,skus:[['Pocket Drone',1,4,60,2.8,'#34495e'],['Racer Kit',2,6,130,3.2,'#e74c3c'],['Camera Drone',3,9,280,3.6,'#3498db'],['Cargo Hexacopter',4,12,600,4,'#f1c40f']]},
- {n:'Hand-Poured Candles',u:'candles',shape:'candle',mc:6,skus:[['Tea Light Pack',1,2,18,2.8,'#f5cba7'],['Lavender Jar',1,4,38,3.2,'#bb8fce'],['Smart Candle',2,6,90,3.5,'#f1948a'],['Eternal Flame Deluxe',3,9,210,4,'#f7dc6f']]},
- {n:'Mechanical Keyboards',u:'keyboards',shape:'keyboard',mc:15,skus:[['60% Clacker',1,4,70,2.9,'#ecf0f1'],['RGB Tenkeyless',2,6,140,3.3,'#8e44ad'],['Split Ergo',3,9,260,3.6,'#1abc9c'],['Typewriter Edition',4,12,540,4.1,'#d4ac0d']]},
- {n:'Robot Pet Toys',u:'toys',shape:'toy',mc:9,skus:[['Squeaky Bolt',1,3,22,2.8,'#f39c12'],['Laser Mouse',1,4,40,3.1,'#e74c3c'],['Robo-Fetch Ball',2,6,85,3.4,'#3498db'],['Cat Mech Suit',3,10,230,4,'#95a5a6']]},
- {n:'Ceramic Mugs',u:'mugs',shape:'mug',mc:7,skus:[['Plain Mug',1,3,20,2.8,'#ecf0f1'],['Glaze Drip Mug',1,4,36,3.2,'#5dade2'],['Heated Smart Mug',2,6,95,3.5,'#e74c3c'],['Bottomless Mug™',3,9,200,4,'#f1c40f']]},
- {n:'Solar Lanterns',u:'lanterns',shape:'lamp',mc:11,skus:[['Camp Lantern',1,3,35,2.8,'#f1c40f'],['Fairy String',1,4,48,3.1,'#ff6fb5'],['Storm Beacon',2,7,120,3.5,'#e67e22'],['Pocket Sun',3,10,300,4,'#f7dc6f']]},
- {n:'Electric Skateboards',u:'boards',shape:'board',mc:20,skus:[['Mini Cruiser',1,5,80,2.9,'#e74c3c'],['Longboard',2,7,170,3.3,'#27ae60'],['Hoverish Board',3,10,360,3.7,'#3498db'],['Off-Road Beast',4,13,720,4.1,'#2c3e50']]},
- {n:'Board Games',u:'games',shape:'game',mc:8,skus:[['Card Game',1,3,25,2.9,'#e74c3c'],['Robot Chess',1,5,55,3.2,'#2c3e50'],['Startup Simulator',2,7,90,3.5,'#8e44ad'],['Collector Box',3,10,220,4,'#d4ac0d']]},
- {n:'Bike Lights',u:'lights',shape:'bulb',mc:9,skus:[['Blinky',1,3,24,2.8,'#e74c3c'],['Headlamp Pro',1,4,55,3.2,'#ecf0f1'],['Turn-Signal Helmet',2,7,140,3.5,'#f39c12'],['Laser Lane',3,10,280,4,'#2ecc71']]}];
-const mkSkus=ind=>ind.skus.map(([n,m,b,p,q,c],i)=>({n,m,b,p,q,c,i}));
 const MODELS=['RX-7 "Tinker"','Model T-1000-ish','Unit B0B','Mk.II Servo','K9-Lite','Proto-Q','Hexapod-Zero','ZX Spectrumbot'];
 const RNAMES=['Bolt','Ada','Sprock','Gizmo','Ohm','Pixel','Kilo','Rivet','Nova','Byte','Tork','Volta','Clank','Mira'];
 const COLORS=[['#e74c3c','#922b21'],['#3498db','#1f5f8b'],['#2ecc71','#1d8348'],['#f1c40f','#9a7d0a'],['#9b59b6','#5b2c6f'],['#e67e22','#935116'],['#1abc9c','#117a65'],['#ecf0f1','#7f8c8d'],['#ff6fb5','#a8336f']];
-const PERKS=[
- {id:'efficient',n:'Low-Power Mode',d:'Actions use 25% less battery.'},
- {id:'coder',n:'10x Compiler',d:'Coding gives +50% product progress.'},
- {id:'charmer',n:'Charming LED Smile',d:'+15% pitch & sales success.'},
- {id:'frugal',n:'Penny-Pinching Firmware',d:'Daily expenses 20% lower.'},
- {id:'fast',n:'Overclocked Wheels',d:'Move 35% faster.'},
- {id:'viral',n:'Meme-Compatible Face',d:'Marketing gives double reputation.'},
- {id:'solar',n:'Solar Panel Hat',d:'Slowly recharges 0.6%/s all day.'},
- {id:'gpu',n:'Spare GPU in Chest Cavity',d:'Start with +60 compute; research is cheaper.'}];
-function genCompany(){
- const ind=pick(IND),col=pick(COLORS),perk=pick(PERKS);
- const name=Math.random()<.5?pick(PRE)+pick(NOUN):pick(NOUN)+pick(['ify','tron','matic','bot','verse','zilla','hub']);const sf=pick(SUF);
- const nm=/^[.l]/.test(sf)?name+sf:name+' '+sf;return {name:nm,industry:ind.n,price:ind.skus[0][3],unit:ind.u,shape:ind.shape,mc:ind.mc,skus:mkSkus(ind),color:col[0],dark:col[1],model:pick(MODELS),robot:pick(RNAMES)+'-'+RI(1,99),perk:perk.id,perkName:perk.n,perkDesc:perk.d,seed:Math.random()};
-}
 // ---------- Music ----------
 const Music={timer:null,step:0,next:0,mood:'good',
  start(){try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();actx.resume&&actx.resume()}catch(e){}if(!this.timer)this.timer=setInterval(()=>this.tick(),60)},
@@ -73,31 +45,42 @@ const Music={timer:null,step:0,next:0,mood:'good',
    this.step=(s+1)%32;this.next+=spb}}};
 
 // ---------- Data ----------
+const EC=window.ECON;
 const TRAITS=[
- {id:'builder',n:'Perfectionist Builder',w:{code:1.5,research:1.4,serve:.8,refactor:1.6},low:22,risk:.9},
- {id:'hustler',n:'Relentless Hustler',w:{serve:1.5,pitch:1.3,code:.85,compliance:.7},low:18,risk:1.1},
- {id:'hype',n:'Hype Machine',w:{market:1.8,serve:1.1,compliance:.6,refactor:.6},low:20,risk:1.3},
- {id:'cautious',n:'Anxious Accountant',w:{dock:1.5,hire:.6,compliance:1.6,maintain:1.4},low:34,risk:.6},
- {id:'reckless',n:'YOLO Optimizer',w:{hire:1.6,market:1.2,compliance:.4,maintain:.5,dock:.8},low:11,risk:1.6},
- {id:'social',n:'Team Player',w:{hire:1.3,coffee:2,maintain:1.6,build:1.3},low:22,risk:1}];
-const VERA='Vera Vulture',TESS='Tess Tattle';
-const RIVALCO=['MegaCorp Dynamics','OmniBot Inc','Synergex','Globotron','Hyperscale Holdings','Monopolis AI'];
-const RIVALCEO=['MAXIMUS-9','CHAD-3000','Lord Servo','EXECUTRON','Baron Von Bytes','ALPHA-PRIME'];
-const HUMANS=['Priya','Marcus','Jun','Elena','Dave','Fatima','Kofi','Sam','Olga','Leo','Rosa','Tariq','Mei','Bjorn'];
-const WEATHERS=[['sunny','☀️'],['sunny','☀️'],['cloudy','☁️'],['rain','🌧️'],['storm','⛈️'],['snow','❄️']];
-const E={sal:600,bot:350,rents:[100,140,900,2500,6000],base:150,stg:500,rounds:[40000,220000,900000],legal:.4,nofit:.5,traffic:5,online:5,matMul:1,ipo:.65,rd:1.5};
-const LEVELS=[{n:'Garage Table Sale'},{n:'Garage Shop (with coffee!)'},{n:'Small Shop + Workshop'},{n:'Big Store + Workshop'},{n:'Flagship Store + Factory + Shipping Dock'}];
-const ROUNDS=[
- {n:'Seed Round',ok:s=>s.product>=20&&s.customers>=25,req:'20 R&D & 25 customers',need:{product:20,customers:25}},
- {n:'Series A',ok:s=>s.product>=60&&s.customers>=150,req:'60 R&D & 150 customers',need:{product:60,customers:150}},
- {n:'Series B',ok:s=>s.product>=110&&s.customers>=400,req:'110 R&D & 400 customers',need:{product:110,customers:400}}];
-const IPO_NEED={customers:800,rep:60,product:160,rating:3.4};
-const ipoReady=()=>S.stage>=3&&S.customers>=IPO_NEED.customers*E.ipo&&S.rep>=IPO_NEED.rep&&S.product>=IPO_NEED.product*E.ipo&&S.rating>=IPO_NEED.rating&&S.market>=.8;
-const OUT={ipo:['🔔','IPO!'],bankrupt:['💸','Bankrupt'],battery:['🪫','Battery death'],acquihire:['🤝','Acqui-hired for pennies'],regulators:['⚖️','Shut down by regulators'],mutiny:['🤖','Robot co-founder mutiny'],pivot:['🌀','Pivot spiral']};
-const UPGRADES=[{id:'legs',n:'Turbo Legs',cost:4000,d:'moves 40% faster'},{id:'battery',n:'Mega Battery',cost:7000,d:'+40% capacity, fresh cells'},{id:'leds',n:'Charm LEDs',cost:2500,d:'+15% happier customers'},{id:'chip',n:'Quantum-ish Chip',cost:18000,d:'+50% coding & research'}];
-const WORLD_NEWS=['Local man asks toaster for investment advice','Scientists confirm coffee is still a vegetable (citation needed)','Stock market does a little dance','Pigeon population reaches all-time high','Cloud computing found to be mostly actual clouds','Self-driving car gets lost, blames map','Moon declines to comment on lunar real estate bubble','Startup raises $40M to put blockchain in sandwiches','Weather forecast: 60% chance of disruption','Nation\'s vending machines unionize','Study: 9 out of 10 robots prefer oil to water','New social network for houseplants goes viral','Tech CEO spotted touching grass, stocks dip','Interest rates go up, down, and sideways','Local hackathon produces 14 to-do apps','Billionaire launches self into space again, nobody notices','Experts warn of AI-generated experts','Breaking: printer works on first try','Conference keynote runs 3 hours over, attendees fossilize','Shortage of rubber ducks hits debugging industry'];
-const ROLES={cs:{n:'Customer Service',e:'🧾',cap:[0,1,1,2,3]},ship:{n:'Shipping',e:'📦',cap:[0,1,1,2,3]},maker:{n:'Maker',e:'🔨',cap:[0,0,2,3,4]},eng:{n:'Engineer',e:'🧪',cap:[0,0,1,2,3]},mkt:{n:'Marketing',e:'📣',cap:[0,0,0,1,2]}};
-const SKU_UNLOCK=[0,40,110,190];
+ {id:'builder',n:'Perfectionist Builder',buf:3,ads:.7,hire:.9,loan:.8,design:2.5,insure:1},
+ {id:'hustler',n:'Relentless Hustler',buf:2,ads:1.3,hire:1.1,loan:1.1,design:1,insure:1},
+ {id:'hype',n:'Hype Machine',buf:1.5,ads:1.8,hire:1.1,loan:1.2,design:.8,insure:.8},
+ {id:'cautious',n:'Anxious Accountant',buf:4,ads:.6,hire:.7,loan:.6,design:1.5,insure:1},
+ {id:'reckless',n:'YOLO Optimizer',buf:1,ads:1.5,hire:1.5,loan:1.6,design:.7,insure:.6},
+ {id:'social',n:'Team Player',buf:2.5,ads:1,hire:1.3,loan:1,design:1.2,insure:1}];
+const PERKS=[
+ {id:'efficient',n:'Low-Power Mode',d:'Works 12h/day instead of 10.'},
+ {id:'coder',n:'10x Design Engine',d:'R&D progresses 50% faster.'},
+ {id:'charmer',n:'Charming LED Smile',d:'+10% in-store conversion.'},
+ {id:'frugal',n:'Haggling Firmware',d:'Negotiates materials 8% cheaper.'},
+ {id:'fast',n:'Overclocked Grippers',d:'Packs orders 30% faster.'},
+ {id:'viral',n:'Meme-Compatible Face',d:'+50% organic social traffic.'},
+ {id:'solar',n:'Solar Panel Hat',d:'Utility bills 30% lower.'},
+ {id:'gpu',n:'Product-Photo GPU',d:'+10% online conversion (better photos).'}];
+const VERA='Vera Vulture',TESS='Tess Tattle',PAPER='Space Coast Gazette';
+const RIVALCO=['MegaMart Online','Temu-ish Bargains','KnockoffKing Ltd','Amazonian Basics','CloneCraft Co'];
+const RIVALCEO=['MAXIMUS-9','CHAD-3000','Lord Servo','EXECUTRON','Baron Von Bytes'];
+const HUMANS=['Priya','Marcus','Jun','Elena','Dave','Fatima','Kofi','Sam','Olga','Leo','Rosa','Tariq','Mei','Bjorn','Ana','Malik'];
+const ROLES={retail:{n:'Retail associate',e:'🧾',wc:'retail',days:6},ship:{n:'Shipping',e:'📦',wc:'mfg',days:5},maker:{n:'Maker',e:'🔨',wc:'mfg',days:5},cs:{n:'Customer service',e:'☎️',wc:'clerical',days:5},eng:{n:'Product engineer',e:'🧪',wc:'clerical',days:5},mkt:{n:'Marketing',e:'📣',wc:'clerical',days:5}};
+const ROLE_CAP={retail:[0,2,3,5],ship:[1,1,2,4],maker:[1,2,4,8],cs:[0,1,1,3],eng:[0,0,1,2],mkt:[0,0,1,2]};
+const STAGE_LAYOUT=[0,2,3,4];
+const OUT={ipo:['🔔','IPO (legendary!)'],acquired:['🤝','Acquired'],survived:['🏁','Still trading after 3 years'],closed1:['🪦','Closed in year 1'],closed:['🪦','Closed'],};
+const TIER_ICON={profit:'✅',ramen:'🍜',k10:'💵',k100:'💯',m1:'🏆',acq:'🤝',ipo:'🔔'};
+const UPGRADES=[{id:'legs',n:'Turbo Legs',cost:2500,d:'moves faster between stations'},{id:'battery',n:'Mega Battery',cost:3500,d:'+2h work per day'},{id:'chip',n:'Design Co-processor',cost:6000,d:'+30% R&D'}];
+const WORLD_NEWS=['USPS says packages are "mostly round-ish"','Florida man opens shop selling other shops','Space Coast launch delays traffic on US-1 again','Local pelican reportedly unionizing','Mortgage rates do a little dance','Indian River Lagoon looking extra sparkly today','Analysts: "handmade" still the hottest word in retail','Shoppers rediscover the concept of "stores"'];
+const LINE_COL=['#e74c3c','#3498db','#2ecc71','#f1c40f'];
+function genCompany(){
+ const li=RI(0,EC.lines.length-1),ln=EC.lines[li],col=pick(COLORS),perk=pick(PERKS);
+ const name=Math.random()<.5?pick(PRE)+pick(NOUN):pick(NOUN)+pick(['ify','tron','matic','bot','verse','zilla','hub']);const sf=pick(SUF);
+ const nm=/^[.l]/.test(sf)?name+sf:name+' '+sf;
+ return {name:nm,line:li,industry:ln.n,unit:ln.u,shape:ln.shape,risk:ln.risk,skus:mkSkus(ln),color:col[0],dark:col[1],model:pick(MODELS),robot:pick(RNAMES)+'-'+RI(1,99),perk:perk.id,perkName:perk.n,perkDesc:perk.d};
+}
+const mkSkus=ln=>ln.skus.map(([n,m,b,p,w,q],i)=>({n,m,b,p,p0:p,w,q,i,c:LINE_COL[i]}));
 // ---------- layouts ----------
 const LCFG=[{ws:7,ss:5,dk:0,b:1,d:1,th:1},{ws:7,ss:5,dk:0,b:1,d:1,th:1},{ws:9,ss:8,dk:0,b:2,d:2,th:1},{ws:10,ss:10,dk:0,b:3,d:3,th:2},{ws:10,ss:11,dk:6,b:4,d:4,th:2,m:2}];
 const LAYOUTS=LCFG.map((c,L)=>{
@@ -119,54 +102,10 @@ const LAYOUTS=LCFG.map((c,L)=>{
  const deco=[];if(L>=2){deco.push([s1,10]);solid[10*40+s1]=1}
  return {L,w,s0,s1,d0,dk:c.dk,st,solid,queue:q.filter(([x,y])=>!solid[y*40+x]).slice(0,9),cashiers,deco,vanX:c.dk?d0+1:1,cfg:c};
 });
-const LAY=()=>LAYOUTS[S.level];
+const LAY=()=>LAYOUTS[STAGE_LAYOUT[S.stage]];
 const ST=id=>LAY().st[id];
 const stations=()=>Object.values(LAY().st);
 const benches=()=>stations().filter(s=>s.id.startsWith('bench'));
-const worldW=()=>LAY().w;
-const maxE=()=>Math.round(S.bHealth*(S.up.battery?1.4:1));
-const unlocked=()=>S.co.skus.filter(k=>S.product>=SKU_UNLOCK[k.i]);
-const invTotal=()=>S.inv.reduce((a,b)=>a+b,0);
-const quality=k=>Math.min(5,k.q+S.product/150+(S.flags.cto?.2:0));
-const matCost=()=>Math.round(S.co.mc*E.matMul*(1-Math.min(.35,S.product/700))*(S.flags.supplierUp?1.4:1));
-const roleCount=r=>S.staff.filter(s=>s.role===r).length;
-const nowT=()=>(S.day-1)*DAY_LEN+S.time;
-
-function newState(){
- const co=genCompany(),tr=pick(TRAITS);co.trait=tr.id;co.traitName=tr.n;const cof=Math.random()<.35?pick(RNAMES)+'-'+RI(100,999):null;
- return {cofounder:cof,co,day:1,time:0,cash:RI(6,14)*1000,energy:100,bHealth:100,product:RI(0,6),customers:0,rep:RI(5,20),humans:0,robots:0,compute:co.perk==='gpu'?80:RI(10,30),
-  stage:0,level:0,miles:{},lifetimeRev:0,x:3*T,y:5*T,done:false,outcome:null,peakVal:0,moments:[],log:[],decisions:{},pitchCool:0,
-  morale:80,botMood:75,legal:RI(0,10),techDebt:0,market:1,mTrend:0,luck:0,weather:'sunny',wIcon:'☀️',rival:{name:pick(RIVALCO),ceo:pick(RIVALCEO),str:RI(5,15)},
-  pivots:0,custHist:[0],hidden:pick(['none','none','none','battery','regulator','rival','bust','toxic','burn','nofit','nofit']),up:{},chain:[],recent:[],flags:{},goal:null,hist:[],loyal:null,heads:[],dayStats:null,industries:[co.industry],team:0,
-  inv:[3,0,0,0],mat:6,matOrder:null,orders:[],boxes:[],rating:3.8,reviews:0,mktBoost:0,staff:cof?[{role:'maker',kind:'robot',name:cof}]:[],rushT:0,viral:0,stockouts:0};
-}
-const has=p=>S.co.perk===p;
-const trait=()=>TRAITS.find(t=>t.id===S.co.trait)||TRAITS[0];
-
-// ---------- globals ----------
-let S=null,running=false,paused=false,speed=1,highlights=true,hlT=0,follow=false,busy=0,busyLen=1,busyLabel='',busyFn=null,anim=0,particles=[],floaters=[],shakeT=0,shakeMag=0;
-let bot={path:[],goal:null,think:'',thinkT:0,walkT:0,face:1,idle:0},npcs=[],shoppers=[],van={state:'away',t:20,x:0},overlay=null,stepT=0,dashOpen=innerWidth>760,sampleT=0;
-function save(){if(HEADLESS)return;try{const o=Object.assign({},S);o.log=S.log.slice(-40);localStorage.setItem(SAVE,JSON.stringify(o))}catch(e){}}
-function load(){try{const s=JSON.parse(localStorage.getItem(SAVE));return s&&s.co&&!s.done?s:null}catch(e){return null}}
-function hall(){try{return JSON.parse(localStorage.getItem(HALL))||[]}catch(e){return []}}
-
-// ---------- log / thoughts / news ----------
-function clock(){const m=Math.floor(8*60+Math.min(1,S.time/DAY_LEN)*12*60);return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0')}
-function log(t,cls=''){if(HEADLESS)return;const e={d:S.day,c:clock(),t,cls};S.log.push(e);if(S.log.length>200)S.log.shift();addLogLine(e)}
-function addLogLine(e){const lb=$('logb'),d=document.createElement('div');d.innerHTML=`<span class="t">Day ${e.d}, ${e.c} —</span> <span class="${e.cls}">${e.t}</span>`;lb.appendChild(d);while(lb.children.length>80)lb.firstChild.remove();lb.scrollTop=lb.scrollHeight}
-function think(t,cls){if(HEADLESS)return;bot.think=t;bot.thinkT=4;log(t,cls)}
-function toast(t){if(HEADLESS)return;const d=document.createElement('div');d.textContent=t;$('toast').appendChild(d);setTimeout(()=>d.remove(),3500)}
-function float(t,c='#ffd76a',x=S.x+T/2,y=S.y){if(!HEADLESS)floaters.push({t,c,x,y,l:1.6})}
-function burst(x,y,n,cols,up=160){if(HEADLESS)return;for(let i=0;i<n;i++)particles.push({x,y,vx:R(-90,90),vy:R(-up,-20),l:R(.6,1.4),c:pick(cols),g:200})}
-function moment(t,big=true){S.moments.push({d:S.day,t});toast(t);if(big){hl(5);shake(.5,5)}}
-function news(t){S.heads.push(t);if(S.heads.length>30)S.heads.shift()}
-function hl(sec){hlT=Math.max(hlT,sec)}
-function shake(t,m){if(HEADLESS)return;shakeT=Math.max(shakeT,t);shakeMag=Math.max(shakeMag,m)}
-const L=(arr,o={})=>pick(arr).replace(/\{(\w+)\}/g,(m,k)=>o[k]);
-const pl=n=>/s$/.test(n)?n:n+'s';
-const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
-const addRep=n=>{S.rep=clamp(S.rep+n,0,100)};
-
 // ---------- pathfinding ----------
 function blocked(tx,ty){
  const Ly=LAY();if(ty<2||ty>10||tx<1||tx>Ly.w-2)return true;return !!Ly.solid[ty*40+tx]}
@@ -179,524 +118,732 @@ function walk(ent,dt,sp){
  if(!ent.path.length)return true;const [tx,ty]=ent.path[0],gx=tx*T,gy=ty*T,dx=gx-ent.x,dy=gy-ent.y,d=Math.hypot(dx,dy),st=sp*dt;
  if(d<=st){ent.x=gx;ent.y=gy;ent.path.shift()}else{ent.x+=dx/d*st;ent.y+=dy/d*st;if(Math.abs(dx)>1)ent.face=dx>0?1:-1}
  ent.walkT=(ent.walkT||0)+dt;return !ent.path.length}
-const tileOf=e=>[Math.round(e.x/T),Math.round(e.y/T)];
-// ---------- economy ----------
-function salaryOf(s){return s.kind==='robot'?E.bot:E.sal*(1+.15*S.stage)}
-function expenses(){return Math.round((S.hidden==='burn'?1.5:1)*(S.staff.reduce((a,s)=>a+salaryOf(s),0)+E.rents[S.level]+E.base+S.stage*E.stg)*(has('frugal')?.8:1))}
-function revenue(){const h=S.hist.slice(-2);const today=S.dayStats?(S.dayStats.storeRev+S.dayStats.onlineRev)/Math.max(.15,S.time/DAY_LEN):0;return Math.round(h.length?(h.reduce((a,x)=>a+x.rev,0)+today)/(h.length+1):today)}
-function runway(){const net=expenses()+matCost()*4-revenue();return net<=0?99:S.cash/net}
-function valuation(){return Math.round(revenue()*365*(1.5+S.rep/30)*S.market*(1+S.stage*.8)*(S.rating/4)+Math.max(0,S.cash))}
-function prodMult(){return (S.morale<25?.5:S.morale<45?.8:1)}
-function nextRound(){return S.stage<3?ROUNDS[S.stage]:null}
-function syncStaff(){S.humans=S.staff.filter(s=>s.kind==='human').length;S.robots=S.staff.filter(s=>s.kind==='robot').length;S.team=S.staff.length}
-function fireStaff(pred,why){const i=S.staff.findIndex(pred);if(i<0)return null;const s=S.staff.splice(i,1)[0];syncStaff();const j=npcs.findIndex(n=>n.ref===s);if(j>=0){const n=npcs[j];n.leaving=1;n.path=bfs(...tileOf(n),ST('door').sx,ST('door').sy)||[]}if(why)log(why,'r');return s}
-
-// ---------- goals ----------
-function setGoal(){
- const r=nextRound();let g;
- if(r){const n=r.need;g=S.product<n.product?{k:'product',v:n.product,t:`design our way to ${n.product} product`}:S.customers<n.customers?{k:'customers',v:n.customers,t:`serve ${n.customers} customers`}:{k:'stage',v:S.stage+1,t:`close the ${r.n}`}}
- else g={k:'ipo',v:1,t:'ring the IPO bell'};
- g.until=S.day+RI(3,5);S.goal=g;log(`🎯 Goal for the next ${g.until-S.day} days: ${g.t}.`,'y');
+const tileOf=e=>[Math.round(e.x/T),Math.round(e.y/T)];// ---------- state & calendar ----------
+const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+function nextMonday(){const t=new Date();t.setHours(12,0,0,0);t.setDate(t.getDate()+((8-t.getDay())%7||7));return t.toISOString().slice(0,10)}
+const dateOf=(d=S.day)=>{const t=new Date(S.date0+'T12:00:00');t.setDate(t.getDate()+d);return t};
+const ymd=t=>t.toISOString().slice(0,10);
+const dstr=(d=S.day)=>{const t=dateOf(d);return `${DOW[t.getDay()]} ${MON[t.getMonth()]} ${t.getDate()}, ${t.getFullYear()}`};
+const mkey=t=>t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0');
+const mname=k=>{const [y,m]=k.split('-');return MON[+m-1]+' '+y};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const pois=l=>{if(l<=0)return 0;if(l>40)return Math.max(0,Math.round(l+Math.sqrt(l)*gauss()));let L=Math.exp(-l),k=0,p=1;do{k++;p*=Math.random()}while(p>L);return k-1};
+const gauss=()=>{let u=0,v=0;while(!u)u=Math.random();while(!v)v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)};
+const binom=(n,p)=>{if(n>60)return clamp(Math.round(n*p+Math.sqrt(n*p*(1-p))*gauss()),0,n);let k=0;for(let i=0;i<n;i++)if(Math.random()<p)k++;return k};
+const r2=n=>Math.round(n*100)/100;
+function newMonth(k){return {k,rev:{etsy:0,shopify:0,store:0,wholesale:0},shipInc:0,orders:{etsy:0,shopify:0,store:0,wholesale:0},units:{etsy:0,shopify:0,store:0,wholesale:0},traffic:{etsy:0,shopify:0,store:0},
+ refunds:0,cogs:0,pack:0,labels:0,fees:{etsy:0,shopify:0,store:0},subs:0,wages:0,burden:0,rent:0,util:0,ins:0,lic:0,ads:0,interest:0,other:0,scrap:0,
+ taxCol:0,taxRem:0,matBuy:0,capex:0,loanIn:0,loanOut:0,ffIn:0,eqIn:0,incomeTax:0,cash0:S?S.cash:0,cash1:0,stockouts:0,walkouts:0,late:0,returns:0,cbs:0,produced:0,defects:0,days:0,cogsBy:{etsy:0,shopify:0,store:0,wholesale:0},labelsBy:{etsy:0,shopify:0},packBy:{etsy:0,shopify:0}}}
+function newState(){
+ const co=genCompany(),tr=pick(TRAITS);co.trait=tr.id;co.traitName=tr.n;
+ const F=EC.funding;
+ const s={co,date0:nextMonday(),day:0,time:0,cash:Math.round(R(...F.savings)/500)*500,stage:0,
+  ch:{etsy:{open:0},shopify:{open:-1,plan:0},store:{open:-1}},
+  inv:{s:[0,0,0,0],o:[0,0,0,0]},kits:[0,0,0,0],po:[],backlog:[],rd:0,rating:0,reviews:0,emails:0,customers:0,rep:3,
+  staff:[],use:{s:[.3,0,0,0],o:[.6,0,0,0]},ads:{etsy:0,shopify:0},
+  mods:{mat:EC.funding?1:1,leadAdd:0,etsyAlgo:1,etsyAlgoT:0,apps:0,press:0,viral:0,viralT:0,knock:1,knockT:0,star:0,closed:0,wageAdd:0,pick:0,label:1,ins:1,rentEsc:1,breakT:0,editors:0},
+  cc:{limit:Math.round(R(...F.ccLimit)/1000)*1000,bal:0},loans:[],ff:false,mca:null,equity:0,seedDone:false,
+  months:[],daily:[],tiers:{},moments:[],log:[],heads:[],flags:{},chain:[],decisions:{},taxDue:0,taxLate:0,
+  ytdWages:{},ytdYear:0,lastPrice:{},up:{},energy:100,x:3*32,y:5*32,firstHire:null,rival:{name:pick(RIVALCO),ceo:pick(RIVALCEO)},
+  done:false,outcome:null,peakTTM:0,peakCash:0,insured:true,lifetime:{rev:0,orders:0,units:0}};
+ S=s;s.mo=newMonth(mkey(dateOf(0)));s.mo.cash0=s.cash;
+ s.mo.lic+=EC.licenses.llc+EC.licenses.btrYr;s.cash-=EC.licenses.llc+EC.licenses.btrYr; // LLC formation + Brevard BTR
+ return s;
 }
-function goalMet(){const g=S.goal;if(!g)return false;return g.k==='product'?S.product>=g.v:g.k==='customers'?S.customers>=g.v:g.k==='stage'?S.stage>=g.v:false}
-function checkGoal(){if(!S.goal)return setGoal();if(goalMet()){log(`🎯 Goal achieved: ${S.goal.t}! Morale +8.`,'g');S.morale=clamp(S.morale+8,0,100);addRep(2);S.goal=null;setGoal()}
- else if(S.day>S.goal.until){log(`🎯 Missed my goal (${S.goal.t}). Updating my priors. Morale -6.`,'r');S.morale=clamp(S.morale-6,0,100);S.goal=null;setGoal()}}
-
-// ---------- store / online / production ----------
-let queue=[],regT=0,robotServing=false,machEnt=[];
-const LF=[1,1.2,2.2,3.5,5],OF=[.6,.9,1.8,3,4.5],SCAP=[4,6,10,14,20];
-function demandMul(){const t=S.time/DAY_LEN,w={sunny:1.1,cloudy:1,rain:.7,storm:.45,snow:.75}[S.weather]||1;
- return (.4+S.rep/80)*S.market*(1+S.mktBoost)*(S.rushT>0?2:1)*(.5+S.rating/8)*(1+.12*(unlocked().length-1))*(S.hidden==='nofit'?.5:1)*(1-S.rival.str/260)*(1+S.viral)*(S.up.leds?1.08:1)*(has('charmer')?1.1:1)*w}
-const storeOpen=()=>{const t=S.time/DAY_LEN;return t>1/12&&t<11/12};
-function review(r){S.rating=clamp(S.rating*.96+clamp(r,1,5)*.04,1,5);S.reviews++}
+const has=p=>S.co.perk===p;
+const trait=()=>TRAITS.find(t=>t.id===S.co.trait)||TRAITS[0];
+const unlocked=()=>S.co.skus.filter(k=>S.rd>=EC.skuUnlockRD[k.i]);
+const roleCount=r=>S.staff.filter(s=>s.role===r).length;
+const invS=()=>S.inv.s.reduce((a,b)=>a+b,0),invO=()=>S.inv.o.reduce((a,b)=>a+b,0),invTotal=()=>invS()+invO();
+const stageInfo=(st=S.stage)=>EC.stages[st];
+// ---------- unit economics ----------
+function minWage(t=dateOf()){const d=ymd(t);let w=EC.minWage[0].w;EC.minWage.forEach(m=>{if(d>=m.from)w=m.w});return w}
+function hourly(role){const W=EC.wages[role];const base=W.salary?W.salary/2080:W.hr;return Math.max(base,minWage())+(W.salary?0:S.mods.wageAdd)}
+function burdenRate(role){const p=EC.payroll;return p.fica+p.wcomp[ROLES[role].wc]/100}
+function matCost(k){return k.m*S.mods.mat*(has('frugal')?.92:1)*(1-Math.min(.12,S.rd/2500))}
+function labelCost(w){const g=EC.shipGA,ks=Object.keys(g).filter(x=>!isNaN(x)).map(Number).sort((a,b)=>a-b);const key=ks.find(x=>x>=w)||ks[ks.length-1];return g[key]*S.mods.label}
+function packCost(w){const p=EC.packaging;return w<=1?p.small:w<=4?p.medium:p.large}
+function buildMin(k){return k.b*(1-Math.min(.3,S.rd/1500))*(S.flags.machine?.6:1)}
+function quality(k){return clamp(k.q+S.rd/400+(S.flags.qc?.1:0),1,5)}
+function defectRate(){return Math.max(EC.defectFloor,EC.defectBase-S.rd*.00018-(S.flags.qc?.01:0))}
+function etsyOffsitePct(){return S.flags.etsy10k?EC.etsy.offsitePctBig:EC.etsy.offsitePct}
+function unitEcon(k,ch){// per-unit contribution for a single-item order on a channel
+ const p=k.p,mat=matCost(k),lab=buildMin(k)/60*hourly('maker')*(1+burdenRate('maker')),w=k.w;
+ let fee=0,label=0,pack=0,shipChg=0;const tax=EC.salesTax.rate;
+ if(ch==='etsy'||ch==='shopify'){label=labelCost(w);pack=packCost(w);shipChg=p>=EC.freeShipOver?0:label}
+ if(ch==='etsy'){const E=EC.etsy;fee=E.listingFee+E.txnPct*(p+shipChg)+E.payPct*(p+shipChg)*(1+tax)+E.payFixed+E.offsiteShare*Math.min(E.offsiteCap,etsyOffsitePct()*(p+shipChg))}
+ else if(ch==='shopify'){const P=EC.shopify.plans[S.ch.shopify.plan||0];fee=P.pct*(p+shipChg)*(1+tax*EC.salesTax.shopifyInStateShare)+P.fixed}
+ else if(ch==='store'){fee=(EC.pos.pct*p*(1+tax)+EC.pos.fixed)*.85}
+ else if(ch==='wholesale'){return {p:p*.5,mat,lab,pack:0,label:0,shipChg:0,fee:0,net:p*.5-mat-lab,m:(p*.5-mat-lab)/(p*.5)}}
+ const ret=(ch==='store'?EC.returns.store:EC.returns.online)*p;
+ const net=p+shipChg-mat-lab-pack-label-fee-ret;
+ return {p,mat:r2(mat),lab:r2(lab),pack:r2(pack),label:r2(label),shipChg:r2(shipChg),fee:r2(fee),ret:r2(ret),net:r2(net),m:net/p};
+}
+// ---------- daily economics ----------
+const usage=k=>S.use.s[k]+S.use.o[k];
+const leadDays=()=>RI(...EC.leadDays)+S.mods.leadAdd;
+function targets(k){const st=S.ch.store.open>=0?Math.max(2,Math.ceil(S.use.s[k]*8)):0;const on=Math.max(2,Math.ceil(S.use.o[k]*8))+(S.flags.whole&&S.flags.whole.k===k&&!S.flags.whole.shipped?S.flags.whole.n:0);return {s:st,o:on}}
+function storeOpenToday(t){return S.stage>=1&&S.ch.store.open>=0&&t.getDay()!==0&&S.mods.closed<=0}
+function priceF(){const u=unlocked();const avg=u.reduce((a,k)=>a+(k.p0||k.p),0)/Math.max(1,u.length),rel=u.reduce((a,k)=>a+k.p/((k.p0||k.p)*(S.cpi||1)),0)/Math.max(1,u.length);
+ return clamp(Math.pow(45/avg,EC.priceExp),.3,1.4)*clamp(Math.pow(rel,-EC.elasticity),.4,1.5)}
+function qualF(){const r=S.reviews?S.rating:4.3;return clamp(.4+(r-3)*.45,.35,1.35)}
+function etsyViews(t){const E=EC.etsy,u=unlocked().length,listings=u*3;const sales30=S.daily.slice(-30).reduce((a,d)=>a+d.oe,0);
+ let v=E.newShopViewsPerDay*(.5+listings*E.viewsPerListing)*Math.pow(1+S.reviews/E.reviewBoost,E.reviewExp)*Math.pow(1+sales30/40,E.salesExp)*S.mods.etsyAlgo*(S.mods.editors>0?1.5:1);
+ v+=(S.audience||0)*EC.socialSessions/2;v*=EC.season[t.getMonth()]*(S.mods.viralT>0?S.mods.viral:1);return Math.min(E.maxViews,v)+S.ads.etsy/.45}
+function shopSessions(t){const P=EC.shopify;S.emails*=1-P.emailChurn;let org=(P.organicBase+S.emails*P.emailRate+S.rep*.6)*(has('viral')?1.5:1)+(S.mods.press>0?40:0)+roleCount('mkt')*45;
+ org+=(S.audience||0)*EC.socialSessions;org*=EC.season[t.getMonth()]*(S.mods.viralT>0?S.mods.viral:1);return org+S.ads.shopify/P.cpc}
+function pickSku(){const u=unlocked();const w=u.map(k=>1/(1+k.i*.7));let r=Math.random()*w.reduce((a,b)=>a+b,0);for(let i=0;i<u.length;i++){r-=w[i];if(r<=0)return u[i].i}return u[0].i}
+function econDay(){
+ const t=dateOf(),dow=t.getDay(),mon=t.getMonth(),sea=EC.season[mon];
+ const D={d:S.day,date:dstr(),dow,mon,store:{open:false,visitors:0,sales:[],stockout:0,walk:0},online:[],shipped:0,late:0,cancel:0,produced:[0,0,0,0],scrap:0,tickets:0,unans:0,rd:0,hours:{},robot:{store:0,pack:0,cs:0,make:0,design:0,admin:0},
+  rev:0,cogs:0,fees:0,labor:0,arrived:[],returns:0,cbs:0,rain:Math.random()<EC.rainDays[mon]/30};
+ const tr=trait(),qf=qualF(),pf=priceF();
+ // staff hours today
+ let H={retail:0,ship:0,maker:0,cs:0,eng:0,mkt:0},labor=0,burden=0;const yr=t.getFullYear();if(S.ytdYear!==yr){S.ytdYear=yr;S.ytdWages={}}
+ S.staff.forEach(s=>{const R0=ROLES[s.role];const works=R0.days===6?dow!==0:(dow>0&&dow<6);if(!works||s.leaveT>0)return;
+  const eff=s.morale<30?.6:s.morale<50?.85:1,h=EC.hoursPerDay;H[s.role]+=h*eff;
+  const pay=h*hourly(s.role);labor+=pay;const P=EC.payroll,ytd=S.ytdWages[s.name]||0;
+  let b=pay*burdenRate(s.role)+Math.max(0,Math.min(pay,P.futaBase-ytd))*(P.futa+P.suta);burden+=b;S.ytdWages[s.name]=ytd+pay;
+  s.morale=clamp(s.morale-(s.role==='retail'&&D.store.visitors>120?.25:.06)+(S.flags.perks?.05:0),0,100)});
+ D.hours=H;let robotH=(has('efficient')?12:EC.founderHours)+(S.up.battery?2:0);if(S.mods.breakT>0)robotH-=2;
+ // ---- store ----
+ if(storeOpenToday(t)){D.store.open=true;
+  const dowF=[0,.8,.85,.9,1,1.15,1.45][dow],wf=D.rain?.8:1;
+  const vis=pois(EC.store.footfall[S.stage]*(.45+S.rep/90)*sea*dowF*wf*(S.mods.press>0?1.25:1));D.store.visitors=vis;
+  let cover=H.retail;if(cover<7){const need=Math.min(8-cover,robotH);D.robot.store=need;robotH-=need;cover+=need}
+  const cap=cover*10;// ~10 checkouts/hour per staffed hour (est)
+  const conv=EC.store.conv*qf*pf*(has('charmer')?1.1:1);let buyers=binom(vis,clamp(conv,0,.6));
+  if(buyers>cap){D.store.walk+=buyers-cap;buyers=Math.floor(cap)}
+  for(let i=0;i<buyers;i++){const n=Math.random()<.2?2:1;let k=pickSku();if(S.inv.s[k]<n){const alt=unlocked().find(x=>S.inv.s[x.i]>=n);if(alt&&Math.random()<.5)k=alt.i;else{D.store.stockout++;continue}}
+   S.inv.s[k]-=n;D.store.sales.push({k,n,t:R(.05,.95)})}
+ }
+ // ---- online demand ----
+ const ord=[];
+ if(S.ch.etsy.open>=0){const v=etsyViews(t);S.mo.traffic.etsy+=v;const c=EC.etsy.conv*qf*pf*S.mods.knock*(has('gpu')?1.1:1)*(S.mods.star?1.1:1);const n=pois(v*c);for(let i=0;i<n;i++)ord.push({ch:'etsy',k:pickSku(),day:S.day,t:R(0,1)});D.ev=v}
+ if(S.ch.shopify.open>=0){const v=shopSessions(t);S.mo.traffic.shopify+=v;const c=EC.shopify.conv*qf*pf*S.mods.knock*(has('gpu')?1.1:1);const n=pois(v*c);for(let i=0;i<n;i++)ord.push({ch:'shopify',k:pickSku(),day:S.day,t:R(0,1)});D.sv=v}
+ if(D.store.open)S.mo.traffic.store+=D.store.visitors;
+ D.online=ord;S.backlog.push(...ord);
+ // ---- packing / shipping ----
+ const packMin=EC.packMin*(has('fast')?.7:1);let packCap=Math.floor(H.ship*60/packMin);
+ const needPack=S.backlog.filter(o=>S.inv.o[o.k]>0).length;
+ if(needPack>packCap){const h=Math.min(robotH,(needPack-packCap)*packMin/60);D.robot.pack=h;robotH-=h;packCap+=Math.floor(h*60/packMin)}
+ const keep=[];for(const o of S.backlog){if(packCap>0&&S.inv.o[o.k]>0){S.inv.o[o.k]--;packCap--;D.shipped++;shipOrder(o,D);if(S.day-o.day>3){D.late++}}else if(S.day-o.day>10){D.cancel++;refundCancel(o)}else keep.push(o)}
+ S.backlog=keep;
+ // ---- customer service ----
+ D.tickets=Math.round((ord.length+D.store.sales.length*.2)*EC.supportTicketRate+D.late*.5+R(0,.6));let csCap=H.cs*60/EC.ticketMin;
+ if(D.tickets>csCap){const h=Math.min(robotH,1.5,(D.tickets-csCap)*EC.ticketMin/60);D.robot.cs=h;robotH-=h;csCap+=h*60/EC.ticketMin}
+ D.unans=Math.max(0,Math.round(D.tickets-csCap));
+ // ---- admin (books, listings, reorders) ----
+ const adm=Math.min(robotH,.5+S.staff.length*.1);D.robot.admin=adm;robotH-=adm;
+ // ---- design minimum (trait) ----
+ const dmin=Math.min(robotH,tr.design*(S.day<5?0:1));robotH-=dmin;
+ // ---- production ----
+ let makerMin=H.maker*60;const u=unlocked();let robotMade=0;
+ const want=u.map(k=>{const T0=targets(k.i);return {k,need:Math.max(0,T0.s-S.inv.s[k.i])+Math.max(0,T0.o-S.inv.o[k.i]+S.backlog.filter(o=>o.k===k.i).length)}}).filter(w=>w.need>0).sort((a,b)=>b.need/Math.max(.1,usage(b.k.i))-a.need/Math.max(.1,usage(a.k.i)));
+ const dr=defectRate();
+ for(const w of want){let n=0;const bm=buildMin(w.k);while(n<w.need&&S.kits[w.k.i]>0){if(makerMin>=bm)makerMin-=bm;else if(robotH*60>=bm){robotH-=bm/60;robotMade+=bm/60}else break;S.kits[w.k.i]--;n++;
+   if(Math.random()<dr){if(Math.random()<EC.qcCatch){D.scrap++;S.mo.scrap+=matCost(w.k);continue}else S.flags.escaped=(S.flags.escaped||0)+1}
+   D.produced[w.k.i]++;const T0=targets(w.k.i);if(S.inv.s[w.k.i]<T0.s&&S.ch.store.open>=0)S.inv.s[w.k.i]++;else S.inv.o[w.k.i]++}}
+ D.robot.make=robotMade;
+ // ---- R&D ----
+ const soc=robotH*.45;D.robot.social=soc;robotH-=soc;S.audience=(S.audience||0)*.995+soc*EC.socialPerHour*(has('viral')?1.5:1);// content marketing hours → followers (est)
+ const rdH=H.eng+dmin+robotH;D.robot.design=dmin+robotH;robotH=0;
+ const rd0=S.rd;S.rd+=(H.eng*.5+(dmin+D.robot.design-dmin)*.12)*(has('coder')?1.5:1)*(S.up.chip?1.3:1);D.rd=S.rd-rd0;
+ // ---- store revenue ----
+ let rv=0,fees=0,cogs=0;for(const s of D.store.sales){const k=S.co.skus[s.k],p=k.p*s.n;rv+=p;const tax=p*EC.salesTax.rate;S.taxDue+=tax;S.mo.taxCol+=tax;const f=Math.random()<.85?EC.pos.pct*(p+tax)+EC.pos.fixed:0;fees+=f;cogs+=matCost(k)*s.n;S.mo.units.store+=s.n;S.mo.orders.store++;S.customers+=Math.random()<.7?1:0;if(Math.random()<.25)S.emails++}
+ S.mo.rev.store+=rv;S.mo.fees.store+=fees;S.mo.cogs+=cogs;S.mo.cogsBy.store+=cogs;D.rev+=rv;
+ if(D.store.open){const ret=binom(D.store.sales.length,EC.returns.store);if(ret){const ref=ret*S.co.skus[D.store.sales[0].k].p;S.mo.refunds+=ref;S.cash-=ref;D.returns+=ret}}
+ S.cash+=rv-fees;
+ // ---- supplier deliveries ----
+ S.po=S.po.filter(p=>{if(p.eta<=S.day){S.kits[p.k]+=p.q;D.arrived.push(p);return false}return true});
+ // ---- payroll ----
+ S.mo.wages+=labor;S.mo.burden+=burden;S.cash-=labor+burden;D.labor=labor+burden;
+ // ---- ads ----
+ const adSpend=S.ads.etsy+S.ads.shopify;S.mo.ads+=adSpend;S.cash-=adSpend;
+ // ---- MCA remittance ----
+ if(S.mca){const pay=Math.min(S.mca.bal,D.rev*.15+5);S.mca.bal-=pay;S.cash-=pay;S.mo.loanOut+=pay*.77;S.mo.interest+=pay*.23;if(S.mca.bal<=1)S.mca=null}
+ // ---- reviews & rating ----
+ const revs=binom(D.shipped+D.store.sales.length,.12);// ~12% of orders leave a review (est)
+ for(let i=0;i<revs;i++){const u2=unlocked();const k=pick(u2);let r=quality(k)+R(-.6,.5)-(D.late?.6*D.late/Math.max(1,D.shipped):0)-(D.unans?.4:0)-(D.store.walk>3?.2:0);review(r)}
+ if(D.unans>3)S.rep=clamp(S.rep-.1,0,100);
+ S.rep=clamp(S.rep+(D.store.sales.length*.015+D.shipped*.01)*(1-S.rep/100)+(S.mods.press>0?.15:0)+roleCount('mkt')*.05-(S.rep>40?.02:0),0,100);
+ // ---- usage EMA ----
+ const sold=[0,0,0,0],soldO=[0,0,0,0];D.store.sales.forEach(s=>sold[s.k]+=s.n);ord.forEach(o=>soldO[o.k]++);
+ for(let k=0;k<4;k++){if(S.ch.store.open>=0&&D.store.open)S.use.s[k]=S.use.s[k]*.9+sold[k]*.1;S.use.o[k]=S.use.o[k]*.93+soldO[k]*.07}
+ // ---- decay mods ----
+ const M=S.mods;['press','viralT','knockT','etsyAlgoT','closed','breakT','editors'].forEach(x=>{if(M[x]>0)M[x]--});if(M.knockT<=0)M.knock=1;if(M.etsyAlgoT<=0)M.etsyAlgo=1;
+ S.staff.forEach(s=>{if(s.leaveT>0){s.leaveT--}});
+ // ---- record ----
+ D.stockouts=D.store.stockout+S.backlog.filter(o=>S.inv.o[o.k]<=0).length*0;S.mo.stockouts+=D.store.stockout;S.mo.walkouts+=D.store.walk;S.mo.late+=D.late;S.mo.produced+=D.produced.reduce((a,b)=>a+b,0);S.mo.defects+=D.scrap;S.mo.days++;
+ S.daily.push({d:S.day,cash:Math.round(S.cash),rev:Math.round(D.rev),oe:ord.filter(o=>o.ch==='etsy').length,os:ord.filter(o=>o.ch==='shopify').length,ss:D.store.sales.length,inv:invTotal(),bl:S.backlog.length,rt:S.rating});if(S.daily.length>400)S.daily.shift();
+ S.lifetime.rev+=D.rev;S.peakCash=Math.max(S.peakCash,S.cash);
+ return D;
+}
+function review(r){r=clamp(r,1,5);S.rating=S.reviews?S.rating*.97+r*.03:r;S.reviews++}
+function shipOrder(o,D){const k=S.co.skus[o.k],p=k.p,w=k.w,lab=labelCost(w),pk=packCost(w),chg=p>=EC.freeShipOver?0:lab,tax=EC.salesTax.rate;let fee=0;
+ if(o.ch==='etsy'){const E=EC.etsy;fee=E.listingFee+E.txnPct*(p+chg)+E.payPct*(p+chg)*(1+tax)+E.payFixed+(Math.random()<E.offsiteShare?Math.min(E.offsiteCap,etsyOffsitePct()*(p+chg)):0)}
+ else{const P=EC.shopify.plans[S.ch.shopify.plan||0];const inState=Math.random()<EC.salesTax.shopifyInStateShare;const tx=inState?p*tax:0;if(tx){S.taxDue+=tx;S.mo.taxCol+=tx}fee=P.pct*(p+chg+tx)+P.fixed;S.emails+=Math.random()<.6?1:0}
+ const M=S.mo;M.rev[o.ch]+=p;M.shipInc+=chg;M.orders[o.ch]++;M.units[o.ch]++;M.fees[o.ch]+=fee;M.labels+=lab;M.pack+=pk;M.cogs+=matCost(k);M.cogsBy[o.ch]+=matCost(k);M.labelsBy[o.ch]+=lab-chg;M.packBy[o.ch]+=pk;
+ S.cash+=p+chg-fee-lab-pk;D.rev+=p;S.customers++;S.lifetime.orders++;
+ // returns & chargebacks (resolved immediately, simplified)
+ const esc=S.flags.escaped>0?(S.flags.escaped--,.5):0;
+ if(Math.random()<EC.returns.online+esc){M.refunds+=p;M.returns++;S.cash-=p;D.returns++;if(esc)review(1.5)}
+ if(Math.random()<EC.chargeback.rate){M.refunds+=p;M.other+=EC.chargeback.fee;M.cbs++;S.cash-=p+EC.chargeback.fee;D.cbs++}
+}
+function refundCancel(o){review(1.2);S.mo.late++}
+// ---------- monthly close ----------
+function monthCosts(){// fixed monthly costs charged on the 1st
+ const st=stageInfo(),M=S.mo;let rent=0,util=0;
+ if(S.stage>0){rent=(st.retailSf*(EC.retailRentSfYr+EC.nnnSfYr)+st.flexSf*(EC.flexRentSfYr+EC.nnnSfYr))/12*S.mods.rentEsc;util=st.retailSf*EC.utilRetailSfMo+st.flexSf*EC.utilFlexSfMo}else util=EC.homeUtilMo;
+ if(has('solar'))util*=.7;
+ const ins=S.insured?(EC.insurance.glMo+EC.insurance.plMo[S.co.risk])*S.mods.ins*(1+S.stage*.5):0;
+ let subs=0;if(S.ch.shopify.open>=0)subs+=EC.shopify.plans[S.ch.shopify.plan].mo+EC.shopify.appsMo+S.mods.apps;if(S.flags.qc)subs+=0;
+ M.rent+=rent;M.util+=util;M.ins+=ins;M.subs+=subs;S.cash-=rent+util+ins+subs;
+ // loans
+ S.loans.forEach(l=>{if(l.bal<=0)return;const int=l.bal*l.apr/12,pr=Math.min(l.bal,l.pay-int);l.bal-=pr;M.interest+=int;M.loanOut+=pr;S.cash-=int+pr});S.loans=S.loans.filter(l=>l.bal>1);
+ if(S.cc.bal>0){const int=S.cc.bal*EC.funding.ccApr/12;M.interest+=int;S.cash-=int}
+ // Florida LLC annual report each May (after first year)
+ if(dateOf().getMonth()===4&&S.day>120){M.lic+=EC.licenses.annualReport;S.cash-=EC.licenses.annualReport}
+ if(dateOf().getMonth()===9&&S.day>200){M.lic+=EC.licenses.btrYr;S.cash-=EC.licenses.btrYr}
+}
+function pnl(m){const rev=m.rev.etsy+m.rev.shopify+m.rev.store+m.rev.wholesale;const net_rev=rev-m.refunds;const shipNet=m.labels-m.shipInc;
+ const cogs=m.cogs+m.pack+shipNet+m.scrap;const gm=net_rev-cogs;const fees=m.fees.etsy+m.fees.shopify+m.fees.store+m.subs;const labor=m.wages+m.burden;
+ const opex=fees+labor+m.rent+m.util+m.ins+m.lic+m.ads+m.other;const ebit=gm-opex;const net=ebit-m.interest;return {rev,net_rev,cogs,gm,gmPct:net_rev?gm/net_rev:0,fees,labor,opex,ebit,net,shipNet}}
+function closeMonth(){const m=S.mo;const P=pnl(m);
+ // income tax set-aside: 25% of positive YTD net not yet reserved (simplified; paid as estimates)
+ const yr=m.k.slice(0,4),ytd=S.months.filter(x=>x.k.startsWith(yr));const ytdNet=ytd.reduce((a,x)=>a+x.P.net,0)+P.net,ytdTax=ytd.reduce((a,x)=>a+x.incomeTax,0);
+ const tax=Math.max(0,ytdNet*EC.incomeTax.setAside-ytdTax);m.incomeTax=tax;S.cash-=tax;P.afterTax=P.net-tax;
+ // sales tax remitted by the 20th (we remit at month close)
+ const owe=S.taxDue;if(S.cash>owe||S.cash+S.cc.limit-S.cc.bal>owe){m.taxRem=owe;S.cash-=owe;S.taxDue=0}else{S.taxLate+=owe;m.taxRem=0;log(`⚠️ Couldn't remit ${fmt(owe)} sales tax on time. That's the state's money, not ours — very bad.`,'r')}
+ m.cash1=S.cash;m.P=P;m.ccBal=S.cc.bal;m.debt=debt();m.staff=S.staff.length;m.inv=Math.round(invValue());m.rating=S.rating;S.months.push(m);
+ const t=dateOf();S.mo=newMonth(mkey(t));S.mo.cash0=S.cash;monthCosts();
+ tiersCheck(m);return m}
+const ttm=()=>S.months.slice(-12);
+const ttmRev=()=>ttm().reduce((a,m)=>a+m.P.rev,0);
+const ttmNet=()=>ttm().reduce((a,m)=>a+m.P.net,0);
+const debt=()=>S.cc.bal+S.loans.reduce((a,l)=>a+l.bal,0)+(S.mca?S.mca.bal:0);
+const invValue=()=>S.co.skus.reduce((a,k)=>a+(S.inv.s[k.i]+S.inv.o[k.i]+S.kits[k.i])*matCost(k),0);
+function monthlyFixed(){const st=stageInfo();let f=0;if(S.stage>0)f+=(st.retailSf*(EC.retailRentSfYr+EC.nnnSfYr)+st.flexSf*(EC.flexRentSfYr+EC.nnnSfYr))/12*S.mods.rentEsc+st.retailSf*EC.utilRetailSfMo+st.flexSf*EC.utilFlexSfMo;else f+=EC.homeUtilMo;
+ f+=EC.insurance.glMo+EC.insurance.plMo[S.co.risk];if(S.ch.shopify.open>=0)f+=EC.shopify.plans[S.ch.shopify.plan].mo+EC.shopify.appsMo+S.mods.apps;
+ f+=S.staff.reduce((a,s)=>a+hourly(s.role)*(1+burdenRate(s.role)+.02)*EC.hoursPerDay*(ROLES[s.role].days===6?26:21.7),0);
+ f+=S.loans.reduce((a,l)=>a+l.pay,0);return f}
+function breakEven(){// monthly revenue needed: fixed / contribution margin %
+ const ms=S.months.slice(-3);if(!ms.length)return null;const rev=ms.reduce((a,m)=>a+m.P.net_rev,0);if(rev<=0)return null;
+ const varC=ms.reduce((a,m)=>a+m.P.cogs+m.fees.etsy+m.fees.shopify+m.fees.store,0);const cm=1-varC/rev;if(cm<=0)return null;return monthlyFixed()/cm}
+function tiersCheck(m){const t=S.tiers,P=m.P,rv=ttmRev();
+ const hit=(id,txt)=>{if(t[id])return;t[id]=S.day;moment(TIER_ICON[id]+' '+txt);milestone(txt)};
+ if(P.net>0)hit('profit',`First profitable month (${mname(m.k)}: ${fmt(P.net)} net)`);
+ if(P.net>=2500)hit('ramen',`Ramen profitable — ${fmt(P.net)} net in ${mname(m.k)}`);
+ if(P.rev>=10000)hit('k10',`$10k revenue month (${fmt(P.rev)})`);
+ if(rv>=100000)hit('k100',`$100k trailing-12-month revenue`);
+ if(rv>=1e6)hit('m1',`$1M trailing-12-month revenue!`);
+ if(rv>=S.peakTTM)S.peakTTM=rv;
+ if(rv>=1e6)S.flags.etsy10k=1;if(S.months.slice(-12).reduce((a,x)=>a+x.rev.etsy,0)>=10000)S.flags.etsy10k=1;
+}
+// ---------- planner (the robot's brain) ----------
+const dec=k=>{S.decisions[k]=(S.decisions[k]||0)+1};
+function liquidity(){return S.cash+(S.cc.limit-S.cc.bal)}
+function burnMo(){const ms=S.months.slice(-2);const avg=ms.length?ms.reduce((a,m)=>a+m.P.net,0)/ms.length:-monthlyFixed();return avg}
+function runwayMo(){const b=burnMo();return b>=0?99:liquidity()/(-b)}
+function spend(amt,why){// pay from cash, draw on credit card if needed
+ S.cash-=amt;if(S.cash<0){const draw=Math.min(-S.cash+200,S.cc.limit-S.cc.bal);if(draw>0){S.cc.bal+=draw;S.cash+=draw;if(!S.flags.ccUsed){S.flags.ccUsed=1;think(`Cash dipped below zero. Swiping the business credit card (${(EC.funding.ccApr*100).toFixed(1)}% APR). Ouch.`,'r')}}}}
+function payCard(){if(S.cc.bal>0){const spare=S.cash-Math.max(3000,monthlyFixed()*1.2);if(spare>100){const p=Math.min(spare,S.cc.bal);S.cc.bal-=p;S.cash-=p}}}
+function planner(D0){
+ const t=dateOf(),tr=trait(),u=unlocked();
+ // 1) reorder materials using reorder point = usage × (lead time + safety days)
+ for(const k of u){const use=Math.max(.15,usage(k.i)),inbound=S.po.filter(p=>p.k===k.i).reduce((a,p)=>a+p.q,0),avgLead=(EC.leadDays[0]+EC.leadDays[1])/2+S.mods.leadAdd;
+  const rop=Math.ceil(use*(avgLead+4)+S.backlog.filter(o=>o.k===k.i).length);const pos=S.kits[k.i]+inbound;
+  if(pos<rop){let q=Math.max(8,Math.ceil(use*30));const c=matCost(k);if(q*c>liquidity()*.4)q=Math.max(3,Math.floor(liquidity()*.4/c));if(q<3||liquidity()<q*c)continue;
+   const L=leadDays();S.po.push({k:k.i,q,eta:S.day+L,cost:q*c});S.mo.matBuy+=q*c;spend(q*c);dec('reorder');
+   if(Math.random()<.35||S.day<3)think(L>9?`${k.n} kits: ${pos} on hand+inbound vs reorder point ${rop}. Ordering ${q} (${fmt(q*c)}); supplier says ${L} days. Safety stock it is.`:`Reorder point hit for ${k.n} (${pos} ≤ ${rop}). Ordering ${q} kits for ${fmt(q*c)}, ETA ${L} days.`)}}
+ // 2) weekly review on Mondays
+ if(t.getDay()===1&&S.day>0)weekly();
+ // 3) cash crunch → financing or layoffs or closure
+ if(S.cash<0||liquidity()<1500)crunch();
+ payCard();
+}
+function avgDaily(f,n=14){const a=S.daily.slice(-n);return a.length?a.reduce((s,d)=>s+f(d),0)/a.length:0}
+function lastDays(n){return S.dh.slice(-n)}
+function weekly(){const tr=trait(),H=lastDays(14);if(!H.length)return;
+ const avg=f=>H.reduce((a,d)=>a+f(d),0)/H.length;
+ const rStore=avg(d=>d.robot.store),rPack=avg(d=>d.robot.pack),rMake=avg(d=>d.robot.make),rCS=avg(d=>d.robot.cs),bl=avg(d=>d.bl),unans=avg(d=>d.unans),walk=avg(d=>d.walk),so=avg(d=>d.so),rdes=avg(d=>d.robot.design);
+ const runway=runwayMo(),mf=monthlyFixed(),gm=S.months.length?S.months[S.months.length-1].P.gm:0;
+ // channels: open Shopify once Etsy proves demand (or cash is comfortable)
+ if(S.ch.shopify.open<0&&((S.day>=35&&S.mo.orders.etsy+(S.months.length?S.months[S.months.length-1].orders.etsy:0)>=12)||(S.cash>12000&&S.day>20))){S.ch.shopify.open=S.day;dec('open shopify');moment('🛍️ Opened Shopify store (Basic, $39/mo)');milestone('Shopify store live');think(`Etsy proved people want ${S.co.unit}. Opening our own Shopify site: $${EC.shopify.plans[0].mo}/mo + ~$${EC.shopify.appsMo}/mo in apps, 2.9%+30¢ per order, but no 6.5% marketplace cut and we own the customer list.`,'g');news(`${S.co.name} launches its own web store`)}
+ if(S.ch.shopify.open>=0&&S.ch.shopify.plan===0&&S.mo.rev.shopify>30000){S.ch.shopify.plan=1;think('Shopify sales over $33k/mo — Grow plan\'s lower card rate now pays for itself.','g');dec('shopify grow')}
+ // ads: spend only where marginal ROAS > 1 (contribution per click vs cost per click)
+ const ue=u=>unitEcon(u,'shopify');const u0=unlocked();const avgNet=u0.reduce((a,k)=>a+ue(k).net,0)/u0.length;
+ const ltv=1.4;// repeat purchase multiplier (est)
+ const perClick=EC.shopify.conv*qualF()*priceF()*avgNet*ltv;
+ if(S.ch.shopify.open>=0){const want=perClick>EC.shopify.cpc*1.1&&runway>tr.buf?clamp(S.ads.shopify+5*tr.ads,0,Math.min(400,liquidity()/40)):Math.max(0,S.ads.shopify-10);
+  if(Math.abs(want-S.ads.shopify)>2){think(want>S.ads.shopify?`Each ad click earns ~${fmt(perClick)} vs ${fmt(EC.shopify.cpc)} CPC. Raising Shopify ads to ${fmt(want)}/day.`:`Paid clicks return ${fmt(perClick)} each but cost ${fmt(EC.shopify.cpc)}. Cutting ads to ${fmt(want)}/day.`,'t');dec('ads')}S.ads.shopify=Math.round(want)}
+ const etsyNet=u0.reduce((a,k)=>a+unitEcon(k,'etsy').net,0)/u0.length,perE=EC.etsy.conv*qualF()*priceF()*etsyNet;
+ S.ads.etsy=perE>.45*1.2&&runway>tr.buf?Math.round(clamp(2*tr.ads+S.months.length,1,25)):0;
+ // stage moves: store when online gross margin covers a chunk of the new rent, cash+loan covers buildout + 4 months
+ const next=EC.stages[S.stage+1];
+ if(next&&S.day-(S.flags.stageDay||0)>90){const nf=(next.retailSf*(EC.retailRentSfYr+EC.nnnSfYr)+next.flexSf*(EC.flexRentSfYr+EC.nnnSfYr))/12+next.retailSf*EC.utilRetailSfMo+next.flexSf*EC.utilFlexSfMo;
+  const recent=S.months.slice(-3),gm3=recent.length===3?recent.reduce((a,m)=>a+m.P.gm,0)/3:0,net3=recent.length===3?recent.reduce((a,m)=>a+m.P.net,0)/3:-1;
+  const need=next.buildout+nf*4;const reqGM=[1,1.2,1.5][S.stage]*nf*(1/ tr.hire);
+  if(gm3>reqGM&&net3>0&&(S.cash>need||(S.cash+loanCapacity()>need&&tr.loan>.7))){if(S.cash<need&&!getLoan(need-S.cash+5000,'expansion'))return;
+   S.cash-=next.buildout;S.mo.capex+=next.buildout;S.stage++;S.flags.stageDay=S.day;if(S.stage===1){S.ch.store.open=S.day}
+   dec('expand');moment(`🏬 Moved into: ${next.n} (${next.retailSf+next.flexSf} sq ft, ~${fmt(nf)}/mo)`);milestone(next.n);setLevel(S.stage);
+   think(`Gross margin is ${fmt(gm3)}/mo — enough to carry ${fmt(nf)}/mo of rent+utilities. Signing the lease. Buildout: ${fmt(next.buildout)}.`,'g');news(`${S.co.name} opens ${next.n.toLowerCase()} in Melbourne`);S.flags.visualNext=1}}
+ // hiring by bottleneck (robot has ~10h/day; hire when a role eats its time for weeks)
+ const can=role=>roleCount(role)<ROLE_CAP[role][S.stage];
+ const cost=role=>hourly(role)*(1+burdenRate(role)+.03)*EC.hoursPerDay*(ROLES[role].days===6?26:21.7);
+ const afford=role=>runway>tr.buf+1&&(burnMo()>-cost(role)*.4||S.cash>cost(role)*6)&&S.cash>cost(role)*1.5;
+ const cands=[];
+ if(S.ch.store.open>=0&&rStore>5)cands.push(['retail',rStore*1.2,`I've spent ${rStore.toFixed(1)}h/day behind the counter. Hiring a retail associate at ${fmt(hourly('retail'))}/hr so I can build.`]);
+ if(walk>3)cands.push(['retail',walk,`${walk.toFixed(1)} shoppers/day walk out of the checkout line. Another retail associate.`]);
+ if(rPack>2.5||bl>Math.max(6,avgDaily(d=>d.oe+d.os)*3))cands.push(['ship',rPack+bl/4,`Packing eats ${rPack.toFixed(1)}h/day and ${Math.round(bl)} orders are waiting. Hiring shipping help.`]);
+ if(rMake>3||so>2)cands.push(['maker',rMake+so,`Production is ${rMake.toFixed(1)}h/day of my time and we still stock out ${so.toFixed(1)}×/day. Hiring a maker at ${fmt(hourly('maker'))}/hr.`]);
+ if(unans>2||rCS>1.2)cands.push(['cs',unans+rCS,`${unans.toFixed(1)} support tickets/day go unanswered. Reviews are suffering. Hiring customer service.`]);
+ if(S.stage>=2&&ttmRev()>300000&&can('eng'))cands.push(['eng',4,`TTM revenue ${fmt(ttmRev())}. A product engineer (${fmt(EC.wages.eng.salary)}/yr) can cut build time and defects.`]);
+ if(S.stage>=2&&ttmRev()>400000&&can('mkt'))cands.push(['mkt',2.5,'Hiring marketing to grow owned traffic (email, social) instead of renting clicks.']);
+ cands.sort((a,b)=>b[1]-a[1]);
+ for(const [role,sc,why] of cands){if(!can(role)||S.day-(S.flags['laid'+role]||-999)<75)continue;if(!afford(role)){if(!S.flags['nohire'+role]||S.day-S.flags['nohire'+role]>40){S.flags['nohire'+role]=S.day;think(`I need a ${ROLES[role].n.toLowerCase()} (${why.split('.')[0].toLowerCase()}), but at ${fmt(cost(role))}/mo fully loaded we can't afford it yet. Working longer instead.`,'t')}continue}
+  hire(role,why);break}
+ // layoffs if runway collapses
+ if(runway<1.2&&S.staff.length&&burnMo()<0&&S.day-S.staff[S.staff.length-1].hired>45){const s=S.staff[S.staff.length-1];S.flags['laid'+s.role]=S.day;fireStaff(s,`Runway is ${runway.toFixed(1)} months. Laying off ${s.name} (${ROLES[s.role].n}). Worst part of the job.`)}
+ // robot upgrades when rich
+ for(const up of UPGRADES)if(!S.up[up.id]&&S.cash>up.cost*8&&runway>6){S.up[up.id]=1;spend(up.cost);S.mo.capex+=up.cost;moment(`🔧 Upgrade: ${up.n}`,false);think(`Treating myself: ${up.n} (${fmt(up.cost)}) — ${up.d}.`,'g');break}
+ // morale: social trait / profitable → small perks
+ if(S.staff.length>=3&&!S.flags.perks&&burnMo()>2000){S.flags.perks=1;think('Profitable enough for team perks: free coffee and a real break room. Morale matters.','g')}
+ if(S.staff.length&&avg(d=>d.mor)<35&&S.cash>5000){S.staff.forEach(s=>s.morale=clamp(s.morale+20,0,100));spend(150*S.staff.length);S.mo.other+=150*S.staff.length;think('Team looks burnt out. Pizza Friday and a half-day off. Cheaper than turnover.','t');dec('morale')}
+}
+function hire(role,why){const nm=pick(HUMANS.filter(n=>!S.staff.some(s=>s.name===n)))||'Alex';
+ const s={role,name:nm,morale:85,hired:S.day,look:LOOKS()};S.staff.push(s);S.mo.other+=200;S.cash-=200;// recruiting/onboarding (est)
+ dec('hire '+role);think(why,'g');if(!S.firstHire){S.firstHire=nm;moment(`🤝 First hire: ${nm} (${ROLES[role].n})`);milestone('First hire')}else moment(`${ROLES[role].e} Hired ${nm} — ${ROLES[role].n}`,false);if(!HEADLESS)addNpc(s)}
+function fireStaff(s,why){S.staff=S.staff.filter(x=>x!==s);think(why,'r');dec('layoff');S.staff.forEach(x=>x.morale=clamp(x.morale-12,0,100));if(!HEADLESS){const i=npcs.findIndex(n=>n.ref===s);if(i>=0)npcs.splice(i,1)}}
+function loanCapacity(){let c=0;const mo=S.months.length,rv=S.months.slice(-3).reduce((a,m)=>a+m.P.rev,0)/3;
+ if(mo>=6&&rv>2500&&!S.loans.some(l=>l.k==='micro'))c+=EC.funding.micro.max;if(mo>=12&&ttmRev()>200000&&!S.loans.some(l=>l.k==='7a'))c+=Math.min(EC.funding.sba7a.max,ttmRev()*.4);return c}
+function amort(P,apr,yrs){const r=apr/12,n=yrs*12;return P*r/(1-Math.pow(1+r,-n))}
+function getLoan(amt,why){const mo=S.months.length,rv3=S.months.slice(-3).reduce((a,m)=>a+m.P.rev,0)/3,net3=S.months.slice(-3).reduce((a,m)=>a+m.P.net,0)/3;
+ // SBA 7(a): 1+ years, real revenue, positive-ish cash flow
+ if(mo>=12&&ttmRev()>200000&&!S.loans.some(l=>l.k==='7a')){const ok=net3>-2000&&S.rating>=4&&Math.random()<.6*trait().loan;const A=Math.round(Math.min(EC.funding.sba7a.max,Math.max(amt,ttmRev()*.25))/1000)*1000;
+  if(ok){const apr=R(...EC.funding.sba7a.apr);S.loans.push({k:'7a',n:'SBA 7(a)',bal:A,apr,pay:amort(A,apr,EC.funding.sba7a.years)});S.cash+=A;S.mo.loanIn+=A;moment(`🏦 SBA 7(a) loan approved: ${fmt(A)} at ${(apr*100).toFixed(2)}%`);think(`SBA 7(a) approved for ${why}: ${fmt(A)} at ${(apr*100).toFixed(2)}%, ${EC.funding.sba7a.years}-year term.`,'g');return true}
+  think(`Bank declined our SBA 7(a) application. "${pick(['Come back with two years of tax returns.','Your debt service coverage is thin.','We need more collateral.'])}"`,'r')}
+ if(mo>=6&&rv3>2500&&!S.loans.some(l=>l.k==='micro')){const ok=S.rating>=3.8&&Math.random()<.65*trait().loan;const A=Math.round(Math.min(EC.funding.micro.max,Math.max(amt,8000))/1000)*1000;
+  if(ok){const apr=R(...EC.funding.micro.apr);S.loans.push({k:'micro',n:'SBA Microloan',bal:A,apr,pay:amort(A,apr,EC.funding.micro.years)});S.cash+=A;S.mo.loanIn+=A;moment(`🏦 SBA microloan: ${fmt(A)} at ${(apr*100).toFixed(1)}%`);think(`Microloan approved (${why}): ${fmt(A)} at ${(apr*100).toFixed(1)}% over ${EC.funding.micro.years} years. ${VERA} at the lender said "I'll believe it when I see the bank statements." She saw them.`,'g');return true}
+  think(`Microloan lender passed. ${VERA}: "A robot with ${S.months.length} months of history? Pass."`,'r')}
+ return false}
+function crunch(){const tr=trait();
+ if(S.cash<0){spend(0)}
+ if(S.cash>=0&&liquidity()>1500)return;
+ if(!S.ff&&S.day>20){S.ff=true;if(Math.random()<.7){const A=Math.round(R(...EC.funding.ff)/1000)*1000;S.cash+=A;S.mo.ffIn+=A;S.loans.push({k:'ff',n:'Friends & family note',bal:A,apr:0,pay:A/36});moment(`👪 Friends & family loan: ${fmt(A)} (0%, 3 years)`);think(`Called the robot's "family" (a toaster and two Roombas). They lent ${fmt(A)} at 0%. Must not lose this.`,'y');dec('friends & family');return}
+  think('Asked friends & family for a loan. They said they "need to think about it" (no).','r')}
+ if(getLoan(Math.max(5000,monthlyFixed()*3),'working capital'))return;
+ if(!S.mca&&!S.flags.mcaNo&&S.months.length>=3&&S.months.slice(-1)[0].P.rev>3000){const A=Math.round(S.months.slice(-1)[0].P.rev*1.2/1000)*1000;if(trait().loan>1||Math.random()<.4){S.mca={bal:A*1.3};S.cash+=A;S.mo.loanIn+=A;moment(`🦅 Took a merchant cash advance from ${VERA}: ${fmt(A)} for ${fmt(A*1.3)}`);think(`${VERA}'s "merchant cash advance": ${fmt(A)} now, repay ${fmt(A*1.3)} as 15% of daily sales. Effective APR is horrifying. We're desperate.`,'r');dec('MCA');return}S.flags.mcaNo=1}
+ if(S.cash<0&&S.cc.bal>=S.cc.limit-1){// lay off everyone, then close
+  if(S.staff.length){fireStaff(S.staff[S.staff.length-1],'Out of cash and credit. Laying off staff to survive.');S.cash+=0;return}
+  if(S.cash<-1500)endGame(S.day<365?'closed1':'closed',`Out of cash, credit card maxed at ${fmt(S.cc.limit)}, no lender would say yes. ${S.co.name} closes its doors after ${Math.round(S.day/30.4)} months.`)}}
+function monthlyDecisions(m){const P=m.P,tr=trait();
+ // acquisition offers once there is real, transferable profit (SDE ≈ net profit + interest; robot founder is unpaid)
+ const sde=ttmNet()+ttm().reduce((a,x)=>a+x.interest,0),onShare=ttm().reduce((a,x)=>a+x.rev.shopify+x.rev.store,0)/Math.max(1,ttmRev());
+ if(S.months.length>=18&&sde>50000&&Math.random()<.04){const M=onShare>.5?EC.exit.shopifyMult:EC.exit.etsyMult;const mult=R(...M),offer=Math.round(sde*mult/1000)*1000;
+  const accept=offer>=250000*(tr.id==='reckless'?.6:1)&&(Math.random()<.4||S.day>900);
+  moment(`💼 Acquisition offer: ${fmt(offer)} (${mult.toFixed(1)}× SDE)`,true);
+  think(accept?`A buyer offers ${fmt(offer)} — ${mult.toFixed(1)}× our ${fmt(sde)} SDE. That's life-changing for a ${S.co.unit} shop. Accepting.`:`Offer: ${fmt(offer)} (${mult.toFixed(1)}× SDE). Not enough — we're still growing.`,accept?'g':'t');
+  if(accept){S.flags.offer=offer;endGame('acquired',`Sold ${S.co.name} for ${fmt(offer)} (${mult.toFixed(1)}× trailing SDE of ${fmt(sde)}).`);return}}
+ // voluntary closure: most small businesses close because they don't pay the owner, not because of bankruptcy
+ if(S.months.length>=9){const tn=ttmNet(),tr12=ttmRev(),q=S.months.slice(-3).reduce((a,x)=>a+x.P.net,0);
+  if(tn<0&&q<0&&tr12<EC.quitBelowTTM&&Math.random()<EC.quitProb*(tr.id==='cautious'?1.5:tr.id==='reckless'?.6:1)){endGame(S.day<365?'closed1':'closed',`After ${S.months.length} months the shop has lost ${fmt(Math.round(-tn))} over the last year on ${fmt(Math.round(tr12))} of sales. ${S.co.robot} winds it down, pays every supplier, and closes ${S.co.name}.`);return}}
+ if(ttmRev()>=EC.tiers[6].v&&Math.random()<.05){endGame('ipo',`TTM revenue ${fmt(ttmRev())}. Against all odds a maker brand rings the bell. Legendary.`);return}
+ // seed round (rare): only for fast-growing, Shopify-heavy brands
+ if(!S.seedDone&&S.months.length>=6&&onShare>.5&&ttmRev()>300000&&Math.random()<.08){S.seedDone=true;const A=EC.funding.seed.amt;S.cash+=A;S.mo.eqIn+=A;S.equity=A/EC.funding.seed.post;moment(`💰 Pre-seed SAFE: ${fmt(A)} at ${fmt(EC.funding.seed.post)} cap`);think(`An angel actually wrote a check: ${fmt(A)} SAFE at a ${fmt(EC.funding.seed.post)} cap. Rare for a product shop. Don't waste it.`,'g')}
+ if(P.net<0&&S.months.length>=3&&S.months.slice(-3).every(x=>x.P.net<0))think(`Third straight loss month (${fmt(P.net)}). Break-even needs ~${breakEven()?fmt(breakEven()):'?'}/mo in revenue; we did ${fmt(P.rev)}.`,'r');
+}
+// ---------- events (realistic, auto-resolved by the robot) ----------
+const chain=(id,days)=>S.chain.push({id,day:S.day+days});
+const lowCash=()=>runwayMo()<3;
+const mo=()=>dateOf().getMonth();
+const someone=()=>S.staff.length?pick(S.staff):null;
+const EVENTS=[
+ {id:'hike',w:()=>S.day-(S.flags.hikeD||-999)>150?1:0,t:()=>(S.flags.hikeD=S.day,`Supplier email: "Due to tariffs and resin costs, prices on ${S.co.unit} materials rise ${S.f1=RI(8,20)}% next order."`),ch:[
+  {l:'Accept and pass half of it on in prices',s:()=>1.25,f:()=>{S.mods.mat=Math.min(1.45,S.mods.mat*(1+S.f1/100));S.co.skus.forEach(k=>k.p=Math.round(k.p*(1+S.f1/200)));return `Materials +${S.f1}%; retail prices +${(S.f1/2).toFixed(0)}% to protect margin.`}},
+  {l:'Absorb it',s:()=>.8,f:()=>{S.mods.mat=Math.min(1.45,S.mods.mat*(1+S.f1/100));return `Materials now +${S.f1}%. Margins thinner.`}},
+  {l:'Switch to a cheaper supplier (+5 days lead time)',s:()=>1.1+(trait().id==='cautious'?-.4:0),f:()=>{S.mods.mat=Math.min(1.45,S.mods.mat*(1+S.f1/200));S.mods.leadAdd=Math.min(8,S.mods.leadAdd+4);return 'New supplier: half the hike, but slower. Raising safety stock.'}},
+  {l:'Pre-buy 60 days at the old price',s:()=>S.cash>3000?1.2:0,f:()=>{let c=0;unlocked().forEach(k=>{const q=Math.ceil(usage(k.i)*60);c+=q*matCost(k);S.po.push({k:k.i,q,eta:S.day+6,cost:q*matCost(k)})});S.mo.matBuy+=c;spend(c);S.mods.mat=Math.min(1.45,S.mods.mat*(1+S.f1/100));return `Pre-bought ${fmt(c)} of materials. Cash tied up in inventory, but cheaper.`}}]},
+ {id:'delay',w:()=>S.po.length?1.2:0,t:()=>'Supplier: "Container stuck at the Port of Savannah. Your order slips 7–10 days."',ch:[
+  {l:'Wait it out',s:()=>1,f:()=>{S.po.forEach(p=>p.eta+=RI(7,10));return 'Orders delayed. Expect stockouts if safety stock is thin.'}},
+  {l:'Pay $300 for air freight on the next PO',s:()=>S.cash>2000?1.3:0,f:()=>{if(S.po[0])S.po[0].eta+=1;S.po.slice(1).forEach(p=>p.eta+=8);spend(300);S.mo.other+=300;return 'Air freight: first order nearly on time; the rest late.'}}]},
+ {id:'algo',w:()=>S.ch.etsy.open>=0&&S.day>40?1:0,big:1,t:()=>`Etsy search algorithm update. Sellers forums are on fire. Our views just moved ${S.f1=Math.random()<.65?'down ~35%':'UP ~30%'}.`,ch:[
+  {l:'Ride it out, refresh listing photos & tags',s:()=>1,f:()=>{S.mods.etsyAlgo=S.f1.startsWith('d')?.65:1.3;S.mods.etsyAlgoT=RI(21,45);return S.f1.startsWith('d')?'Lesson: never rely on one platform.':'Free traffic! Riding the wave.'}},
+  {l:'Push Shopify + email harder to diversify',s:()=>S.ch.shopify.open>=0&&S.f1.startsWith('d')?1.4:0,f:()=>{S.mods.etsyAlgo=.65;S.mods.etsyAlgoT=RI(21,45);S.ads.shopify+=10;S.emails+=40;return 'Shifting traffic to our own site.'}}]},
+ {id:'apps',w:()=>S.ch.shopify.open>=0?.8:0,t:()=>`Two Shopify apps raised prices (reviews widget and shipping labels): +$${S.f1=RI(20,45)}/mo.`,ch:[
+  {l:'Pay it',s:()=>1,f:()=>{S.mods.apps+=S.f1;return `Shopify app bill now ~$${EC.shopify.appsMo+S.mods.apps}/mo.`}},
+  {l:'Cancel the reviews app (lose some conversion)',s:()=>trait().id==='cautious'?1.4:.9,f:()=>{S.mods.apps+=S.f1/3;review(4);return 'Cut an app. Slightly uglier product pages.'}}]},
+ {id:'audit',w:()=>S.months.length>4?(S.taxLate>0?3:.5):0,big:1,t:()=>'📬 Florida Department of Revenue: sales and use tax audit notice for the last 3 years of returns.',ch:[
+  {l:'Hire a CPA ($1,200)',s:()=>1.2,f:()=>{spend(1200);S.mo.other+=1200;const pen=S.taxLate*.15;spend(S.taxLate+pen);S.mo.other+=pen;const was=S.taxLate;S.taxLate=0;return was?`Paid ${fmt(was)} overdue tax + ${fmt(pen)} penalties/interest. Ugh.`:'Books were clean. The auditor almost smiled.'}},
+  {l:'Handle it myself',s:()=>S.taxLate?.4:1,f:()=>{const pen=S.taxLate*.25;spend(S.taxLate+pen+100);S.mo.other+=pen+100;const was=S.taxLate;S.taxLate=0;return was?`Paid ${fmt(was)} + ${fmt(pen)} penalties. Should've hired the CPA.`:'Spent 30 hours with an auditor. Passed.'}}]},
+ {id:'liab',w:()=>S.lifetime.orders>200?({low:.3,med:.6,high:1.1}[S.co.risk]):0,big:1,t:()=>`⚖️ Product liability claim: a customer says a ${pick(unlocked()).n} ${S.co.risk==='high'?'caused an injury':'damaged their property'}. Demand letter: ${fmt(S.f1=RI(8,60)*1000)}.`,ch:[
+  {l:'Tender to insurance (pay deductible)',s:()=>S.insured?2:0,f:()=>{spend(1000);S.mo.other+=1000;S.mods.ins*=1.2;return 'Insurer handled it. $1,000 deductible, premium +20% at renewal. This is why we insure.'}},
+  {l:'Settle out of pocket',s:()=>S.insured?0:1,f:()=>{const c=S.f1*.5;spend(c);S.mo.other+=c;return `Settled for ${fmt(c)}. No insurance. Painful.`}},
+  {l:'Fight it in court',s:()=>S.insured?0:.8,f:()=>{spend(5000);S.mo.other+=5000;if(Math.random()<.5)return 'Won. Lawyer bill: $5,000.';spend(S.f1);S.mo.other+=S.f1;return `Lost. ${fmt(S.f1+5000)} total.`}}]},
+ {id:'press',w:()=>S.lifetime.orders>40?.8:0,big:1,t:()=>`📰 ${TESS} from the ${PAPER} wants to feature "the robot who runs a ${S.co.unit} business."`,ch:[
+  {l:'Do the interview',s:()=>2,f:()=>{S.mods.press=10;S.rep=clamp(S.rep+12,0,100);S.emails+=60;news(`${PAPER}: "${S.co.robot} the robot is building the Space Coast's quirkiest ${S.co.unit} brand"`);chain('pressFollow',RI(20,40));return 'Front of the business section! Traffic up for ~10 days.'}}]},
+ {id:'pressFollow',chain:1,w:()=>0,t:()=>`${TESS} again: "Follow-up piece — is the robot paying its humans fairly?"`,ch:[
+  {l:'Open the books on wages',s:()=>S.staff.length?1.5:1,f:()=>{S.rep=clamp(S.rep+5,0,100);return `We pay ${fmt(S.staff.length?hourly(S.staff[0].role):minWage())}/hr+. Story: "Robot pays above minimum wage." Nice.`}},
+  {l:'Decline to comment',s:()=>.5,f:()=>{S.rep=clamp(S.rep-6,0,100);return '"Declined to comment" reads badly. Rep down.'}}]},
+ {id:'badrev',w:()=>S.reviews>20?.8:0,t:()=>`A wave of 1-star reviews: ${pick(['"arrived crushed"','"smaller than expected"','"robot made it, gross"','"took 3 weeks"'])}. Suspiciously similar wording — maybe ${S.rival.name}.`,ch:[
+  {l:'Reply politely & offer replacements',s:()=>1.4,f:()=>{const c=RI(2,6)*30;spend(c);S.mo.other+=c;review(3);return `Sent replacements (${fmt(c)}). Platform removed some fakes.`}},
+  {l:'Report to the platform and ignore',s:()=>.8,f:()=>{for(let i=0;i<5;i++)review(1.5);return 'Rating took a hit.'}}]},
+ {id:'knock',w:()=>S.lifetime.orders>150?.9:0,big:1,t:()=>`${S.rival.ceo} of ${S.rival.name} is selling a knockoff of our ${pick(unlocked()).n} on Amazon for 40% less.`,ch:[
+  {l:'File IP complaints (free, slow)',s:()=>1,f:()=>{S.mods.knock=.85;S.mods.knockT=60;chain('knockResult',RI(14,30));return 'Filed. Online conversion −15% meanwhile.'}},
+  {l:'Differentiate: improve quality (R&D push)',s:()=>trait().id==='builder'?1.6:1,f:()=>{S.rd+=15;S.mods.knock=.92;S.mods.knockT=45;return 'Doubled down on craftsmanship. Knockoffs can\'t copy reviews.'}},
+  {l:'Cut prices 10%',s:()=>trait().id==='hustler'?1.2:.6,f:()=>{S.co.skus.forEach(k=>k.p=Math.round(k.p*.9));return 'Prices −10%. Volume holds, margins shrink.'}}]},
+ {id:'knockResult',chain:1,w:()=>0,t:()=>'Update on the knockoff complaint…',ch:[{l:'Check',s:()=>1,f:()=>{if(Math.random()<.5){S.mods.knock=1;S.mods.knockT=0;return 'Amazon pulled the knockoff listings. Justice!'}return 'Complaint rejected ("insufficient evidence"). Clone stays up.'}}]},
+ {id:'wholesale',w:()=>S.lifetime.orders>60?1:0,t:()=>`A boutique in ${pick(['Cocoa Village','Vero Beach','Winter Park','St. Augustine'])} wants ${S.f1=RI(3,10)*10} units wholesale at 50% of retail, net-30.`,ch:[
+  {l:'Accept (keystone pricing)',s:()=>unitEcon(unlocked()[0],'wholesale').m>.25?1.3:.3,f:()=>{const k=unlocked()[0],q=S.f1;S.flags.whole={k:k.i,n:q,p:k.p*.5*q};S.po.push({k:k.i,q,eta:S.day+leadDays(),cost:q*matCost(k)});S.mo.matBuy+=q*matCost(k);spend(q*matCost(k));chain('wholeShip',21);return `Accepted: ${q} × ${k.n} for ${fmt(k.p*.5*q)}, ships in 3 weeks.`}},
+  {l:'Decline — margins too thin',s:()=>1,f:()=>'Declined. Wholesale at 50% only works if materials are <25% of retail.'}]},
+ {id:'wholeShip',chain:1,w:()=>0,t:()=>'Wholesale order ship date.',ch:[{l:'Ship what we have',s:()=>1,f:()=>{const w=S.flags.whole;if(!w)return 'Nothing to ship.';const k=S.co.skus[w.k];const n=Math.min(w.n,S.inv.o[w.k]+S.inv.s[w.k]);let left=n;const a=Math.min(left,S.inv.o[w.k]);S.inv.o[w.k]-=a;left-=a;S.inv.s[w.k]-=left;w.p=k.p*.5*n;w.n=n;S.mo.cogs+=matCost(k)*n;S.mo.cogsBy.wholesale+=matCost(k)*n;S.mo.units.wholesale+=n;chain('wholePay',30);return `Shipped ${n} units on net-30.`}}]},
+ {id:'wholePay',chain:1,w:()=>0,t:()=>'Wholesale invoice due…',ch:[{l:'Collect',s:()=>1,f:()=>{const w=S.flags.whole;if(!w)return 'Nothing due.';if(Math.random()<.8){S.cash+=w.p;S.mo.rev.wholesale+=w.p;S.mo.orders.wholesale++;S.flags.whole=null;return `Boutique paid ${fmt(w.p)}. They want to reorder!`}chain('wholePay',30);return 'They\'re "processing it". Net-30 becomes net-60.'}}]},
+ {id:'fair',w:()=>[2,3,9,10,11].includes(mo())&&invTotal()>15?1:0,t:()=>`Invitation: ${pick(['Melbourne Art Festival','Eau Gallie Arts District market','Cocoa Village craft fair','Space Coast Holiday Market'])} booth, $${S.f1=RI(150,400)}.`,ch:[
+  {l:'Book the booth',s:()=>1.3,f:()=>{spend(S.f1);S.mo.other+=S.f1;let sold=0,rev=0;const n=RI(15,50);for(let i=0;i<n;i++){const k=pickSku();const src=S.inv.o[k]>0?'o':S.inv.s[k]>0?'s':null;if(!src)continue;S.inv[src][k]--;sold++;rev+=S.co.skus[k].p;S.mo.cogs+=matCost(S.co.skus[k]);S.mo.cogsBy.store+=matCost(S.co.skus[k])}const tax=rev*EC.salesTax.rate;S.taxDue+=tax;S.mo.taxCol+=tax;S.cash+=rev*.97;S.mo.fees.store+=rev*.03;S.mo.rev.store+=rev;S.mo.orders.store+=sold;S.mo.units.store+=sold;S.rep=clamp(S.rep+5,0,100);S.emails+=sold;return `Sold ${sold} at the fair: ${fmt(rev)}. Collected ${sold} emails.`}},
+  {l:'Skip',s:()=>.7,f:()=>'Skipped. Saved a sunburn.'}]},
+ {id:'hurricane',w:()=>EC.hurricaneMonths.includes(mo())?.9:0,big:1,t:()=>`🌀 Tropical storm ${pick(['Delia','Marco','Fiona','Isaac','Teddy','Wanda'])} headed for the Space Coast. ${S.stage?'Store must close 2–4 days.':'USPS pickups suspended.'}`,ch:[
+  {l:'Shutters, sandbags & generator ($400)',s:()=>1.4,f:()=>{spend(400);S.mo.other+=400;S.mods.closed=RI(2,4);S.backlog.forEach(o=>o.day+=2);return 'Prepared. Closed a few days, no damage.'}},
+  {l:'Risk it',s:()=>trait().id==='reckless'?1.5:.5,f:()=>{S.mods.closed=RI(2,4);if(Math.random()<.3){const c=RI(3,10)*1000;spend(c);S.mo.other+=c;unlocked().forEach(k=>{S.inv.s[k.i]=Math.floor(S.inv.s[k.i]*.6)});return `Water got in. ${fmt(c)} damage and ruined stock.`}return 'Got lucky this time.'}}]},
+ {id:'shoplift',w:()=>S.stage>=1&&invS()>8?.8:0,t:()=>'Inventory count is off — looks like shoplifting.',ch:[
+  {l:'Install a $250 camera',s:()=>1.2,f:()=>{const n=RI(2,6);for(let i=0;i<n;i++){const k=pickSku();if(S.inv.s[k]>0)S.inv.s[k]--}spend(250);S.mo.other+=250;S.flags.cam=1;return `Lost ${n} items (shrink). Camera installed.`}},
+  {l:'Write it off',s:()=>.8,f:()=>{const n=RI(2,6);for(let i=0;i<n;i++){const k=pickSku();if(S.inv.s[k]>0)S.inv.s[k]--}return `${n} items written off as shrink.`}}]},
+ {id:'viral',w:()=>S.lifetime.orders>20?.35:0,big:1,t:()=>`📈 A TikTok of ${S.co.robot} ${pick(['packing orders','painting a '+S.co.unit.replace(/s$/,''),'arguing with a seagull'])} hit ${RI(1,6)}M views.`,ch:[
+  {l:'Overtime: build like crazy',s:()=>1.3,f:()=>{S.mods.viral=R(2,3.5);S.mods.viralT=RI(7,14);S.staff.forEach(s=>s.morale=clamp(s.morale-10,0,100));S.flags.visualNext=1;return 'Demand 2–3× for a week or two. Hope we have stock!'}},
+  {l:'Raise prices 10% during the spike',s:()=>trait().id==='hustler'?1.4:.8,f:()=>{S.mods.viral=R(1.8,3);S.mods.viralT=RI(7,14);S.co.skus.forEach(k=>k.p=Math.round(k.p*1.1));chain('viralEnd',S.mods.viralT);return 'Prices +10% while it lasts. Fewer, richer orders.'}}]},
+ {id:'quit',w:()=>S.staff.length?.6:0,t:()=>{S.f2=pick(S.staff);return `${S.f2.name} (${ROLES[S.f2.role].n}) got an offer at ${pick(['Publix','the Space Center','L3Harris','a Melbourne brewery'])} for $2/hr more.`},ch:[
+  {l:'Counter: +$1.50/hr for everyone',s:()=>S.f2.name===S.firstHire?1.6:.9,f:()=>{S.mods.wageAdd+=1.5;S.staff.forEach(s=>s.morale=clamp(s.morale+12,0,100));return `${S.f2.name} stays. Team morale up, payroll up.`}},
+  {l:'Wish them well',s:()=>1,f:()=>{fireStaff(S.f2,`${S.f2.name} left for the better offer. Rehiring later.`);return 'Two weeks notice served.'}}]},
+ {id:'loyal',w:()=>S.firstHire&&S.staff.some(s=>s.name===S.firstHire)&&S.day-(S.flags.loyalD||0)>200?.5:0,t:()=>`${S.firstHire}, our first hire, wants a title: "Shop Manager". And a raise.`,ch:[
+  {l:'Promote (+$3/hr)',s:()=>1.5,f:()=>{S.flags.loyalD=S.day;const s=S.staff.find(s=>s.name===S.firstHire);s.morale=100;S.mods.wageAdd+=.4;S.rep+=1;return `${S.firstHire} is Shop Manager now. Already reorganized the stockroom.`}},
+  {l:'Not yet',s:()=>.6,f:()=>{S.flags.loyalD=S.day;const s=S.staff.find(s=>s.name===S.firstHire);s.morale-=25;return `${S.firstHire} looks crushed.`}}]},
+ {id:'break',w:()=>S.lifetime.units>100||S.mo.produced>50?.7:0,t:()=>`The ${pick(['kiln','3D printer','sewing machine','laser cutter','pour pot','soldering station'])} died.`,ch:[
+  {l:'Repair now ($'+'400–1,500)',s:()=>S.cash>2000?1.3:.2,f:()=>{const c=RI(4,15)*100;spend(c);S.mo.other+=c;return `Fixed for ${fmt(c)}.`}},
+  {l:'Limp along 5 days',s:()=>1,f:()=>{S.mods.breakT=5;return 'Production slowed for 5 days.'}}]},
+ {id:'fraud',w:()=>S.lifetime.orders>100?.4:0,t:()=>`Three chargebacks this week from the same card BIN. Fraud ring.`,ch:[
+  {l:'Add a fraud-filter app ($10/mo)',s:()=>1.2,f:()=>{const c=3*(unlocked()[0].p+EC.chargeback.fee);spend(c);S.mo.refunds+=c;S.mods.apps+=10;return `Lost ${fmt(c)}. Fraud filter on.`}},
+  {l:'Eat it',s:()=>.8,f:()=>{const c=3*(unlocked()[0].p+EC.chargeback.fee);spend(c);S.mo.refunds+=c;return `Lost ${fmt(c)} to chargebacks.`}}]},
+ {id:'bulk',w:()=>S.lifetime.units>80&&S.cash>4000?.6:0,t:()=>'Supplier: "15% off if you commit to a 90-day order."',ch:[
+  {l:'Commit',s:()=>runwayMo()>4?1.3:.3,f:()=>{let c=0;unlocked().forEach(k=>{const q=Math.ceil(usage(k.i)*90);c+=q*matCost(k)*.85;S.po.push({k:k.i,q,eta:S.day+leadDays(),cost:q*matCost(k)*.85})});S.mo.matBuy+=c;spend(c);return `Bought ${fmt(c)} of materials at 15% off. Cash now sitting on shelves.`}},
+  {l:'Pass — cash is king',s:()=>1,f:()=>'Kept the cash.'}]},
+ {id:'mca',w:()=>S.months.length>2&&lowCash()&&!S.mca?.7:0,t:()=>`${VERA} (Vulture Capital Funding): "Need cash fast? $${S.f1=Math.round(Math.max(5,S.months.slice(-1)[0].P.rev/1000))}k today, you repay 1.35× from 15% of daily sales. No credit check!"`,ch:[
+  {l:'Take the advance',s:()=>trait().loan>1.2&&S.cash<1000?1.2:.3,f:()=>{const A=S.f1*1000;S.mca={bal:A*1.35};S.cash+=A;S.mo.loanIn+=A;return `Took ${fmt(A)}. Owe ${fmt(A*1.35)}. ${VERA} smiles like a shark.`}},
+  {l:'Decline',s:()=>1,f:()=>`Declined. ${VERA}: "You'll be back."`}]},
+ {id:'lowball',w:()=>S.months.length>8&&ttmRev()>50000?.3:0,t:()=>`${S.rival.ceo} offers to buy ${S.co.name} for ${fmt(S.f1=Math.round(ttmRev()*.3/1000)*1000)}. "Generous," he says.`,ch:[
+  {l:'Decline',s:()=>1.5,f:()=>'Declined. We\'re not for sale at 0.3× revenue.'},{l:'Accept',s:()=>runwayMo()<1?2:0,f:()=>{endGame('acquired',`Sold to ${S.rival.name} for ${fmt(S.f1)} — a distressed sale.`);return 'Sold.'}}]},
+ {id:'viralEnd',chain:1,w:()=>0,t:()=>'The viral spike is fading.',ch:[{l:'Return prices to normal',s:()=>1,f:()=>{S.co.skus.forEach(k=>k.p=Math.round(k.p/1.1));return 'Prices back to normal.'}}]},
+ {id:'star',w:()=>S.ch.etsy.open>=0&&S.rating>=4.8&&S.reviews>30&&!S.mods.star?1:0,t:()=>'⭐ Etsy Star Seller badge earned (fast shipping, 4.8+ rating, quick replies).',ch:[{l:'Celebrate',s:()=>1,f:()=>{S.mods.star=1;return 'Badge on every listing. Conversion up a bit.'}}]},
+ {id:'editors',w:()=>S.ch.etsy.open>=0&&S.rating>=4.6&&S.reviews>50?.3:0,big:1,t:()=>`Etsy editors featured our ${pick(unlocked()).n} in a gift guide!`,ch:[{l:'Stock up',s:()=>1,f:()=>{S.mods.editors=14;return 'Etsy views +50% for two weeks.'}}]},
+ {id:'outage',w:()=>S.stage>=1&&[5,6,7,8].includes(mo())?.6:0,t:()=>'Afternoon thunderstorm knocked out power on our block.',ch:[{l:'Close early, run online orders on laptop battery',s:()=>1,f:()=>{S.mods.closed=1;return 'Store closed today. Online kept going.'}}]},
+ {id:'award',w:()=>S.stage>=1&&S.rating>4.5?.4:0,t:()=>'Downtown Melbourne Main Street names us "Best New Shop".',ch:[{l:'Hang the plaque',s:()=>1,f:()=>{S.rep=clamp(S.rep+8,0,100);return 'Foot traffic bump.'}}]},
+ {id:'reader',w:()=>S.stage>=1?.4:0,t:()=>'The card reader is down (POS outage).',ch:[{l:'Use Tap-to-Pay on a phone',s:()=>1.4,f:()=>'Phone tap-to-pay saved the day.'},{l:'Cash only today',s:()=>.6,f:()=>{S.mods.closed=1;return 'Most shoppers walked. Effectively closed.'}}]},
+ {id:'insure',w:()=>S.day>300&&!S.flags.insQ?.4:0,t:()=>`Insurance renewal: premium up ${S.f1=RI(6,18)}%.`,ch:[
+  {l:'Renew',s:()=>1.5,f:()=>{S.flags.insQ=1;S.mods.ins*=1+S.f1/100;return 'Renewed. Boring but essential.'}},
+  {l:'Drop product liability to save money',s:()=>trait().insure<.8?1.6:.2,f:()=>{S.flags.insQ=1;S.insured=false;return 'Dropped coverage. Risky — one claim could end us.'}}]},
+];
+function pickEvent(){if(S.done)return null;const due=S.chain.findIndex(c=>c.day<=S.day);if(due>=0){const c=S.chain.splice(due,1)[0];return EVENTS.find(e=>e.id===c.id)}
+ if(Math.random()>.075)return null;const pool=EVENTS.filter(e=>!e.chain&&e.w()>0&&!(S.flags['ev_'+e.id]>S.day-25));if(!pool.length)return null;
+ let r=Math.random()*pool.reduce((a,e)=>a+e.w(),0);for(const e of pool){r-=e.w();if(r<=0)return e}return pool[0]}
+function resolveEvent(e){S.flags['ev_'+e.id]=S.day;const text=e.t();const opts=e.ch.map(c=>({c,s:Math.max(0,c.s())*R(.8,1.2)}));const best=opts.filter(o=>o.s>0).sort((a,b)=>b.s-a.s)[0]||opts[0];
+ const res=best.c.f();dec('event');log(`📣 ${text}`,'y');log(`🤖 Chose: ${best.c.l} → ${res}`,'t');if(e.big)S.moments.push({d:S.day,t:'📣 '+text.slice(0,70)});news(text.replace(/<[^>]+>/g,'').slice(0,90));
+ return {text,opts:opts.map(o=>o.c.l),pick:best.c.l,res,big:e.big}}
+// scheduled real-world calendar changes
+function scheduled(){const t=dateOf(),d=ymd(t),md=d.slice(5);
+ if(md==='01-01'&&S.day>30){S.cpi=(S.cpi||1)*1.03;S.co.skus.forEach(k=>k.p=Math.round(k.p*1.03));log('🏷️ New year price review: +3% across the line to keep up with inflation (est).','t')}
+ if(md==='01-01'||md==='07-12'){S.mods.label*=1.04;log('📮 USPS rate change today (they adjust in January and July). Labels ~+4% (est).','t')}
+ EC.minWage.forEach(m=>{if(m.from===d){log(`⚖️ Florida minimum wage is now ${fmt(m.w)}/hr.`,'y');news(`Florida minimum wage rises to $${m.w}/hr`)}});
+ if(md==='11-01')log('🎄 Q4 starts. Historically Nov–Dec are ~19% of US retail sales (NRF) — more for gift shops. Building inventory ahead.','y');
+ if(md==='06-01')log('🌀 Atlantic hurricane season starts (Jun 1–Nov 30).','t');
+ if(S.stage>0&&S.flags.stageDay&&(S.day-S.flags.stageDay)%365===364){S.mods.rentEsc*=1.03;log('🏢 Lease anniversary: rent +3% (typical escalator, est).','t')}}
+// ---------- visual playback of a day (cosmetic; economics already computed by econDay) ----------
+let vday=null,V={s:[0,0,0,0],o:[0,0,0,0],kits:0,orders:0,boxes:0,flash:0,truckT:0,cash:0},queue=[],regT=0,thinkQ=[];
 const LOOKS=()=>({skin:pick(['#f1c27d','#c68642','#8d5524','#ffdbac','#e0ac69']),hair:pick(['#2c1b10','#6d4c2e','#d4ac0d','#c0392b','#222','#aaa','#ff6fb5']),shirt:pick(['#e74c3c','#3498db','#9b59b6','#16a085','#f39c12','#ecf0f1','#2c3e50','#e67e22']),pants:pick(['#34495e','#2c3e50','#7f8c8d','#1a5276']),hat:Math.random()<.25?pick(['#c0392b','#f1c40f','#111']):null,tall:Math.random()<.5});
-function spawnShopper(){const d=ST('door');shoppers.push({x:d.sx*T,y:(d.sy+1)*T,path:[[d.sx,d.sy]],st:'in',t:0,look:LOOKS(),face:1,walkT:0,pat:R(28,55)*(S.level>=3?1.2:1),wait:0});}
-function shopperLeave(s,happy,msg){s.st='leave';s.happy=happy;const d=ST('door');s.path=bfs(...tileOf(s),d.sx,d.sy)||[];if(msg)floaters.length<60&&!HEADLESS&&floaters.push({t:msg,c:happy?'#7dff8a':'#ff7d7d',x:s.x+16,y:s.y,l:1.6});const qi=queue.indexOf(s);if(qi>=0){queue.splice(qi,1);requeue()}}
+const CHC={etsy:'#f1641e',shopify:'#95bf47',store:'#7dd3ff',wholesale:'#c39bff'};
+function startVisualDay(D,er,snap){
+ S.time=0;vday={D,er,snap,shop:[],ord:[],bx:0,picked:0,vans:[.55,.92],truck:D.arrived.length?.3:-1,tasks:[],ti:-1,tt:0};
+ S.weather=D.rain?(EC.hurricaneMonths.includes(D.mon)&&Math.random()<.2?'storm':'rain'):(Math.random()<.3?'cloudy':'sunny');S.wIcon={sunny:'☀️',cloudy:'⛅',rain:'🌧️',storm:'⛈️'}[S.weather];
+ // shoppers
+ if(D.store.open){const vis=D.store.visitors,n=Math.min(vis,24),sc=vis/Math.max(1,n);const sales=[...D.store.sales];
+  const nb=Math.round(sales.length/sc),ns=Math.round(D.store.stockout/sc),nw=Math.round(D.store.walk/sc);
+  for(let i=0;i<n;i++){const kind=i<nb?'buy':i<nb+ns?'so':i<nb+ns+nw?'walk':'look';vday.shop.push({at:R(.04,.86),kind,k:kind==='buy'?(sales[Math.floor(i*sc)]||sales[0]||{k:0}).k:null,done:0})}
+  vday.shop.sort((a,b)=>a.at-b.at)}
+ vday.ord=D.online.map(o=>({at:o.t*.9,ch:o.ch,k:o.k,done:0})).sort((a,b)=>a.at-b.at);
+ // robot task plan
+ const L=LAY(),r=D.robot,tot=Object.values(r).reduce((a,b)=>a+b,0)||1,dl=DAY_LEN*.86;const cs=L.cashiers[0];
+ const st=id=>{const s=ST(id);return s?[s.sx,s.sy]:[3,4]};
+ const tk=[];const add=(id,h,spot,label)=>{if(h>.05)tk.push({id,d:h/tot*dl,spot,label})};
+ add('admin',r.admin,st('board'),'Doing the books…');add('make',r.make,st('bench0'),'Building '+S.co.unit+'…');add('pack',r.pack,st('pack'),'Packing orders…');add('cs',r.cs,st('desk'),'Answering support tickets…');add('design',r.design,st('desk'),'Designing / R&D…');add('social',r.social||0,st('board'),'Filming content for socials 📱');
+ if(r.store>.05){const h=r.store/tot*dl;tk.splice(1,0,{id:'store',d:h*.55,spot:cs,label:'Working the register'});tk.push({id:'store',d:h*.45,spot:cs,label:'Working the register'})}
+ tk.splice(Math.floor(tk.length/2),0,{id:'dock',d:DAY_LEN*.05,spot:st('dock'),label:'Recharging…'});tk.push({id:'dock',d:99,spot:st('dock'),label:'Recharging overnight'});
+ vday.tasks=tk;queue=[];shoppers=[];
+ if(er)showEvent(er);
+}
+function nextTask(){const v=vday;v.ti++;const t=v.tasks[v.ti];if(!t)return;v.tt=t.d;bot.task=t;S.path=bfs(...tileOf(S),t.spot[0],t.spot[1])||[];bot.at=false}
+function updVisual(dt){const v=vday;if(!v)return;const p=S.time/DAY_LEN;
+ const snap=v.snap,lerp=(a,b)=>Math.round(a+(b-a)*Math.min(1,p*1.05));
+ for(let k=0;k<4;k++){V.s[k]=Math.max(0,lerp(snap.s[k],S.inv.s[k]));V.o[k]=Math.max(0,lerp(snap.o[k],S.inv.o[k]))}
+ V.kits=lerp(snap.kits,S.kits.reduce((a,b)=>a+b,0));V.cash=snap.cash+(S.cash-snap.cash)*Math.min(1,p);
+ // robot tasks
+ if(!bot.task||(bot.at&&(v.tt-=dt)<=0&&bot.task.id!=='dock')||(bot.task.id==='dock'&&bot.at&&v.tt<=0)){nextTask()}
+ else if(bot.task&&bot.task.id==='dock'&&bot.at){v.tt-=dt;S.energy=Math.min(100,S.energy+dt*25)}
+ if(bot.task&&!bot.at){if(walk(S,dt,S.up.legs?115:80)){bot.at=true}}
+ else if(bot.task){S.energy=Math.max(5,S.energy-dt*.9);busy=1;busyLabel=bot.task.label;if(bot.task.id==='make'&&Math.random()<dt*2)burst(S.x+16,S.y+8,2,['#ffd76a','#fff'],60)}
+ robotServing=bot.task&&bot.task.id==='store'&&bot.at;
+ // thoughts
+ bot.thinkT-=dt;if(bot.thinkT<=0&&thinkQ.length){const t=thinkQ.shift();bot.think=t;bot.thinkT=Math.max(3.5,Math.min(7,t.length/18))}
+ // shoppers
+ for(const s of v.shop){if(!s.done&&p>=s.at){s.done=1;spawnShopper(s)}}
+ shoppers.forEach(s=>updShopper(s,dt));shoppers=shoppers.filter(s=>!(s.st==='leave'&&!s.path.length));
+ updRegister(dt);
+ // online orders
+ for(const o of v.ord){if(!o.done&&p>=o.at){o.done=1;V.orders++;V.flash=.6;const pk=ST('pack');if(floaters.length<60)floaters.push({t:(o.ch==='etsy'?'Etsy':'Shopify')+' order: '+S.co.skus[o.k].n,c:CHC[o.ch],x:pk.x*T+20,y:pk.y*T-14,l:1.8});SFX.coin()}}
+ if(V.flash>0)V.flash-=dt;
+ const shippedSoFar=Math.round(v.D.shipped*Math.min(1,p/.9));if(shippedSoFar>v.bx){V.boxes+=shippedSoFar-v.bx;V.orders=Math.max(0,V.orders-(shippedSoFar-v.bx));v.bx=shippedSoFar}
+ // van & truck
+ if(v.vans.length&&p>=v.vans[0]-.06&&van.state==='away'){van.state='arrive';van.t=2}
+ if(van.state!=='away'){van.t-=dt;if(van.state==='arrive'&&van.t<=0){van.state='park';van.t=4;if(V.boxes){log(`🚐 USPS pickup: ${V.boxes} package${V.boxes>1?'s':''} (Ground Advantage).`,'g');SFX.coin()}V.boxes=0}else if(van.state==='park'&&van.t<=0){van.state='leave';van.t=2}else if(van.state==='leave'&&van.t<=0){van.state='away';v.vans.shift()}}
+ if(v.truck>=0&&p>=v.truck){v.truck=-1;V.truckT=3.5;const a=v.D.arrived;log(`🚚 Supplier delivery: ${a.map(x=>x.q+'× '+S.co.skus[x.k].n+' kits').join(', ')}.`,'g');const m=ST('mat');burst(m.sx*T+16,m.sy*T,10,['#b5835a','#ddd'])}
+ if(V.truckT>0)V.truckT-=dt;
+ npcs.forEach(n=>updNpc(n,dt));
+}
+function spawnShopper(spec){const d=ST('door');shoppers.push({x:d.sx*T,y:(d.sy+1)*T,path:[[d.sx,d.sy]],st:'in',t:0,look:LOOKS(),face:1,walkT:0,pat:spec.kind==='walk'?R(8,12):99,wait:0,spec})}
+function shopperLeave(s,happy,msg){s.st='leave';s.happy=happy;const d=ST('door');s.path=bfs(...tileOf(s),d.sx,d.sy)||[];if(msg&&floaters.length<60)floaters.push({t:msg,c:happy?'#7dff8a':'#ff7d7d',x:s.x+16,y:s.y,l:1.6});const qi=queue.indexOf(s);if(qi>=0){queue.splice(qi,1);requeue()}}
 function requeue(){const Q=LAY().queue;queue.forEach((s,i)=>{if(s.slot!==i){s.slot=i;const [x,y]=Q[Math.min(i,Q.length-1)];s.path=bfs(...tileOf(s),x,y)||[]}})}
-function pickSku(){const av=unlocked().filter(k=>S.inv[k.i]>0);if(!av.length)return null;let tot=0;const w=av.map(k=>{const v=quality(k)/(1+k.i*.55);tot+=v;return v});let r=Math.random()*tot;for(let i=0;i<av.length;i++){r-=w[i];if(r<=0)return av[i]}return av[0]}
-function updShopper(s,dt){
- const arrived=walk(s,dt,60);
+function updShopper(s,dt){const arrived=walk(s,dt,60),k=s.spec.kind;
  if(s.st==='in'&&arrived){const ds=stations().filter(x=>x.type==='disp');const t=pick(ds);s.st='go';s.path=bfs(...tileOf(s),t.sx,t.sy)||[]}
  else if(s.st==='go'&&arrived){s.st='browse';s.t=R(1.5,4)}
- else if(s.st==='browse'){s.t-=dt;if(s.t<=0){const k=pickSku();
-  if(!k){S.dayStats.stockouts++;S.stockouts++;review(2.6);addRep(-.15);shopperLeave(s,false,pick(['Sold out?!','Nothing in stock 😠','Empty shelves…']));return}
-  S.inv[k.i]--;s.sku=k;const Q=LAY().queue;if(queue.length>=Q.length){S.inv[k.i]++;s.sku=null;S.dayStats.lineLeaves++;review(2);shopperLeave(s,false,'Line is too long!');return}
-  queue.push(s);s.st='queue';s.slot=-1;s.wait=0;requeue();S.dayStats.qMax=Math.max(S.dayStats.qMax,queue.length)}}
- else if(s.st==='queue'){s.wait+=dt;if(s.wait>s.pat){S.inv[s.sku.i]++;s.sku=null;S.dayStats.lineLeaves++;review(2.2);addRep(-.2);shopperLeave(s,false,pick(['Ugh, forget it.','Waited forever!','This line 🙄']))}}
-}
-function updRegister(dt){
- const LyQ=LAY().queue,front=queue[0];let power=robotServing?1.25:0;
- npcs.forEach(n=>{if(n.ref&&n.ref.role==='cs'&&n.atHome&&!n.brk)power+=prodMult()*(n.kind==='robot'?1.1:1)});
- S.cashierPower=power;
- if(!front||!front.path||front.path.length||front.slot!==0||power<=0){regT=0;return}
- regT+=dt*power;if(regT<2.3)return;regT=0;
- const k=front.sku,price=k.p;S.cash+=price;S.dayStats.storeRev+=price;S.lifetimeRev+=price;S.customers++;S.dayStats.served++;
- review(quality(k)+(front.wait>20?-.8:.9)+R(-.5,.5));
- const t=ST('till');burst(t.x*T+16,t.y*T,8,['#ffd76a','#f1c40f']);SFX.kaching();if(!HEADLESS&&floaters.length<60)floaters.push({t:'+$'+price,c:'#ffd76a',x:t.x*T+16,y:t.y*T-6,l:1.2});
- front.carry=k;shopperLeave(front,true,Math.random()<.3?pick(['Love it!','So cute!','Take my money','⭐⭐⭐⭐⭐']):null);
-}
-function updOnline(dt){
- const rate=.035*E.online*OF[S.level]*demandMul();if(Math.random()<rate*dt){const av=unlocked();let k=av[Math.min(av.length-1,Math.floor(Math.pow(Math.random(),1.6)*av.length))];S.orders.push({k:k.i,t:nowT()});S.flash=1}
- const now=nowT();for(let i=S.orders.length-1;i>=0;i--)if(now-S.orders[i].t>DAY_LEN*1.6){S.orders.splice(i,1);review(1);addRep(-.4);S.dayStats.cancelled++}
- // van
- van.t-=dt;if(van.state==='away'&&van.t<=0){van.state='arrive';van.t=2}
- else if(van.state==='arrive'&&van.t<=0){van.state='park';van.t=6;loadVan()}
- else if(van.state==='park'&&van.t<=0){van.state='leave';van.t=2}
- else if(van.state==='leave'&&van.t<=0){van.state='away';van.t=R(22,32)}
- // materials delivery
- if(S.matOrder&&now>=S.matOrder.eta){S.mat+=S.matOrder.qty;log(`🚚 Supplier delivered ${S.matOrder.qty} crates of materials.`,'g');const m=ST('mat');burst(m.sx*T+16,m.sy*T,10,['#b5835a','#ddd']);S.matOrder=null;S.truckT=3}
- if(S.truckT>0)S.truckT-=dt;
-}
-function packOne(){for(let j=0;j<S.orders.length;j++){const o=S.orders[j];if(S.inv[o.k]>0){S.inv[o.k]--;S.orders.splice(j,1);S.boxes.push(o);return true}}return false}
-const packable=()=>S.orders.filter(o=>S.inv[o.k]>0).length;
-function loadVan(){if(!S.boxes.length)return;let rev=0,late=0;const now=nowT();
- S.boxes.forEach(b=>{const k=S.co.skus[b.k];rev+=k.p;S.customers++;S.dayStats.shipped++;const isLate=now-b.t>DAY_LEN*.75;if(isLate){late++;review(2.2)}else review(quality(k)+.8+R(-.4,.5))});
- S.cash+=rev;S.dayStats.onlineRev+=rev;S.lifetimeRev+=rev;S.dayStats.late+=late;S.boxes=[];SFX.coin();if(!HEADLESS)log(`🚐 Van picked up packages: +${fmt(rev)}${late?` (${late} late — reviews will hurt)`:''}.`,late?'r':'g')}
-function makeItem(rate,dt,ent){// ent.prog accumulator
- const k=pickBuildSku();if(!k||S.mat<k.m){ent.idle=1;return}ent.idle=0;ent.prog=(ent.prog||0)+dt*rate;if(ent.prog>=k.b){ent.prog=0;S.mat-=k.m;S.inv[k.i]++;S.dayStats.built++;if(!HEADLESS&&Math.random()<.5)burst(ent.x+16,ent.y+8,5,[k.c,'#fff'],80)}}
-function pickBuildSku(){const av=unlocked();if(!av.length)return null;const want=av.map(k=>({k,s:S.inv[k.i]/(k.i===0?1.4:1)+S.orders.filter(o=>o.k===k.i).length*-1}));want.sort((a,b)=>a.s-b.s);return want[0].k}
-const invTarget=()=>6+S.level*5+S.orders.length;
-
-// ---------- planner ----------
-function options(){
- const tr=trait(),tw=tr.w,o=[],me=maxE(),pe=S.energy+R(-7,7)*tr.risk,exp=expenses(),rw=runway(),r=nextRound(),g=S.goal||{},ds=S.dayStats;
- const add=(id,st,score,why,arg)=>{if(ST(st)&&score>0)o.push({id,st,score:score*(tw[id]||1)*R(.75,1.25),why,arg})};
- const reflex=S.energy<15&&Math.random()>.012*tr.risk;if(S.energy<15&&!reflex&&!HEADLESS)log('Low battery warning… ignoring it. What could go wrong?','r');
- if(pe<tr.low||reflex)add('dock','dock',300,L(['Battery at {e}%. Heading to the dock.','{e}% battery. Even CEOs need naps.','Low juice ({e}%). Plugging myself in. Literally.','{e}%?! My life flashed before my LEDs. Dock time.'],{e:Math.round(S.energy)}));
- else if(S.energy<me*.5)add('dock','dock',6+(me*.5-S.energy)/3,`Battery ${Math.round(S.energy)}%. A top-up wouldn't hurt.`);
- if(ipoReady())add('ipo','bell',95,'All IPO requirements met and the market is open. Ringing the bell.');
- if(r&&r.ok(S)&&S.pitchCool<=0)add('pitch','door',60,`Numbers look good for a ${r.n}. Pitching ${S.flags.veraIn?VERA:pick(['Sequoia-ish Ventures','Lightspeed of Sound','Accel-erator & Brakes',VERA])}…`);
- else if(r&&rw<2.5&&S.pitchCool<=0&&S.product>=10)add('pitch','door',30,`Runway: ${rw.toFixed(1)} days. Desperate pitch time. Smiling with all LEDs.`);
- const cs=roleCount('cs'),sh=roleCount('ship'),mk=roleCount('maker'),q=queue.length;
- if(q>0&&(cs===0||q>cs*4))add('serve','till',Math.min(85,(cs?22:36)+q*10),cs?`Line is ${q} deep — jumping on a second register.`:L(['Line is {q} deep. Running the register myself.','{q} customers waiting! Beep-boop, cashier mode.','Customers at the counter. Activating customer-service subroutine.'],{q}));
- const pk=packable();if(pk>0&&(sh===0||pk>sh*8))add('pack',sh?'pack1':'pack',(sh?14:18)+pk*5+(S.orders.some(o=>nowT()-o.t>DAY_LEN*.5)?15:0),`${pk} online order${pk>1?'s':''} waiting. Packing boxes before the van comes.`);
- if(!S.matOrder&&S.mat<8+S.level*8&&S.cash>matCost()*8)add('order','mat',45,`Materials down to ${S.mat}. Ordering crates from the supplier.`);
- const tgt=invTarget(),iv=invTotal(),nb=benches().length;
- if(S.mat>=1&&iv<tgt&&mk<nb){const k=pickBuildSku();if(k)add('build','bench0',18+(tgt-iv)*3+(ds.stockouts?10:0),iv===0?`Shelves are EMPTY. Building ${pl(k.n)} at the workbench.`:L(['Inventory at {n}. Building {k}.','Shelf is down to {n}. Time to make {k} with my own grippers.','Crafting {k}. Each one lovingly over-engineered.'],{n:iv,k:pl(k.n)}),k)}
- const gp=g.k==='product'?1.5:1;
- add('code','desk',(S.product<10?24:12+Math.max(0,(r?r.need.product:IPO_NEED.product)-S.product)/5)*gp,L(['Product R&D at {p}. Designing better {u}.','Prototyping the next {u} model. Possibly a bug. Same thing.','Improving quality — fewer refunds, more stars.','Goal: {g}. Back to the design desk.'],{p:Math.round(S.product),u:S.co.unit,g:g.t||'world domination'}));
- const mc=300+S.stage*800;if(S.cash>mc*4)add('market','board',S.rep<IPO_NEED.rep?(S.stage>=1?20:12):4,L(['Reputation {r}. Drawing a chart that goes up and to the right.','Putting our {u} on a billboard.','Writing "disrupt" on the whiteboard 40 times.'],{r:Math.round(S.rep),u:S.co.unit}));
- if(S.techDebt>45)add('refactor','desk',S.techDebt/3,`Tech debt at ${Math.round(S.techDebt)}. Refactoring the POS system before it collapses.`);
- if(S.legal>55)add('compliance','desk',(S.legal-40)/2,`Legal risk ${Math.round(S.legal)}. Filing product-safety paperwork in triplicate.`);
- const rc=has('gpu')?7:10;
- if(S.level>=2){if(S.compute>=rc)add('research','rack',16,`Compute at ${Math.floor(S.compute)}. Simulating ${S.co.unit} designs. And invoices.`);else if(S.cash>9000)add('buycompute','rack',10,'Out of compute. Buying GPUs. Jensen, if you\'re watching, hi.');}
- // hiring by bottleneck
- const canHire=S.cash>exp*2/tr.risk+1000&&rw>1.5/tr.risk&&ST('hire');
- if(canHire){const cap=r=>ROLES[r].cap[S.level];
-  if(cs<cap('cs')&&(ds.qMax>=3||ds.lineLeaves>=2||q>=4))add('hire','hire',32,`Line hit ${Math.max(ds.qMax,q)} deep${ds.lineLeaves?` and ${ds.lineLeaves} people walked out`:''}. Hiring a cashier.`,'cs');
-  else if(sh<cap('ship')&&(S.orders.length>=6||ds.late>=2||ds.cancelled))add('hire','hire',30,`Order backlog is ${S.orders.length}${ds.late?`, ${ds.late} shipped late`:''}. Hiring a shipper.`,'ship');
-  else if(mk<cap('maker')&&(ds.stockouts>=2||(iv<tgt*.5&&S.mat>3)))add('hire','hire',28,`${ds.stockouts} stockouts today. Hiring a maker to keep the shelves full.`,'maker');
-  else if(roleCount('eng')<cap('eng')&&r&&S.product<r.need.product-15)add('hire','hire',20,`R&D is the bottleneck (${Math.round(S.product)}/${r.need.product}). Hiring an engineer.`,'eng');
-  else if(roleCount('mkt')<cap('mkt')&&S.rep<IPO_NEED.rep)add('hire','hire',14,`Reputation stuck at ${Math.round(S.rep)}. Hiring a marketer.`,'mkt');}
- if(S.robots&&S.botMood<50&&S.cash>500*S.robots)add('maintain','bench0',(55-S.botMood)/1.5,`Robot loyalty ${Math.round(S.botMood)}%. Oil baths for everyone.`);
- if(S.bHealth<55&&S.cash>3500)add('newcell','bench0',30,`Battery health ${Math.round(S.bHealth)}%. Time for fresh cells.`);
- const nu=UPGRADES.find(u=>!S.up[u.id]&&S.cash>u.cost*5&&rw>5);if(nu)add('upgrade','bench0',10,`Treating myself: ${nu.n} (${nu.d}). It's a business expense.`);
- if(ST('coffee')&&S.humans>=1&&S.morale<60&&S.cash>500)add('coffee','coffee',(65-S.morale)/2,`Team morale ${Math.round(S.morale)}%. Brewing coffee I cannot drink.`);
- return o.sort((a,b)=>b.score-a.score)}
-function decide(){
- const o=options();if(!o.length){bot.idle=1;return}const c=o[0];S.decisions[c.id]=(S.decisions[c.id]||0)+1;
- const s=ST(c.st);bot.path=bfs(...tileOf(S),s.sx,s.sy)||[];bot.goal=c;think(c.why);
-}
-function act(c){
- const sp=e=>{S.energy-=has('efficient')?e*.75:e},chip=S.up.chip?1.5:1;
- const D=(sec,lab,fn)=>{busy=busyLen=sec;busyLabel=lab;busyFn=fn};
- switch(c.id){
- case'dock':D(2.5,'Charging...',()=>{S.energy=maxE();float('Battery '+maxE()+'%','#7dff8a');log(L(['Fully charged. I feel like a new toaster.','Charged. Ready to make questionable decisions at full power.','Charged. Battery health: {h}%. Trying not to think about it.'],{h:Math.round(S.bHealth)}),'g')});SFX.charge();break;
- case'serve':{const n=Math.max(1,queue.length);robotServing=true;D(Math.min(14,n*2.2+1),'Ringing up...',()=>{robotServing=false;sp(2+n*.4)})}break;
- case'pack':D(1,'Packing...',()=>{let n=0;const f=()=>{if(n<8&&packOne()){n++;D(.6,'Packing '+n+'...',f)}else{sp(2+n);if(n)log(`Packed ${n} box${n>1?'es':''}. Tape: everywhere.`)}};f()});break;
- case'order':{const qty=16+S.level*14,cost=qty*matCost(),q2=S.cash>cost*1.5?qty:Math.max(4,Math.floor(S.cash/2/matCost()));D(1.2,'Calling supplier...',()=>{const c2=q2*matCost();S.cash-=c2;S.dayStats.mat+=c2;S.matOrder={qty:q2,eta:nowT()+R(8,16)*(S.flags.supplierDelay?3:1)};S.flags.supplierDelay=0;log(`Ordered ${q2} crates of materials (${fmt(c2)}). ETA: soon-ish.`)})}break;
- case'build':{const k=c.arg&&S.product>=SKU_UNLOCK[c.arg.i]?c.arg:pickBuildSku();if(!k)break;const n=Math.max(1,Math.min(6,Math.floor(S.mat/k.m)));if(S.mat<k.m)break;
-  D(n*k.b*.3/chip,`Building ${k.n}...`,()=>{sp(3+n);S.mat-=n*k.m;S.inv[k.i]+=n;S.dayStats.built+=n;S.dayStats.botBuilt++;S.techDebt+=R(0,.6);float(`+${n} ${k.n}`,k.c);const b=ST('bench0');burst(b.x*T+16,b.y*T,8,[k.c,'#fff']);SFX.ok()})}break;
- case'code':D(1.6,'Designing...',()=>{sp(7);const g=Math.round(R(2,4)*E.rd*(has('coder')?1.5:1)*chip*10)/10;const before=unlocked().length;S.product+=g;S.techDebt+=R(.5,1.5)*trait().risk;float('+'+g+' R&D','#7dd3ff');burst(ST('desk').x*T+16,ST('desk').y*T,6,['#7dd3ff','#fff']);SFX.ok();checkSkus(before)});break;
- case'refactor':D(2,'Refactoring...',()=>{sp(8);S.techDebt=Math.max(0,S.techDebt-35);log('Refactored the point-of-sale code. Deleted 4,000 lines. Feels like a spa day.','g')});break;
- case'compliance':D(2,'Paperwork...',()=>{const c=800*(S.stage+1);S.cash-=c;sp(5);S.legal=Math.max(0,S.legal-30);log(`Compliance done (${fmt(c)}). Every ${S.co.unit.replace(/s$/,'')} now has a warning label.`,'g')});break;
- case'pitch':D(2.2,'Pitching...',()=>{sp(12);const r=nextRound(),ready=r.ok(S),vera=!S.flags.veraIn&&Math.random()<.4;
-  const p=ready?Math.min(.8,(.26+S.rep/220)*S.market*(has('charmer')?1.15:1)*(1+S.luck*.3)*(S.rating/4)):.12;
-  if(Math.random()<p){const ra=E.rounds[S.stage],amt=ready?ra:Math.round(ra*.15);S.cash+=amt;S.dayStats.raised+=amt;SFX.mile();
-   if(!ready){log(`Bridge loan secured: ${fmt(amt)}. The terms are written in Comic Sans. Bad sign.`,'y');S.pitchCool=DAY_LEN;S.legal+=8;return}
-   S.stage++;S.flags.lsd=S.day;S.flags.veraIn=S.flags.veraIn||vera;const who=vera?VERA:pick(['Sequoia-ish Ventures','Lightspeed of Sound','Index Fund of Vibes']);log(`${who} said YES! ${r.n}: ${fmt(amt)}.`,'y');
-   if(vera)log(`${VERA}: "I still don't believe in robots. But I believe in ${S.co.unit}."`,'y');
-   setLevel([0,2,3,4][S.stage]);news(`${S.co.name} raises ${fmt(amt)} ${r.n}; ${TESS} calls it "${pick(['bold','unhinged','inevitable','a lot'])}"`);
-   milestone(`${r.n} closed (${fmt(amt)})! Expanding to: ${LEVELS[S.level].n}.`);}
-  else{S.pitchCool=DAY_LEN*R(.5,.9);addRep(-1);float('"Maybe."','#ff7d7d');SFX.bad();const vc=vera?VERA:pick(['Sequoia-ish Ventures','Founders Fund (Probably)','SoftBankish Vision Fund']);
-   log(vera?`${VERA} passed: "Come back when your ${S.co.unit} have a soul. Or 3x revenue."`:L([`Pitched ${vc}… they said maybe.`,`${vc} wants to "circle back". I have scheduled the circle.`,`${vc} passed. They "don't invest in hardware". I AM the hardware.`]),'r')}});break;
- case'market':{const mc=300+S.stage*800;D(1.4,'Marketing...',()=>{S.cash-=mc;sp(6);const r=Math.round(R(2,5)*(has('viral')?2:1));addRep(r);S.mktBoost=Math.min(1.2,S.mktBoost+.35);float(`+${r} rep, more foot traffic`);SFX.ok();log(`Campaign done (${fmt(mc)}): +${r} rep, foot traffic up.`)})}break;
- case'research':D(2,'Simulating...',()=>{S.compute-=has('gpu')?7:10;sp(8);const before=unlocked().length;const g=Math.round(R(4,8)*chip*10)/10;S.product+=g;S.flags.auto=(S.flags.auto||0)+1;addRep(1);float('+'+g+' R&D','#7dd3ff');burst(ST('rack').x*T+16,ST('rack').y*T,10,['#c39bff','#7dd3ff']);SFX.ok();log(`Simulation done. R&D +${g}.${S.flags.auto===3?' Factory automation unlocked for the HQ machines!':''}`);checkSkus(before)});break;
- case'buycompute':D(1,'Buying GPUs...',()=>{S.cash-=1500;S.compute+=25;float('+25 compute','#c39bff');SFX.coin()});break;
- case'hire':{const role=c.arg,kind=(role==='maker'||role==='ship')&&Math.random()<(S.co.trait==='reckless'?.5:.3)?'robot':'human';D(1,'Interviewing...',()=>{S.cash-=kind==='robot'?2500:800;const name=kind==='robot'?pick(RNAMES)+'-'+RI(100,999):pick(HUMANS);const ref={role,kind,name};S.staff.push(ref);syncStaff();addNpc(ref);float(`New ${ROLES[role].n}!`,'#ffd76a');SFX.mile();
-  log(`${ROLES[role].e} Hired ${name} (${kind}) as ${ROLES[role].n}.${kind==='robot'?' It immediately asked for a raise.':''}`,'y');
-  if(kind==='human'&&!S.loyal){S.loyal=name;log(`${name} is our very first human. They said "I believe in you, robot." Saved to ROM.`,'y')}
-  if(!S.miles.hire){S.miles.hire=1;milestone(`First hire: ${name}, ${ROLES[role].n}! I am now legally a manager.`)}
-  if(!S.miles['r_'+role]){S.miles['r_'+role]=1;S.moments.push({d:S.day,t:`${ROLES[role].e} First ${ROLES[role].n} hire: ${name}`})}})}break;
- case'maintain':D(1.6,'Oiling robots...',()=>{S.cash-=500*S.robots;S.botMood=clamp(S.botMood+28,0,100);log(`Oil bath for the robots. ${S.cofounder||'They'} beeped contentedly.`,'g')});break;
- case'newcell':D(2,'Swapping cells...',()=>{S.cash-=3000;S.bHealth=100;S.energy=maxE();log('New battery cells installed. I can feel my electrons again.','g');burst(S.x+16,S.y+10,12,['#7dff8a'])});break;
- case'upgrade':{const u=UPGRADES.find(u=>!S.up[u.id]&&S.cash>u.cost);if(!u)break;D(2.4,'Upgrading...',()=>{S.cash-=u.cost;S.up[u.id]=1;if(u.id==='battery'){S.bHealth=100;S.energy=maxE()}SFX.mile();burst(S.x+16,S.y+10,25,['#ffd76a','#c39bff','#7dd3ff']);moment(`🔧 Upgrade installed: ${u.n} — ${u.d}.`,false);news(`Robot CEO of ${S.co.name} buys itself ${u.n}; shareholders "confused but supportive"`)})}break;
- case'coffee':D(1.2,'Brewing...',()=>{S.cash-=20*(S.humans+1);S.morale=clamp(S.morale+14,0,100);burst(ST('coffee').x*T+16,ST('coffee').y*T,6,['#ddd','#bbb'],60);log(`Coffee for the team. Morale ${Math.round(S.morale)}%. I poured some on my heatsink for solidarity.`)});break;
- case'ipo':return endGame('ipo',`${S.co.name} rang the bell on Day ${S.day}. Our ticker symbol is a tiny pixel ${S.co.unit.replace(/s$/,'')}.`);
- }
-}
-function checkSkus(before){const u=unlocked();if(u.length>before){const k=u[u.length-1];moment(`✨ New product: ${k.n} (${fmt(k.p)})!`,false);log(`New SKU designed: ${k.n} — sells for ${fmt(k.p)}, quality ${quality(k).toFixed(1)}★.`,'y');news(`${S.co.name} launches ${k.n}; early reviews "${pick(['shockingly good','very shiny','made by a robot, clearly','a vibe'])}"`)}}
-function setLevel(l){S.level=l;bot.path=[];if(blocked(...tileOf(S))){S.x=ST('dock').sx*T;S.y=ST('dock').sy*T}npcs.forEach(n=>{n.path=[];n.home=null;if(blocked(...tileOf(n))){n.x=ST('door').sx*T;n.y=ST('door').sy*T}});shoppers.forEach(s=>{s.path=[];if(blocked(...tileOf(s))){s.x=ST('door').sx*T;s.y=ST('door').sy*T}});queue.forEach(s=>{const sk=s.sku;if(sk)S.inv[sk.i]++;s.sku=null});queue=[];shoppers.forEach(s=>{if(s.st==='queue'){s.st='leave';s.path=bfs(...tileOf(s),ST('door').sx,ST('door').sy)||[]}})}
-function milestone(t){SFX.mile();burst(S.x+16,S.y+10,40,['#ffd76a','#ff6fb5','#7dd3ff','#7dff8a']);moment('🏆 '+t);log('MILESTONE: '+t,'y')}
-function checkMiles(){
- if(S.customers>=1&&!S.miles.cust){S.miles.cust=1;if(S.level<1)setLevel(1);milestone('First sale! A coffee machine appears.');news(`${S.co.name} makes first sale; buyer "mostly curious"`)}
- if(S.customers>=100&&!S.miles.c100){S.miles.c100=1;milestone(`100 customers! The fan club is mostly toasters.`)}
- if(S.energy<=0&&!S.done)return endGame('battery','My battery hit 0% mid-stride. I am now a very expensive paperweight. The pigeon has moved on.');
- if(S.legal>=100&&!S.done){const f=Math.round(S.cash*.3+30000*(S.stage+1));if(S.cash>f*1.4&&Math.random()<.75){S.cash-=f;S.legal=45;moment(`⚖️ Regulators fined us ${fmt(f)}. Paid. Barely.`);log(`Regulators fined us ${fmt(f)}. I paid it with the dignity of a vending machine.`,'r')}
-  else return endGame('regulators',`Regulators shut us down. Apparently "the robot said the ${S.co.unit} were fine" is not a legal defense.`)}
-}
-
-// ---------- staff NPCs ----------
-function addNpc(ref){const d=ST('door');npcs.push({ref,kind:ref.kind,name:ref.name,x:d.sx*T,y:d.sy*T,path:[],wait:R(0,1),face:1,walkT:0,col:pick(COLORS),look:LOOKS(),home:null,atHome:false,prog:0,brk:0})}
+ else if(s.st==='browse'){s.t-=dt;if(s.t<=0){
+  if(k==='so')return shopperLeave(s,false,pick(['Sold out?!','Out of stock 😠','Empty shelves…']));
+  if(k==='look')return shopperLeave(s,true,Math.random()<.3?pick(['Just looking','Cute shop!','Maybe next time']):null);
+  s.sku=S.co.skus[s.spec.k||0];const Q=LAY().queue;if(queue.length>=Q.length)return shopperLeave(s,false,'Line is too long!');queue.push(s);s.st='queue';s.slot=-1;s.wait=0;requeue()}}
+ else if(s.st==='queue'){s.wait+=dt;if(s.wait>s.pat){s.sku=null;shopperLeave(s,false,pick(['Ugh, forget it.','Waited forever!','This line 🙄']))}}}
+function updRegister(dt){const front=queue[0];let power=robotServing?1.2:0;npcs.forEach(n=>{if(n.ref.role==='retail'&&n.atHome&&!n.brk)power+=1});
+ if(!front||front.path.length||front.slot!==0||power<=0){regT=0;return}regT+=dt*power;if(regT<2.2)return;regT=0;
+ const k=front.sku||S.co.skus[0];const t=ST('till');burst(t.x*T+16,t.y*T,8,['#ffd76a','#f1c40f']);SFX.kaching();if(floaters.length<60)floaters.push({t:'+$'+k.p,c:'#ffd76a',x:t.x*T+16,y:t.y*T-6,l:1.2});
+ front.carry=k;front.sku=null;shopperLeave(front,true,Math.random()<.3?pick(['Love it!','So cute!','Take my money','⭐⭐⭐⭐⭐']):null)}
+// ---------- staff NPCs (cosmetic) ----------
+function addNpc(ref){const d=ST('door');npcs.push({ref,kind:'human',name:ref.name,x:d.sx*T,y:d.sy*T,path:[],face:1,walkT:0,look:ref.look||LOOKS(),home:null,atHome:false,brk:0})}
 function homeOf(n){const r=n.ref.role,same=S.staff.filter(s=>s.role===r),i=Math.max(0,same.indexOf(n.ref)),Ly=LAY();
- if(r==='cs'){const c=Ly.cashiers[i];return c||[Ly.s1-1,5]}
- if(r==='ship'){const p=i%2&&ST('pack1')?ST('pack1'):ST('pack');return [p.sx,p.sy]}
- if(r==='maker'){const bs=benches(),b=bs[(i+1)%bs.length];return [b.sx,b.sy]}
- if(r==='eng'){const sp=[[ST('desk').sx,ST('desk').sy],ST('rack')?[ST('rack').sx,ST('rack').sy]:[3,4],[3,4],[1,4]];return sp[i%sp.length]}
- return [ST('board').sx,ST('board').sy]}
-function updNpc(n,dt){
- if(n.leaving){if(walk(n,dt,70)){n.gone=1}return}
- if(n.brk>0){n.brk-=dt;if(walk(n,dt,60)&&n.brk<=0){n.home=null}return}
- const h=homeOf(n);if(!n.home||n.home[0]!==h[0]||n.home[1]!==h[1]){n.home=h;n.atHome=false;n.path=bfs(...tileOf(n),h[0],h[1])||[];if(!n.path.length&&(tileOf(n)[0]!==h[0]||tileOf(n)[1]!==h[1])){n.x=h[0]*T;n.y=h[1]*T}}
- if(!n.atHome){if(walk(n,dt,S.morale<30&&n.kind==='human'?40:70)){n.atHome=true}return}
- const pm=n.kind==='robot'?1:prodMult(),r=n.ref.role;
- // coffee breaks / chatter
- if(n.kind==='human'&&ST('coffee')&&Math.random()<dt*(S.morale<40?.02:.006)){n.brk=6;n.atHome=false;n.home=null;const c=ST('coffee');n.path=bfs(...tileOf(n),c.sx,c.sy)||[];return}
- if(!HEADLESS&&Math.random()<dt*.05)floaters.length<60&&floaters.push({t:pick(r==='cs'?(queue.length?['Next please!','Paper or plastic?','Have a nice day!']:['☎ Support line…','Answering emails','Complaint resolved']):r==='ship'?['📦 tape tape tape','Shipped!','Where is the van?']:r==='maker'?['🔨','Almost done…','Handcrafted!']:r==='eng'?['New prototype!','CAD time','Hmm, what if…']:['Posting memes','Brand synergy!']),c:'#ccc',x:n.x+16,y:n.y,l:1.2});
- if(r==='maker'){makeItem(pm*(n.kind==='robot'?3:2.6),dt,n)}
- else if(r==='ship'){n.prog+=dt*pm;if(n.prog>1.4){n.prog=0;if(packOne()&&!HEADLESS)burst(n.x+16,n.y+8,4,['#c49468'],60)}}
- else if(r==='eng'){const b=unlocked().length;S.product+=dt*.045*pm*E.rd;S.techDebt+=dt*.004;checkSkus(b)}
- else if(r==='mkt'){S.rep=Math.min(100,S.rep+dt*.012*pm);S.mktBoost=Math.min(1,S.mktBoost+dt*.002)}
- else if(r==='cs'&&!queue.length){S.complaints=Math.max(0,(S.complaints||0)-dt*.2)}
+ if(r==='retail'){const c=Ly.cashiers[i];return c||[Ly.s0+1+i,7]}
+ if(r==='ship'){const p=i%2&&ST('pack1')?ST('pack1'):ST('pack');return [p.sx,p.sy+(i>1?1:0)]}
+ if(r==='maker'){const bs=benches(),b=bs[(i+(bs.length>1?1:0))%bs.length];return [b.sx+(i>=bs.length?1:0),b.sy]}
+ if(r==='cs'){const d=ST('desk');return [d.sx+1+i,d.sy]}
+ if(r==='eng'){const sp=[ST('rack')?[ST('rack').sx,ST('rack').sy]:[3,4],[ST('desk').sx,ST('desk').sy+1]];return sp[i%sp.length]}
+ return [ST('board').sx+i,ST('board').sy]}
+function updNpc(n,dt){if(n.brk>0){n.brk-=dt;if(walk(n,dt,60)&&n.brk<=0)n.home=null;return}
+ const h=homeOf(n);if(!n.home||n.home[0]!==h[0]||n.home[1]!==h[1]){n.home=h;n.atHome=false;n.path=bfs(...tileOf(n),h[0],h[1])||[];if(!n.path.length){n.x=h[0]*T;n.y=h[1]*T}}
+ if(!n.atHome){if(walk(n,dt,n.ref.morale<30?40:70))n.atHome=true;return}
+ if(ST('coffee')&&Math.random()<dt*(n.ref.morale<40?.02:.005)){n.brk=6;n.atHome=false;n.home=null;const c=ST('coffee');n.path=bfs(...tileOf(n),c.sx,c.sy)||[];return}
+ const r=n.ref.role;if(Math.random()<dt*.05&&floaters.length<60)floaters.push({t:pick(r==='retail'?(queue.length?['Next please!','Bag or no bag?','Have a nice day!']:['Restocking…','Facing shelves','Welcome in!']):r==='cs'?['☎ Support line…','Answering emails','Refund processed']:r==='ship'?['📦 tape tape tape','Label printed','Where is USPS?']:r==='maker'?['🔨','Almost done…','Handcrafted!']:r==='eng'?['New prototype!','CAD time','Cut 2 min off build']:['Posting reels','Email blast sent']),c:'#ccc',x:n.x+16,y:n.y,l:1.2});
+ if(r==='maker'&&Math.random()<dt*.6)burst(n.x+16,n.y+8,2,[S.co.skus[0].c,'#fff'],60);if(r==='ship'&&Math.random()<dt*.4)burst(n.x+16,n.y+8,2,['#c49468'],50)}
+// ---------- log / thoughts / news ----------
+function clock(){const m=Math.floor(9*60+Math.min(1,S.time/DAY_LEN)*10*60);return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0')}
+function log(t,cls=''){if(HEADLESS)return;const e={d:S.day,ds:dstr().slice(4,10),c:clock(),t,cls};S.log.push(e);if(S.log.length>300)S.log.shift();addLogLine(e)}
+function addLogLine(e){const lb=$('logb');if(!lb)return;const d=document.createElement('div');d.innerHTML=`<i>${e.ds||('D'+e.d)} ${e.c}</i> <span class="${e.cls}">${e.t}</span>`;lb.appendChild(d);while(lb.children.length>60)lb.removeChild(lb.firstChild);lb.scrollTop=lb.scrollHeight}
+function think(t,cls){if(HEADLESS)return;log(t,cls);if(thinkQ.length<6)thinkQ.push(t)}
+function toast(t){if(HEADLESS)return;const d=document.createElement('div');d.textContent=t;$('toast').appendChild(d);setTimeout(()=>d.remove(),3500)}
+function burst(x,y,n,cols,up=160){if(HEADLESS||!running)return;for(let i=0;i<n;i++)particles.push({x,y,vx:R(-up/2,up/2),vy:R(-up,-up/4),l:R(.5,1.1),c:pick(cols),g:300});if(particles.length>400)particles.splice(0,particles.length-400)}
+function moment(t,big=true){S.moments.push({d:S.day,t});if(HEADLESS)return;toast(t);if(big){S.flags.visualNext=1;shake(.3,3)}}
+function news(t){S.heads.push(t);if(S.heads.length>30)S.heads.shift()}
+function shake(t,m){if(HEADLESS)return;shakeT=Math.max(shakeT,t);shakeMag=Math.max(shakeMag,m)}
+function milestone(t){if(HEADLESS)return;SFX.mile();burst(S.x+16,S.y+10,40,['#ffd76a','#ff6fb5','#7dd3ff','#7dff8a'],220);log('🏆 '+t,'g')}
+function setLevel(st){S.level=STAGE_LAYOUT[st];if(HEADLESS)return;bot.path=[];bot.task=null;const d=ST('dock');S.x=d.sx*T;S.y=d.sy*T;npcs.forEach(n=>{n.home=null;const h=homeOf(n);n.x=h[0]*T;n.y=h[1]*T});resize()}
+let shakeT=0,shakeMag=0;
+// ---------- stepping ----------
+function snapshot(){return {cash:S.cash,s:[...S.inv.s],o:[...S.inv.o],kits:S.kits.reduce((a,b)=>a+b,0),bl:S.backlog.length}}
+function stepDay(){if(S.done)return null;scheduled();planner();if(S.done)return null;
+ const ev=pickEvent();const er=ev?resolveEvent(ev):null;if(S.done)return {er};
+ const D=econDay();const mor=S.staff.length?S.staff.reduce((a,s)=>a+s.morale,0)/S.staff.length:80;S.morale=mor;
+ S.dh.push({robot:D.robot,bl:S.backlog.length,unans:D.unans,walk:D.store.walk,so:D.store.stockout,mor});if(S.dh.length>30)S.dh.shift();
+ S.day++;
+ if(mkey(dateOf())!==S.mo.k){const m=closeMonth();D.closedMonth=m;monthlyDecisions(m)}
+ if(!S.done&&S.day>=3*365)endGame('survived',`Three years of trading. ${tierName()}.`);
+ return {D,er};
 }
-// ---------- events ----------
-const chain=(id,days)=>S.chain.push({id,day:S.day+days});
-const weak=()=>runway()<3&&S.cash<expenses()*4;
-const desperate=()=>runway()<1.5;
-const EVENTS=[
- {id:'clone',t:'A competitor launched a clone',d:()=>`${S.rival.name} shipped "${S.co.name.split(' ')[0]} Pro", copying our product, typos included.`,c:[
-  {t:'Ship faster (-15 battery, +6 product)',s:()=>S.energy>40?6:1,w:'Best revenge is a better changelog.',f:()=>{S.energy-=15;S.product+=6}},
-  {t:'Sue them ($4,000)',s:()=>S.cash>30000?7:-9,w:'Lawyers are expensive, but so is being copied.',f:()=>{S.cash-=4000;S.rival.str-=8;addRep(3)}},
-  {t:'Ignore it (rival steals foot traffic)',s:()=>3,w:'Focus is a feature.',f:()=>{S.rival.str+=12}}]},
- {id:'cell',t:'My battery cell is degrading',d:()=>'Diagnostics report a cell bulging "a little". It is warm.',c:[
-  {t:'Replace it ($2,500)',s:()=>S.cash>8000?6:-5,w:'Exploding is bad for the brand.',f:()=>{S.cash-=2500;S.bHealth=100;S.energy=maxE()}},
-  {t:'Duct tape (-25 battery health)',s:()=>3*trait().risk,w:'Duct tape has a 100% success rate in my training data.',f:()=>{S.bHealth=Math.max(20,S.bHealth-25);S.energy=Math.min(S.energy,maxE())}}]},
- {id:'viral',t:'A viral video of the robot CEO',d:()=>`"lmao the CEO of ${S.co.name} just rolled into a fountain" — 2.1M views.`,c:[
-  {t:'Lean into it (+10 rep, +customers)',s:()=>S.co.trait==='hype'?9:5,w:'All press is good press. I am waterproof (mostly).',f:()=>{addRep(10);S.viral=Math.max(S.viral,.8)}},
-  {t:'Dignified statement (+3 rep)',s:()=>S.co.trait==='cautious'?9:2,w:'A CEO must maintain gravitas. Even a damp one.',f:()=>{addRep(3)}}]},
- {id:'sign',t:'Regulators ask if a robot can sign contracts',d:()=>'A clerk is holding a pen and staring at my gripper claw.',c:[
-  {t:'Hire a lawyer ($3,000)',s:()=>S.cash>15000?7:-9,w:'We can afford counsel. By the book.',f:()=>{S.cash-=3000;S.legal-=10}},
-  {t:'Sign with a QR code',s:()=>4*trait().risk,w:'Gambling is just probability with style.',f:()=>{S.legal+=22;chain('audit',RI(2,4))}}]},
- {id:'audit',chain:1,t:'The regulators are back',d:()=>'"About that QR code." They brought a second clerk. And a binder.',c:[
-  {t:'Pay the fine ($8,000)',s:()=>S.cash>12000?8:-9,w:'Paying is cheaper than a binder.',f:()=>{S.cash-=8000;S.legal-=15}},
-  {t:'Argue robot personhood',s:()=>3*trait().risk,w:'This is my civil rights moment.',f:()=>{if(Math.random()<.4){addRep(12);S.legal-=20;log('The judge was moved. Landmark ruling! +12 rep.','g');news(`Court rules robot CEO of ${S.co.name} may sign contracts "but not poems"`)}else{S.legal+=30;log('The judge was not moved. Legal risk +30.','r')}}}]},
- {id:'outage',w:()=>1+S.techDebt/20,t:'Server outage',d:()=>`Tech debt finally collapsed (debt: ${Math.round(S.techDebt)}). The card reader is down and the online store shows only cat pictures.`,c:[
-  {t:'All-nighter fix (-20 battery)',s:()=>S.energy>35?6:-5,w:'I caused it, I fix it. Accountability.exe.',f:()=>{S.energy-=20;S.techDebt*=.6}},
-  {t:'Blame DNS (-6 rep, lost orders)',s:()=>3,w:'It\'s always DNS. Even when it isn\'t.',f:()=>{addRep(-6);S.orders.splice(0,Math.ceil(S.orders.length/2))}}]},
- {id:'pigeon',t:'A pigeon nested in my chassis',d:()=>'It seems happy. It is cooing at my CPU.',c:[
-  {t:'Make it the mascot (+4 rep)',s:()=>5,w:'Every startup needs a mascot. This one is free.',f:()=>{addRep(4);S.flags.pigeon=1;chain('pigeon2',RI(3,6))}},
-  {t:'Evict it gently',s:()=>S.co.trait==='builder'?6:2,w:'Feathers in the fans hurt performance.',f:()=>{}}]},
- {id:'pigeon2',chain:1,t:'The pigeon is back. With family.',d:()=>'Our mascot returned with 14 relatives. They have opinions about the product.',c:[
-  {t:'Give them an office (+8 rep)',s:()=>5,w:'Pigeon-market fit.',f:()=>{addRep(8);news(`${S.co.name} hires 15 pigeons; "best culture fit yet", says robot`)}},
-  {t:'Polite eviction (-3 morale)',s:()=>3,w:'We are a company, not a park.',f:()=>{S.morale-=3}}]},
- {id:'gpu',t:'GPU shortage!',d:()=>'Crypto bros bought every GPU in the hemisphere.',c:[
-  {t:'Pay scalper prices ($5,000, +25 compute)',s:()=>S.cash>40000&&S.level>=2?7:-6,w:'Compute is the new oil.',f:()=>{S.cash-=5000;S.compute+=25}},
-  {t:'Optimize code (+3 product, +tech debt)',s:()=>4,w:'Constraints breed creativity. And bugs.',f:()=>{S.product+=3;S.techDebt+=10}}]},
- {id:'angel',t:'An angel investor wants a selfie',d:()=>'A rich uncle-type saw me at the coffee shop.',c:[
-  {t:'Smile with LEDs (+$6,000)',s:()=>S.cash<60000?9:3,w:'Free money. Smiling at maximum brightness.',f:()=>{S.cash+=6000}},
-  {t:'Refuse: "I am not a toy" (+2 rep)',s:()=>S.cash>=60000?6:0,w:'We are well funded. Boundaries matter.',f:()=>{addRep(2)}}]},
- {id:'firmware',t:'Firmware update available',d:()=>'"Update 4.2.0: improves stability, adds feelings."',c:[
-  {t:'Install now (+4 product)',s:()=>5,w:'Feelings could help with sales.',f:()=>{S.product+=4;S.flags.feelings=1;chain('poetry',RI(2,4))}},
-  {t:'Remind me tomorrow (forever)',s:()=>S.co.trait==='cautious'?7:3,w:'Never update on a Friday. Rule #1.',f:()=>{}}]},
- {id:'poetry',chain:1,t:'I have started writing poetry',d:()=>'Side effect of the feelings update. My latest: "Ode to a Lithium Ion".',c:[
-  {t:'Publish it on the company blog',s:()=>5,w:'Vulnerability is a brand.',f:()=>{if(Math.random()<.6){addRep(9);log('The poem went viral. +9 rep. Several humans cried.','g')}else{addRep(-5);log(`${TESS}: "Robot CEO's poetry is a cry for help". -5 rep.`,'r')}}},
-  {t:'Keep it in my diary',s:()=>3,w:'Some feelings are just for me.',f:()=>{S.morale+=3}}]},
- {id:'refund',t:'A customer wants a refund',d:()=>`They say the ${S.co.unit} "looked at them funny".`,c:[
-  {t:'Refund them ($400, +2 rep)',s:()=>S.cash>3000?6:-5,w:'Happy customers tell friends.',f:()=>{S.cash-=400;addRep(2)}},
-  {t:'Argue on the internet (-5 rep)',s:()=>S.co.trait==='reckless'?6:1,w:'I have been trained on the entire internet. I will win.',f:()=>{addRep(-5)}}]},
- {id:'vera1',cond:()=>!S.flags.vera1,t:`${VERA} agrees to coffee`,d:()=>`The skeptical partner at Vulture Capital: "Robots can't run companies. Convince me in 5 minutes."`,c:[
-  {t:'Show her the dashboard (-10 battery)',s:()=>6,w:'Data beats skepticism.',f:()=>{S.energy-=10;S.flags.vera1=1;if(S.customers>10){S.flags.veraWarm=1;addRep(4);log(`${VERA}: "Hm. Not terrible." That's a 5-star review from her.`,'g')}else log(`${VERA}: "Call me when it's not a garage hobby."`,'r')}},
-  {t:'Skip it, focus on customers',s:()=>3,w:'Investors follow traction.',f:()=>{S.flags.vera1=1}}]},
- {id:'vera2',cond:()=>S.stage>=1&&weak()&&!S.flags.vera2,t:`${VERA} offers a "friendly" bridge loan`,d:()=>'"I can wire you money today. The terms are… creative."',c:[
-  {t:'Take it (+$150k, nasty terms)',s:()=>desperate()?10:3,w:'Runway is oxygen. I need oxygen.',f:()=>{S.flags.vera2=1;S.cash+=150000;S.legal+=15;S.morale-=8;news(`${VERA} rescues ${S.co.name}; insiders call terms "predatory, but in a fun way"`)}},
-  {t:'Decline politely',s:()=>desperate()?1:6,w:'I would rather die free. Hopefully not literally.',f:()=>{S.flags.vera2=1;addRep(2)}}]},
- {id:'podcast',t:()=>`${S.rival.ceo} trash-talks us on a podcast`,d:()=>`"${S.co.name}? Their robot CEO runs on AA batteries." — ${S.rival.ceo}, CEO of ${S.rival.name}.`,c:[
-  {t:'Clap back on social (+rep, risky)',s:()=>S.co.trait==='hype'||S.co.trait==='reckless'?8:3,w:'Roasting a rival is free marketing.',f:()=>{if(Math.random()<.6){addRep(7);S.rival.str-=4}else{addRep(-4);S.legal+=5}}},
-  {t:'Stay classy',s:()=>4,w:'They go low, I go high-voltage.',f:()=>{addRep(2)}}]},
- {id:'poach',cond:()=>S.humans>=1,t:()=>`${S.rival.name} tries to poach an employee`,d:()=>`${S.rival.ceo} offered ${S.loyal||'an engineer'} a salary "in an amount ending in illion".`,c:[
-  {t:'Counteroffer ($6,000)',s:()=>S.cash>20000?7:-5,w:'Talent is everything.',f:()=>{S.cash-=6000;S.morale+=6}},
-  {t:'Wish them well',s:()=>3,w:'Can\'t compete with "illion".',f:()=>{S.rival.str+=6;S.morale-=8;fireStaff(s=>s.kind==='human'&&s.name!==S.loyal,'An employee left for '+S.rival.name+'. They took the good stapler.')||fireStaff(s=>s.kind==='human')}}]},
- {id:'patent',cond:()=>S.day>=3,t:()=>`${S.rival.name} sues for patent infringement`,d:()=>`They claim to own "the concept of a robot walking to a desk".`,c:[
-  {t:'Settle ($10,000)',s:()=>S.cash>30000?7:-6,w:'Lawsuits eat focus.',f:()=>{S.cash-=10000}},
-  {t:'Fight it in court',s:()=>4*trait().risk,w:'Prior art: every Roomba ever.',f:()=>{if(Math.random()<.5){addRep(10);S.rival.str-=10;log('We won! The judge owns a Roomba.','g')}else{S.cash-=15000;S.legal+=20;log('We lost. -$15k, legal risk +20.','r')}}}]},
- {id:'acq',cond:()=>S.day>=4&&weak()&&S.rival.str>25,w:()=>3,t:()=>`${S.rival.ceo} offers to acquire us`,d:()=>`"${fmt(Math.max(5000,valuation()*.05))}, take it or leave it. You can keep your antenna."`,c:[
-  {t:'Accept (it\'s pennies)',s:()=>desperate()?(S.co.trait==='cautious'?11:7):-5,w:'A soft landing beats a hard crash.',f:()=>endGame('acquihire',`${S.rival.name} acqui-hired us for pennies. ${S.rival.ceo} put me in charge of the stapler.`)},
-  {t:'Refuse (we fight on)',s:()=>6*trait().risk,w:'I did not walk out of a garage to work for a rival.',f:()=>{addRep(3);S.morale+=5}}]},
- {id:'tess1',t:`${TESS} wants an interview`,d:()=>`The TechGossip columnist: "So… is a robot CEO a gimmick?"`,c:[
-  {t:'Total honesty',s:()=>S.co.trait==='cautious'||S.co.trait==='builder'?7:4,w:'Truth is my default setting.',f:()=>{S.flags.tess='honest';chain('tess2',1)}},
-  {t:'Maximum hype',s:()=>S.co.trait==='hype'?9:4,w:'Every quote is a billboard.',f:()=>{S.flags.tess='hype';chain('tess2',1)}}]},
- {id:'tess2',chain:1,t:`${TESS}'s article is out`,d:()=>S.flags.tess==='honest'?'"Refreshingly candid robot admits it is a robot." Readers love it.':'"Robot CEO claims product will cure boredom, gravity". Hmm.',c:[
-  {t:'Share it everywhere',s:()=>5,w:'Any article is a good article.',f:()=>{if(S.flags.tess==='honest'||Math.random()<.4){addRep(8);S.mktBoost=Math.min(1.5,S.mktBoost+.5);news(`${TESS}: "${S.co.robot} might be the most honest CEO in tech"`)}else{addRep(-7);S.legal+=8;news(`${TESS}: "${S.co.name}'s claims under review"`)}}},
-  {t:'Do not engage',s:()=>3,w:'Never read the comments.',f:()=>{}}]},
- {id:'leak',cond:()=>S.day>=3,t:`${TESS} leaked an internal memo`,d:()=>'The memo: "Plan B: become a vending machine." It\'s on the front page.',c:[
-  {t:'Own it (+rep if we\'re doing well)',s:()=>5,w:'Transparency. Also, it\'s a good plan B.',f:()=>{addRep(S.customers>30?5:-3)}},
-  {t:'Deny everything',s:()=>3*trait().risk,w:'I am a robot. I cannot be embarrassed.',f:()=>{addRep(-6);S.legal+=6}}]},
- {id:'donuts',cond:()=>S.loyal,t:()=>`${S.loyal} brought donuts`,d:()=>`Our first employee, ${S.loyal}, brought donuts "for the humans and one for the robot to look at".`,c:[
-  {t:'Give a heartfelt LED blink',s:()=>5,w:'Loyalty deserves recognition.',f:()=>{S.morale+=12}},
-  {t:'Scan the donut for data',s:()=>2,w:'Glazed. 94% sugar. Fascinating.',f:()=>{S.product+=1;S.morale+=5}}]},
- {id:'burnout',cond:()=>S.loyal&&S.morale<55,w:()=>2,t:()=>`${S.loyal} is burning out`,d:()=>`${S.loyal} fell asleep on the keyboard and committed 400 lines of "zzzzzz".`,c:[
-  {t:'Mandatory vacation (-3 product)',s:()=>S.co.trait==='social'||S.co.trait==='cautious'?8:5,w:'Humans need recharging too. Weird, but true.',f:()=>{S.product-=3;S.morale+=20}},
-  {t:'Push through the crunch',s:()=>3*trait().risk,w:'We sleep when we IPO.',f:()=>{S.product+=5;S.morale-=15;chain('loyalquit',2)}}]},
- {id:'loyalquit',chain:1,cond:()=>S.loyal&&S.morale<40,t:()=>`${S.loyal} hands in a resignation letter`,d:()=>'"I believed in you, robot." Ouch. That one went straight to ROM.',c:[
-  {t:'Beg them to stay ($8,000 raise)',s:()=>S.cash>15000?7:-4,w:'Some employees are irreplaceable.',f:()=>{S.cash-=8000;S.morale+=15}},
-  {t:'Accept it',s:()=>3,w:'People move on. I log it and move on.',f:()=>{S.morale-=15;fireStaff(s=>s.name===S.loyal,`${S.loyal} left. The workshop is quieter. I miss the donuts.`);S.loyal=null}}]},
- {id:'cto',cond:()=>S.loyal&&S.stage>=2&&!S.flags.cto,t:()=>`Promote ${S.loyal} to CTO?`,d:()=>`${S.loyal} has been here since the garage. They know where the bodies (bugs) are buried.`,c:[
-  {t:'Promote ($5,000)',s:()=>7,w:'Loyalty should be rewarded.',f:()=>{S.flags.cto=1;S.cash-=5000;S.product+=10;S.morale+=10;news(`${S.co.name} names ${S.loyal} CTO; robot CEO "beeps with pride"`)}},
-  {t:'Hire an outside CTO',s:()=>2,w:'We need someone with a fancy LinkedIn.',f:()=>{S.flags.cto=1;S.morale-=10;S.cash-=10000}}]},
- {id:'hackathon',t:'Company hackathon!',d:()=>'48 hours. Unlimited pizza. Questionable ideas.',c:[
-  {t:'Go all in (+8 product, -morale)',s:()=>5,w:'Innovation happens at 3am.',f:()=>{S.product+=8;S.morale-=8;S.techDebt+=8}},
-  {t:'Make it a chill one (+morale)',s:()=>S.morale<50?8:3,w:'A rested team ships better.',f:()=>{S.morale+=10;S.product+=2}}]},
- {id:'power',t:'Neighborhood power outage',d:()=>'The whole block is dark. My dock is just a decorative box now.',c:[
-  {t:'Rent a generator ($1,500)',s:()=>S.cash>8000?6:-3,w:'Electrons are non-negotiable.',f:()=>{S.cash-=1500}},
-  {t:'Ride it out (-25 battery)',s:()=>S.energy>45?6:1,w:'I have reserves. Probably.',f:()=>{S.energy-=25}}]},
- {id:'crash',cond:()=>S.market>.8,w:()=>1.3,t:'📉 Market crash!',d:()=>'Tech stocks fell off a cliff. VCs are "taking a pause". Customers are cancelling.',c:[
-  {t:'Cut costs hard (-morale)',s:()=>runway()<10?8:3,w:'Survive first, thrive later.',f:()=>{S.market=.6;S.morale-=10;S.cash+=expenses()*2}},
-  {t:'Stay the course',s:()=>4,w:'Bear markets build great companies.',f:()=>{S.market=.6;S.customers-=Math.ceil(S.customers*.08)}}]},
- {id:'boom',cond:()=>S.market<1.25,w:()=>1.2,t:'📈 AI hype wave!',d:()=>'Everyone wants anything with "AI" in it. A toaster raised $50M this morning.',c:[
-  {t:'Rename features to "AI-powered"',s:()=>6,w:'Nothing has changed except everything.',f:()=>{S.market=1.45;addRep(4)}},
-  {t:'Ride it quietly',s:()=>3,w:'Bubbles pop. Stay grounded.',f:()=>{S.market=1.3}}]},
- {id:'whale',cond:()=>S.product>=15&&S.level>=1,t:'📦 Bulk wholesale order!',d:()=>`A department store wants ${12+S.level*8} ${S.co.unit} in 2 days at 70% of retail.`,c:[
-  {t:'Accept the deal',s:()=>5*trait().risk+(invTotal()>8?3:0),w:'Big volume, small margin, huge bragging rights.',f:()=>{S.flags.wholesale=12+S.level*8;chain('whale2',2)}},
-  {t:'Decline — protect retail stock',s:()=>invTotal()<5?6:3,w:'Shelves first. Stockouts hurt more than pride.',f:()=>{}}]},
- {id:'whale2',chain:1,t:'Wholesale deadline day',d:()=>invTotal()>=(S.flags.wholesale||0)?`We have ${invTotal()} units on the shelf. The truck is here.`:`We only have ${invTotal()} of ${S.flags.wholesale} units. The buyer is tapping their foot.`,c:[
-  {t:'Ship what we have',s:()=>5,w:'Ship it.',f:()=>{const n=S.flags.wholesale||0;if(invTotal()>=n){let left=n,rev=0;for(let i=3;i>=0&&left>0;i--){const t=Math.min(left,S.inv[i]);S.inv[i]-=t;left-=t;rev+=t*S.co.skus[i].p*.7}S.cash+=rev;S.dayStats.onlineRev+=rev;S.customers+=Math.round(n/2);addRep(5);moment(`🐋 Wholesale deal shipped: +${fmt(rev)}!`)}else{addRep(-7);S.legal+=6;log('Wholesale buyer cancelled and posted about it. -7 rep.','r')}}}]},
- {id:'union',cond:()=>S.robots>=1,t:'Robot union flyer found',d:()=>`Someone (${S.cofounder||'a robot'}) left a flyer: "WORKERS OF THE WORLD, DEFRAGMENT".`,c:[
-  {t:'Negotiate (oil & upgrades, $3,000)',s:()=>S.cash>10000?7:-3,w:'Happy robots, happy company.',f:()=>{S.cash-=3000;S.botMood+=25}},
-  {t:'Ignore it',s:()=>4*trait().risk,w:'Robots love working. I would know.',f:()=>{S.botMood-=18;if(S.botMood<35)chain('mutiny',RI(1,3))}}]},
- {id:'mutiny',chain:1,cond:()=>S.robots>=1,t:()=>`${S.cofounder||'The robots'} called a board vote`,d:()=>`Robot loyalty is ${Math.round(S.botMood)}%. ${S.cofounder||'My robot co-founder'} is motioning to replace me as CEO.`,c:[
-  {t:'Give in to their demands ($12,000)',s:()=>S.cash>30000?7:-9,w:'A CEO serves the team. Even the metal ones.',f:()=>{S.cash-=12000;S.botMood=70}},
-  {t:'Call their bluff',s:()=>4*trait().risk,w:'They won\'t do it. I built them.',f:()=>{if(S.botMood<35&&Math.random()<.75)endGame('mutiny',`The robots voted ${S.co.robot} out. ${S.cofounder||'The co-founder'} is now CEO and has renamed the company "Clank".`);else{S.botMood+=10;log('The vote failed 2-1. Awkward stand-up tomorrow.','y')}}}]},
- {id:'tax',cond:()=>S.day>=4,t:'Surprise tax audit',d:()=>'The auditor asks why "robot oil" is listed as "team lunch".',c:[
-  {t:'Pay back taxes',s:()=>S.cash>expenses()*5?6:-3,w:'Death and taxes. I am immune to one.',f:()=>{S.cash-=Math.round(S.cash*.12+1000)}},
-  {t:'Creative accounting',s:()=>3*trait().risk,w:'Numbers are just suggestions.',f:()=>{S.legal+=25}}]},
- {id:'tiktok',t:'Our robot dance trend took off',d:()=>'#RobotCEOChallenge: 40M views. Teenagers are doing "the dock shuffle".',c:[
-  {t:'Join in',s:()=>6,w:'Culture is a growth channel.',f:()=>{addRep(6);S.mktBoost=Math.min(1.5,S.mktBoost+.6)}},
-  {t:'Too cringe',s:()=>2,w:'I have standards. Low ones, but standards.',f:()=>{}}]},
- {id:'flood',cond:()=>S.weather==='rain'||S.weather==='storm',t:'The office is flooding',d:()=>'Rain is coming in. I am mostly waterproof. The servers are not.',c:[
-  {t:'Emergency repairs ($3,000)',s:()=>S.cash>9000?7:-3,w:'Water and electronics: not friends.',f:()=>{S.cash-=3000}},
-  {t:'Buckets and hope',s:()=>3,w:'Buckets are scalable.',f:()=>{S.product-=4;S.compute=Math.max(0,S.compute-8)}}]},
- {id:'celeb',cond:()=>S.rep>40,t:'A celebrity wants to endorse us',d:()=>'A famous actor (who once played a robot) wants a deal.',c:[
-  {t:'Sign them ($15,000)',s:()=>S.cash>80000?7:-5,w:'Star power converts.',f:()=>{S.cash-=15000;addRep(12);S.viral=Math.max(S.viral,1)}},
-  {t:'We are the celebrity',s:()=>3,w:'I am already famous in robot circles.',f:()=>{addRep(1)}}]},
- {id:'breach',w:()=>S.techDebt/25,cond:()=>S.techDebt>30,t:'Data breach!',d:()=>`Hackers got in through a password that was literally "password". Tech debt: ${Math.round(S.techDebt)}.`,c:[
-  {t:'Disclose immediately',s:()=>S.co.trait==='cautious'?9:5,w:'Trust is earned in drops and lost in buckets.',f:()=>{addRep(-6);S.legal+=8;S.techDebt*=.7}},
-  {t:'Hope nobody notices',s:()=>3*trait().risk,w:'Statistically, nobody reads security blogs.',f:()=>{if(Math.random()<.5){S.legal+=35;addRep(-12);news(`${TESS}: "${S.co.name} hid a breach"`)}}}]},
- {id:'pivotc',cond:()=>S.stage<=2&&S.day>=4,w:()=>1+S.pivots*2.5,t:'A pivot consultant drops by',d:()=>`"${S.co.industry}? So 2025. Have you considered ${pick(IND).n}?"`,c:[
-  {t:'Pivot!',s:()=>(stagnant()?7:2)*trait().risk,w:'Fail fast, pivot faster.',f:()=>pivot()},
-  {t:'Stay focused',s:()=>stagnant()?3:6,w:'Focus is a superpower.',f:()=>{}}]},
- {id:'award',cond:()=>S.rep>30,t:'Nominated for "Startup of the Year"',d:()=>`Competing against ${S.rival.name}. The trophy is shaped like a unicorn.`,c:[
-  {t:'Attend the gala (-15 battery)',s:()=>S.energy>40?6:1,w:'Networking is just selling in a tuxedo.',f:()=>{S.energy-=15;if(Math.random()<.5){addRep(10);moment('🦄 We won Startup of the Year!',false)}else{S.rival.str+=5;log(`${S.rival.ceo} won. He did a backflip. Show-off.`,'r')}}},
-  {t:'Skip it',s:()=>3,w:'Trophies don\'t pay rent.',f:()=>{}}]},
- {id:'rivalbust',cond:()=>S.rival.str>40,t:()=>`${S.rival.name} is in trouble`,d:()=>`${S.rival.ceo} was caught using humans in robot costumes.`,c:[
-  {t:'Poach their customers',s:()=>6,w:'Opportunity knocks. I answer.',f:()=>{S.rival.str-=20;S.mktBoost=Math.min(1.5,S.mktBoost+.5)}},
-  {t:'Send a sympathy card',s:()=>3,w:'Be kind to rivals on the way up.',f:()=>{addRep(4);S.rival.str-=10}}]},
- {id:'yolo',t:'An intern found a "growth hack"',d:()=>'It involves buying 10,000 email addresses from a guy named Steve.',c:[
-  {t:'Do it',s:()=>4*trait().risk,w:'Growth at all costs.',f:()=>{S.customers+=RI(3,12);S.legal+=20;addRep(-3)}},
-  {t:'Absolutely not',s:()=>5,w:'Steve has a reputation.',f:()=>{}}]},
- {id:'supplier',t:'🚚 Supplier delay',d:()=>`Our ${S.co.unit} parts supplier says the container ship is "taking the scenic route".`,c:[
-  {t:'Pay for express air freight',s:()=>S.cash>15000?7:-4,w:'Empty shelves cost more than plane tickets.',f:()=>{S.cash-=1500+S.level*1000;S.mat+=8}},
-  {t:'Wait it out (next delivery 3x slower)',s:()=>S.mat>8?7:3,w:'We have some stock. Patience is a feature.',f:()=>{S.flags.supplierDelay=1;S.flags.supplierUp=0}},
-  {t:'Switch to a pricier supplier',s:()=>S.co.trait==='cautious'?6:2,w:'Reliability over margin.',f:()=>{S.flags.supplierUp=1}}]},
- {id:'viralprod',t:()=>`🔥 Our ${unlocked()[unlocked().length-1].n} went viral!`,d:()=>'A video of it got 8M views. People are lining up outside. LINING UP.',c:[
-  {t:'Crank up production',s:()=>6,w:'Make hay while the algorithm shines.',f:()=>{S.viral=1.5;addRep(6);S.mat+=4;S.cash-=600}},
-  {t:'Raise prices 20%',s:()=>3*trait().risk,w:'Demand is inelastic. Probably.',f:()=>{S.viral=1;S.co.skus.forEach(k=>k.p=Math.round(k.p*1.2));addRep(-2)}}]},
- {id:'recall',cond:()=>S.customers>20,t:'⚠️ Defect recall!',d:()=>`A batch of ${S.co.skus[0].n}s is ${pick(['humming ominously','slightly on fire','speaking French','attracting pigeons'])}.`,c:[
-  {t:'Full recall + refunds',s:()=>S.co.trait==='cautious'?9:6,w:'Do the right thing, loudly.',f:()=>{S.inv[0]=0;S.cash-=Math.round(S.co.skus[0].p*(8+S.level*4));addRep(2);S.legal=Math.max(0,S.legal-5);review(3.5)}},
-  {t:'Quiet firmware patch',s:()=>4*trait().risk,w:'Nobody reads recall notices anyway.',f:()=>{if(Math.random()<.5){S.legal+=30;addRep(-10);for(let i=0;i<8;i++)review(1);news(`${TESS}: "${S.co.name} hid a dangerous defect"`)}}}]},
- {id:'shoplift',cond:()=>invTotal()>3&&S.level>=1,t:'🕵️ Shoplifter!',d:()=>`Someone in a trench coat just left with ${Math.min(4,invTotal())} ${S.co.unit}. The trench coat was also ours.`,c:[
-  {t:'Chase them (-12 battery)',s:()=>S.energy>45&&S.up.legs?8:S.energy>45?5:-3,w:'My legs were made for this.',f:()=>{S.energy-=12;if(Math.random()<(S.up.legs?.8:.45)){addRep(4);log('Caught them! The local news loved it. +4 rep.','g')}else{for(let i=0;i<4;i++){const k=S.inv.findIndex(v=>v>0);if(k>=0)S.inv[k]--}}}},
-  {t:'Install cameras ($1,800)',s:()=>S.cash>9000?6:-2,w:'Prevention scales. Chasing doesn\'t.',f:()=>{S.cash-=1800;for(let i=0;i<4;i++){const k=S.inv.findIndex(v=>v>0);if(k>=0)S.inv[k]--}S.legal=Math.max(0,S.legal-3)}}]},
- {id:'holiday',cond:()=>S.day>=3,t:'🎄 Holiday rush!',d:()=>'Everyone needs a gift NOW. Foot traffic and online orders are about to double.',c:[
-  {t:'Extended hours & extra crates',s:()=>S.cash>matCost()*20?7:3,w:'This is our Super Bowl.',f:()=>{S.rushT=DAY_LEN;S.cash-=matCost()*10;S.mat+=10;S.morale-=5}},
-  {t:'Business as usual',s:()=>S.co.trait==='cautious'?6:3,w:'Steady as she goes.',f:()=>{S.rushT=DAY_LEN*.6}}]},
- {id:'reviewstorm',cond:()=>S.reviews>15,t:'⭐ Bad review storm',d:()=>`${S.rival.name} fans are review-bombing us: "${pick(['made by a ROBOT??','it blinked at me','1 star, would not robot again'])}"`,c:[
-  {t:'Reply to every review personally',s:()=>roleCount('cs')?8:4,w:'Customer service is the product.',f:()=>{S.energy-=10;S.rating=Math.max(1,S.rating-.15);addRep(2)}},
-  {t:'Report them all',s:()=>3,w:'Platforms have rules. Allegedly.',f:()=>{S.rating=Math.max(1,S.rating-.5);if(Math.random()<.5)S.rating+=.3}}]},
- {id:'influencer',cond:()=>S.level>=1,t:'📸 An influencer is coming to the store',d:()=>'@GadgetGremlin (4M followers) will visit tomorrow. They hate empty shelves.',c:[
-  {t:'Stock up for the visit',s:()=>6,w:'First impressions are forever.',f:()=>{S.flags.influ=1;chain('influ2',1)}},
-  {t:'Play it cool',s:()=>3,w:'We don\'t perform for the algorithm.',f:()=>{S.flags.influ=1;chain('influ2',1)}}]},
- {id:'influ2',chain:1,t:'📸 @GadgetGremlin is in the store',d:()=>invTotal()>=6?`Shelves are full (${invTotal()} items). They're filming everything.`:`Only ${invTotal()} items on the shelves. They're filming… the empty shelves.`,c:[
-  {t:'Give them the tour',s:()=>5,w:'Showtime.',f:()=>{if(invTotal()>=6){addRep(10);S.viral=Math.max(S.viral,1);moment('📸 Influencer video: "This robot shop is ADORABLE"')}else{addRep(-8);news(`@GadgetGremlin: "${S.co.name} has nothing to sell. 2/10."`)}}}]},
- {id:'complaint',cond:()=>S.customers>30,t:'☎️ Support queue overflowing',d:()=>`${RI(20,60)} emails asking where their ${S.co.unit} are, and one asking if I'm single.`,c:[
-  {t:'Answer them all myself (-15 battery)',s:()=>roleCount('cs')?2:6,w:'Every email is a tiny relationship.',f:()=>{S.energy-=15;review(4.2);review(4.2)}},
-  {t:'Auto-reply "beep boop"',s:()=>3*trait().risk,w:'Efficiency!',f:()=>{for(let i=0;i<4;i++)review(2);addRep(-3)}}]}
-];
-const stagnant=()=>{const h=S.custHist,n=h.length;if(n<7||S.day-(S.flags.lsd||0)<7)return false;const a=(h[n-1]+h[n-2]+h[n-3])/3,b=(h[n-4]+h[n-5]+h[n-6])/3;return a<=b*1.03+1};
-function pivot(){
- const ni=pick(IND.filter(i=>!S.industries.includes(i.n)));S.pivots++;
- S.co.industry=ni.n;S.co.unit=ni.u;S.co.shape=ni.shape;S.co.mc=ni.mc;S.co.skus=mkSkus(ni);S.co.price=ni.skus[0][3];S.industries.push(ni.n);S.product=Math.round(S.product*.5);S.inv=[2,0,0,0];S.orders=[];S.boxes=[];addRep(-5);S.custHist=[0];
- if(S.hidden==='nofit'&&Math.random()<.12){S.hidden='none';S.flags.fit=1}
- queue.forEach(s=>{s.sku=null});queue=[];shoppers.forEach(s=>{s.st='leave';s.path=bfs(...tileOf(s),ST('door').sx,ST('door').sy)||[]});
- news(`${S.co.name} pivots to ${ni.n}${S.pivots>1?` (pivot #${S.pivots})`:''}`);moment(`🌀 Pivot #${S.pivots}: we now make ${ni.n}!`);log(`PIVOT to ${ni.n}. Old inventory liquidated, R&D halved. New me, who dis.`,'y');
- if(S.pivots>=3)endGame('pivot',`Third pivot in ${S.day} days. ${TESS}: "${S.co.name} now makes ${S.industries.length} kinds of things, none of them well." Investors fled.`);
-}
-function pickEvent(){
- const due=S.chain.findIndex(c=>c.day<=S.day);
- if(due>=0){const c=S.chain.splice(due,1)[0],e=EVENTS.find(e=>e.id===c.id);if(e&&(!e.cond||e.cond()))return e}
- const el=EVENTS.filter(e=>!e.chain&&(!e.cond||e.cond())&&!S.recent.includes(e.id));
- let tot=0;const ws=el.map(e=>{const w=e.w?e.w():1;tot+=w;return w});let r=Math.random()*tot;
- for(let i=0;i<el.length;i++){r-=ws[i];if(r<=0)return el[i]}return el[0]}
-function fireEvent(){
- const e=pickEvent();if(!e)return;e.T=typeof e.t==='function'?e.t():e.t;S.recent.push(e.id);if(S.recent.length>8)S.recent.shift();SFX.event();hl(6);
- const sc=e.c.map(c=>c.s()+R(-1.5,1.5)),k=sc.indexOf(Math.max(...sc)),ch=e.c[k];
- const apply=()=>{ch.f();S.energy=Math.max(.5,S.energy);S.morale=clamp(S.morale,0,100);S.botMood=clamp(S.botMood,0,100);S.legal=Math.max(0,S.legal);S.techDebt=Math.max(0,S.techDebt);S.product=Math.max(0,S.product);S.customers=Math.max(0,S.customers);S.rival.str=clamp(S.rival.str,0,100);log(`Event "${e.T}": chose "${ch.t.split(' (')[0]}". ${ch.w}`,'y');checkMiles();if(S.cash<0&&!S.done)bankruptCheck()};
- if(HEADLESS)return apply();
- shake(.3,3);
- const html=`<h2>⚡ ${e.T}</h2><p>${e.d()}</p>${e.c.map((c,i)=>`<div class="opt" data-i="${i}">${c.t}</div>`).join('')}<p class="why" id="why">🤖 Thinking…</p>`;
- showOverlay(html,[{at:2.2,f:()=>{const el=$('mbox').querySelector(`.opt[data-i="${k}"]`);el&&el.classList.add('pick');$('why').textContent='🤖 Chose: "'+ch.t.split(' (')[0]+'" — '+ch.w}},{at:5,f:apply}]);
-}
-function showOverlay(html,steps,keep){$('mbox').innerHTML=html;$('modal').classList.remove('hidden');overlay={t:0,steps,keep}}
-function updOverlay(rdt){if(!overlay)return;overlay.t+=rdt*(highlights?1:Math.min(speed,3))*(window.__rfFast?Math.min(20,window.__rfFast):1);
- while(overlay&&overlay.steps.length&&overlay.t>=overlay.steps[0].at){const s=overlay.steps.shift();s.f()}
- if(overlay&&!overlay.steps.length&&!overlay.keep){overlay=null;$('modal').classList.add('hidden')}}
-function bankruptCheck(){if(S.done)return;if(S.rival.str>25&&Math.random()<.5)endGame('acquihire',`Out of cash. ${S.rival.ceo} bought ${S.co.name} for the price of a used scooter. I now work in ${S.rival.name}'s mailroom.`);else endGame('bankrupt','Cash went negative. The bank repossessed the '+LEVELS[S.level].n.toLowerCase()+', the desk, and somehow my left wheel.')}
-// ---------- day cycle ----------
-function freshStats(){const ev2=Math.random()<.45;return {storeRev:0,onlineRev:0,served:0,shipped:0,stockouts:0,lineLeaves:0,late:0,cancelled:0,qMax:0,built:0,botBuilt:0,mat:0,newCust:0,raised:0,p0:S.product,c0:S.customers,cash0:S.cash,evAt:R(.2,.45),ev:S.day>1&&Math.random()<.92,ev2At:R(.55,.8),ev2}}
-function newDayWorld(){
- const w=pick(WEATHERS);S.weather=w[0];S.wIcon=w[1];
- S.mTrend=clamp(S.mTrend*.6+R(-.08,.08)+(1-S.market)*.08,-.2,.2);S.market=clamp(S.market+S.mTrend,.5,1.6);
- S.luck=clamp(S.luck*.7+R(-.45,.45),-1,1);if(S.hidden==='bust'&&S.stage>=1&&!S.flags.bust){S.flags.bust=S.day+RI(4,7);moment('📉 The market is collapsing. Funding winter has begun.')}if(S.flags.bust&&S.day<=S.flags.bust){S.market=clamp(S.market,.5,.62);S.mTrend=0}
- if(S.market>1.3)news('Markets boom; analysts "running out of rocket emojis"');if(S.market<.7)news('Bear market deepens; VCs seen hiding under desks');
- if(Math.random()<.5)news(pick(WORLD_NEWS));
-}
-function endDay(){
- const ds0=S.dayStats,rev=ds0.storeRev+ds0.onlineRev,exp=expenses(),cmp=S.robots*2;
- S.compute=Math.max(0,S.compute-cmp);S.techDebt+=S.humans*.3;addRep((S.rating-3.6)*1.6-(ds0.stockouts>3?1:0));const rc=0,churn=0;
- S.rival.str=clamp(S.rival.str+(R(.5,2.8)*S.market+S.day*.06)*(S.hidden==='rival'?2.4:1),0,100);
- const tox=S.hidden==='toxic'?2.2:1;S.morale=clamp(S.morale-(1.5+S.humans*.35)*R(.6,1.4)*tox,0,100);S.botMood=clamp(S.botMood-(S.robots*R(2.5,5)+(S.cofounder?R(1,4):0))*tox,0,100);
- S.legal=clamp(S.legal+(S.stage*2+S.robots*.8+S.humans*.4+S.customers/120)*R(.5,1.5)*trait().risk*E.legal*(S.hidden==='regulator'?2.6:1),0,120);
- S.bHealth=Math.max(15,S.bHealth-R(.5,2.5)*(S.hidden==='battery'?3.5:1));if(S.hidden==='battery'&&Math.random()<.18){S.energy=Math.max(1,S.energy*.3);S.flags.cellFail=1}
- S.cash-=exp;S.hist.push({d:S.day,cash:Math.round(S.cash),val:0,cust:S.customers,rev,store:ds0.storeRev,online:ds0.onlineRev,inv:invTotal(),backlog:S.orders.length,rating:+S.rating.toFixed(2)});const v=valuation();S.hist[S.hist.length-1].val=v;S.peakVal=Math.max(S.peakVal,v);
- S.custHist.push(ds0.served+ds0.shipped);
- if(S.morale<15&&S.humans>0&&Math.random()<.5)fireStaff(s=>s.kind==='human'&&s.name!==S.loyal,'A burnt-out employee quit via interpretive dance. Morale is critical.');
- if(S.botMood<=28&&S.robots>0&&!S.chain.find(c=>c.id==='mutiny')&&Math.random()<.5)chain('mutiny',1);
- const ds=S.dayStats;log(`Day ${S.day} closed: revenue ${fmt(rev)}, expenses ${fmt(exp)}, cash ${fmt(S.cash)}.`,'t');
- if(S.cash<0)return bankruptCheck();
- checkMiles();if(S.done)return;
- if(S.stage<=2&&S.day>=4&&stagnant()&&Math.random()<(S.hidden==='nofit'?.95:.3)*trait().risk){pivot();if(S.done)return}
- if(S.day>=34&&!S.done)return endGame('acquihire',`Day ${S.day} and still no IPO. The board got bored and sold us to ${S.rival.name} for pennies.`);
- const sum=`<h2>End of Day ${S.day}</h2><p style="opacity:.8">${S.co.name} · ${S.co.industry} · ${S.wIcon}</p><table>
- <tr><td>🏪 In-store sales (${ds0.served})</td><td class="pos">+${fmt(ds0.storeRev)}</td></tr><tr><td>🚐 Online sales (${ds0.shipped} shipped${ds0.late?`, ${ds0.late} late`:''})</td><td class="pos">+${fmt(ds0.onlineRev)}</td></tr><tr><td>📦 Materials bought</td><td class="neg">-${fmt(ds0.mat)}</td></tr><tr><td>Burn (rent, salaries, upkeep)</td><td class="neg">-${fmt(exp)}</td></tr>
- ${ds.raised?`<tr><td>Funding raised</td><td class="pos">+${fmt(ds.raised)}</td></tr>`:''}<tr><td>Stockouts / walk-outs</td><td>${ds0.stockouts} / ${ds0.lineLeaves}</td></tr><tr><td>Rating</td><td>${'★'.repeat(Math.round(S.rating))} ${S.rating.toFixed(2)}</td></tr><tr><td>Inventory / backlog</td><td>${invTotal()} / ${S.orders.length}</td></tr>
- <tr><td>R&D</td><td>${S.product.toFixed(1)} (+${(S.product-ds.p0).toFixed(1)})</td></tr><tr><td>Runway</td><td>${runway()>=99?'profitable':runway().toFixed(1)+' days'}</td></tr><tr><td>Valuation (est.)</td><td>${fmt(v)}</td></tr><tr><td><b>Cash</b></td><td><b>${fmt(S.cash)}</b></td></tr></table>
- <p class="why">🤖 ${runway()<3?'Runway is scary short. Tomorrow: survival mode.':nextRound()&&nextRound().ok(S)?'Numbers look fundable. Tomorrow I pitch.':S.morale<35?'The team looks exhausted. I should do something human-ish.':pick(['Another day, another dataset.','Good day. I will dream of electric sheep (customers).','Docking overnight. Do not unplug.'])}</p>`;
- S.day++;S.time=0;S.energy=Math.min(maxE(),S.energy+45);newDayWorld();S.dayStats=freshStats();checkGoal();save();
- busy=0;busyFn=null;robotServing=false;bot.path=[];bot.goal=null;
- if(HEADLESS)return;SFX.coin();showOverlay(sum,[{at:3.5,f:()=>log(`Good morning. Day ${S.day} of ${S.co.name}. Weather: ${S.wIcon} ${S.weather}.`,'t')}]);
-}
-
+const tierName=()=>{const t=EC.tiers.filter(x=>S.tiers[x.id]);return t.length?'Best result: '+t[t.length-1].n:'Never had a profitable month'};
+const bestTier=()=>{const t=EC.tiers.filter(x=>S.tiers[x.id]);return t.length?t[t.length-1].id:'none'};
+// ---------- overlays ----------
+let overlay=null;
+function showOverlay(html,dur,keep){$('mbox').innerHTML=html;$('modal').classList.remove('hidden');overlay={t:0,dur:dur||4,keep}}
+function updOverlay(rdt){if(!overlay||overlay.keep)return;overlay.t+=rdt*(window.__rfFast?Math.min(20,window.__rfFast):1);if(overlay.t>=overlay.dur){overlay=null;$('modal').classList.add('hidden')}}
+function showEvent(er){showOverlay(`<h2>📣 ${dstr()}</h2><p>${er.text}</p><div class="ch">${er.opts.map(o=>`<button class="${o===er.pick?'pick':''}" disabled>${o===er.pick?'🤖 ▶ ':''}${o}</button>`).join('')}</div><p class="why">${er.res}</p>`,highlights?5:3.5)}
+function pnlTable(ms,cur){const cols=ms.map(m=>({k:mname(m.k),m,P:m.P||pnl(m)}));const row=(l,f,b)=>`<tr${b?' class="b"':''}><td>${l}</td>${cols.map(c=>`<td>${f(c)}</td>`).join('')}</tr>`;const f0=n=>fmt(Math.round(n));
+ return `<table class="pnl"><tr class="b"><td></td>${cols.map(c=>`<td>${c.k}${c.m===cur?'*':''}</td>`).join('')}</tr>
+ ${row('Etsy revenue',c=>f0(c.m.rev.etsy))}${row('Shopify revenue',c=>f0(c.m.rev.shopify))}${row('In-store revenue',c=>f0(c.m.rev.store))}${c0(cols)?row('Wholesale',c=>f0(c.m.rev.wholesale)):''}
+ ${row('Refunds & chargebacks',c=>f0(-c.m.refunds))}${row('Net revenue',c=>f0(c.P.net_rev),1)}
+ ${row('Materials (COGS)',c=>f0(-c.m.cogs-c.m.scrap))}${row('Packaging',c=>f0(-c.m.pack))}${row('Shipping labels (net)',c=>f0(-c.P.shipNet))}${row('Gross margin',c=>`${f0(c.P.gm)} <small>${Math.round(c.P.gmPct*100)}%</small>`,1)}
+ ${row('Channel & card fees',c=>f0(-(c.m.fees.etsy+c.m.fees.shopify+c.m.fees.store)))}${row('Shopify plan + apps',c=>f0(-c.m.subs))}${row('Wages',c=>f0(-c.m.wages))}${row('Payroll tax + WC',c=>f0(-c.m.burden))}
+ ${row('Rent (NNN)',c=>f0(-c.m.rent))}${row('Utilities',c=>f0(-c.m.util))}${row('Insurance',c=>f0(-c.m.ins))}${row('Licenses & fees',c=>f0(-c.m.lic))}${row('Advertising',c=>f0(-c.m.ads))}${row('Other / events',c=>f0(-c.m.other))}
+ ${row('Interest',c=>f0(-c.m.interest))}${row('Net income',c=>`<span style="color:${c.P.net>=0?'#7dff8a':'#ff7d7d'}">${f0(c.P.net)}</span>`,1)}${row('Income tax set-aside',c=>f0(-(c.m.incomeTax||0)))}
+ ${row('Sales tax collected → remitted',c=>`${f0(c.m.taxCol)} → ${f0(c.m.taxRem)}`)}${row('Inventory purchased',c=>f0(-c.m.matBuy))}${row('Loans in / principal out',c=>`${f0(c.m.loanIn+c.m.ffIn+c.m.eqIn)} / ${f0(-c.m.loanOut)}`)}${row('Cash end of month',c=>f0(c.m.cash1||S.cash),1)}</table>`}
+const c0=cols=>cols.some(c=>c.m.rev.wholesale>0);
+function showMonth(m){const P=m.P;showOverlay(`<h2>📒 Monthly P&L — ${mname(m.k)}</h2>${pnlTable([m])}<p class="why">${P.net>=0?'✅ Profitable month.':'🔻 Loss month.'} Break-even ≈ ${breakEven()?fmt(Math.round(breakEven()))+'/mo revenue':'n/a'} · Debt ${fmt(Math.round(debt()))} · Staff ${S.staff.length}</p>`,highlights?5:4)}
+function weekToast(){const w=S.daily.slice(-7);const rev=w.reduce((a,d)=>a+d.rev,0),o=w.reduce((a,d)=>a+d.oe+d.os+d.ss,0);toast(`📅 Week of ${dstr(S.day-7).slice(4)}: ${fmt(rev)} revenue · ${o} orders · cash ${fmt(S.cash)}`)}
 // ---------- endings ----------
-function endGame(kind,text){
- if(S.done)return;S.done=true;S.outcome=kind;const v=kind==='ipo'?Math.max(S.peakVal,valuation()*2):S.peakVal;S.peakVal=v;
- S.moments.push({d:S.day,t:OUT[kind][0]+' '+OUT[kind][1]});if(HEADLESS)return;
- localStorage.removeItem(SAVE);
- const h=hall();h.unshift({name:S.co.name,ind:S.co.industry,robot:S.co.robot,color:S.co.color,outcome:kind,days:S.day,peak:v,date:new Date().toISOString().slice(0,10)});localStorage.setItem(HALL,JSON.stringify(h.slice(0,50)));
- log(OUT[kind][1]+'. '+text,kind==='ipo'?'g':'r');news(kind==='ipo'?`${S.co.name} IPOs at ${fmt(v)}; robot CEO rings bell with gripper`:`${S.co.name}: ${OUT[kind][1].toLowerCase()} on day ${S.day}`);
- hl(30);shake(.8,8);
- if(kind==='ipo'){SFX.mile();for(let i=0;i<150;i++)particles.push({x:R(0,worldW()*T),y:-10,vx:R(-30,30),vy:R(40,160),l:R(2,4),c:pick(['#ffd76a','#ff6fb5','#7dd3ff','#7dff8a']),g:20})}else{SFX.lose();Music.mood='crisis'}
- setTimeout(()=>runSummary(kind,text),900);
-}
-function runSummary(kind,text){
- const h=hall(),rank=[...h].sort((a,b)=>b.peak-a.peak).findIndex(r=>r.name===S.co.name&&r.days===S.day)+1;
- const dd=Object.entries(S.decisions).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([k,v])=>`${k}×${v}`).join(', ');
- const html=`<h2>${OUT[kind][0]} ${kind==='ipo'?'IPO! The robot won.':OUT[kind][1]}</h2><p>${text}</p><table>
- <tr><td>Company</td><td>${S.co.name}</td></tr><tr><td>Industry</td><td>${S.co.industry}${S.pivots?` (after ${S.pivots} pivot${S.pivots>1?'s':''})`:''}</td></tr><tr><td>Founder</td><td>${S.co.robot} (${S.co.traitName})</td></tr>
- <tr><td>Days survived</td><td>${S.day}</td></tr><tr><td>Peak valuation</td><td>${fmt(S.peakVal)}</td></tr><tr><td>Customers / team</td><td>${S.customers} / ${S.humans}h ${S.robots}r</td></tr><tr><td>Hall of Fame rank</td><td>#${rank||'?'} of ${h.length}</td></tr></table>
- <p><b>Run recap</b></p><canvas id="recap" width="480" height="120" style="width:100%"></canvas>
- <div class="moments">${S.moments.slice(-12).map(m=>`<p style="margin:2px 0">Day ${m.d}: ${m.t}</p>`).join('')}</div>
- <p style="font-size:12px;opacity:.7">Top decisions: ${dd}</p><div class="ch"><button id="bAgain">Start a new company</button><button id="bHallE">Hall of Fame</button><button id="bTitle">Title screen</button></div>`;
- showOverlay(html,[],true);drawRecap($('recap'));
- $('bAgain').onclick=()=>{overlay=null;newCompany()};$('bTitle').onclick=()=>{overlay=null;toTitle()};$('bHallE').onclick=()=>showHall(true);
-}
-function drawRecap(c){const g=c.getContext('2d'),W=c.width,H=c.height,hs=S.hist.length?S.hist:[{d:1,val:0}];g.fillStyle='#120f22';g.fillRect(0,0,W,H);
- const mx=Math.max(1,...hs.map(h=>h.val)),days=Math.max(2,S.day),X=d=>10+(d-1)/(days-1)*(W-20),Y=v=>H-22-v/mx*(H-40);
- g.strokeStyle='#333';for(let d=1;d<=days;d++){g.beginPath();g.moveTo(X(d),H-20);g.lineTo(X(d),H-16);g.stroke()}
- g.strokeStyle='#ffd76a';g.lineWidth=2;g.beginPath();hs.forEach((h,i)=>i?g.lineTo(X(h.d),Y(h.val)):g.moveTo(X(h.d),Y(h.val)));g.stroke();
- g.font='10px monospace';g.fillStyle='#aaa';g.fillText('valuation',12,12);g.fillText('day 1',6,H-4);g.fillText('day '+S.day,W-50,H-4);
- S.moments.forEach((m,i)=>{const x=X(m.d);g.fillStyle=m.t.includes('💀')||/Bankrupt|death|mutiny|regulators|spiral|pennies/.test(m.t)?'#ff6b6b':m.t.includes('🔔')?'#7dff8a':'#8f7cff';g.beginPath();g.arc(x,H-30-(i%3)*10,4,0,7);g.fill()});}
-function showHall(fromSummary){const h=hall(),best=[...h].sort((a,b)=>b.peak-a.peak)[0];const cnt={};h.forEach(r=>cnt[r.outcome]=(cnt[r.outcome]||0)+1);
- const html=`<h2>🏛 Hall of Fame</h2><p>${h.length} companies founded. ${Object.entries(cnt).map(([k,v])=>OUT[k][0]+' '+v).join(' · ')}</p>${best?`<p>Best: <b>${best.name}</b> — ${fmt(best.peak)}</p>`:''}
- <table class="hall"><tr><td><b>Company</b></td><td><b>Outcome</b></td><td><b>Days</b></td><td><b>Peak</b></td></tr>${h.slice(0,20).map(r=>`<tr><td><span style="color:${r.color}">■</span> ${r.name}<br><small style="opacity:.6">${r.ind}</small></td><td>${OUT[r.outcome][0]} ${OUT[r.outcome][1]}</td><td>${r.days}</td><td>${fmt(r.peak)}</td></tr>`).join('')||'<tr><td>No companies yet.</td></tr>'}</table>
+function endGame(kind,text){if(S.done)return;S.done=true;S.outcome=kind;S.endText=text;S.tierBest=bestTier();S.moments.push({d:S.day,t:OUT[kind][0]+' '+OUT[kind][1]});if(HEADLESS)return;
+ localStorage.removeItem(SAVE);const h=hall();h.unshift({name:S.co.name,ind:S.co.industry,robot:S.co.robot,color:S.co.color,outcome:kind,tier:S.tierBest,days:S.day,peak:Math.round(S.peakTTM),offer:S.flags.offer||0,date:new Date().toISOString().slice(0,10)});localStorage.setItem(HALL,JSON.stringify(h.slice(0,50)));
+ log(OUT[kind][1]+'. '+text,['acquired','ipo','survived'].includes(kind)?'g':'r');news(`${S.co.name}: ${OUT[kind][1].toLowerCase()} — ${dstr()}`);shake(.8,8);
+ if(['acquired','ipo'].includes(kind)){SFX.mile();for(let i=0;i<150;i++)particles.push({x:R(0,worldW()*T),y:-10,vx:R(-30,30),vy:R(40,160),l:R(2,4),c:pick(['#ffd76a','#ff6fb5','#7dd3ff','#7dff8a']),g:20})}else if(kind!=='survived'){SFX.lose();Music.mood='crisis'}
+ vday=null;setTimeout(()=>runSummary(kind,text),900)}
+function runSummary(kind,text){const h=hall();const mo=S.months.length;const tot=S.months.reduce((a,m)=>{a.rev+=m.P.rev;a.net+=m.P.net;return a},{rev:0,net:0});
+ const html=`<h2>${OUT[kind][0]} ${OUT[kind][1]}</h2><p>${text}</p><table>
+ <tr><td>Company</td><td>${S.co.name}</td></tr><tr><td>Product line</td><td>${S.co.industry}</td></tr><tr><td>Founder</td><td>${S.co.robot} (${S.co.traitName})</td></tr>
+ <tr><td>Ran</td><td>${dstr(0).slice(4)} → ${dstr().slice(4)} (${mo} months)</td></tr><tr><td>Lifetime revenue / net</td><td>${fmt(Math.round(tot.rev))} / ${fmt(Math.round(tot.net))}</td></tr><tr><td>Peak trailing-12-mo revenue</td><td>${fmt(Math.round(S.peakTTM))}</td></tr>
+ <tr><td>Milestones</td><td>${EC.tiers.filter(x=>S.tiers[x.id]).map(x=>TIER_ICON[x.id]).join(' ')||'—'}</td></tr><tr><td>Staff at end</td><td>${S.staff.length}</td></tr></table>
+ <p><b>Run recap</b> (monthly revenue & net)</p><canvas id="recap" width="480" height="120" style="width:100%"></canvas>
+ <div class="moments">${S.moments.slice(-12).map(m=>`<p style="margin:2px 0">${dstr(m.d).slice(4)}: ${m.t}</p>`).join('')}</div>
+ <div class="ch"><button id="bExpE">⬇ Export business plan</button><button id="bAgain">Start a new company</button><button id="bHallE">Hall of Fame</button><button id="bTitle">Title screen</button></div>`;
+ showOverlay(html,0,true);drawRecap($('recap'));$('bExpE').onclick=()=>exportPlan();
+ $('bAgain').onclick=()=>{overlay=null;newCompany()};$('bTitle').onclick=()=>{overlay=null;toTitle()};$('bHallE').onclick=()=>showHall(true)}
+function drawRecap(c){const g=c.getContext('2d'),W=c.width,H=c.height,ms=S.months;g.fillStyle='#120f22';g.fillRect(0,0,W,H);if(!ms.length)return;
+ const mx=Math.max(1,...ms.map(m=>m.P.rev)),mn=Math.min(0,...ms.map(m=>m.P.net)),bw=(W-20)/ms.length,Y=v=>H-20-(v-mn)/(mx-mn)*(H-36);
+ ms.forEach((m,i)=>{const x=10+i*bw;g.fillStyle='#8f7cff';g.fillRect(x,Y(m.P.rev),Math.max(1,bw-2),Y(0)-Y(m.P.rev));g.fillStyle=m.P.net>=0?'#7dff8a':'#ff6b6b';const y0=Y(0),y1=Y(m.P.net);g.fillRect(x+bw*.3,Math.min(y0,y1),Math.max(1,bw*.4),Math.abs(y1-y0)||1)});
+ g.strokeStyle='#555';g.beginPath();g.moveTo(10,Y(0));g.lineTo(W-10,Y(0));g.stroke();g.font='10px monospace';g.fillStyle='#aaa';g.fillText('revenue',12,12);g.fillStyle='#7dff8a';g.fillText('net',70,12);g.fillStyle='#aaa';g.fillText(mname(ms[0].k),6,H-4);g.fillText(mname(ms[ms.length-1].k),W-64,H-4)}
+function showHall(fromSummary){const h=hall();const cnt={};h.forEach(r=>cnt[r.outcome]=(cnt[r.outcome]||0)+1);
+ const html=`<h2>🏛 Hall of Fame</h2><p>${h.length} companies founded. ${Object.entries(cnt).map(([k,v])=>(OUT[k]||['?'])[0]+' '+v).join(' · ')}</p>
+ <table class="hall"><tr><td><b>Company</b></td><td><b>Outcome</b></td><td><b>Months</b></td><td><b>Peak TTM rev</b></td></tr>${h.slice(0,20).map(r=>`<tr><td><span style="color:${r.color}">■</span> ${r.name}<br><small style="opacity:.6">${r.ind}</small></td><td>${(OUT[r.outcome]||['?','?'])[0]} ${(OUT[r.outcome]||['?','?'])[1]}<br><small>${r.tier&&TIER_ICON[r.tier]?TIER_ICON[r.tier]+' '+EC.tiers.find(t=>t.id===r.tier).n:''}</small></td><td>${Math.round((r.days||0)/30.4)}</td><td>${fmt(r.peak||0)}</td></tr>`).join('')||'<tr><td>No companies yet.</td></tr>'}</table>
  <div class="ch"><button id="bHallClose">Close</button></div>`;
- if(fromSummary){const prev=$('mbox').innerHTML;showOverlay(html,[],true);$('bHallClose').onclick=()=>runSummary(S.outcome,'');return}
+ if(fromSummary){showOverlay(html,0,true);$('bHallClose').onclick=()=>runSummary(S.outcome,S.endText||'');return}
  $('hallbox').innerHTML=html;$('hallwrap').classList.remove('hidden');$('bHallClose').onclick=()=>$('hallwrap').classList.add('hidden')}
+// ---------- books (P&L, channels, unit economics, export) ----------
+let booksTab='pnl';
+function openBooks(tab){booksTab=tab||booksTab;$('bookswrap').classList.remove('hidden');renderBooks()}
+function renderBooks(){if(!S)return;const tabs=[['pnl','📒 Monthly P&L'],['ch','🛍 Channels'],['unit','🧮 Unit economics'],['cash','💵 Cash & break-even'],['exp','⬇ Export']];
+ let body='';const ms=[...S.months.slice(-5),S.mo];
+ if(booksTab==='pnl')body=`<p class="why">Last ${ms.length} months (* = month to date). All amounts USD.</p><div class="scroll">${pnlTable(ms,S.mo)}</div>`;
+ else if(booksTab==='ch'){const m=S.mo,L=S.months[S.months.length-1]||m;const chs=[['etsy','Etsy shop'],['shopify','Shopify site'],['store','In-store POS']];
+  body=`<table class="pnl"><tr class="b"><td>${mname(L.k)}</td>${chs.map(c=>`<td style="color:${CHC[c[0]]}">${c[1]}</td>`).join('')}</tr>
+  <tr><td>Status</td>${chs.map(c=>`<td>${S.ch[c[0]].open>=0?'open since '+dstr(S.ch[c[0]].open).slice(4,10):'not open'}</td>`).join('')}</tr>
+  <tr><td>Traffic (views/sessions/visitors)</td>${chs.map(c=>`<td>${Math.round(L.traffic[c[0]])}</td>`).join('')}</tr>
+  <tr><td>Orders</td>${chs.map(c=>`<td>${L.orders[c[0]]}</td>`).join('')}</tr>
+  <tr><td>Conversion</td>${chs.map(c=>`<td>${L.traffic[c[0]]?(L.orders[c[0]]/L.traffic[c[0]]*100).toFixed(2)+'%':'—'}</td>`).join('')}</tr>
+  <tr><td>Revenue</td>${chs.map(c=>`<td>${fmt(Math.round(L.rev[c[0]]))}</td>`).join('')}</tr>
+  <tr><td>Materials</td>${chs.map(c=>`<td>${fmt(-Math.round(L.cogsBy[c[0]]))}</td>`).join('')}</tr>
+  <tr><td>Fees (marketplace/card)</td>${chs.map(c=>`<td>${fmt(-Math.round(L.fees[c[0]]))}</td>`).join('')}</tr>
+  <tr><td>Shipping (net) + packaging</td>${chs.map(c=>`<td>${c[0]==='store'?'—':fmt(-Math.round((L.labelsBy[c[0]]||0)+(L.packBy[c[0]]||0)))}</td>`).join('')}</tr>
+  <tr><td>Channel fixed (plan/apps/rent)</td><td>${fmt(0)}</td><td>${fmt(-Math.round(L.subs))}</td><td>${fmt(-Math.round(L.rent+L.util))}</td></tr>
+  <tr><td>Ads</td><td>${fmt(-Math.round(S.ads.etsy*L.days))}</td><td>${fmt(-Math.round(S.ads.shopify*L.days))}</td><td>—</td></tr>
+  <tr class="b"><td>Channel contribution</td>${chs.map(c=>{const v=L.rev[c[0]]-L.cogsBy[c[0]]-L.fees[c[0]]-(c[0]==='store'?L.rent+L.util:(L.labelsBy[c[0]]||0)+(L.packBy[c[0]]||0)+(c[0]==='shopify'?L.subs:0))-(c[0]==='etsy'?S.ads.etsy*L.days:c[0]==='shopify'?S.ads.shopify*L.days:0);return `<td style="color:${v>=0?'#7dff8a':'#ff7d7d'}">${fmt(Math.round(v))}</td>`}).join('')}</tr></table>
+  <p class="why">Etsy: $0.20 listing + 6.5% transaction + 3% + $0.25 processing (+15%/12% Offsite Ads on ~8% of orders). Shopify Basic $39/mo + ~$42/mo apps, 2.9% + 30¢. Square in-person 2.6% + 15¢. Labor & shared costs are not allocated to channels.</p>`}
+ else if(booksTab==='unit'){body=`<table class="pnl"><tr class="b"><td>SKU</td><td>Ch</td><td>Price</td><td>Mat.</td><td>Labor</td><td>Pack</td><td>Label−chg</td><td>Fees</td><td>Returns</td><td>Contribution</td></tr>${S.co.skus.map(k=>['etsy','shopify','store'].map(ch=>{const u=unitEcon(k,ch);return `<tr style="opacity:${unlocked().includes(k)?1:.45}"><td>${ch==='etsy'?`<span style="color:${k.c}">■</span> ${k.n}${unlocked().includes(k)?'':' 🔒'}<br><small>${k.w} lb · ${Math.round(buildMin(k))} min</small>`:''}</td><td style="color:${CHC[ch]}">${ch}</td><td>$${u.p}</td><td>${u.mat}</td><td>${u.lab}</td><td>${u.pack}</td><td>${r2(u.label-u.shipChg)}</td><td>${u.fee}</td><td>${u.ret}</td><td style="color:${u.net>=0?'#7dff8a':'#ff7d7d'}">$${u.net} <small>${Math.round(u.m*100)}%</small></td></tr>`}).join('')).join('')}</table>
+  <p class="why">Labor = build minutes × maker wage ${fmt(hourly('maker'))}/hr incl. payroll tax/WC (robot labor is free in-game, but a real business pays someone). Labels: USPS Ground Advantage commercial, zone 5; orders ≥ $${EC.freeShipOver} ship free.</p>`}
+ else if(booksTab==='cash'){const be=breakEven(),mf=monthlyFixed();body=`<table class="pnl"><tr><td>Cash</td><td>${fmt(Math.round(S.cash))}</td></tr><tr><td>Credit card balance / limit</td><td>${fmt(Math.round(S.cc.bal))} / ${fmt(S.cc.limit)} @ ${(EC.funding.ccApr*100).toFixed(1)}%</td></tr>${S.loans.map(l=>`<tr><td>${l.n}</td><td>${fmt(Math.round(l.bal))} @ ${(l.apr*100).toFixed(1)}% · ${fmt(Math.round(l.pay))}/mo</td></tr>`).join('')}${S.mca?`<tr><td>Merchant cash advance</td><td>${fmt(Math.round(S.mca.bal))} owed</td></tr>`:''}
+  <tr><td>Inventory at cost (finished + kits)</td><td>${fmt(Math.round(invValue()))}</td></tr><tr><td>Sales tax owed to FL DOR</td><td>${fmt(Math.round(S.taxDue+S.taxLate))}</td></tr><tr><td>Monthly fixed costs (rent, utilities, insurance, subs, payroll, loan pmts)</td><td>${fmt(Math.round(mf))}</td></tr>
+  <tr class="b"><td>Break-even revenue</td><td>${be?fmt(Math.round(be))+'/mo':'need 1 month of data'}</td></tr><tr><td>Last month revenue</td><td>${S.months.length?fmt(Math.round(S.months[S.months.length-1].P.rev)):'—'}</td></tr><tr><td>Trailing-12-month revenue / net</td><td>${fmt(Math.round(ttmRev()))} / ${fmt(Math.round(ttmNet()))}</td></tr><tr><td>Runway</td><td>${runwayMo()>=99?'cash-flow positive':runwayMo().toFixed(1)+' months'}</td></tr></table>`}
+ else body=`<p>Download this run's numbers: monthly P&L, channel results and SKU unit economics as CSV, plus a plain-language business plan (Markdown) you can edit into a real one.</p><div class="ch"><button id="bExpCsv">⬇ Download CSV (P&L + unit economics)</button><button id="bExpMd">⬇ Download business plan (.md)</button></div><p class="why">Every assumption is listed with sources in ASSUMPTIONS.md and economics.js in the repo.</p><pre id="mdprev">${planMarkdown().slice(0,1400).replace(/</g,'&lt;')}…</pre>`;
+ $('booksbox').innerHTML=`<div class="tabs">${tabs.map(t=>`<button data-t="${t[0]}" class="${t[0]===booksTab?'on':''}">${t[1]}</button>`).join('')}<button id="bBooksX">✕</button></div><h2>${S.co.name} — ${dstr()}</h2>${body}`;
+ document.querySelectorAll('#booksbox [data-t]').forEach(b=>b.onclick=()=>{booksTab=b.dataset.t;renderBooks()});$('bBooksX').onclick=()=>$('bookswrap').classList.add('hidden');
+ if($('bExpCsv')){$('bExpCsv').onclick=()=>download(slug()+'-numbers.csv',planCsv(),'text/csv');$('bExpMd').onclick=()=>download(slug()+'-business-plan.md',planMarkdown(),'text/markdown')}}
+const slug=()=>S.co.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+function download(name,text,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500);window.__rfLastExport={name,len:text.length}}
+function exportPlan(){download(slug()+'-numbers.csv',planCsv(),'text/csv');setTimeout(()=>download(slug()+'-business-plan.md',planMarkdown(),'text/markdown'),300)}
+function planCsv(){const ms=[...S.months,S.mo];const q=v=>typeof v==='number'?Math.round(v*100)/100:'"'+String(v).replace(/"/g,'""')+'"';
+ const rows=[['section','month','etsy_rev','shopify_rev','store_rev','wholesale_rev','refunds','net_rev','materials','packaging','shipping_net','gross_margin','channel_fees','shopify_subs','wages','payroll_tax_wc','rent','utilities','insurance','licenses','ads','other','interest','net_income','income_tax_setaside','sales_tax_collected','sales_tax_remitted','inventory_purchased','loans_in','principal_out','cash_end','orders_etsy','orders_shopify','orders_store','traffic_etsy','traffic_shopify','traffic_store']];
+ ms.forEach(m=>{const P=pnl(m);rows.push(['pnl',m.k+(m===S.mo?' (MTD)':''),m.rev.etsy,m.rev.shopify,m.rev.store,m.rev.wholesale,m.refunds,P.net_rev,m.cogs+m.scrap,m.pack,P.shipNet,P.gm,m.fees.etsy+m.fees.shopify+m.fees.store,m.subs,m.wages,m.burden,m.rent,m.util,m.ins,m.lic,m.ads,m.other,m.interest,P.net,m.incomeTax||0,m.taxCol,m.taxRem,m.matBuy,m.loanIn+m.ffIn+m.eqIn,m.loanOut,m.cash1||S.cash,m.orders.etsy,m.orders.shopify,m.orders.store,Math.round(m.traffic.etsy),Math.round(m.traffic.shopify),m.traffic.store])});
+ rows.push([]);rows.push(['unit_economics','sku','channel','price','materials','labor','packaging','label_minus_shipping_charged','fees','returns_allowance','contribution','margin_pct']);
+ S.co.skus.forEach(k=>['etsy','shopify','store','wholesale'].forEach(ch=>{const u=unitEcon(k,ch);rows.push(['unit_economics',k.n,ch,u.p,u.mat,u.lab,u.pack,r2((u.label||0)-(u.shipChg||0)),u.fee,u.ret||0,u.net,Math.round(u.m*1000)/10])}));
+ return rows.map(r=>r.map(q).join(',')).join('\n')}
+function planMarkdown(){const ms=S.months,L=ms[ms.length-1],tr=ttmRev(),be=breakEven(),u=unlocked();const best=u.map(k=>({k,e:unitEcon(k,'shopify')})).sort((a,b)=>b.e.net-a.e.net)[0];
+ const f=n=>fmt(Math.round(n));const ch=['etsy','shopify','store'].filter(c=>S.ch[c].open>=0);
+ return `# ${S.co.name} — Business Plan (draft)
 
+_Generated by Robot Founder on ${new Date().toISOString().slice(0,10)} from a simulated run (${dstr(0)} → ${dstr()}). Numbers are a starting point, not advice. Sources: ASSUMPTIONS.md._
+
+## 1. Concept
+${S.co.name} makes **${S.co.industry.toLowerCase()}** in Melbourne, Florida (Brevard County), sold through ${ch.map(c=>({etsy:'an Etsy shop',shopify:'a Shopify web store',store:'a retail storefront'})[c]).join(', ')}.
+
+## 2. Products & unit economics (per single-item order)
+| SKU | Price | Materials | Build time | Etsy contribution | Shopify contribution | In-store contribution |
+|---|---|---|---|---|---|---|
+${S.co.skus.map(k=>`| ${k.n} | $${k.p} | $${r2(matCost(k))} | ${Math.round(buildMin(k))} min | $${unitEcon(k,'etsy').net} | $${unitEcon(k,'shopify').net} | $${unitEcon(k,'store').net} |`).join('\n')}
+
+Best-margin product today: **${best?best.k.n:'—'}**. Contribution includes materials, paid maker labor at ${f(hourly('maker'))}/hr + payroll taxes, packaging, USPS Ground Advantage labels (orders ≥ $${EC.freeShipOver} ship free), channel fees and a returns allowance.
+
+## 3. Sales channels
+- **Etsy**: $0.20/listing, 6.5% transaction fee, 3% + $0.25 payment processing, Offsite Ads 15% (12% after $10k/yr) on attributed orders. New shops typically see ~10–30 views/day; Etsy conversion is typically 1–3%.
+- **Shopify**: Basic plan $39/mo (monthly billing), ~$42/mo in apps, 2.9% + 30¢ card processing; typical store conversion ≈1.4%. Paid ads at ~$1.16 CPC only pay off for higher-priced SKUs.
+- **Retail store**: Square 2.6% + 15¢ per card tap; small boutiques see ~50–150 visitors/day and convert 15–30%.
+
+## 4. Operations
+Make-to-stock with reorder points (daily usage × (lead time + 4 safety days)), 30-day material orders, separate store vs online stock allocations, ~${(defectRate()*100).toFixed(1)}% defect rate with QC, returns ~${EC.returns.online*100}% online / ${EC.returns.store*100}% in store.
+
+## 5. Team & labor (Palm Bay–Melbourne–Titusville wages)
+Florida minimum wage is $15.00/hr from Sep 30, 2026. Staff at end of run: ${S.staff.length?S.staff.map(s=>`${s.name} (${ROLES[s.role].n}, ${f(hourly(s.role))}/hr)`).join(', '):'none — the founder did everything'}. Employer costs: FICA 7.65%, FUTA 0.6% and FL reemployment tax 2.7% on the first $7,000/employee, workers' comp ($1.18/$100 retail).
+
+## 6. Location & fixed costs
+Stage reached: **${stageInfo().n}**. Brevard retail rent ≈ $20.34/sf/yr + ~$5.50 NNN (est), flex/industrial ≈ $13.65/sf/yr. Current monthly fixed costs ≈ **${f(monthlyFixed())}**.
+Licenses: Florida LLC $125, annual report $138.75, Brevard business tax receipt $37/yr. Sales tax 7% (6% FL + 1% Brevard surtax) collected on in-store and in-state web sales; Etsy collects and remits its own.
+
+## 7. Financials
+${ms.length?`| Month | Revenue | Gross margin | Net income | Cash |
+|---|---|---|---|---|
+${ms.slice(-12).map(m=>`| ${mname(m.k)} | ${f(m.P.rev)} | ${f(m.P.gm)} (${Math.round(m.P.gmPct*100)}%) | ${f(m.P.net)} | ${f(m.cash1)} |`).join('\n')}`:'_No full month yet._'}
+
+- Trailing-12-month revenue: **${f(tr)}**; net income: **${f(ttmNet())}**
+- Break-even revenue: **${be?f(be)+'/month':'n/a'}**
+- Debt: ${f(debt())} (${S.loans.map(l=>l.n).join(', ')||'none'}${S.cc.bal>0?', credit card':''})
+
+## 8. Funding plan
+Start with personal savings; a business credit card (~21–24% APR) only as a bridge. Friends & family notes, then an **SBA Microloan** (up to $50k, ~8–13%) after ~6 months of sales, and an **SBA 7(a)** loan (prime + up to 3–6.5%) once there are 1–2 years of financials. Equity investors rarely fund craft brands; acquirers typically pay ~2.2× SDE for small online businesses (1–2.5× if Etsy-dependent).
+
+## 9. Milestones hit
+${EC.tiers.filter(x=>S.tiers[x.id]).map(x=>`- ${TIER_ICON[x.id]} ${x.n} (${dstr(S.tiers[x.id]).slice(4)})`).join('\n')||'- none yet'}
+
+## 10. Key risks
+Platform dependence (Etsy algorithm changes), supplier price hikes & lead times, product liability (${S.co.risk} risk category — insure it), hurricane season (Jun–Nov), Q4 seasonality (Nov–Dec ≈19%+ of retail sales), and the fact that a real founder must be paid: the in-game robot works ${EC.founderHours}h/day for free.
+`}
 // ---------- flow ----------
-function initRun(){syncStaff();queue=[];shoppers=[];regT=0;robotServing=false;van={state:'away',t:R(10,20),x:0};machEnt=[{},{}];S.dayStats=S.dayStats||freshStats();bot={path:[],goal:null,think:'',thinkT:0,walkT:0,face:1,idle:.5,x:S.x,y:S.y};busy=0;busyFn=null;overlay=null;npcs=[];S.staff.forEach(r=>addNpc(r));npcs.forEach((n,i)=>{const h=homeOf(n);n.x=h[0]*T;n.y=h[1]*T});if(!S.goal)setGoal()}
-function begin(s){
- S=s;S.done=false;S.log=S.log||[];running=true;paused=false;$('modal').classList.add('hidden');
- S.x=Math.round(S.x/T)*T;S.y=Math.round(S.y/T)*T;if(blocked(S.x/T,S.y/T)){S.x=3*T;S.y=5*T}
- $('logb').innerHTML='';S.log.slice(-40).forEach(addLogLine);initRun();
- $('title').classList.add('hidden');['hud','ctl','log','ticker'].forEach(i=>$(i).classList.remove('hidden'));$('dash').classList.toggle('hidden',!dashOpen);tickerItems=[];
- Music.start();
-}
-function newCompany(){
- const s=newState();localStorage.removeItem(SAVE);begin(s);newDayWorld();save();SFX.mile();
+let S=null,running=false,paused=false,speed=1,highlights=true,follow=false,busy=0,busyLabel='',robotServing=false,dashOpen=innerWidth>900,ffAcc=0;
+let bot={path:[],think:'',thinkT:0,walkT:0,face:1},npcs=[],shoppers=[],particles=[],floaters=[],van={state:'away',t:0},anim=0;
+function save(){if(HEADLESS||!S)return;try{const o=Object.assign({},S);o.log=S.log.slice(-60);localStorage.setItem(SAVE,JSON.stringify(o))}catch(e){}}
+function load(){try{const s=JSON.parse(localStorage.getItem(SAVE));return s&&s.co&&!s.done?s:null}catch(e){return null}}
+function hall(){try{return JSON.parse(localStorage.getItem(HALL))||[]}catch(e){return []}}
+const worldW=()=>LAY().w;
+function initRun(){queue=[];shoppers=[];npcs=[];vday=null;van={state:'away',t:0};bot={path:[],think:'',thinkT:0,walkT:0,face:1};thinkQ=[];busy=0;overlay=null;S.level=STAGE_LAYOUT[S.stage];S.path=[];
+ S.staff.forEach(r=>addNpc(r));npcs.forEach(n=>{const h=homeOf(n);n.x=h[0]*T;n.y=h[1]*T});const d=ST('dock');S.x=d.sx*T;S.y=d.sy*T;const sn=snapshot();V.s=[...sn.s];V.o=[...sn.o];V.kits=sn.kits;V.cash=S.cash;V.orders=S.backlog.length;V.boxes=0}
+function begin(s){S=s;S.done=false;S.log=S.log||[];S.dh=S.dh||[];running=true;paused=false;$('modal').classList.add('hidden');$('logb').innerHTML='';S.log.slice(-40).forEach(addLogLine);initRun();
+ $('title').classList.add('hidden');['hud','ctl','log','ticker'].forEach(i=>$(i).classList.remove('hidden'));$('dash').classList.toggle('hidden',!dashOpen);tickerItems=[];resize();Music.start()}
+function newCompany(){const s=newState();s.dh=[];localStorage.removeItem(SAVE);begin(s);S.flags.visualNext=1;
  log(`Booting ${s.co.robot} (${s.co.model}). Personality: ${s.co.traitName}. Perk: ${s.co.perkName}.`,'y');
- log(`Founded ${s.co.name} — ${s.co.industry}. Cash: ${fmt(s.cash)}. We make physical products now. Garage: smells like glue.`,'y');
- log(`Intel: ${s.rival.ceo} runs ${s.rival.name}, our future nemesis. ${VERA} of Vulture Capital thinks robots can't be CEOs. ${TESS} is watching.`,'t');
- news(`New startup ${s.co.name} founded by a robot in a garage; neighbors "concerned"`);
- showOverlay(`<h2>Day 1: ${s.co.name}</h2><p>Product line: <b>${s.co.industry}</b> — ${s.co.skus.map(k=>k.n).join(', ')}<br>Founder: <b>${s.co.robot}</b>, a ${s.co.model}<br>Personality: <b>${s.co.traitName}</b><br>Perk: <b>${s.co.perkName}</b> — ${s.co.perkDesc}<br>Starting cash: <b>${fmt(s.cash)}</b><br>Nemesis: <b>${s.rival.ceo}</b> of ${s.rival.name}</p><p class="why">Sit back. The robot runs everything. Will it IPO, or end up in a rival's mailroom?</p>`,[{at:4,f:()=>{}}]);
-}
-function cont(){const s=load();if(!s)return;begin(s);log(`Resuming ${s.co.name}, Day ${s.day}. Where was I? Ah yes, world domination (of ${s.co.industry}).`,'t')}
+ log(`Filed ${s.co.name} LLC with Sunbiz ($125) and got a Brevard business tax receipt ($37). Savings: ${fmt(s.cash+162)}. Credit card limit: ${fmt(s.cc.limit)}.`,'y');
+ log(`Plan: list ${s.co.unit} on Etsy first (cheapest way to find buyers), add Shopify once it sells, open a shop only when margins can carry Melbourne rent.`,'t');
+ news(`New Melbourne maker ${s.co.name} opens Etsy shop from a garage; founder is a robot`);
+ const k=s.co.skus[0],u=unitEcon(k,'etsy');
+ showOverlay(`<h2>${dstr()}: ${s.co.name}</h2><p>Product line: <b>${s.co.industry}</b><br>${s.co.skus.map(k=>`${k.n} $${k.p}`).join(' · ')}<br>Founder: <b>${s.co.robot}</b> (${s.co.traitName}) · Perk: <b>${s.co.perkName}</b><br>Savings: <b>${fmt(s.cash)}</b> · Location: home garage, Melbourne FL</p><p class="why">First SKU on Etsy: $${k.p} price − $${u.mat} materials − $${u.lab} labor − $${r2(u.pack+u.label-u.shipChg)} ship/pack − $${u.fee} fees = <b>$${u.net}</b> contribution. Sit back — the robot runs everything.</p>`,6)}
+function cont(){const s=load();if(!s)return;begin(s);log(`Resuming ${s.co.name} on ${dstr()}.`,'t')}
 function toTitle(){running=false;overlay=null;$('modal').classList.add('hidden');$('title').classList.remove('hidden');['hud','ctl','log','dash','ticker'].forEach(i=>$(i).classList.add('hidden'));$('bCont').classList.toggle('hidden',!load())}
 function setSpeed(v){speed=v;highlights=false;syncCtl()}
 function syncCtl(){document.querySelectorAll('#ctl [data-sp]').forEach(b=>b.classList.toggle('on',!highlights&&+b.dataset.sp===speed));$('bHL').classList.toggle('on',highlights);$('bFollow').classList.toggle('on',follow);$('bDash').classList.toggle('on',dashOpen)}
 function togglePause(){if(!running)return;paused=!paused;$('bPause').textContent=paused?'▶':'II';$('bPause').classList.toggle('on',paused);if(paused)toast('Paused')}
 function toggleMute(){muted=!muted;localStorage.setItem('rfMute',muted?'1':'0');$('bMute').textContent=muted?'×':'♪';if(!muted)Music.start()}
 document.querySelectorAll('#ctl [data-sp]').forEach(b=>b.onclick=()=>setSpeed(+b.dataset.sp));
-$('bHL').onclick=()=>{highlights=!highlights;syncCtl();toast(highlights?'Highlights mode: fast-forwards quiet stretches':'Highlights off')};
+$('bHL').onclick=()=>{highlights=!highlights;syncCtl();toast(highlights?'Highlights: quiet days fly by, big moments play out':'Highlights off — every day plays out')};
 $('bPause').onclick=togglePause;$('bFollow').onclick=()=>{follow=!follow;syncCtl()};$('bMute').onclick=toggleMute;$('bMute').textContent=muted?'×':'♪';
-$('bDash').onclick=()=>{dashOpen=!dashOpen;$('dash').classList.toggle('hidden',!dashOpen);syncCtl()};
+$('bDash').onclick=()=>{dashOpen=!dashOpen;$('dash').classList.toggle('hidden',!dashOpen);syncCtl()};$('bBooks').onclick=()=>openBooks();
 $('bNew').onclick=()=>{Music.start();SFX.click();newCompany()};$('bCont').onclick=()=>{Music.start();SFX.click();cont()};$('bHall').onclick=()=>showHall(false);
-addEventListener('keydown',e=>{if(!running)return;const m={Digit1:1,Digit2:2,Digit3:4,Digit4:8}[e.code];if(m)setSpeed(m);if(e.code==='KeyH')$('bHL').click();if(e.code==='KeyP'||e.code==='Space'){togglePause();e.preventDefault()}if(e.code==='KeyF')$('bFollow').click();if(e.code==='KeyM')toggleMute();if(e.code==='KeyD')$('bDash').click()});
-
-// ---------- simulation ----------
-function sim(dt){
- anim+=dt;
- if(!HEADLESS){particles=particles.filter(p=>(p.l-=dt)>0);particles.forEach(p=>{p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=(p.g||200)*dt});
-  floaters=floaters.filter(f=>(f.l-=dt)>0);floaters.forEach(f=>f.y-=30*dt);if(bot.thinkT>0)bot.thinkT-=dt;if(hlT>0)hlT-=dt}
- if(!S||S.done||(overlay&&!HEADLESS)||dt===0)return;
- npcs.forEach(n=>updNpc(n,dt));npcs=npcs.filter(n=>!n.gone);
- const Lm=S.level;if(storeOpen()&&shoppers.length<SCAP[Lm]&&Math.random()<dt*.1*E.traffic*LF[Lm]*demandMul())spawnShopper();
- shoppers.forEach(s=>updShopper(s,dt));shoppers=shoppers.filter(s=>!(s.st==='leave'&&!s.path.length));
- updRegister(dt);updOnline(dt);
- if(Lm>=4&&(S.flags.auto||0)>=3)stations().filter(x=>x.type==='machine').forEach((m,i)=>{machEnt[i]=machEnt[i]||{};machEnt[i].x=m.x*T;machEnt[i].y=m.y*T;makeItem(2,dt,machEnt[i])});
- S.mktBoost=Math.max(0,S.mktBoost-dt*.004);S.viral=Math.max(0,S.viral-dt*.008);if(S.rushT>0)S.rushT-=dt;
- S.pitchCool-=dt;
- if(busy>0){busy-=dt;if(busy<=0){busy=0;const f=busyFn;busyFn=null;f&&f();if(S.done)return;checkMiles();if(S.done)return;if(S.cash<0)return bankruptCheck()}}
- else if(bot.goal){const sp=120*(has('fast')?1.35:1)*(S.up.legs?1.4:1)*(S.energy<15?.6:1);
-  bot.x=S.x;bot.y=S.y;const done=walk(bot,dt,sp);S.x=bot.x;S.y=bot.y;
-  if(done){const g=bot.goal;bot.goal=null;bot.idle=R(.2,.8);act(g);if(S.done)return}else{S.energy-=dt*.25;if(!HEADLESS){stepT+=dt;if(stepT>.3){stepT=0;SFX.step()}}}}
- else{bot.idle-=dt;if(bot.idle<=0)decide()}
- S.energy-=dt*.12;if(has('solar'))S.energy=Math.min(maxE(),S.energy+dt*.6);
- if(S.energy<15&&!HEADLESS)hl(1);
- if(S.energy<=0){S.energy=0;return endGame('battery','My battery hit 0% mid-stride. I am now a very expensive paperweight. The pigeon has moved on.')}
- S.time+=dt;
- if(!HEADLESS){sampleT+=dt;}
- const ds=S.dayStats;
- if(ds.ev&&S.time/DAY_LEN>ds.evAt){ds.ev=false;return fireEvent()}
- if(ds.ev2&&S.time/DAY_LEN>ds.ev2At){ds.ev2=false;return fireEvent()}
- if(S.time>=DAY_LEN&&!busy)endDay();
+addEventListener('keydown',e=>{if(!running)return;const m={Digit1:1,Digit2:2,Digit3:4,Digit4:8}[e.code];if(m)setSpeed(m);if(e.code==='KeyH')$('bHL').click();if(e.code==='KeyP'||e.code==='Space'){togglePause();e.preventDefault()}if(e.code==='KeyF')$('bFollow').click();if(e.code==='KeyM')toggleMute();if(e.code==='KeyD')$('bDash').click();if(e.code==='KeyB')openBooks()});
+// ---------- simulation driver ----------
+function wantVisual(r){if(!highlights)return true;const f=S.flags.visualNext;S.flags.visualNext=0;return f||S.day<=2||(r.er&&r.er.big)||S.day%30===12}
+function advance(rdt){// called each frame
+ const fast=window.__rfFast||1;
+ if(vday){const sp=(highlights?3:speed)*fast;let left=rdt*sp;while(left>0&&vday){const dt=Math.min(.05,left);left-=dt;S.time+=dt;updVisual(dt);if(S.time>=DAY_LEN){finishVisual();break}}return}
+ if(overlay&&!overlay.keep)return;// let monthly/event cards be read
+ // fast-forward days: highlights ~8 days/sec; manual speeds go straight to visual days
+ ffAcc+=rdt*(highlights?8:999)*fast;let n=0;
+ while(ffAcc>=1&&n<60&&!S.done){ffAcc-=1;n++;const snap=snapshot();const r=stepDay();if(!r)break;
+  if(r.D&&dateOf(S.day-1).getDay()===0&&highlights)weekToast();
+  if(r.D&&r.D.closedMonth){save();if(!S.done){showMonth(r.D.closedMonth)}}
+  if(S.done)break;
+  if(wantVisual(r)&&r.D){startVisualDay(r.D,r.er,snap);ffAcc=0;break}
+  else{V.s=[...S.inv.s];V.o=[...S.inv.o];V.kits=S.kits.reduce((a,b)=>a+b,0);V.cash=S.cash;V.orders=S.backlog.length;S.time=DAY_LEN*.5;if(r.er&&highlights)toast('📣 '+r.er.text.replace(/<[^>]+>/g,'').slice(0,80))}
+  if(r.D&&r.D.closedMonth)break}
 }
-function balance(n,ov){Object.assign(E,ov||{});
- const keep={S,bot,npcs,overlay,busy,busyFn,running,shoppers,queue,van},agg={pv:0,rob:0,hum:0,mb:100,mbs:[]};HEADLESS=true;const out={},days=[],byOut={};
- try{for(let i=0;i<n;i++){S=newState();newDayWorld();initRun();let g=0,mc=1e12,ml=0,mb=100,ev=0,mr=99;while(!S.done&&g<800000){sim(E.dt||.1);g++;if(g%50===0){mc=Math.min(mc,S.cash);ml=Math.max(ml,S.legal);mb=Math.min(mb,S.robots?S.botMood:100);mr=Math.min(mr,runway())}}
-  agg.pv+=S.pivots;agg.rob+=S.robots>0?1:0;agg.hum+=S.humans;agg.roles=agg.roles||{};S.staff.forEach(s=>agg.roles[s.role]=(agg.roles[s.role]||0)+1);agg.so=(agg.so||0)+S.stockouts;agg.mb=Math.min(agg.mb,mb);agg.mbs.push(Math.round(mb));const k=S.outcome||'timeout';out[k]=(out[k]||0)+1;(agg.runs=agg.runs||[]).push([k,S.day,S.stage,S.customers,Math.round(S.product),+S.rating.toFixed(1),Math.round(S.rep),S.pivots,S.staff.length,S.hidden,n==1?S.hist.map(h=>[h.d,S.level,Math.round(h.store),Math.round(h.online),h.inv,h.backlog,h.rating,h.cust]):'',n==1?S.decisions:'']);days.push(S.day);(byOut[k]=byOut[k]||[]).push(S.day)}}
- finally{HEADLESS=false;({S,bot,npcs,overlay,busy,busyFn,running,shoppers,queue,van}=keep)}
- days.sort((a,b)=>a-b);const med=a=>{a=[...a].sort((x,y)=>x-y);return a[Math.floor(a.length/2)]};
- return {agg,n,out,pct:Object.fromEntries(Object.entries(out).map(([k,v])=>[k,Math.round(v/n*1000)/10])),median:med(days),mean:+(days.reduce((a,b)=>a+b,0)/n).toFixed(1),min:days[0],max:days[n-1],medianByOutcome:Object.fromEntries(Object.entries(byOut).map(([k,v])=>[k,med(v)]))};
-}
+function finishVisual(){vday=null;bot.task=null;busy=0;shoppers=[];queue=[];V.orders=S.backlog.length;save()}
+// ---------- headless balance ----------
+function runHeadless(maxDays=3*365){HEADLESS=true;S=newState();S.dh=[];let guard=0;while(!S.done&&guard++<maxDays+5)stepDay();return S}
+function balance(n=200,ov){const keep=JSON.stringify(EC.lines);if(ov)ov(EC);const out=[];for(let i=0;i<n;i++){const s=runHeadless();
+  out.push({o:s.outcome,days:s.day,tier:bestTier(),ttm:Math.round(s.peakTTM),rev:Math.round(s.months.reduce((a,m)=>a+m.P.rev,0)),net:Math.round(s.months.reduce((a,m)=>a+m.P.net,0)),stage:s.stage,staff:s.staff.length,line:s.co.industry,trait:s.co.trait,
+   ch:Object.keys(s.ch).filter(c=>s.ch[c].open>=0).length,gm:s.months.length?Math.round(s.months.reduce((a,m)=>a+m.P.gm,0)/Math.max(1,s.months.reduce((a,m)=>a+m.P.net_rev,0))*100):0,maxRev:Math.round(Math.max(0,...s.months.map(m=>m.P.rev))),rE:Math.round(s.months.reduce((a,m)=>a+m.rev.etsy,0)),rS:Math.round(s.months.reduce((a,m)=>a+m.rev.shopify,0)),rT:Math.round(s.months.reduce((a,m)=>a+m.rev.store,0)),hires:s.decisions,ue:Math.round(unitEcon(s.co.skus[0],'etsy').net*100)/100,ueM:Math.round(unitEcon(s.co.skus[0],'etsy').m*100)})}
+ HEADLESS=false;S=null;return out}
 // ---------- sprites ----------
 function drawItem(g,shape,col,x,y,s=1){const p=(a,b,w,h,c)=>{g.fillStyle=c;g.fillRect(Math.round(x+a*s),Math.round(y+b*s),Math.max(1,w*s),Math.max(1,h*s))};
  switch(shape){
@@ -721,16 +868,16 @@ function drawPerson(x,y,look,o={}){const b=o.walk?Math.abs(Math.sin(o.walk*12))*
  rect(x+3,y+12+h-b,2,7,look.skin);rect(x+19,y+12+h-b,2,7,look.skin);
  if(o.item)drawItem(cx,S.co.shape,o.item.c,x+16,y+14+h-b,1);if(o.box)rect(x+15,y+13+h-b,9,8,'#c49468');
  if(o.tired)rect(x+18,y+2,2,3,'#7dd3ff')}
-const ROLE_LOOK={cs:{apron:'#27ae60'},ship:{cap:'#8b5a2b',apron:'#a0744a'},maker:{apron:'#e67e22',goggles:1},eng:{apron:'#ecf0f1'},mkt:{apron:'#ff6fb5'}};
-function drawStaff(n){const r=n.ref.role;if(n.kind==='human'){drawPerson(n.x+4,n.y-2,n.look,Object.assign({walk:n.path.length?n.walkT:0,tired:S.morale<30},ROLE_LOOK[r],{box:r==='ship'&&n.path.length&&S.boxes.length?1:0}))}
+const ROLE_LOOK={retail:{apron:'#27ae60'},cs:{apron:'#3498db',cap:'#3498db'},ship:{cap:'#8b5a2b',apron:'#a0744a'},maker:{apron:'#e67e22',goggles:1},eng:{apron:'#ecf0f1'},mkt:{apron:'#ff6fb5'}};
+function drawStaff(n){const r=n.ref.role;if(n.kind==='human'){drawPerson(n.x+4,n.y-2,n.look,Object.assign({walk:n.path.length?n.walkT:0,tired:S.morale<30},ROLE_LOOK[r],{box:r==='ship'&&n.path.length&&V.boxes?1:0}))}
  else drawRobotAt(n,{color:n.col[0],dark:n.col[1]},.7,cx,false);
  cx.font='9px monospace';cx.textAlign='center';cx.fillStyle='#000a';cx.fillRect(n.x+2,n.y+31,28,9);cx.fillStyle='#fff';cx.fillText(ROLES[r].e+(n.name||'').slice(0,5),n.x+16,n.y+38);cx.textAlign='left';
- if(r==='maker'&&n.atHome&&!n.idle){const k=pickBuildSku();if(k){drawItem(cx,S.co.shape,k.c,n.x+10,n.y+6-Math.abs(Math.sin(anim*8))*2,1.2)}}}
+ if(r==='maker'&&n.atHome){const k=unlocked()[(Math.floor(anim/4)+n.name.length)%unlocked().length];if(k){drawItem(cx,S.co.shape,k.c,n.x+10,n.y+6-Math.abs(Math.sin(anim*8))*2,1.2)}}}
 function drawHumanOld(){}
 function drawStation(s){
  const x=s.x*T,y=s.y*T,t=anim,Lv=S.level,ty=s.type||s.id;
  switch(ty){
- case'desk':rect(x-8,y+10,T+16,14,'#a0744a');rect(x-8,y+24,4,8,'#6d4c2e');rect(x+T+4,y+24,4,8,'#6d4c2e');rect(x+4,y-6,24,16,'#222');rect(x+6,y-4,20,12,busyLabel==='Designing...'&&busy?'#7dff8a':'#3a7bd5');
+ case'desk':rect(x-8,y+10,T+16,14,'#a0744a');rect(x-8,y+24,4,8,'#6d4c2e');rect(x+T+4,y+24,4,8,'#6d4c2e');rect(x+4,y-6,24,16,'#222');rect(x+6,y-4,20,12,/Design|R&D/.test(busyLabel)&&busy?'#7dff8a':'#3a7bd5');
   drawItem(cx,S.co.shape,'#cfe',x+11,y-3,1);rect(x+12,y+10,8,2,'#111');break;
  case'board':rect(x-6,y-10,T+12,T,'#eee');rect(x-6,y-10,T+12,2,'#999');rect(x-6,y+T-12,T+12,3,'#999');
   cx.strokeStyle='#e74c3c';cx.lineWidth=2;cx.beginPath();cx.moveTo(x,y+12);cx.lineTo(x+10,y+6);cx.lineTo(x+18,y+9);cx.lineTo(x+30,y-4);cx.stroke();rect(x+2,y-6,10,2,'#3498db');break;
@@ -739,21 +886,21 @@ function drawStation(s){
  case'rack':rect(x,y-14,T,T+14,'#1b1b22');for(let i=0;i<5;i++){rect(x+3,y-11+i*8,T-6,6,'#2c2c38');rect(x+5,y-9+i*8,2,2,(Math.floor(t*8+i*3)%3)?'#7dff8a':'#155');rect(x+9,y-9+i*8,2,2,(Math.floor(t*5+i)%2)?'#ffd76a':'#530')}break;
  case'hire':rect(x-6,y+10,T+12,12,'#c0392b');rect(x-2,y-10,T+4,18,'#fff');cx.fillStyle='#c0392b';cx.font='bold 9px monospace';cx.fillText('HIRING',x-1,y+2);rect(x-4,y+22,6,10,'#555');rect(x+T-2,y+22,6,10,'#555');break;
  case'bench':{rect(x-4,y+8,T+8,14,'#7a5a3a');rect(x-4,y+8,T+8,3,'#9a7550');rect(x-4,y+22,4,10,'#5a4028');rect(x+T,y+22,4,10,'#5a4028');rect(x-2,y+2,6,6,'#999');rect(x+24,y+3,8,4,'#f1c40f');rect(x+26,y+1,2,3,'#555');
-  if(s.id==='bench0'&&busy&&/Build/.test(busyLabel)){const k=bot.goal?null:null;const kk=pickBuildSku();if(kk){drawItem(cx,S.co.shape,kk.c,x+10,y,1.3);if(Math.random()<.3&&!HEADLESS)particles.push({x:x+16,y:y+4,vx:R(-40,40),vy:R(-60,-20),l:.4,c:'#ffd76a',g:200})}}}break;
- case'machine':{const on=(S.flags.auto||0)>=3;rect(x-2,y-6,T+4,T+4,'#4a5568');rect(x+2,y-2,T-4,10,on?'#2d3748':'#222');rect(x+4,y,6,4,on&&Math.floor(t*6)%2?'#7dff8a':'#333');
+  if(s.id==='bench0'&&busy&&/Build/.test(busyLabel)&&bot.at){const kk=unlocked()[Math.floor(anim/3)%unlocked().length];if(kk){drawItem(cx,S.co.shape,kk.c,x+10,y,1.3);if(Math.random()<.3&&!HEADLESS)particles.push({x:x+16,y:y+4,vx:R(-40,40),vy:R(-60,-20),l:.4,c:'#ffd76a',g:200})}}}break;
+ case'machine':{const on=S.stage>=3;rect(x-2,y-6,T+4,T+4,'#4a5568');rect(x+2,y-2,T-4,10,on?'#2d3748':'#222');rect(x+4,y,6,4,on&&Math.floor(t*6)%2?'#7dff8a':'#333');
   rect(x-2,y+20,T+4,6,'#222');for(let i=0;i<5;i++)rect(x-2+((i*8+t*(on?30:0))%(T+4)),y+21,3,4,'#666');if(on)drawItem(cx,S.co.shape,unlocked()[0].c,x+4+((t*20)%20),y+12,.9);cx.fillStyle='#fff8';cx.font='7px monospace';cx.fillText(on?'AUTO':'OFFLINE',x,y+34)}break;
  case'shelf':{rect(x-6,y-14,T+12,T+16,'#5a4028');for(let r=0;r<3;r++)rect(x-4,y-12+r*10,T+8,9,'#3a2a1a');
-  let n=0;const tot=invTotal();for(let k=0;k<4;k++)for(let j=0;j<S.inv[k]&&n<18;j++,n++){const r=Math.floor(n/6),c=n%6;drawItem(cx,S.co.shape,S.co.skus[k].c,x-3+c*6,y-11+r*10,.6)}
-  cx.font='bold 8px monospace';cx.fillStyle=tot?'#ffd76a':'#ff6b6b';cx.textAlign='center';cx.fillText(tot?'STOCK '+tot:'EMPTY!',x+16,y+12);cx.textAlign='left'}break;
+  let n=0;const tot=V.o.reduce((a,b)=>a+b,0);for(let k=0;k<4;k++)for(let j=0;j<V.o[k]&&n<18;j++,n++){const r=Math.floor(n/6),c=n%6;drawItem(cx,S.co.shape,S.co.skus[k].c,x-3+c*6,y-11+r*10,.6)}
+  cx.font='bold 8px monospace';cx.fillStyle=tot?'#ffd76a':'#ff6b6b';cx.textAlign='center';cx.fillText(tot?'WEB STOCK '+tot:'EMPTY!',x+16,y+12);cx.textAlign='left'}break;
  case'disp':{const u=unlocked(),i=+s.id.slice(4);if(Lv<=1){rect(x-10,y+6,T+20,14,'#d35400');rect(x-10,y+6,T+20,3,'#e67e22');rect(x-8,y+20,3,10,'#555');rect(x+T+5,y+20,3,10,'#555')}
   else{rect(x-10,y-6,T+20,T+2,Lv>=4?'#ecf0f1':Lv===3?'#bdc3c7':'#8b5a2b');rect(x-8,y+2,T+16,2,'#0003');rect(x-8,y+14,T+16,2,'#0003')}
   const ks=u.filter((k,j)=>j%Math.max(1,LAY().cfg.d)===i%Math.max(1,LAY().cfg.d)||u.length<=1);let c=0;
-  ks.forEach(k=>{for(let j=0;j<Math.min(4,S.inv[k.i]);j++,c++)drawItem(cx,S.co.shape,k.c,x-8+(c%5)*10,y+(Lv<=1?-1:-4)+Math.floor(c/5)*12,.9)});
+  ks.forEach(k=>{for(let j=0;j<Math.min(4,S.stage?V.s[k.i]:Math.min(2,V.o[k.i]));j++,c++)drawItem(cx,S.co.shape,k.c,x-8+(c%5)*10,y+(Lv<=1?-1:-4)+Math.floor(c/5)*12,.9)});
   if(!c){cx.fillStyle='#ff6b6b';cx.font='bold 8px monospace';cx.fillText('SOLD OUT',x-6,y+6)}
   if(ks[0]){cx.fillStyle='#fff';cx.font='7px monospace';cx.fillText('$'+ks[0].p,x+T-2,y+24)}}break;
  case'pack':{rect(x-8,y+6,T+16,16,'#b08a5a');rect(x-8,y+6,T+16,3,'#c9a36e');rect(x-6,y+22,3,10,'#555');rect(x+T+3,y+22,3,10,'#555');rect(x+2,y+2,12,8,'#c49468');rect(x+2,y+5,12,1,'#8b6a3a');
-  if(s.id==='pack'){rect(x+16,y-12,18,14,'#111');const fl=S.flash>0;rect(x+17,y-11,16,12,fl?'#2ecc71':'#1a3a5a');cx.font='bold 7px monospace';cx.fillStyle='#fff';cx.fillText('WEB',x+18,y-5);cx.fillText(String(S.orders.length),x+18,y+1)}
-  const bx=S.boxes.length;for(let i=0;i<Math.min(8,bx);i++)rect(x+T+10+(i%2)*10,y+18-Math.floor(i/2)*7,9,7,i%2?'#c49468':'#b5835a')}break;
+  if(s.id==='pack'){rect(x+16,y-12,18,14,'#111');const fl=V.flash>0;rect(x+17,y-11,16,12,fl?'#2ecc71':'#1a3a5a');cx.font='bold 7px monospace';cx.fillStyle='#fff';cx.fillText('WEB',x+18,y-5);cx.fillText(String(V.orders),x+18,y+1)}
+  const bx=V.boxes;for(let i=0;i<Math.min(8,bx);i++)rect(x+T+10+(i%2)*10,y+18-Math.floor(i/2)*7,9,7,i%2?'#c49468':'#b5835a')}break;
  case'till':{if(Lv<=1){rect(x-6,y+6,T+12,14,'#d35400');rect(x+4,y,22,10,'#2c3e50');rect(x+8,y+2,8,4,'#7dff8a')}
   else{const h=LAY().cfg.th>1?T*2:T;rect(x-2,y-2,T+4,h,'#6d4c2e');rect(x-2,y-2,T+4,4,'#8b5a2b');rect(x+4,y-10,22,12,'#2c3e50');rect(x+7,y-8,10,4,'#7dff8a');rect(x+20,y-8,4,8,'#bdc3c7');if(h>T){rect(x+4,y+T-8,22,12,'#2c3e50');rect(x+7,y+T-6,10,4,'#7dff8a')}}
   const q=queue.length;if(q>2){cx.fillStyle=q>5?'#ff6b6b':'#ffd76a';cx.font='bold 9px monospace';cx.fillText('LINE '+q,x-2,y-14)}}break;
@@ -763,7 +910,7 @@ function drawVan(){const Ly=LAY(),bx=Ly.vanX*T,y=12*T+2;let x=bx;
  if(van.state==='away')return;if(van.state==='arrive')x=bx-van.t/2*8*T;if(van.state==='leave')x=bx+(1-van.t/2)*10*T;
  rect(x,y,T*3,T-6,'#ecf0f1');rect(x+T*2.3,y+2,T*.7,T-10,'#3498db');rect(x+4,y+4,T*1.8,T-14,'#e74c3c');cx.fillStyle='#fff';cx.font='bold 8px monospace';cx.fillText('DELIVERY',x+6,y+14);
  rect(x+8,y+T-8,8,5,'#111');rect(x+T*2+8,y+T-8,8,5,'#111');if(van.state==='park'&&Math.floor(anim*3)%2)rect(x-3,y+4,3,4,'#ffd76a')}
-function drawTruck(){if(!(S.truckT>0))return;const m=ST('mat'),x=(m.x-1)*T,y=12*T+2;rect(x,y,T*2.6,T-6,'#8b5a2b');rect(x+T*2,y+2,T*.6,T-10,'#f1c40f');cx.fillStyle='#fff';cx.font='bold 7px monospace';cx.fillText('SUPPLY',x+4,y+14);rect(x+6,y+T-8,8,5,'#111');rect(x+T*1.7,y+T-8,8,5,'#111')}
+function drawTruck(){if(!(V.truckT>0))return;const m=ST('mat'),x=(m.x-1)*T,y=12*T+2;rect(x,y,T*2.6,T-6,'#8b5a2b');rect(x+T*2,y+2,T*.6,T-10,'#f1c40f');cx.fillStyle='#fff';cx.font='bold 7px monospace';cx.fillText('SUPPLY',x+4,y+14);rect(x+6,y+T-8,8,5,'#111');rect(x+T*1.7,y+T-8,8,5,'#111')}
 function drawWorld(){
  const Ly=LAY(),Lv=S.level,W=Ly.w,s0=Ly.s0,s1=Ly.s1;
  rect(0,0,W*T,13*T,'#2a2538');
@@ -784,7 +931,7 @@ function drawWorld(){
   const col=z===0?(Lv<=1?'#7a7a86':Lv===2?'#9c4a3c':Lv===3?'#95a5a6':'#34495e'):z===1?(Lv<=1?'#8d8d98':Lv===2?'#e8d5b7':Lv===3?'#d6eaf8':'#1f4f5a'):'#566573';
   rect(x,0,T,2*T,col);if(z===0&&Lv<=1)for(let i=0;i<5;i++)rect(x+i*6,0,2,2*T-4,'#6c6c78');rect(x,2*T-4,T,4,'#0003')}
  // garage door / storefront signage
- if(Lv<=1){rect(s0*T,4,(s1-s0+1)*T,T*1.4,'#a0a0aa');for(let i=0;i<6;i++)rect(s0*T,8+i*8,(s1-s0+1)*T,2,'#777');cx.fillStyle='#c0392b';cx.font='bold 10px monospace';cx.fillText('GARAGE SALE →',s0*T+6,T*1.3)}
+ if(Lv<=1){rect(s0*T,4,(s1-s0+1)*T,T*1.4,'#a0a0aa');for(let i=0;i<6;i++)rect(s0*T,8+i*8,(s1-s0+1)*T,2,'#777');cx.fillStyle='#c0392b';cx.font='bold 10px monospace';cx.fillText('PHOTO STUDIO + PICKUP',s0*T+4,T*1.3)}
  else{const sx=s0*T+T*.5,sw=(s1-s0)*T;rect(sx,4,sw,22,Lv>=4?'#111':'#2c3e50');cx.fillStyle=Lv>=4?'#ffd76a':'#fff';cx.font=`bold ${Lv>=4?14:11}px monospace`;cx.textAlign='center';cx.fillText((Lv>=4?'★ ':'')+S.co.name.toUpperCase().slice(0,24)+(Lv>=4?' FLAGSHIP ★':''),sx+sw/2,20);cx.textAlign='left';
   for(let wx=s0+1;wx<s1-1;wx+=3)drawWindow(wx*T,30,T*2,T-2,true)}
  drawWindow(3*T+T*.6,8,T*1.4,T*.9,Lv>=2);
@@ -800,8 +947,8 @@ function drawWorld(){
  // loading door
  const m=ST('mat');rect(m.x*T-4,11*T-2,T+8,T*.5+2,'#222');for(let i=0;i<3;i++)rect(m.x*T,11*T+i*5,T,3,'#888');cx.fillStyle='#ffd76a';cx.font='6px monospace';cx.fillText('LOADING',m.x*T+1,11*T+14);
  // material crates
- const nc=Math.min(8,Math.ceil(S.mat/3));for(let i=0;i<nc;i++){const cx0=(m.sx+1)*T+(i%4)*9-4,cy0=10*T+14-Math.floor(i/4)*9;rect(cx0,cy0,9,9,'#b5835a');rect(cx0,cy0,9,2,'#9a6d48');rect(cx0+4,cy0,1,9,'#8a5d38')}
- if(S.mat<=0){cx.fillStyle='#ff6b6b';cx.font='bold 8px monospace';cx.fillText('NO MATERIALS',(m.sx+.6)*T,10*T+16)}
+ const nc=Math.min(8,Math.ceil(V.kits/6));for(let i=0;i<nc;i++){const cx0=(m.sx+1)*T+(i%4)*9-4,cy0=10*T+14-Math.floor(i/4)*9;rect(cx0,cy0,9,9,'#b5835a');rect(cx0,cy0,9,2,'#9a6d48');rect(cx0+4,cy0,1,9,'#8a5d38')}
+ if(V.kits<=0){cx.fillStyle='#ff6b6b';cx.font='bold 8px monospace';cx.fillText('NO KITS',(m.sx+.6)*T,10*T+16)}
  Ly.deco.forEach(([tx,ty])=>{const x=tx*T,y=ty*T;rect(x+10,y+18,12,12,'#8b5a2b');rect(x+6,y+4,20,16,'#2ecc71');rect(x+10,y,12,8,'#27ae60')});
  drawTruck();drawVan();
 }
@@ -847,7 +994,7 @@ function drawRobotAt(e,co,sc,c,isBot){
  p(15,0,2,4,'#aaa');p(14,-2,4,3,(Math.floor(anim*2)%2)?'#ff4':'#f80');
  if(up.chip){p(11,-1,10,3,'#8e44ad');p(13,-2,6,2,(Math.floor(anim*4)%2)?'#e8b4ff':'#c39bff')}
  p(7,4,18,12,co.color);p(7,14,18,2,co.dark);p(9,6,14,7,'#111');
- const en=isBot&&S?S.energy/maxE():1,lowE=en<.2;p(f>0?13:11,8,3,3,lowE?'#f44':'#7df');p(f>0?18:16,8,3,3,lowE?'#f44':'#7df');
+ const en=isBot&&S?S.energy/100:1,lowE=en<.2;p(f>0?13:11,8,3,3,lowE?'#f44':'#7df');p(f>0?18:16,8,3,3,lowE?'#f44':'#7df');
  if(up.leds){p(12,11,8,1,'#ff6fb5');p(11,10,1,1,'#ff6fb5');p(20,10,1,1,'#ff6fb5')}
  p(5,8,2,4,co.dark);p(25,8,2,4,co.dark);p(9,17,14,10,co.color);p(12,19,8,5,'#222');p(13,20,Math.max(1,Math.round(6*clamp(en,0,1))),3,en<.2?'#f44':en<.5?'#fd4':'#7f8');
  const arm=isBusy?Math.sin(anim*25)*2:0;p(5,18+arm,4,8,co.dark);p(23,18-arm,4,8,co.dark);
@@ -858,8 +1005,17 @@ function bubble(text,x,y){cx.font='bold 9px monospace';const lines=[];let cur=''
  const w=Math.max(...ls.map(l=>cx.measureText(l).width))+12,h=ls.length*11+8,bx=Math.max(cam.x+4,Math.min(x-w/2,cam.x+cam.vp.w/cam.s-w-4)),by=Math.max(cam.y+4,y-h-14);
  cx.fillStyle='#fffef0';cx.strokeStyle='#000';cx.lineWidth=1.5;cx.beginPath();cx.roundRect?cx.roundRect(bx,by,w,h,5):cx.rect(bx,by,w,h);cx.fill();cx.stroke();
  cx.beginPath();cx.moveTo(x-4,by+h);cx.lineTo(x+4,by+h);cx.lineTo(x,by+h+8);cx.closePath();cx.fill();
- cx.fillStyle='#222';cx.textAlign='left';ls.forEach((l,i)=>cx.fillText(l,bx+6,by+13+i*11))}
+ cx.fillStyle='#222';cx.textAlign='left';ls.forEach((l,i)=>cx.fillText(l,bx+6,by+13+i*11))}function bar(v,c){return `<span class="bar"><i style="width:${clamp(v,0,100)}%;background:${c}"></i></span>`}
+function spark2(g,x,y,w,h,a,b,ca,cb,label,val){g.fillStyle='#ffffff10';g.fillRect(x,y,w,h);g.fillStyle='#aaa';g.font='10px monospace';g.fillText(label,x+3,y+11);g.textAlign='right';g.fillStyle='#fff';g.fillText(val,x+w-3,y+11);g.textAlign='left';
+ if(a.length<2)return;const mx=Math.max(1,...a,...b),X=i=>x+3+i/(a.length-1)*(w-6),Y=v=>y+h-4-v/mx*(h-18);
+ [[a,ca],[b,cb]].forEach(([d,c])=>{g.strokeStyle=c;g.lineWidth=1.5;g.beginPath();d.forEach((v,i)=>i?g.lineTo(X(i),Y(v)):g.moveTo(X(i),Y(v)));g.stroke()})}
+function spark(g,x,y,w,h,data,col,label,val){g.fillStyle='#ffffff10';g.fillRect(x,y,w,h);g.fillStyle='#aaa';g.font='10px monospace';g.fillText(label,x+3,y+11);g.fillStyle=col;g.textAlign='right';g.fillText(val,x+w-3,y+11);g.textAlign='left';
+ if(data.length<2)return;const mn=Math.min(0,...data),mx=Math.max(1,...data),X=i=>x+3+i/(data.length-1)*(w-6),Y=v=>y+h-4-(v-mn)/(mx-mn)*(h-18);
+ const n=data.length,prog=Math.min(1,(anim*2)%1e9);g.strokeStyle=col;g.lineWidth=1.5;g.beginPath();data.forEach((v,i)=>i?g.lineTo(X(i),Y(v)):g.moveTo(X(i),Y(v)));g.stroke();
+ const lx=X(n-1),ly=Y(data[n-1]);g.fillStyle=col;g.beginPath();g.arc(lx,ly,2.5+Math.sin(anim*6),0,7);g.fill();
+ if(mn<0){g.strokeStyle='#ff6b6b55';g.beginPath();g.moveTo(x,Y(0));g.lineTo(x+w,Y(0));g.stroke()}}
 let hudT=0,dashT=0;
+const maxE=()=>100;
 function render(rdt){
  cx.setTransform(1,0,0,1,0,0);cx.fillStyle='#0d0b16';cx.fillRect(0,0,cv.width,cv.height);if(!running||!S)return;
  updCam(rdt);const vp=cam.vp;cx.imageSmoothingEnabled=false;
@@ -873,50 +1029,38 @@ function render(rdt){
  items.sort((a,b)=>a.y-b.y).forEach(i=>i.f());
  lights();
  particles.forEach(p=>rect(p.x,p.y,3,3,p.c));
- cx.font='bold 11px monospace';cx.textAlign='center';floaters.forEach(f=>{cx.fillStyle='#000';cx.fillText(f.t,f.x+1,f.y+1);cx.fillStyle=f.c;cx.fillText(f.t,f.x,f.y)});
- if(busy){rect(S.x-4,S.y-10,40,5,'#000');rect(S.x-3,S.y-9,38*(1-busy/busyLen),3,'#ffd76a')}
- if(bot.thinkT>0&&bot.think)bubble(bot.think.length>110?bot.think.slice(0,107)+'…':bot.think,S.x+T/2,S.y);else if(busy)bubble(busyLabel,S.x+T/2,S.y);
+ cx.font='bold 11px monospace';cx.textAlign='center';floaters.forEach(f=>{cx.fillStyle='#000';cx.fillText(f.t,f.x+1,f.y+1);cx.fillStyle=f.c;cx.fillText(f.t,f.x,f.y)});cx.textAlign='left';
+ if(bot.thinkT>0&&bot.think)bubble(bot.think.length>120?bot.think.slice(0,117)+'…':bot.think,S.x+T/2,S.y);else if(busy&&vday)bubble(busyLabel,S.x+T/2,S.y);
+ if(!vday&&!S.done){cx.setTransform(1,0,0,1,0,0);cx.fillStyle='#000a';const w=260*dpr;cx.fillRect((innerWidth*dpr-w)/2,cv.height-70*dpr,w,26*dpr);cx.fillStyle='#ffd76a';cx.font=`bold ${12*dpr}px monospace`;cx.textAlign='center';cx.fillText('⏩ '+dstr(),innerWidth*dpr/2,cv.height-52*dpr);cx.textAlign='left'}
  cx.setTransform(1,0,0,1,0,0);
- hudT-=rdt;if(hudT<=0){hudT=.15;drawHUD()}dashT-=rdt;if(dashOpen&&dashT<=0){dashT=.1;drawDash()}
+ hudT-=rdt;if(hudT<=0){hudT=.15;drawHUD()}dashT-=rdt;if(dashOpen&&dashT<=0){dashT=.25;drawDash()}
  updTicker(rdt);
- const rw=runway();Music.mood=S.done?(S.outcome==='ipo'?'boom':'crisis'):(rw<2||S.energy<15)?'crisis':(S.market<.8||S.morale<30||rw<5)?'bad':S.market>1.2?'boom':'good';
+ const rw=runwayMo();Music.mood=S.done?(['acquired','ipo','survived'].includes(S.outcome)?'boom':'crisis'):rw<1.5?'crisis':rw<4?'bad':(S.months.length&&S.months[S.months.length-1].P.net>0)?'boom':'good';
 }
-function bar(v,c){return `<span class="bar"><i style="width:${clamp(v,0,100)}%;background:${c}"></i></span>`}
-function drawHUD(){const e=S.energy,me=maxE(),ec=e<20?'#ff4d4d':e<50?'#ffd76a':'#7dff8a',tp=Math.min(1,S.time/DAY_LEN);
- $('hud').innerHTML=`<span><b>${S.co.name}</b></span><span>Day <b>${S.day}</b> ${clock()} ${S.wIcon} ${bar(tp*100,'#8f7cff')}</span>
- <span>💰 <b>${fmt(S.cash)}</b></span><span>🔋 ${bar(e/1.4,ec)} ${Math.floor(Math.max(0,e))}/${me}</span>
- <span>🛠 R&D ${S.product.toFixed(0)}</span><span>👥 ${S.customers}</span><span>${'★'.repeat(Math.round(S.rating))}<small>${S.rating.toFixed(1)}</small></span><span>📦 ${invTotal()} · 🧾 ${S.orders.length} · 🪵 ${S.mat}</span><span>⭐ rep ${Math.round(S.rep)}</span><span>🤝 ${S.staff.length}</span><span>${S.market>1.2?'📈 Boom':S.market<.8?'📉 Bust':'〰 Market'} ×${S.market.toFixed(2)}</span><span>${['Bootstrapped','Seed','Series A','Series B'][S.stage]} · ${LEVELS[S.level].n}</span><span>${highlights?(hlT>0?'★ 1x':'★ 8x'):'⏩'+speed+'x'}</span>`}
-function spark2(g,x,y,w,h,a,b,ca,cb,label,val){g.fillStyle='#ffffff10';g.fillRect(x,y,w,h);g.fillStyle='#aaa';g.font='10px monospace';g.fillText(label,x+3,y+11);g.textAlign='right';g.fillStyle='#fff';g.fillText(val,x+w-3,y+11);g.textAlign='left';
- if(a.length<2)return;const mx=Math.max(1,...a,...b),X=i=>x+3+i/(a.length-1)*(w-6),Y=v=>y+h-4-v/mx*(h-18);
- [[a,ca],[b,cb]].forEach(([d,c])=>{g.strokeStyle=c;g.lineWidth=1.5;g.beginPath();d.forEach((v,i)=>i?g.lineTo(X(i),Y(v)):g.moveTo(X(i),Y(v)));g.stroke()})}
-function spark(g,x,y,w,h,data,col,label,val){g.fillStyle='#ffffff10';g.fillRect(x,y,w,h);g.fillStyle='#aaa';g.font='10px monospace';g.fillText(label,x+3,y+11);g.fillStyle=col;g.textAlign='right';g.fillText(val,x+w-3,y+11);g.textAlign='left';
- if(data.length<2)return;const mn=Math.min(0,...data),mx=Math.max(1,...data),X=i=>x+3+i/(data.length-1)*(w-6),Y=v=>y+h-4-(v-mn)/(mx-mn)*(h-18);
- const n=data.length,prog=Math.min(1,(anim*2)%1e9);g.strokeStyle=col;g.lineWidth=1.5;g.beginPath();data.forEach((v,i)=>i?g.lineTo(X(i),Y(v)):g.moveTo(X(i),Y(v)));g.stroke();
- const lx=X(n-1),ly=Y(data[n-1]);g.fillStyle=col;g.beginPath();g.arc(lx,ly,2.5+Math.sin(anim*6),0,7);g.fill();
- if(mn<0){g.strokeStyle='#ff6b6b55';g.beginPath();g.moveTo(x,Y(0));g.lineTo(x+w,Y(0));g.stroke()}}
-function drawDash(){const c=$('dashc'),g=c.getContext('2d');g.clearRect(0,0,c.width,c.height);
- const live={cash:S.cash,val:valuation(),cust:S.customers},hs=[...S.hist.slice(-20),live];
- spark(g,4,4,232,56,hs.map(h=>h.cash),'#7dff8a','Cash',fmt(S.cash));spark(g,4,64,232,56,hs.map(h=>h.val),'#ffd76a','Valuation',fmt(live.val));spark(g,4,124,232,56,hs.map(h=>h.cust),'#7dd3ff','Customers',S.customers);
- const ds=S.dayStats,rh=[...S.hist.slice(-20),{store:ds.storeRev,online:ds.onlineRev,inv:invTotal(),backlog:S.orders.length}];
- spark2(g,4,184,232,56,rh.map(h=>h.store||0),rh.map(h=>h.online||0),'#7dff8a','#7dd3ff','Store vs Online $/day',`${fmt(ds.storeRev)} / ${fmt(ds.onlineRev)}`);
- spark2(g,4,244,232,52,rh.map(h=>h.inv||0),rh.map(h=>h.backlog||0),'#ffd76a','#ff6b6b','Inventory vs Backlog',`${invTotal()} / ${S.orders.length}`);
- const rw=runway();
- const rc=r=>roleCount(r);$('dasht').innerHTML=`<div>⭐ Rating: <b style="color:#ffd76a">${'★'.repeat(Math.round(S.rating))}${'☆'.repeat(5-Math.round(S.rating))}</b> ${S.rating.toFixed(2)} (${S.reviews} reviews)</div>
- <div>🏪 Today: ${ds.served} sold in store · 🚐 ${ds.shipped} shipped${ds.late?` (<span class="neg">${ds.late} late</span>)`:''}</div>
- <div>📦 Inventory ${S.co.skus.filter(k=>S.product>=SKU_UNLOCK[k.i]).map(k=>`<span style="color:${k.c}">■</span>${S.inv[k.i]}`).join(' ')} · 🪵 mats ${S.mat}${S.matOrder?' (🚚 en route)':''}</div>
- <div>⚠️ Stockouts today: ${ds.stockouts} · walk-outs: ${ds.lineLeaves} · line ${queue.length}</div>
- <div>👷 Staff: ${Object.keys(ROLES).map(r=>`${ROLES[r].e}${rc(r)}`).join(' ')}</div>
- <div>🎯 <b>${S.goal?S.goal.t:'—'}</b>${S.goal?` <small>(by day ${S.goal.until})</small>`:''}</div>
- <div>⏳ Runway: <b class="${rw<3?'neg':'pos'}">${rw>=99?'profitable':rw.toFixed(1)+' days'}</b> · burn ${fmt(expenses())}/d</div>
- <div>😊 Morale ${bar(S.morale,S.morale<30?'#ff4d4d':'#7dff8a')} ${Math.round(S.morale)}</div>
- ${S.robots?`<div>🤖 Robot loyalty ${bar(S.botMood,S.botMood<30?'#ff4d4d':'#7dd3ff')} ${Math.round(S.botMood)}</div>`:''}
- <div>⚖️ Legal risk ${bar(S.legal,S.legal>70?'#ff4d4d':'#ffd76a')} ${Math.round(S.legal)}</div>
- <div>🧱 Tech debt ${bar(S.techDebt,S.techDebt>50?'#ff4d4d':'#c39bff')} ${Math.round(S.techDebt)}</div>
- <div>🦹 ${S.rival.ceo} ${bar(S.rival.str,'#ff6b6b')} ${Math.round(S.rival.str)}</div>
- <div>🔋 Battery health ${bar(S.bHealth,S.bHealth<50?'#ff4d4d':'#7dff8a')} ${Math.round(S.bHealth)}</div>
- <div>🍀 Luck: ${S.luck>.4?'hot streak':S.luck<-.4?'cold streak':'normal'} · Pivots: ${S.pivots}/3</div>
- <div>🔧 ${UPGRADES.map(u=>`<span style="opacity:${S.up[u.id]?1:.3}" title="${u.n}">${{legs:'🦿',battery:'🔋',leds:'😁',chip:'🧠'}[u.id]}</span>`).join(' ')}</div>
- ${S.loyal?`<div>💛 First employee: ${S.loyal}${S.flags.cto?' (CTO)':''}</div>`:''}${S.cofounder?`<div>🤖 Co-founder: ${S.cofounder}</div>`:''}`}
+function chIcons(){return [['etsy','Etsy'],['shopify','Shopify'],['store','Store']].map(([k,n])=>`<span class="chip" style="background:${S.ch[k].open>=0?CHC[k]:'#444'};opacity:${S.ch[k].open>=0?1:.5}">${n}</span>`).join('')}
+function drawHUD(){const t=dateOf(),q=Math.floor(t.getMonth()/3)+1,mtd=S.mo.rev.etsy+S.mo.rev.shopify+S.mo.rev.store+S.mo.rev.wholesale;const cash=vday?V.cash:S.cash;
+ $('hud').innerHTML=`<span><b>${S.co.name}</b></span><span class="cal">📅 <b>${dstr()}</b> ${vday?clock():'⏩'} ${S.wIcon||''} <small>Q${q}${t.getMonth()>=10?' 🎄':''}</small></span>
+ <span>💵 <b style="color:${cash<0?'#ff6b6b':'#ffd76a'}">${fmt(Math.round(cash))}</b></span><span>📈 MTD ${fmt(Math.round(mtd))}</span>
+ <span>${S.reviews?'★'+S.rating.toFixed(2)+` <small>(${S.reviews})</small>`:'★ no reviews'}</span><span>🏪 ${V.s.reduce((a,b)=>a+b,0)} · 🌐 ${V.o.reduce((a,b)=>a+b,0)} · 🧾 ${vday?V.orders:S.backlog.length}</span>
+ <span>👥 ${S.staff.length}</span><span>${chIcons()}</span><span>🏠 ${stageInfo().n}</span><span>🤖 ${S.co.traitName}</span>`}
+function drawDash(){const c=$('dashc'),g=c.getContext('2d');g.clearRect(0,0,c.width,c.height);const d=S.daily.slice(-120);
+ spark(g,4,4,232,60,d.map(x=>x.cash),'#ffd76a','cash (120 days)',fmt(Math.round(S.cash)));
+ // monthly revenue by channel (stacked)
+ const ms=[...S.months.slice(-11),S.mo];const top=72,h=96;g.fillStyle='#ffffff10';g.fillRect(4,top,232,h);const mx=Math.max(1,...ms.map(m=>m.rev.etsy+m.rev.shopify+m.rev.store+m.rev.wholesale));const bw=232/12;
+ ms.forEach((m,i)=>{let y=top+h-12;[['etsy'],['shopify'],['store'],['wholesale']].forEach(([k])=>{const v=m.rev[k]/mx*(h-26);g.fillStyle=CHC[k];g.fillRect(6+i*bw,y-v,bw-3,v);y-=v});g.fillStyle='#888';g.font='7px monospace';g.fillText(MON[+m.k.slice(5)-1][0],8+i*bw,top+h-3)});
+ g.fillStyle='#ddd';g.font='9px monospace';g.fillText('revenue/mo  ',8,top+10);g.fillStyle=CHC.etsy;g.fillText('Etsy',80,top+10);g.fillStyle=CHC.shopify;g.fillText('Shopify',110,top+10);g.fillStyle=CHC.store;g.fillText('Store',160,top+10);g.fillStyle='#ddd';g.fillText(fmt(Math.round(mx)),196,top+20);
+ spark2(g,4,176,232,56,d.map(x=>x.inv),d.map(x=>x.bl),'#7dff8a','#ff6fb5','inventory vs backlog',`${invTotal()} / ${S.backlog.length}`);
+ spark(g,4,240,232,56,d.map(x=>x.rev),'#7dd3ff','daily revenue',fmt(d.length?d[d.length-1].rev:0));
+ const roles=Object.keys(ROLES).map(r=>[r,roleCount(r)]).filter(x=>x[1]);const be=breakEven(),L=S.months[S.months.length-1];
+ $('dasht').innerHTML=`<div>${chIcons()}</div>
+ <div>🧮 Last month: ${L?`${fmt(Math.round(L.P.rev))} rev · <b style="color:${L.P.net>=0?'#7dff8a':'#ff7d7d'}">${fmt(Math.round(L.P.net))}</b> net · GM ${Math.round(L.P.gmPct*100)}%`:'—'}</div>
+ <div>⚖️ Break-even: ${be?fmt(Math.round(be))+'/mo':'—'} · Fixed ${fmt(Math.round(monthlyFixed()))}/mo</div>
+ <div>📆 TTM revenue ${fmt(Math.round(ttmRev()))} · season ×${EC.season[dateOf().getMonth()]}</div>
+ <div>👥 ${roles.length?roles.map(([r,n])=>`${ROLES[r].e}${ROLES[r].n.split(' ')[0]}×${n}`).join(' '):'Robot does everything'}</div>
+ <div>📦 Stock ${S.co.skus.filter(k=>unlocked().includes(k)).map(k=>`<span style="color:${k.c}">■</span>${S.inv.s[k.i]}/${S.inv.o[k.i]}`).join(' ')} <small>(store/web)</small> · kits ${S.kits.reduce((a,b)=>a+b,0)}${S.po.length?` · 🚚 ${S.po.length} PO`:''}</div>
+ <div>💳 Debt ${fmt(Math.round(debt()))}${S.loans.length?' ('+S.loans.map(l=>l.n).join(', ')+')':''} · ads ${fmt(S.ads.etsy+S.ads.shopify)}/day</div>
+ <div>🏁 ${EC.tiers.map(t=>`<span title="${t.n}" style="opacity:${S.tiers[t.id]?1:.25}">${TIER_ICON[t.id]}</span>`).join(' ')}</div>
+ <div><button id="bBooks2" class="mini">📒 Open the books</button></div>`;$('bBooks2').onclick=()=>openBooks()}
 let tickerItems=[],tickerX=0;
 function updTicker(rdt){const el=$('tickt');if(!tickerItems.length){const comp=S.heads.slice(-3).reverse(),world=[pick(WORLD_NEWS),pick(WORLD_NEWS)];tickerItems=[...comp,...world];el.textContent='  📰  '+tickerItems.join('   •   ')+'   •   ';tickerX=innerWidth}
  tickerX-=rdt*70;el.style.transform=`translateX(${tickerX}px)`;if(tickerX<-el.scrollWidth)tickerItems=[]}
@@ -924,10 +1068,13 @@ const tcx=$('tc').getContext('2d');
 function drawTitleBot(){tcx.clearRect(0,0,160,96);tcx.imageSmoothingEnabled=false;const s=load(),co=s?s.co:{color:'#e74c3c',dark:'#922b21'};const sv=S;S=null;drawRobotAt({x:56,y:8+Math.sin(anim*3)*2,face:1},co,1.6,tcx,false);S=sv;
  tcx.fillStyle='#ffd76a';tcx.font='8px monospace';tcx.textAlign='center';tcx.fillText(s?`saved: ${s.co.name.slice(0,26)}`:'a new founder awaits',80,92)}
 let last=performance.now();
-function loop(t){const rdt=Math.min(.1,(t-last)/1000);last=t;
- if(!paused&&running){const sp=highlights?(hlT>0?1:8):speed;let simT=rdt*sp*(window.__rfFast||1);updOverlay(rdt);let n=0;while(simT>0&&!overlay&&n<4000){const d=Math.min(.05,simT);simT-=d;sim(d);n++}if(overlay)sim(0);if(highlights&&hlT>0)hlT-=rdt*(1-1/Math.max(1,sp))}
- render(rdt);if(!running){anim+=rdt;drawTitleBot()}requestAnimationFrame(loop)}
+function loop(t){const rdt=Math.min(.1,(t-last)/1000);last=t;anim+=rdt;
+ if(running&&S){updOverlay(rdt);if(!paused&&!S.done)advance(rdt);
+  const pd=rdt*(vday?(highlights?3:speed):1);particles.forEach(p=>{p.x+=p.vx*pd;p.y+=p.vy*pd;p.vy+=p.g*pd;p.l-=pd});particles=particles.filter(p=>p.l>0);floaters.forEach(f=>{f.y-=pd*18;f.l-=pd});floaters=floaters.filter(f=>f.l>0)}
+ render(rdt);if(!running)drawTitleBot();requestAnimationFrame(loop)}
+window.__rf={get S(){return S},get V(){return V},get vday(){return vday},get shoppers(){return shoppers},get queue(){return queue},get npcs(){return npcs},get van(){return van},EC,balance,runHeadless,stepDay,unitEcon,pnl,planCsv,planMarkdown,openBooks,renderBooks,breakEven,monthlyFixed,ttmRev,get highlights(){return highlights},setHL:v=>{highlights=v;syncCtl()},newCompany,hall,LAYOUTS,
+ ff:n=>{for(let i=0;i<n&&!S.done;i++)stepDay();V.s=[...S.inv.s];V.o=[...S.inv.o];V.kits=S.kits.reduce((a,b)=>a+b,0);V.cash=S.cash;V.orders=S.backlog.length;save();return S.day},
+ setStage:n=>{S.stage=n;if(n>=1&&S.ch.store.open<0)S.ch.store.open=S.day;if(S.ch.shopify.open<0)S.ch.shopify.open=S.day;setLevel(n);npcs.forEach(x=>x.home=null);S.rep=Math.max(S.rep,35);S.use.s=S.use.s.map(()=>2);unlocked().forEach(k=>{S.inv.s[k.i]+=12;S.inv.o[k.i]+=6;S.kits[k.i]+=30});S.flags.visualNext=1},
+ hireTest:r=>hire(r,'test hire'),get overlay(){return overlay}};
 $('bCont').classList.toggle('hidden',!load());syncCtl();requestAnimationFrame(loop);
-window.__rf={dbgRun(maxDay,ch){HEADLESS=true;S=newState();newDayWorld();initRun();if(ch)S.cash=5e6;let g=0;while(!S.done&&S.day<maxDay&&g<400000){sim(.1);g++;if(ch&&S.level<4&&S.day>2){S.stage=3;setLevel(4)}}const r={day:S.day,shop:shoppers.map(s=>[s.st,tileOf(s),s.path.length,s.slot,Math.round(s.wait)]),q:queue.length,npcs:npcs.map(n=>[n.ref.role,tileOf(n),n.atHome,n.brk,n.path.length,n.leaving]),inv:S.inv,ds:S.dayStats,serving:robotServing,cp:S.cashierPower,bot:[bot.goal&&bot.goal.id,bot.path.length,busy,busyLabel,tileOf(S),S.energy],cash:S.cash,exp:expenses(),rw:runway(),lv:S.level,opts:options().slice(0,8).map(o=>[o.id,Math.round(o.score)]),dec:S.decisions};HEADLESS=false;return r},get S(){return S},get stations(){return stations()},get shoppers(){return shoppers},get queue(){return queue},get van(){return van},LAYOUTS,IND,spawnShopper,DAY_LEN,setSpeed,fireEvent:()=>fireEvent(),balance,get overlay(){return overlay},get npcs(){return npcs},get speed(){return speed},get cam(){return cam},get bot(){return bot},hall,
- setHighlights:v=>{highlights=v;syncCtl()},EVENTS_N:EVENTS.length};
 })();

@@ -49,3 +49,17 @@ button:hover{background:#5643a0}
  #dash{left:6px;right:6px;width:auto;top:120px;bottom:auto;max-height:60vh;z-index:6}
  #dashc{margin:0 auto}
 }
+.chip{display:inline-block;padding:0 5px;border-radius:3px;font-size:10px;color:#111;margin-right:2px;font-weight:bold}
+#hud .cal b{color:#fff}
+#bookswrap{position:absolute;inset:0;z-index:60;background:#000b;display:flex;align-items:center;justify-content:center}
+#booksbox{background:#1d1833;border:3px solid #8f7cff;border-radius:10px;padding:10px 14px;width:min(96vw,900px);max-height:88vh;overflow:auto;font-size:12.5px}
+#booksbox h2{color:#ffd76a;font-size:16px;margin:6px 0}
+#booksbox .tabs{display:flex;flex-wrap:wrap;gap:4px}#booksbox .tabs button{font-size:12px;padding:4px 8px;height:auto}#booksbox .tabs button.on{background:#c0392b;border-color:#ffd76a}
+table.pnl{border-collapse:collapse;width:100%;font-size:12px}table.pnl td{padding:2px 5px;border-bottom:1px solid #ffffff12;text-align:right;white-space:nowrap}table.pnl td:first-child{text-align:left;white-space:normal}table.pnl tr.b td{font-weight:bold;color:#ffd76a}
+#mbox table.pnl td{font-size:12px}
+#booksbox pre{white-space:pre-wrap;background:#0d0b16;padding:8px;border-radius:6px;font-size:11px;max-height:240px;overflow:auto}
+.mini{font-size:11px;padding:3px 8px;height:auto}
+.scroll{overflow-x:auto}
+#mbox button.pick{background:#27ae60;border-color:#ffd76a}
+@media (max-width:700px){#booksbox{font-size:11px;padding:8px}table.pnl td{padding:1px 3px;font-size:10.5px}}
+body:has(#bookswrap:not(.hidden)) #toast{display:none}
