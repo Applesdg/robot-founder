@@ -63,7 +63,6 @@
   "no_repeated_words": true,
   "product_word_once": true,
   "title_case": true,
-  "example": "Sleigh All Day Coffee Mug, Boho Christmas Gift, Eucalyptus Holiday Cup 11oz",
   "max_words": 14,
   "banned_filler": [
    "holiday gift",
