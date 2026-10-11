@@ -1,5 +1,5 @@
 {
- "version": "1.4.0",
+ "version": "1.5.0",
  "updated": "2026-10-11",
  "shop": {
   "name": "NiftyNestGifts",
@@ -107,9 +107,9 @@
  "etsy_post_publish_checklist": [
   "Shipping profile: Free US Shipping - Printify",
   "Production partner: Printify",
-  "AI disclosure flag set in listing settings",
+  "How it's made > What tools are used: ONLY 'An AI generator' checked (Etsy AI disclosure; production partner covers Printify printing)",
   "Renewal: Automatic",
-  "Photo 1 = lifestyle scene (upload if channel did not)",
+  "Photo 1 = styled lifestyle scene, 5+ photos visible on Etsy (upload QA'd lifestyle photos; Printify syncs only selected mockups)",
   "Etsy Offsite Ads ON (shop setting; Printify API cannot set it)"
  ],
  "lessons": [
@@ -202,6 +202,26 @@
    "date": "2026-10-11",
    "source": "Dom",
    "lesson": "Standard personalization buyer instructions: \"Please add only the text you want printed on your product. Reach out to us directly for any additional requests.\" (Printify format captured; applied to every release)."
+  },
+  {
+   "date": "2026-10-11",
+   "source": "Dom",
+   "lesson": "Mandatory pre-publish review gate: vision review of every photo + full listing-details review; any failure blocks publish and goes to Dom with reasons."
+  },
+  {
+   "date": "2026-10-11",
+   "source": "Dom",
+   "lesson": "Teacher Elves published with only 1 photo synced: the API cannot select mockups (PUT images is ignored) and Printify keeps only the default mockup selected; store 'details to publish: mockups' is OFF. Fix: select all mockups in the Printify editor (or turn store mockups ON) before publish; gate blocks <5 selected; post-publish sync check flags it."
+  },
+  {
+   "date": "2026-10-11",
+   "source": "Dom",
+   "lesson": "Mountain Man (worker draft) was NOT published: it waited for approval because guardrails failed (4 photos, 68-char title, no lifestyle main photo). Its Printify photo 1 is a plain white mockup, so photo 1 must be a QA'd lifestyle upload."
+  },
+  {
+   "date": "2026-10-11",
+   "source": "Dom",
+   "lesson": "Etsy 'How it's made > What tools are used' must have ONLY 'An AI generator' checked; not readable via API, so daily digest reminds."
   }
  ],
  "personalization": {
@@ -266,5 +286,29 @@
    }
   },
   "audit": "Worker verifies readable per-product settings before every publish and in a daily audit of all products; mismatches are flagged in the digest (free_shipping auto-fixed)."
+ },
+ "pre_publish_review": {
+  "mandatory": true,
+  "applies_to": [
+   "worker auto-publish",
+   "approval-link publish",
+   "manual publish via POST /api/review/:pid"
+  ],
+  "photo_review": "xAI vision review of EVERY photo vs the exact Printify front mockup: main photo = styled lifestyle scene with background; same product/print/colors; text legible and spelled right; exactly one mug, no artifacts or brand marks; design not split/duplicated",
+  "details_review": [
+   "title rules (70-140 chars, Title Case, no repeated words, keyword front-loaded)",
+   "13 tags <=20 chars",
+   "description has timing line",
+   "no AI wording",
+   "worst-case profit >= $5.50 (12% offsite ads)",
+   "free shipping on",
+   "personalization on with Dom exact text",
+   "5+ photos selected for publishing"
+  ],
+  "on_fail": "block publish; reasons to approval queue (state \"blocked by review gate\"), Live Ops panel and daily digest",
+  "post_publish": "verify photos that actually synced (Printify selected images >= 5); flag in audit/digest if fewer"
+ },
+ "memory": {
+  "deleted_on_request": "Products Dom asks to delete are removed from Printify/Etsy/queues and recorded in worker state + lessons so the worker never re-creates them (e.g. Cozy Electric Sparks)."
  }
 }

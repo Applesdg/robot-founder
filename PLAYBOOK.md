@@ -1,15 +1,15 @@
-# NiftyNestGifts Playbook v1.4.0 (2026-10-11)
+# NiftyNestGifts AI Founder Playbook v1.5.0 (2026-10-11)
 
-Machine-readable source: `research/playbook.json` (loaded by the worker every run, injected into xAI prompts, enforced in the grader where checkable). Runtime lessons are appended via the signed `/api/lessons` endpoint.
+Machine-readable source: research/playbook.json (loaded by the worker, injected into prompts, enforced by grader + pre-publish review gate).
 
-## Shop
+## shop
 ```json
 {
  "name": "NiftyNestGifts",
  "positioning": "General gift store (not pet-focused): occasions, hobbies, professions, family roles, locations; pets are one category among many."
 }
 ```
-## Pricing
+## pricing
 ```json
 {
  "free_us_shipping": true,
@@ -28,7 +28,7 @@ Machine-readable source: `research/playbook.json` (loaded by the worker every ru
  "printify_free_shipping_toggle": "sales_channel_properties.free_shipping=true (API)"
 }
 ```
-## Timing
+## timing
 ```json
 {
  "line": "Made to order: ships in 2-7 business days (Printify production), then 2-5 business days US delivery. Free US shipping.",
@@ -44,7 +44,7 @@ Machine-readable source: `research/playbook.json` (loaded by the worker every ru
  ]
 }
 ```
-## Description
+## description
 ```json
 {
  "must_include": [
@@ -60,7 +60,7 @@ Machine-readable source: `research/playbook.json` (loaded by the worker every ru
  "note": "No AI wording in descriptions; the Etsy AI flag is set separately in listing settings."
 }
 ```
-## Production Partner
+## production_partner
 ```json
 {
  "name": "Printify",
@@ -68,7 +68,7 @@ Machine-readable source: `research/playbook.json` (loaded by the worker every ru
  "description": "Print-on-demand partner prints and ships our original designs"
 }
 ```
-## Title
+## title
 ```json
 {
  "pattern": "<Design phrase> <Product type>, <Occasion/recipient> Gift, <Style> <Synonym product word> <Size>",
@@ -81,7 +81,7 @@ Machine-readable source: `research/playbook.json` (loaded by the worker every ru
  "example": "Sleigh All Day Coffee Mug, Boho Christmas Gift, Eucalyptus Holiday Cup 11oz"
 }
 ```
-## Tags
+## tags
 ```json
 {
  "count": 13,
@@ -89,7 +89,7 @@ Machine-readable source: `research/playbook.json` (loaded by the worker every ru
  "unique": true
 }
 ```
-## Photos
+## photos
 ```json
 {
  "min": 5,
@@ -97,7 +97,7 @@ Machine-readable source: `research/playbook.json` (loaded by the worker every ru
  "front_mockup_in_gallery": true
 }
 ```
-## Design
+## design
 ```json
 {
  "print_ready": "Create at the provider print-area size (11oz mug: 2700x1120, white background)",
@@ -106,14 +106,14 @@ Machine-readable source: `research/playbook.json` (loaded by the worker every ru
  "no_real_people": true
 }
 ```
-## Consistency
+## consistency
 ```json
 {
  "rule": "Every lifestyle photo/video is generated FROM the real Printify mockup as reference/first frame. Keep the exact product: plain glossy white 11oz ceramic mug, C-handle, identical design, text and colors. Never generic, speckled, colored or different mugs.",
  "qa": "xAI vision compares each generated asset to the mockup (same shape, handle, design, text spelled identically); mismatches are rejected before use."
 }
 ```
-## Lifestyle
+## lifestyle
 ```json
 {
  "rules": [
@@ -124,7 +124,7 @@ Machine-readable source: `research/playbook.json` (loaded by the worker every ru
  ]
 }
 ```
-## Video
+## video
 ```json
 {
  "recipe": [
@@ -138,24 +138,24 @@ Machine-readable source: `research/playbook.json` (loaded by the worker every ru
  "enabled_by_default": false
 }
 ```
-## Branding
+## branding
 ```json
 {
  "banner": "Etsy shop banner 3360x840 with all text in the center band (safe on mobile crop)"
 }
 ```
-## Etsy Post Publish Checklist
+## etsy_post_publish_checklist
 ```json
 [
  "Shipping profile: Free US Shipping - Printify",
  "Production partner: Printify",
- "AI disclosure flag set in listing settings",
+ "How it's made > What tools are used: ONLY 'An AI generator' checked (Etsy AI disclosure; production partner covers Printify printing)",
  "Renewal: Automatic",
- "Photo 1 = lifestyle scene (upload if channel did not)",
+ "Photo 1 = styled lifestyle scene, 5+ photos visible on Etsy (upload QA'd lifestyle photos; Printify syncs only selected mockups)",
  "Etsy Offsite Ads ON (shop setting; Printify API cannot set it)"
 ]
 ```
-## Personalization
+## personalization
 ```json
 {
  "enabled_every_release": true,
@@ -174,13 +174,13 @@ Machine-readable source: `research/playbook.json` (loaded by the worker every ru
  }
 }
 ```
-## Orders
+## orders
 ```json
 {
  "delayed_orders": "Dom set Printify to auto-send delayed orders to production; the worker flags any held/on-hold orders in the daily digest."
 }
 ```
-## Release Checks
+## release_checks
 ```json
 {
  "store_settings_monthly_confirm": {
@@ -227,22 +227,56 @@ Machine-readable source: `research/playbook.json` (loaded by the worker every ru
  "audit": "Worker verifies readable per-product settings before every publish and in a daily audit of all products; mismatches are flagged in the digest (free_shipping auto-fixed)."
 }
 ```
+## pre_publish_review
+```json
+{
+ "mandatory": true,
+ "applies_to": [
+  "worker auto-publish",
+  "approval-link publish",
+  "manual publish via POST /api/review/:pid"
+ ],
+ "photo_review": "xAI vision review of EVERY photo vs the exact Printify front mockup: main photo = styled lifestyle scene with background; same product/print/colors; text legible and spelled right; exactly one mug, no artifacts or brand marks; design not split/duplicated",
+ "details_review": [
+  "title rules (70-140 chars, Title Case, no repeated words, keyword front-loaded)",
+  "13 tags <=20 chars",
+  "description has timing line",
+  "no AI wording",
+  "worst-case profit >= $5.50 (12% offsite ads)",
+  "free shipping on",
+  "personalization on with Dom exact text",
+  "5+ photos selected for publishing"
+ ],
+ "on_fail": "block publish; reasons to approval queue (state \"blocked by review gate\"), Live Ops panel and daily digest",
+ "post_publish": "verify photos that actually synced (Printify selected images >= 5); flag in audit/digest if fewer"
+}
+```
+## memory
+```json
+{
+ "deleted_on_request": "Products Dom asks to delete are removed from Printify/Etsy/queues and recorded in worker state + lessons so the worker never re-creates them (e.g. Cozy Electric Sparks)."
+}
+```
 ## Lessons
-- **2026-10-11** (Dom): Shop is a general gift store, not dog-focused.
-- **2026-10-11** (Dom): Always free US shipping, baked into price; keep 30% margin floor.
-- **2026-10-11** (Etsy): Etsy flagged repeated title words ('christmas', 'mug'): never repeat words; product word once with synonyms.
-- **2026-10-11** (Dom): Remove AI wording from descriptions; AI disclosure is a listing setting only.
-- **2026-10-11** (QA): Video with big camera moves morphed the product (handle vanished, marshmallows appeared): use locked-off camera, subtle motion only, start from final-scene still.
-- **2026-10-11** (Dom): Product consistency across ALL images/videos: generate from the real Printify mockup; exact plain glossy white 11oz mug, C-handle, identical design; QA-reject mismatches.
-- **2026-10-11** (Dom): Main (first) listing photo must be a styled lifestyle scene, never a plain white mockup.
-- **2026-10-11** (Dom): Listings need 5-10 photos; Etsy auto-renew on.
-- **2026-10-11** (Dom): Enable Printify free Standard shipping ($7.29) and Etsy Offsite Ads (12%) on every release; price so worst-case margin (incl. ads) stays >= 30% (mug $29.99).
-- **2026-10-11** (Dom): Every lifestyle photo/video must start from the real Printify mockup; automated vision QA rejects mismatched mugs.
-- **2026-10-11** (Dom): Price competitively at/slightly below benchmarks; margins don't need to be high; floor = $5-6 worst-case profit (incl. 12% offsite ads). Sleigh All Day stays $25.99.
-- **2026-10-11** (Dom): Enable personalization on every release (~20% higher price for personalized); proofs need Dom approval before production.
-- **2026-10-11** (Dom): Printify delayed orders auto-send to production; flag held orders in the digest.
-- **2026-10-11** (Dom): Standard release checks = Dom's Printify store settings (auto-send delayed orders, 1-hour auto submission incl. personalized, details-to-publish: mockups and shipping profile OFF). Verify per-product settings before publish + daily audit; monthly confirm store settings.
-- **2026-10-11** (QA): Conflict: personalized orders auto-submit after 1 hour, so worker proofs may arrive after production starts - proofs are best-effort unless Dom changes that setting.
-- **2026-10-11** (Dom): Personalized orders set to Manual in Printify so proofs are approved before production (resolves the auto-submit conflict).
-- **2026-10-11** (Dom): Deleted 'Cozy Electric Sparks' electrician mug draft: did not meet requirements (1 photo, no lifestyle main photo, personalization off). Only release ideas that pass the full playbook.
-- **2026-10-11** (Dom): Standard personalization buyer instructions: "Please add only the text you want printed on your product. Reach out to us directly for any additional requests." (Printify format captured; applied to every release).
+- 2026-10-11 (Dom): Shop is a general gift store, not dog-focused.
+- 2026-10-11 (Dom): Always free US shipping, baked into price; keep 30% margin floor.
+- 2026-10-11 (Etsy): Etsy flagged repeated title words ('christmas', 'mug'): never repeat words; product word once with synonyms.
+- 2026-10-11 (Dom): Remove AI wording from descriptions; AI disclosure is a listing setting only.
+- 2026-10-11 (QA): Video with big camera moves morphed the product (handle vanished, marshmallows appeared): use locked-off camera, subtle motion only, start from final-scene still.
+- 2026-10-11 (Dom): Product consistency across ALL images/videos: generate from the real Printify mockup; exact plain glossy white 11oz mug, C-handle, identical design; QA-reject mismatches.
+- 2026-10-11 (Dom): Main (first) listing photo must be a styled lifestyle scene, never a plain white mockup.
+- 2026-10-11 (Dom): Listings need 5-10 photos; Etsy auto-renew on.
+- 2026-10-11 (Dom): Enable Printify free Standard shipping ($7.29) and Etsy Offsite Ads (12%) on every release; price so worst-case margin (incl. ads) stays >= 30% (mug $29.99).
+- 2026-10-11 (Dom): Every lifestyle photo/video must start from the real Printify mockup; automated vision QA rejects mismatched mugs.
+- 2026-10-11 (Dom): Price competitively at/slightly below benchmarks; margins don't need to be high; floor = $5-6 worst-case profit (incl. 12% offsite ads). Sleigh All Day stays $25.99.
+- 2026-10-11 (Dom): Enable personalization on every release (~20% higher price for personalized); proofs need Dom approval before production.
+- 2026-10-11 (Dom): Printify delayed orders auto-send to production; flag held orders in the digest.
+- 2026-10-11 (Dom): Standard release checks = Dom's Printify store settings (auto-send delayed orders, 1-hour auto submission incl. personalized, details-to-publish: mockups and shipping profile OFF). Verify per-product settings before publish + daily audit; monthly confirm store settings.
+- 2026-10-11 (QA): Conflict: personalized orders auto-submit after 1 hour, so worker proofs may arrive after production starts - proofs are best-effort unless Dom changes that setting.
+- 2026-10-11 (Dom): Personalized orders set to Manual in Printify so proofs are approved before production (resolves the auto-submit conflict).
+- 2026-10-11 (Dom): Deleted 'Cozy Electric Sparks' electrician mug draft: did not meet requirements (1 photo, no lifestyle main photo, personalization off). Only release ideas that pass the full playbook.
+- 2026-10-11 (Dom): Standard personalization buyer instructions: "Please add only the text you want printed on your product. Reach out to us directly for any additional requests." (Printify format captured; applied to every release).
+- 2026-10-11 (Dom): Mandatory pre-publish review gate: vision review of every photo + full listing-details review; any failure blocks publish and goes to Dom with reasons.
+- 2026-10-11 (Dom): Teacher Elves published with only 1 photo synced: the API cannot select mockups (PUT images is ignored) and Printify keeps only the default mockup selected; store 'details to publish: mockups' is OFF. Fix: select all mockups in the Printify editor (or turn store mockups ON) before publish; gate blocks <5 selected; post-publish sync check flags it.
+- 2026-10-11 (Dom): Mountain Man (worker draft) was NOT published: it waited for approval because guardrails failed (4 photos, 68-char title, no lifestyle main photo). Its Printify photo 1 is a plain white mockup, so photo 1 must be a QA'd lifestyle upload.
+- 2026-10-11 (Dom): Etsy 'How it's made > What tools are used' must have ONLY 'An AI generator' checked; not readable via API, so daily digest reminds.
