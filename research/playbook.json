@@ -433,7 +433,37 @@
   "post_publish": "verify photos that actually synced (Printify selected images >= 5); flag in audit/digest if fewer"
  },
  "memory": {
-  "deleted_on_request": "Products Dom asks to delete are removed from Printify/Etsy/queues and recorded in worker state + lessons so the worker never re-creates them (e.g. Cozy Electric Sparks)."
+  "deleted_on_request": "Products Dom asks to delete are removed from Printify/Etsy/queues and recorded in worker state + lessons so the worker never re-creates them (e.g. Cozy Electric Sparks).",
+  "deleted_products": [
+   {
+    "printify_id": "6acbbfaa5a6821eb40039815",
+    "etsy_listing_id": "4593215092",
+    "title": "Sleigh All Day Coffee Mug, Boho Christmas Gift, Eucalyptus Holiday Cup 11oz",
+    "reason": "white-only mug retired; color version live",
+    "date": "2026-10-11"
+   },
+   {
+    "printify_id": "6acbd03b18604c240802c8d6",
+    "etsy_listing_id": "4593258460",
+    "title": "Teacher Christmas Mug, Little Elves Holiday Coffee Cup, Gift for Daycare Staff 11oz",
+    "reason": "white-only mug retired; color version live",
+    "date": "2026-10-11"
+   },
+   {
+    "printify_id": "6acbd060afd0ae1b7e0edca9",
+    "etsy_listing_id": "4593261775",
+    "title": "Mountain Man Birthday Coffee Mug, Minimalist Line Art Hiking Cup, Outdoorsy Gift for Him 11oz",
+    "reason": "white-only mug retired; color version live",
+    "date": "2026-10-11"
+   },
+   {
+    "printify_id": "6acbde7c18604c240802d548",
+    "etsy_listing_id": "4593339300",
+    "title": "Fairway Birthday Throw Disc Golf Coffee Mug, Farmhouse Gift for Him or Her, Rustic Cup 11oz",
+    "reason": "white-only mug retired; color version live",
+    "date": "2026-10-11"
+   }
+  ]
  },
  "print_artifacts": {
   "mandatory": true,
