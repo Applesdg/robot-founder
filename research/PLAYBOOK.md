@@ -1,4 +1,4 @@
-# NiftyNestGifts AI Founder Playbook v1.12.0 (2026-10-11)
+# NiftyNestGifts AI Founder Playbook v1.13.0 (2026-10-11)
 
 Machine-readable source: research/playbook.json.
 
@@ -170,7 +170,8 @@ Machine-readable source: research/playbook.json.
  "Production partner: none for now (Dom's choice)",
  "Photos: VERIFY only - never upload/edit in Etsy; fix in Printify and republish Mockups",
  "Etsy Offsite Ads ON (shop setting)",
- "Post-release flags review: Etsy listing health/search visibility/pricing warnings/attribute suggestions/recommendations; Printify listing health (e.g. 'Pricing: Too high') + publish status"
+ "Post-release flags review: Etsy listing health/search visibility/pricing warnings/attribute suggestions/recommendations; Printify listing health (e.g. 'Pricing: Too high') + publish status",
+ "After EVERY new upload/publish: open the Etsy listing's improvement suggestions (search visibility factors, listing health, attribute suggestions, pricing warnings) and APPLY them - synced fields (title, tags, description, price, photos) in Printify first then republish; Etsy-only items (attributes, category details, settings) directly in Etsy"
 ]
 ```
 ## personalization
@@ -276,7 +277,37 @@ Machine-readable source: research/playbook.json.
 ## memory
 ```json
 {
- "deleted_on_request": "Products Dom asks to delete are removed from Printify/Etsy/queues and recorded in worker state + lessons so the worker never re-creates them (e.g. Cozy Electric Sparks)."
+ "deleted_on_request": "Products Dom asks to delete are removed from Printify/Etsy/queues and recorded in worker state + lessons so the worker never re-creates them (e.g. Cozy Electric Sparks).",
+ "deleted_products": [
+  {
+   "printify_id": "6acbbfaa5a6821eb40039815",
+   "etsy_listing_id": "4593215092",
+   "title": "Sleigh All Day Coffee Mug, Boho Christmas Gift, Eucalyptus Holiday Cup 11oz",
+   "reason": "white-only mug retired; color version live",
+   "date": "2026-10-11"
+  },
+  {
+   "printify_id": "6acbd03b18604c240802c8d6",
+   "etsy_listing_id": "4593258460",
+   "title": "Teacher Christmas Mug, Little Elves Holiday Coffee Cup, Gift for Daycare Staff 11oz",
+   "reason": "white-only mug retired; color version live",
+   "date": "2026-10-11"
+  },
+  {
+   "printify_id": "6acbd060afd0ae1b7e0edca9",
+   "etsy_listing_id": "4593261775",
+   "title": "Mountain Man Birthday Coffee Mug, Minimalist Line Art Hiking Cup, Outdoorsy Gift for Him 11oz",
+   "reason": "white-only mug retired; color version live",
+   "date": "2026-10-11"
+  },
+  {
+   "printify_id": "6acbde7c18604c240802d548",
+   "etsy_listing_id": "4593339300",
+   "title": "Fairway Birthday Throw Disc Golf Coffee Mug, Farmhouse Gift for Him or Her, Rustic Cup 11oz",
+   "reason": "white-only mug retired; color version live",
+   "date": "2026-10-11"
+  }
+ ]
 }
 ```
 ## print_artifacts
@@ -415,6 +446,33 @@ Machine-readable source: research/playbook.json.
  "api": "POST /products/{id}/unpublish.json only NOTIFIES Printify that a custom channel removed it - it does not touch Etsy; DELETE /products/{id}.json deletes in Printify (help docs: also removes from the sales channel)"
 }
 ```
+## etsy_improvements
+```json
+{
+ "when": "after every new upload/publish",
+ "check": [
+  "search visibility factors",
+  "listing health",
+  "attribute suggestions",
+  "pricing warnings"
+ ],
+ "apply": {
+  "printify_first": [
+   "title",
+   "tags",
+   "description",
+   "price",
+   "photos"
+  ],
+  "etsy_only": [
+   "attributes",
+   "category details",
+   "listing settings"
+  ]
+ },
+ "record": "note applied suggestions as a lesson if they generalize"
+}
+```
 ## Lessons
 - 2026-10-11 (Dom): Shop is a general gift store, not dog-focused.
 - 2026-10-11 (Dom): Always free US shipping, baked into price; keep 30% margin floor.
@@ -458,3 +516,4 @@ Machine-readable source: research/playbook.json.
 - 2026-10-11 (Dom): New mugs default to blueprint 478 (SPOKE, provider 1) with both 11oz and 15oz white variants in one listing; two-sided print file 2475x1155. Printify cannot change an existing product's blueprint.
 - 2026-10-11 (Dom): New mugs = sizes + colors: Accent Coffee Mug (635, Printify Choice) 11oz $15.99 / 15oz $19.49 in all colors; white companion on 478 (SPOKE) 11oz $16.49 / 15oz $19.99. Costs read from temporary drafts (deleted).
 - 2026-10-11 (Dom): Sell COLOR mugs only (635 accent, all colors, 11oz $15.99 / 15oz $21.49). White-only listings are retired once the color versions are live.
+- 2026-10-11 (Dom): After every new upload, check Etsy improvement suggestions and apply them: Printify-first for synced fields, Etsy-only for attributes/settings.
