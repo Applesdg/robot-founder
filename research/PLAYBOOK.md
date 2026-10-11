@@ -549,3 +549,6 @@ Machine-readable source: research/playbook.json.
 - 2026-10-11 (Dom): After every new upload, check Etsy improvement suggestions and apply them: Printify-first for synced fields, Etsy-only for attributes/settings.
 - 2026-10-11 (Dom): Titles: <=14 words, aim 60-90 chars, no non-essential occasion phrases ('holiday gift') and no 'accent mug in 10 colors' filler; sizes as '(11oz/15oz)'.
 - 2026-10-11 (Dom): Research competitors per new product type (variants, buyer price incl. shipping, personalization, styles, reviews) with cited sources and real Printify costs before drafting; wait for Dom's go.
+
+## New product types (v1.16.0, 2026-10-11)
+Before drafting ANY new product type: research competitors per type (variants, buyer price incl. shipping, free vs paid shipping, personalization, top styles, review themes) from real public sources with links+dates, never invented; compare to real Printify cost; worst-case profit >= $4 (12% offsite ads, buyer-paid shipping); wait for Dom's go before drafts.

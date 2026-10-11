@@ -1,5 +1,5 @@
 {
- "version": "1.15.0",
+ "version": "1.16.0",
  "updated": "2026-10-11",
  "shop": {
   "name": "NiftyNestGifts",
@@ -21,7 +21,7 @@
   "personalized_price_uplift": 0.2,
   "printify_free_shipping_toggle": "sales_channel_properties.free_shipping=true (API)",
   "mug_price": 15.99,
-  "worst_case_at_15_99": "≈$4.09 (fees 6.5%+3%+$0.25 payment+$0.20 listing and 12% offsite ads on item+shipping; shipping passed through to Printify); ≈$6.89 without offsite ads",
+  "worst_case_at_15_99": "\u2248$4.09 (fees 6.5%+3%+$0.25 payment+$0.20 listing and 12% offsite ads on item+shipping; shipping passed through to Printify); \u2248$6.89 without offsite ads",
   "note": "Dom accepted the lower margin (2026-10-11). Free-shipping pricing rules retired."
  },
  "timing": {
@@ -329,7 +329,7 @@
   {
    "date": "2026-10-11",
    "source": "Dom",
-   "lesson": "Free shipping retired (Dom, 2026-10-11 4:41 PM): mugs $15.99 + buyer-paid Printify Standard shipping (US $7.29 first / $3.09 additional). Worst-case profit floor $4.00 (≈$4.09 at $15.99). Never say 'free shipping' in listings."
+   "lesson": "Free shipping retired (Dom, 2026-10-11 4:41 PM): mugs $15.99 + buyer-paid Printify Standard shipping (US $7.29 first / $3.09 additional). Worst-case profit floor $4.00 (\u2248$4.09 at $15.99). Never say 'free shipping' in listings."
   },
   {
    "date": "2026-10-11",
@@ -376,6 +376,10 @@
    "date": "2026-10-11",
    "source": "Dom",
    "lesson": "Research competitors per new product type (variants, buyer price incl. shipping, personalization, styles, reviews) with cited sources and real Printify costs before drafting; wait for Dom's go."
+  },
+  {
+   "date": "2026-10-11",
+   "lesson": "New product types (ornaments, sweatshirts, totes, tumblers) need a per-type competitor research report and Dom's go before any draft."
   }
  ],
  "personalization": {
@@ -639,6 +643,12 @@
    "sweatshirt": "researched 2026-10-11, awaiting Dom",
    "tote": "researched 2026-10-11, awaiting Dom",
    "tumbler": "researched 2026-10-11, awaiting Dom"
+  }
+ },
+ "rules": {
+  "new_product_types": {
+   "rule": "Before drafting ANY new product type, research competitors for that type independently (typical sizes/colors/variants, buyer price item+shipping, free vs paid shipping, personalization, top-seller styles, review themes) from real public sources with links+dates; never invent numbers. Compare to real Printify cost (temp draft, then delete), keep worst-case profit >= $4 with 12% offsite ads and buyer-paid shipping, and wait for Dom's go before drafts.",
+   "since": "2026-10-11"
   }
  }
 }
