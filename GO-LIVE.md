@@ -30,3 +30,33 @@ Visit `/oauth/etsy/start` and `/oauth/shopify/start` to link. Paste the Worker U
 
 ## Still TODO before live
 - Wire a real notifier provider; ads budget connector (Etsy Ads / Meta have no simple budget API for this — robot proposes, Dom sets); Shopify customer messaging via an email app.
+
+
+## Always-on worker (built, NOT deployed) — `Applesdg/robot-founder-server`
+Hourly cron runs: research (reads `research/backlog.json` from the daily Action) → ideas → art (image provider) → listing drafts (text provider) → grader (rewrite if <70, drop if <60) → Printify product drafts → **approval queue** → publish approved listings ≤ `DAILY_PUBLISH_CAP`/day → new orders → Printify order (auto only ≤ `AUTO_SPEND_CAP`, ≤ `DAILY_SPEND_CAP`/day; else approval) → 8 PM ET digest.
+Safety: per-hour idempotency + lock, `KILL_SWITCH` / `POST /api/worker/kill`, `MONTHLY_AI_BUDGET` hard cap with cost log, all writes through the same server-side approval gate as the game API. Customer inbox: Cloudflare Email Routing (`email()` handler) or provider webhook `POST /webhooks/email` (header `x-inbound-token`) → classify → draft reply (+ AI proof for custom requests) → signed link to Dom. **Etsy messages must be sent by Dom in the Etsy app** (no messaging API); the link shows the text to paste. Tests: `npm test` (route contract, signatures, approvals, loop, caps, budget, inbox) — all offline mocks.
+
+### Exact accounts & keys
+| What | Account to create | Secret / var |
+|---|---|---|
+| Etsy | Seller shop + developer app | `ETSY_CLIENT_ID` (keystring); OAuth via `/oauth/etsy/start` |
+| Shopify | Store (Basic) + custom app | `SHOPIFY_CLIENT_ID`, `SHOPIFY_CLIENT_SECRET`, var `SHOPIFY_SHOP`; install via `/oauth/shopify/start` |
+| Printify | Account + API token + webhook | `PRINTIFY_TOKEN`, `PRINTIFY_WEBHOOK_SECRET`, `PRINTIFY_SHOP_ID` |
+| Text AI | OpenAI or Anthropic API | `OPENAI_API_KEY` or `ANTHROPIC_API_KEY`; var `TEXT_PROVIDER` |
+| Image AI | OpenAI API (gpt-image-1) | `OPENAI_API_KEY`; var `IMAGE_PROVIDER=openai` |
+| Notifier | Quo (SMS) or email API or webhook | `QUO_API_KEY`, `QUO_FROM_NUMBER`, `DOM_PHONE` (var `NOTIFIER=quo`) — or `EMAIL_API_URL/KEY`, `DOM_EMAIL` |
+| Inbox | Cloudflare Email Routing on a domain (or Postmark/Resend inbound) | `INBOUND_EMAIL_TOKEN` (webhook option) |
+| Backend | Cloudflare account (Workers + KV) | `GAME_SHARED_SECRET`, `DOM_APPROVAL_SECRET`, KV namespace id |
+
+### Monthly cost estimate (ESTIMATES, Oct 2026 list prices — verify)
+| Item | Est. / month |
+|---|---|
+| Cloudflare Workers + KV (free tier covers hourly cron + light traffic; Paid plan $5 if exceeded) | $0–5 |
+| Text AI (~90 listing drafts + rewrites, ~150 replies/classifications; gpt-5-mini ≈ $0.25/$2 per MTok) | $1–5 (Claude Sonnet ≈ $5–15) |
+| Image AI (~90 listing arts + ~30 proofs × ≈$0.25) | ≈ $30 (capped by `MONTHLY_AI_BUDGET`, default $60) |
+| Etsy listing fees (8/day cap × 30 × $0.20, if every draft is approved) | up to $48 |
+| Shopify Basic + apps (when the 2nd channel is turned on) | $39 + ~$42 |
+| Printify Premium (optional) | $24.99 |
+| Quo (SMS notifier; per-user plan) | ~$15–23 |
+| Domain for email routing | ~$1 |
+| **Etsy-only start** | **≈ $80–110** · with Shopify ≈ $160–190 |

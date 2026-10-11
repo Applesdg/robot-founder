@@ -1,0 +1,34 @@
+{
+ "sample": true,
+ "note": "SAMPLE from an offline mock run (no backend deployed, no keys, no money).",
+ "generated": "2026-10-11T12:17:11.594Z",
+ "mode": "mock",
+ "kill": false,
+ "last_run": {
+  "id": "2026-10-11T12",
+  "finished": 1791721031594,
+  "steps": 5,
+  "errors": [],
+  "skipped": null
+ },
+ "next_run": "2026-10-11T13:00:00.000Z",
+ "queue": {
+  "awaiting_approval": 3,
+  "approved_unpublished": 0,
+  "published_today": 0,
+  "daily_cap": 8,
+  "drafted_total": 3
+ },
+ "budget": {
+  "ai_spent_month": 0,
+  "ai_budget_month": 60,
+  "spend_today": 0,
+  "daily_spend_cap": 150
+ },
+ "providers": {
+  "text": "mock",
+  "image": "mock",
+  "notifier": "kv"
+ },
+ "inbox_pending": 0
+}
