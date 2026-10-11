@@ -2,6 +2,9 @@
 
 Brand: **NiftyNestGifts** (Etsy shop name, Shopify store, email sign-off, digests). Benji the dog stays the mascot.
 
+## Free shipping — ALWAYS (Dom's rule, 2026-10-11)
+Every physical price includes Printify item cost + US first-item shipping + Etsy fees and keeps the 30% margin floor (`research/taxonomy.json` → `shipping_policy`, server `src/pricing.js`; server rejects listings without `free_shipping:true` or below floor). Free shipping itself is set on the **Etsy shipping profile** in Shop Manager (Settings → Shipping settings → Shipping profiles → edit the Printify profile → Standard shipping: Free) — Printify's API cannot set it.
+
 ## Channel rules (enforced server-side in `src/gate.js` `channelPolicy`)
 - **Etsy:** original designs only — our artwork made with Printify (production partner **Printify** disclosed on every physical listing in Shop Manager → Production partners) or our own digital files. AI-disclosure flag required. Drop-ship/resold items are rejected (HTTP 422).
 - **Shopify:** originals + optional general drop-ship supplier adapter (`src/suppliers.js`, `SUPPLIER=none` by default). Vetting: rating ≥ `SUPPLIER_MIN_RATING` (4.5), ≥100 reviews, US delivery ≤ `SUPPLIER_MAX_SHIP_DAYS` (10), returns policy, no brands/trademarks, sample order first. Margin floor `SHOPIFY_MARGIN_FLOOR` (30%) after 2.9%+$0.30 + cost + shipping. Still approval-gated.

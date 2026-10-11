@@ -2641,5 +2641,36 @@
   "yeti",
   "yoda",
   "zelda"
- ]
+ ],
+ "shipping_policy": {
+  "free_shipping": true,
+  "rule": "Dom's standing rule: ALWAYS free shipping. Every price includes the Printify US first-item shipping cost; price is raised (to .99) until contribution margin after Etsy fees >= margin_floor.",
+  "margin_floor": 0.3,
+  "ship_est_by_cat": {
+   "apparel": 4.75,
+   "baby": 4.75,
+   "bag": 5.5,
+   "drinkware": 6.69,
+   "game": 6.5,
+   "home": 8.5,
+   "kids": 4.75,
+   "paper": 4.5,
+   "pet": 6.0,
+   "seasonal": 5.5,
+   "small": 4.0,
+   "summer": 6.0,
+   "tech": 4.5,
+   "wall": 7.5
+  },
+  "verified": [
+   {
+    "product": "Mug 11oz (bp 68, SPOKE Norcross GA)",
+    "cost": 6.44,
+    "ship_us_first": 6.69,
+    "price": 25.99,
+    "date": "2026-10-11"
+   }
+  ],
+  "note": "ship_est values are ESTIMATES except verified rows"
+ }
 }
