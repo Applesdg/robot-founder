@@ -1,4 +1,4 @@
-# NiftyNestGifts AI Founder Playbook v1.14.0 (2026-10-11)
+# NiftyNestGifts AI Founder Playbook v1.15.0 (2026-10-11)
 
 Machine-readable source: research/playbook.json.
 
@@ -81,7 +81,6 @@ Machine-readable source: research/playbook.json.
  "no_repeated_words": true,
  "product_word_once": true,
  "title_case": true,
- "example": "Sleigh All Day Coffee Mug, Boho Christmas Gift, Eucalyptus Holiday Cup 11oz",
  "max_words": 14,
  "banned_filler": [
   "holiday gift",
@@ -492,6 +491,18 @@ Machine-readable source: research/playbook.json.
  "record": "note applied suggestions as a lesson if they generalize"
 }
 ```
+## new_product_types
+```json
+{
+ "rule": "Before drafting ANY new product type: research competitors (typical sizes/colors/variants, buyer price item+shipping, free vs paid shipping, personalization, top styles, review themes) from real public sources with links + dates (Etsy pages where fetchable, eRank/Marmalead/RankHero, articles; never invent numbers), read real Printify costs via a temporary draft (then delete), compute worst-case profit (>= $4), and get Dom's go before drafts.",
+ "status": {
+  "ornament": "researched 2026-10-11, awaiting Dom",
+  "sweatshirt": "researched 2026-10-11, awaiting Dom",
+  "tote": "researched 2026-10-11, awaiting Dom",
+  "tumbler": "researched 2026-10-11, awaiting Dom"
+ }
+}
+```
 ## Lessons
 - 2026-10-11 (Dom): Shop is a general gift store, not dog-focused.
 - 2026-10-11 (Dom): Always free US shipping, baked into price; keep 30% margin floor.
@@ -537,3 +548,4 @@ Machine-readable source: research/playbook.json.
 - 2026-10-11 (Dom): Sell COLOR mugs only (635 accent, all colors, 11oz $15.99 / 15oz $21.49). White-only listings are retired once the color versions are live.
 - 2026-10-11 (Dom): After every new upload, check Etsy improvement suggestions and apply them: Printify-first for synced fields, Etsy-only for attributes/settings.
 - 2026-10-11 (Dom): Titles: <=14 words, aim 60-90 chars, no non-essential occasion phrases ('holiday gift') and no 'accent mug in 10 colors' filler; sizes as '(11oz/15oz)'.
+- 2026-10-11 (Dom): Research competitors per new product type (variants, buyer price incl. shipping, personalization, styles, reviews) with cited sources and real Printify costs before drafting; wait for Dom's go.
