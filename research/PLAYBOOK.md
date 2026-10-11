@@ -1,4 +1,4 @@
-# NiftyNestGifts AI Founder Playbook v1.10.0 (2026-10-11)
+# NiftyNestGifts AI Founder Playbook v1.11.0 (2026-10-11)
 
 Machine-readable source: research/playbook.json.
 
@@ -353,25 +353,79 @@ Machine-readable source: research/playbook.json.
 ```json
 {
  "mug_default": {
-  "blueprint_id": 478,
-  "print_provider_id": 1,
-  "provider": "SPOKE Custom Products (ship-from 30093 GA)",
-  "variants": {
-   "11oz": {
-    "variant_id": 65216,
-    "cost": 6.57,
-    "ship_us": [
+  "note": "Dom 2026-10-11: new mugs = sizes + colors. No Printify blueprint offers white AND accent colors together, so each design = Accent listing (635) + optional white companion listing (478).",
+  "accent": {
+   "blueprint_id": 635,
+   "print_provider_id": 99,
+   "provider": "Printify Choice (auto-routed, FL 33014 listed)",
+   "colors_11oz": [
+    "Black",
+    "Light Blue",
+    "Light Green",
+    "Maroon",
+    "Navy",
+    "Orange",
+    "Pink",
+    "Purple",
+    "Red",
+    "Yellow"
+   ],
+   "extra_15oz": [
+    "Blue"
+   ],
+   "cost": {
+    "11oz": 6.4,
+    "15oz": 8.44
+   },
+   "ship_us": {
+    "11oz": [
      7.29,
      3.09
-    ]
-   },
-   "15oz": {
-    "variant_id": 104692,
-    "cost": 8.62,
-    "ship_us": [
+    ],
+    "15oz": [
      9.39,
      3.99
     ]
+   },
+   "prices": {
+    "11oz": 15.99,
+    "15oz": 19.49
+   },
+   "worst_case": {
+    "11oz": 4.13,
+    "15oz": 4.39
+   },
+   "alt_provider": "SwiftPOD 39 (CA 95131): 11oz $6.41, 15oz $8.06"
+  },
+  "white": {
+   "blueprint_id": 478,
+   "print_provider_id": 1,
+   "provider": "SPOKE Custom Products (ship-from 30093 GA)",
+   "variants": {
+    "11oz": {
+     "variant_id": 65216,
+     "cost": 6.57,
+     "ship_us": [
+      7.29,
+      3.09
+     ]
+    },
+    "15oz": {
+     "variant_id": 104692,
+     "cost": 8.62,
+     "ship_us": [
+      9.39,
+      3.99
+     ]
+    }
+   },
+   "prices": {
+    "11oz": 16.49,
+    "15oz": 19.99
+   },
+   "worst_case": {
+    "11oz": 4.35,
+    "15oz": 4.61
    }
   },
   "print_area_px": [
@@ -379,11 +433,7 @@ Machine-readable source: research/playbook.json.
    1155
   ],
   "two_sided": true,
-  "prices": {
-   "11oz": 16.49,
-   "15oz": 19.99
-  },
-  "price_note": "Costs read from Printify test draft 2026-10-11. At $15.99 the 478 11oz worst case is $3.96 (< $4 floor) -> $16.49 ($4.35) pending Dom; 15oz $19.99 = $4.61 worst case. Legacy live listings stay on blueprint 68 (cost $6.44) at $15.99."
+  "photos": "main styled lifestyle; #2 opposite handle; include a color-swatch/lineup photo of all accent colors"
  }
 }
 ```
@@ -428,3 +478,4 @@ Machine-readable source: research/playbook.json.
 - 2026-10-11 (Dom): Order of operations: all updates in Printify first, publish from Printify, then change in Etsy only what Printify cannot sync.
 - 2026-10-11 (Dom): Printify republish with 'Shipping profile' ON can reassign the Etsy listing to Printify's 'Standard: SPOKE...' profile (happened on Fairway). Keep publish setting 'Shipping profile' OFF; after every republish the flags review verifies the Etsy profile is 'NiftyNestGifts' ($7.29/$3.09).
 - 2026-10-11 (Dom): New mugs default to blueprint 478 (SPOKE, provider 1) with both 11oz and 15oz white variants in one listing; two-sided print file 2475x1155. Printify cannot change an existing product's blueprint.
+- 2026-10-11 (Dom): New mugs = sizes + colors: Accent Coffee Mug (635, Printify Choice) 11oz $15.99 / 15oz $19.49 in all colors; white companion on 478 (SPOKE) 11oz $16.49 / 15oz $19.99. Costs read from temporary drafts (deleted).
