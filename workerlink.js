@@ -16,7 +16,7 @@ function draw(el){const {s,a,d,sp}=last,wait=a.filter(x=>x.state==='waiting').so
  el.querySelector('#wlref').onclick=()=>refresh(el);el.querySelector('#wlrun').onclick=async()=>{el.querySelector('#wlrun').textContent='running…';try{await call('POST','/api/worker/run')}catch(e){}refresh(el)};
  el.querySelectorAll('[data-done]').forEach(b=>b.onclick=async()=>{await call('POST','/api/reminders/done',{printify:b.dataset.done});refresh(el)});
  el.querySelector('#wlkill').onclick=async()=>{await call('POST','/api/worker/kill',{on:!s.kill});refresh(el)}}
-function mount(){const el=document.getElementById('wlink');if(!el)return;if(KEY&&last){draw(el);return}
+function mount(){const el=document.getElementById('wlink');if(!el)return;if(KEY&&last){draw(el);return}if(KEY){refresh(el);return}
  el.innerHTML=`<div class="pcfg">🔐 Connect to the live worker: URL <input id="wlurl" value="${esc(URL0)}" size="46"> shared key <input id="wlkey" type="password" size="24" autocomplete="off"> <button id="wlgo">Connect</button> <small>Key stays in this tab's memory only.</small> <small id="wlmsg"></small></div>`;
  el.querySelector('#wlgo').onclick=()=>{URL0=el.querySelector('#wlurl').value.trim().replace(/\/$/,'');KEY=el.querySelector('#wlkey').value.trim();if(KEY)refresh(el)}}
-window.WLINK={mount}})();
+window.WLINK={mount,call,hasKey:()=>!!KEY,setKey:(u,k)=>{if(u)URL0=u.trim().replace(/\/$/,'');KEY=(k||'').trim()||null},url:()=>URL0}})();
