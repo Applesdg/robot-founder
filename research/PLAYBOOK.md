@@ -1,4 +1,4 @@
-# NiftyNestGifts AI Founder Playbook v1.11.0 (2026-10-11)
+# NiftyNestGifts AI Founder Playbook v1.12.0 (2026-10-11)
 
 Machine-readable source: research/playbook.json.
 
@@ -353,7 +353,7 @@ Machine-readable source: research/playbook.json.
 ```json
 {
  "mug_default": {
-  "note": "Dom 2026-10-11: new mugs = sizes + colors. No Printify blueprint offers white AND accent colors together, so each design = Accent listing (635) + optional white companion listing (478).",
+  "note": "Dom 2026-10-11 6:10 PM: sell COLOR mugs only. Every mug idea = ONE Accent Coffee Mug (635, Printify Choice) with all colors, 11oz $15.99 / 15oz $21.49, Etsy profile 'NiftyNestGifts Accent' $7.29/$3.09. No white products, no cross-links to white versions.",
   "accent": {
    "blueprint_id": 635,
    "print_provider_id": 99,
@@ -389,44 +389,13 @@ Machine-readable source: research/playbook.json.
    },
    "prices": {
     "11oz": 15.99,
-    "15oz": 19.49
+    "15oz": 21.49
    },
    "worst_case": {
     "11oz": 4.13,
-    "15oz": 4.39
+    "15oz": 4.31
    },
    "alt_provider": "SwiftPOD 39 (CA 95131): 11oz $6.41, 15oz $8.06"
-  },
-  "white": {
-   "blueprint_id": 478,
-   "print_provider_id": 1,
-   "provider": "SPOKE Custom Products (ship-from 30093 GA)",
-   "variants": {
-    "11oz": {
-     "variant_id": 65216,
-     "cost": 6.57,
-     "ship_us": [
-      7.29,
-      3.09
-     ]
-    },
-    "15oz": {
-     "variant_id": 104692,
-     "cost": 8.62,
-     "ship_us": [
-      9.39,
-      3.99
-     ]
-    }
-   },
-   "prices": {
-    "11oz": 16.49,
-    "15oz": 19.99
-   },
-   "worst_case": {
-    "11oz": 4.35,
-    "15oz": 4.61
-   }
   },
   "print_area_px": [
    2475,
@@ -435,6 +404,15 @@ Machine-readable source: research/playbook.json.
   "two_sided": true,
   "photos": "main styled lifestyle; #2 opposite handle; include a color-swatch/lineup photo of all accent colors"
  }
+}
+```
+## removal
+```json
+{
+ "method": "Delete the product in Printify (permanently deletes the linked Etsy listing; cannot be restored) - only after Dom confirms color versions live",
+ "hide_alternative": "Printify My Products > More actions > 'Hide on Etsy' (reversible)",
+ "avoid": "Deleting/deactivating in Etsy first leaves an unlinked Printify product",
+ "api": "POST /products/{id}/unpublish.json only NOTIFIES Printify that a custom channel removed it - it does not touch Etsy; DELETE /products/{id}.json deletes in Printify (help docs: also removes from the sales channel)"
 }
 ```
 ## Lessons
@@ -479,3 +457,4 @@ Machine-readable source: research/playbook.json.
 - 2026-10-11 (Dom): Printify republish with 'Shipping profile' ON can reassign the Etsy listing to Printify's 'Standard: SPOKE...' profile (happened on Fairway). Keep publish setting 'Shipping profile' OFF; after every republish the flags review verifies the Etsy profile is 'NiftyNestGifts' ($7.29/$3.09).
 - 2026-10-11 (Dom): New mugs default to blueprint 478 (SPOKE, provider 1) with both 11oz and 15oz white variants in one listing; two-sided print file 2475x1155. Printify cannot change an existing product's blueprint.
 - 2026-10-11 (Dom): New mugs = sizes + colors: Accent Coffee Mug (635, Printify Choice) 11oz $15.99 / 15oz $19.49 in all colors; white companion on 478 (SPOKE) 11oz $16.49 / 15oz $19.99. Costs read from temporary drafts (deleted).
+- 2026-10-11 (Dom): Sell COLOR mugs only (635 accent, all colors, 11oz $15.99 / 15oz $21.49). White-only listings are retired once the color versions are live.

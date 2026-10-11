@@ -19,7 +19,8 @@
    "two_sided": true,
    "etsy_photos": 9,
    "etsy_verified_photos": true,
-   "verified_by": "Dom (browser) 2026-10-11 5:27 PM ET"
+   "verified_by": "Dom (browser) 2026-10-11 5:27 PM ET",
+   "planned_removal": "retire after color version confirmed live (Dom 2026-10-11 6:10 PM); remove by deleting in Printify"
   },
   {
    "printify_id": "6acbd03b18604c240802c8d6",
@@ -52,7 +53,8 @@
    "two_sided": true,
    "etsy_photos": 9,
    "etsy_verified_photos": true,
-   "verified_by": "Dom (browser) 2026-10-11 5:27 PM ET"
+   "verified_by": "Dom (browser) 2026-10-11 5:27 PM ET",
+   "planned_removal": "retire after color version confirmed live (Dom 2026-10-11 6:10 PM); remove by deleting in Printify"
   },
   {
    "printify_id": "6acbd060afd0ae1b7e0edca9",
@@ -78,7 +80,8 @@
    "two_sided": true,
    "etsy_photos": 9,
    "etsy_verified_photos": true,
-   "verified_by": "Dom (browser) 2026-10-11 5:27 PM ET"
+   "verified_by": "Dom (browser) 2026-10-11 5:27 PM ET",
+   "planned_removal": "retire after color version confirmed live (Dom 2026-10-11 6:10 PM); remove by deleting in Printify"
   },
   {
    "printify_id": "6acbde7c18604c240802d548",
@@ -92,8 +95,71 @@
    "two_sided": true,
    "etsy_photos": 9,
    "etsy_verified_photos": true,
-   "verified_by": "Dom (browser) 2026-10-11 5:27 PM ET"
+   "verified_by": "Dom (browser) 2026-10-11 5:27 PM ET",
+   "planned_removal": "retire after color version confirmed live (Dom 2026-10-11 6:10 PM); remove by deleting in Printify"
   }
  ],
- "updated": "2026-10-11T17:27:00-04:00"
+ "updated": "2026-10-11T17:27:00-04:00",
+ "color_drafts": [
+  {
+   "key": "sleigh",
+   "printify_id": "6acc04ec4fd2ce0f82087adf",
+   "title": "Sleigh All Day Accent Mug in 10 Colors, Boho Christmas Coffee Cup, Eucalyptus Holiday Gift 11oz 15oz",
+   "blueprint_id": 635,
+   "provider": "Printify Choice",
+   "prices": {
+    "11oz": 15.99,
+    "15oz": 21.49
+   },
+   "status": "draft - photos to upload in Printify, then publish",
+   "replaces_white": [
+    "6acbbfaa5a6821eb40039815"
+   ]
+  },
+  {
+   "key": "teacher",
+   "printify_id": "6acc04ef0f1611dc180120b0",
+   "title": "Little Elves Teacher Accent Mug in Colors, Christmas Thank You Gift for Daycare Staff, Holiday Coffee Cup 11oz 15oz",
+   "blueprint_id": 635,
+   "provider": "Printify Choice",
+   "prices": {
+    "11oz": 15.99,
+    "15oz": 21.49
+   },
+   "status": "draft - photos to upload in Printify, then publish",
+   "replaces_white": [
+    "6acbd03b18604c240802c8d6"
+   ]
+  },
+  {
+   "key": "mountain",
+   "printify_id": "6acc04f15a6821eb4003dba7",
+   "title": "Mountain Man Birthday Accent Mug in 10 Colors, Line Art Hiking Coffee Cup, Outdoorsy Gift for Him 11oz 15oz",
+   "blueprint_id": 635,
+   "provider": "Printify Choice",
+   "prices": {
+    "11oz": 15.99,
+    "15oz": 21.49
+   },
+   "status": "draft - photos to upload in Printify, then publish",
+   "replaces_white": [
+    "6acbd060afd0ae1b7e0edca9"
+   ]
+  },
+  {
+   "key": "fairway",
+   "printify_id": "6acc04f4ae96b8f9780366cc",
+   "title": "Fairway Birthday Throw Disc Golf Accent Mug in Colors, Frisbee Golfer Coffee Cup, Gift for Him or Her 11oz 15oz",
+   "blueprint_id": 635,
+   "provider": "Printify Choice",
+   "prices": {
+    "11oz": 15.99,
+    "15oz": 21.49
+   },
+   "status": "draft - photos to upload in Printify, then publish",
+   "replaces_white": [
+    "6acbde7c18604c240802d548"
+   ]
+  }
+ ]
 }
