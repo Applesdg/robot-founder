@@ -1,4 +1,4 @@
-# NiftyNestGifts AI Founder Playbook v1.5.0 (2026-10-11)
+# NiftyNestGifts AI Founder Playbook v1.6.0 (2026-10-11)
 
 Machine-readable source: research/playbook.json (loaded by the worker, injected into prompts, enforced by grader + pre-publish review gate).
 
@@ -245,7 +245,8 @@ Machine-readable source: research/playbook.json (loaded by the worker, injected 
   "worst-case profit >= $5.50 (12% offsite ads)",
   "free shipping on",
   "personalization on with Dom exact text",
-  "5+ photos selected for publishing"
+  "5+ photos selected for publishing",
+  "print file passes artifact check (vision + pixel)"
  ],
  "on_fail": "block publish; reasons to approval queue (state \"blocked by review gate\"), Live Ops panel and daily digest",
  "post_publish": "verify photos that actually synced (Printify selected images >= 5); flag in audit/digest if fewer"
@@ -255,6 +256,19 @@ Machine-readable source: research/playbook.json (loaded by the worker, injected 
 ```json
 {
  "deleted_on_request": "Products Dom asks to delete are removed from Printify/Etsy/queues and recorded in worker state + lessons so the worker never re-creates them (e.g. Cozy Electric Sparks)."
+}
+```
+## print_artifacts
+```json
+{
+ "mandatory": true,
+ "where": [
+  "design step (reject + regenerate once, then reject idea)",
+  "pre-publish gate (actual print file on the Printify product)"
+ ],
+ "vision": "xAI prompt asks explicitly about gray/white semi-transparent rectangles, panels, boxes, frames, seams/hard straight edges, drawn mugs/mockups, smudges, garbled text, logos",
+ "pixel": "flat light-gray panel >4% of print OR a straight vertical/horizontal edge spanning >40% of height/width (src/artifact.js pixelArtifact; tools/artifact_check.py)",
+ "prompt_rule": "Design prompts say \"flat standalone print artwork, NOT a product photo\"; never ask the image model for a \"mug wrap\" (it draws a mug into the art)."
 }
 ```
 ## Lessons
@@ -280,3 +294,4 @@ Machine-readable source: research/playbook.json (loaded by the worker, injected 
 - 2026-10-11 (Dom): Teacher Elves published with only 1 photo synced: the API cannot select mockups (PUT images is ignored) and Printify keeps only the default mockup selected; store 'details to publish: mockups' is OFF. Fix: select all mockups in the Printify editor (or turn store mockups ON) before publish; gate blocks <5 selected; post-publish sync check flags it.
 - 2026-10-11 (Dom): Mountain Man (worker draft) was NOT published: it waited for approval because guardrails failed (4 photos, 68-char title, no lifestyle main photo). Its Printify photo 1 is a plain white mockup, so photo 1 must be a QA'd lifestyle upload.
 - 2026-10-11 (Dom): Etsy 'How it's made > What tools are used' must have ONLY 'An AI generator' checked; not readable via API, so daily digest reminds.
+- 2026-10-11 (Dom): Fairway Birthday Throw print file had a gray semi-transparent mug/panel over the right half (the image model drew a mug because the prompt said 'mug wrap'). Every print file now gets a vision + pixel artifact check in the design step and the pre-publish gate; prompts ask for flat artwork only.
