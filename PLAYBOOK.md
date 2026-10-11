@@ -1,4 +1,4 @@
-# NiftyNestGifts AI Founder Playbook v1.7.0 (2026-10-11)
+# NiftyNestGifts AI Founder Playbook v1.8.0 (2026-10-11)
 
 Machine-readable source: research/playbook.json (loaded by the worker, injected into prompts, enforced by grader + pre-publish review gate).
 
@@ -15,7 +15,7 @@ Machine-readable source: research/playbook.json (loaded by the worker, injected 
  "free_us_shipping": true,
  "shipping_baked_into_price": true,
  "strategy": "Price competitively: at or slightly below competitor benchmarks (research/competitors.json). Margins don't need to be high.",
- "min_profit_worst_case": 5.5,
+ "min_profit_worst_case": 4.0,
  "worst_case_includes": [
   "Etsy fees 6.5% + 3% + $0.45",
   "Printify item cost",
@@ -25,13 +25,16 @@ Machine-readable source: research/playbook.json (loaded by the worker, injected 
  "example": "Mug 11oz $25.99 -> worst-case profit $6.22",
  "shopify_margin_floor": 0.3,
  "personalized_price_uplift": 0.2,
- "printify_free_shipping_toggle": "sales_channel_properties.free_shipping=true (API)"
+ "printify_free_shipping_toggle": "sales_channel_properties.free_shipping=true (API)",
+ "mug_price": 15.99,
+ "worst_case_at_15_99": "≈$4.09 (fees 6.5%+3%+$0.25 payment+$0.20 listing and 12% offsite ads on item+shipping; shipping passed through to Printify); ≈$6.89 without offsite ads",
+ "note": "Dom accepted the lower margin (2026-10-11). Free-shipping pricing rules retired."
 }
 ```
 ## timing
 ```json
 {
- "line": "Made to order: ships in 2-7 business days (Printify production), then 2-5 business days US delivery. Free US shipping.",
+ "line": "Made to order: ships in 2-7 business days, then 2-5 business days US delivery (standard shipping).",
  "sources": [
   {
    "claim": "Printify production time 2-7 business days",
@@ -55,7 +58,8 @@ Machine-readable source: research/playbook.json (loaded by the worker, injected 
   "\\bAI\\b",
   "AI-assisted",
   "artificial intelligence",
-  "generated"
+  "generated",
+  "free (us )?shipping"
  ],
  "note": "No AI wording in descriptions; the Etsy AI flag is set separately in listing settings."
 }
@@ -160,7 +164,7 @@ Machine-readable source: research/playbook.json (loaded by the worker, injected 
 ## etsy_post_publish_checklist
 ```json
 [
- "Shipping profile: NiftyNestGifts Free US Shipping",
+ "Shipping profile: Printify Standard (buyer-paid) as published by Printify - confirm it is assigned, no free-shipping profile",
  "How it's made > What tools are used: ONLY 'An AI generator' checked",
  "Renewal: Automatic",
  "Production partner: none for now (Dom's choice)",
@@ -212,14 +216,14 @@ Machine-readable source: research/playbook.json (loaded by the worker, injected 
     "variants_prices_skus": true,
     "tags": true,
     "category_attributes": true,
-    "mockups": false,
-    "shipping_profile": false
+    "mockups": true,
+    "shipping_profile": true
    }
   },
   "note": "Store-level Printify settings are not readable via API - confirmed monthly by Dom (digest checklist)."
  },
  "per_product": {
-  "free_shipping": true,
+  "free_shipping": false,
   "personalization": true,
   "visible": true,
   "min_photos": 5,
@@ -235,7 +239,7 @@ Machine-readable source: research/playbook.json (loaded by the worker, injected 
    "tags": true,
    "keyFeatures": true,
    "images": false,
-   "shipping_template": false
+   "shipping_template": true
   }
  },
  "audit": "Worker verifies readable per-product settings before every publish and in a daily audit of all products; mismatches are flagged in the digest (free_shipping auto-fixed)."
@@ -321,6 +325,30 @@ Machine-readable source: research/playbook.json (loaded by the worker, injected 
  "scopes": "listings_r listings_w listings_d transactions_r transactions_w shops_r shops_w email_r"
 }
 ```
+## shipping
+```json
+{
+ "free_shipping": false,
+ "who_pays": "buyer",
+ "profile": "Printify Standard shipping profile published by Printify to Etsy (publish setting \"Shipping profile\" ON) - not a custom Etsy profile",
+ "printify_rates_us_11oz_mug": {
+  "first_item": 7.29,
+  "additional_item": 3.09,
+  "note": "Printify catalog (blueprint 68, provider 1) also lists a US profile at $6.69/$2.99; worst case uses $7.29",
+  "checked": "2026-10-11"
+ },
+ "listing_text": "never mention free shipping; keep timing line \"Made to order: ships in 2-7 business days, then 2-5 business days US delivery (standard shipping).\""
+}
+```
+## order_of_operations
+```json
+[
+ "1. Make ALL changes in Printify first: price, title/description/tags, print files, photos (Mockup Library), shipping (Printify Standard, free shipping OFF), personalization",
+ "2. Publish/republish from Printify (selected fields)",
+ "3. Only afterwards change in Etsy what Printify cannot sync: shipping profile assignment if needed, listing settings (Renewal Automatic, What tools are used = An AI generator), shop settings (Offsite Ads)",
+ "Never upload/edit photos, designs, prices or descriptions in Etsy."
+]
+```
 ## Lessons
 - 2026-10-11 (Dom): Shop is a general gift store, not dog-focused.
 - 2026-10-11 (Dom): Always free US shipping, baked into price; keep 30% margin floor.
@@ -352,8 +380,11 @@ Machine-readable source: research/playbook.json (loaded by the worker, injected 
 - 2026-10-11 (Dom): Photo #2 = styled shot of the other side with the handle opposite photo #1.
 - 2026-10-11 (Dom): Styled lifestyle photo is ALWAYS #1; 5+ photos; verify after sync that Etsy shows them in order.
 - 2026-10-11 (Dom): Never click Publish without the pre-publish gate (Mountain Man was published by an accidental click and skipped the gate).
-- 2026-10-11 (Dom): Etsy checklist after every release: NiftyNestGifts free shipping profile, 'What tools are used' = ONLY 'An AI generator', Renewal = Automatic.
+- 2026-10-11 (Dom): Etsy checklist after every release: NiftyNestGifts free shipping profile, 'What tools are used' = ONLY 'An AI generator', Renewal = Automatic. [SUPERSEDED: 2026-10-11: free shipping retired]
 - 2026-10-11 (Dom): No Etsy production partner for now (Dom's choice).
 - 2026-10-11 (Dom): Never upload/edit photos or designs in Etsy; ALL photo/design changes happen in Printify (Mockup Library supports custom uploads in the UI, not the API) and sync to Etsy.
 - 2026-10-11 (Dom): After every release review all flags on Etsy (listing health, search visibility, pricing warnings, attribute suggestions, recommendations) and Printify (listing health e.g. 'Pricing: Too high', publish status); collect Etsy recommendations into the playbook.
 - 2026-10-11 (Dom): Preview contact sheet of all photos in order before every publish; weekly cleanup of all live products.
+- 2026-10-11 (Dom): Free shipping retired (Dom, 2026-10-11 4:41 PM): mugs $15.99 + buyer-paid Printify Standard shipping (US $7.29 first / $3.09 additional). Worst-case profit floor $4.00 (≈$4.09 at $15.99). Never say 'free shipping' in listings.
+- 2026-10-11 (Dom): Shipping = Printify Standard profile published from Printify (publish setting 'Shipping profile' ON), not a custom Etsy profile.
+- 2026-10-11 (Dom): Order of operations: all updates in Printify first, publish from Printify, then change in Etsy only what Printify cannot sync.

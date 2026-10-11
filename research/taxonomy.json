@@ -154,7 +154,7 @@
    "type": "event"
   },
   {
-   "n": "quincea\u00f1era",
+   "n": "quinceañera",
    "month": 0,
    "w": 0.3,
    "type": "event"
@@ -328,7 +328,7 @@
    "type": "holiday"
   },
   {
-   "n": "D\u00eda de los Muertos",
+   "n": "Día de los Muertos",
    "month": 11,
    "w": 0.4,
    "type": "holiday"
@@ -1525,11 +1525,11 @@
     "w": 1
    },
    {
-    "n": "fianc\u00e9",
+    "n": "fiancé",
     "w": 1
    },
    {
-    "n": "fianc\u00e9e",
+    "n": "fiancée",
     "w": 1
    },
    {
@@ -2643,7 +2643,7 @@
   "zelda"
  ],
  "shipping_policy": {
-  "free_shipping": true,
+  "free_shipping": false,
   "rule": "ALWAYS free US shipping baked into price. Price competitively (at/slightly below benchmarks) with a MIN worst-case profit of $5.50 per item after Etsy fees, item, free-shipping charge and 12% offsite ads.",
   "margin_floor": 0.3,
   "ship_est_by_cat": {
@@ -2672,8 +2672,8 @@
     "date": "2026-10-11"
    }
   ],
-  "note": "ship_est values are ESTIMATES except verified rows",
+  "note": "Dom 2026-10-11: free shipping retired; buyer pays Printify Standard shipping (US mug $7.29 first/$3.09 additional). Mugs $15.99; worst-case profit floor $4.00.",
   "offsite_ads_pct": 0.12,
-  "min_profit": 5.5
+  "min_profit": 4.0
  }
 }
