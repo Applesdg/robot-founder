@@ -1,7 +1,7 @@
 // Robot Founder — continuous idea engine (prep mode, no money). Runs in the browser AND in Node (GitHub Action → research/backlog.json).
 // Expands subjects × styles × products × occasions × niches, scores on research/market.json signals, applies guardrails.
 (function(root){
-const STYLES=[['watercolor',1.0],['renaissance royal',1.05],['minimalist line art',.9],['pop art',.85],['vintage travel poster',.8],['cartoon caricature',.85],['oil painting',.95],['pastel kawaii',.8],['boho floral',.85],['stained glass',.75],
+const STYLES=[['watercolor',1.0],['christmas illustrated',1.0],['renaissance royal',1.05],['minimalist line art',.9],['pop art',.85],['vintage travel poster',.8],['cartoon caricature',.85],['oil painting',.95],['pastel kawaii',.8],['boho floral',.85],['stained glass',.75],
  // risky styles exist on purpose so guardrails visibly reject them (buyers search for these; using them risks IP takedowns)
  ['Disney princess style',1.2],['Marvel superhero',1.1],['Pixar 3D',1.1],['Studio Ghibli style',1.1],['Star Wars Jedi',1],['Harry Potter house',1],['Pokemon trainer',1],['AKC champion badge',.9]];
 const PRODUCTS=[['Mug 11oz',24],['Poster 18x24',39],['Canvas 12x16',69],['Canvas 16x20',89],['Fleece blanket 50x60',69],['Digital portrait',29]];
@@ -27,7 +27,7 @@ function propose(today,prev){// keep past experiments (cumulative), add 2 new se
  for(let k=ex.some(e=>e.started===today)?2:0,tries=0;k<2&&tries<50;tries++){const m=MODS[Math.floor(R()*MODS.length)],b=base[Math.floor(R()*base.length)],label=b+' + '+m[0];if(used.has(label))continue;used.add(label);
   ex.push({id:'exp'+today.replace(/-/g,'')+k,label,kw:m[1],niche:XN[Math.floor(R()*XN.length)],started:today,status:'testing — waiting for real views/sales',metric:'favorites per 100 views vs. house style (needs Etsy)'});k++}
  return ex.filter(e=>!e.status.startsWith('retired')||(Date.parse(today)-Date.parse(e.started))/864e5<60)}
-function generate(market,opt={}){const o={explore:opt.explore??.1,digitalShare:opt.digitalShare??.4,house:opt.house||'watercolor',today:opt.today||new Date().toISOString().slice(0,10),target:opt.target||1200,dailyCap:opt.dailyCap||8,minScore:opt.minScore||.18,month:opt.month||(new Date().getMonth()+1),styles:opt.styles||STYLES.length,seedExtra:opt.extra||0};
+function generate(market,opt={}){const o={explore:opt.explore??.1,digitalShare:opt.digitalShare??.4,house:opt.house||'renaissance royal',today:opt.today||new Date().toISOString().slice(0,10),target:opt.target||1200,dailyCap:opt.dailyCap||8,minScore:opt.minScore||.18,month:opt.month||(new Date().getMonth()+1),styles:opt.styles||STYLES.length,seedExtra:opt.extra||0};
  const subj=market.breeds.map(b=>[b.article,b.score,b.akc_rank_2025?'dog':'cat']).concat(HORSES.map(h=>[h[0],h[1],'horse']),EXOTIC.map(x=>[x[0],x[1],'pet']));
  const st={generated:0,rejected:{},accepted:0},acc=[],rej=[],seen=new Set();
  const byKey={},cand=[];const bump=(r,t,tm)=>{const k=r.split(':')[0];st.rejected[k]=(st.rejected[k]||0)+1;if(rej.length<400&&(tm||rej.length<150||Math.random()<.01))rej.push({title:t,reason:r})};

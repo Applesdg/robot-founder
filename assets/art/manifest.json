@@ -1,1 +1,60 @@
-{"note":"Real AI art samples go here (PNG per style). Empty = UI shows labeled procedural samples.","images":[]}
+{
+ "note": "Real AI art samples. Label: AI sample (Etsy AI disclosure required).",
+ "default_house": "renaissance royal",
+ "images": [
+  {
+   "style": "watercolor",
+   "pet": "dog",
+   "subject": "Golden Retriever",
+   "path": "assets/art/watercolor-golden-retriever.jpg",
+   "label": "AI sample",
+   "ai_generated": true,
+   "note": "Original generic AI artwork (no real people/trademarks). Etsy listings using it must set the AI disclosure."
+  },
+  {
+   "style": "renaissance royal",
+   "pet": "dog",
+   "subject": "French Bulldog",
+   "path": "assets/art/renaissance-french-bulldog.jpg",
+   "label": "AI sample",
+   "ai_generated": true,
+   "note": "Original generic AI artwork (no real people/trademarks). Etsy listings using it must set the AI disclosure."
+  },
+  {
+   "style": "minimalist line art",
+   "pet": "dog",
+   "subject": "Labrador Retriever",
+   "path": "assets/art/lineart-labrador.jpg",
+   "label": "AI sample",
+   "ai_generated": true,
+   "note": "Original generic AI artwork (no real people/trademarks). Etsy listings using it must set the AI disclosure."
+  },
+  {
+   "style": "pastel kawaii",
+   "pet": "cat",
+   "subject": "orange cat",
+   "path": "assets/art/kawaii-orange-cat.jpg",
+   "label": "AI sample",
+   "ai_generated": true,
+   "note": "Original generic AI artwork (no real people/trademarks). Etsy listings using it must set the AI disclosure."
+  },
+  {
+   "style": "christmas illustrated",
+   "pet": "dog",
+   "subject": "mixed-breed (Benji-like house dog)",
+   "path": "assets/art/christmas-benji-house-dog.jpg",
+   "label": "AI sample",
+   "ai_generated": true,
+   "note": "Original generic AI artwork (no real people/trademarks). Etsy listings using it must set the AI disclosure."
+  },
+  {
+   "style": "boho floral",
+   "pet": "dog",
+   "subject": "Dachshund",
+   "path": "assets/art/boho-dachshund.jpg",
+   "label": "AI sample",
+   "ai_generated": true,
+   "note": "Original generic AI artwork (no real people/trademarks). Etsy listings using it must set the AI disclosure."
+  }
+ ]
+}
