@@ -1,4 +1,4 @@
-# NiftyNestGifts AI Founder Playbook v1.6.0 (2026-10-11)
+# NiftyNestGifts AI Founder Playbook v1.7.0 (2026-10-11)
 
 Machine-readable source: research/playbook.json (loaded by the worker, injected into prompts, enforced by grader + pre-publish review gate).
 
@@ -63,9 +63,8 @@ Machine-readable source: research/playbook.json (loaded by the worker, injected 
 ## production_partner
 ```json
 {
- "name": "Printify",
- "location": "United States",
- "description": "Print-on-demand partner prints and ships our original designs"
+ "etsy_setting": "none for now (Dom's choice, 2026-10-11)",
+ "description_note": "description may still say printed and shipped by Printify (transparency)"
 }
 ```
 ## title
@@ -93,8 +92,20 @@ Machine-readable source: research/playbook.json (loaded by the worker, injected 
 ```json
 {
  "min": 5,
- "main_photo": "styled lifestyle scene with background (product in use, liquid visible, seasonal props) - NEVER a plain white mockup as photo 1; white mockups go later in the gallery",
- "front_mockup_in_gallery": true
+ "max_etsy": 20,
+ "order": [
+  "#1 styled lifestyle scene, handle RIGHT (from Printify right mockup)",
+  "#2 styled lifestyle scene of the OTHER side, handle LEFT (from left mockup)",
+  "#3+ more styled shots and Printify left/right/context mockups"
+ ],
+ "never": [
+  "front seam mockup (camera 6400) showing the gap/edges between the two design copies",
+  "plain white mockup as #1"
+ ],
+ "qa": "layout-exact vision QA (same arrangement/clusters/text placement, not just same elements), no seam/gap, handle side recorded; photo #2 handle must be opposite photo #1",
+ "where_edited": "ONLY in Printify (Mockup Library: upload styled photos to My uploads, select/deselect, order, default) then publish/republish with Mockups checked. NEVER upload or edit photos/designs in Etsy.",
+ "api_limits": "Printify public API cannot upload custom mockups, select mockups, or reorder them (PUT images is ignored) - these are browser tasks in Printify; the worker generates the photos, QA, contact sheet and a task list.",
+ "verify_after_sync": "after publish, verify selected Printify images >=5 and Etsy shows the same order (browser check until Etsy OAuth is live)"
 }
 ```
 ## design
@@ -103,7 +114,9 @@ Machine-readable source: research/playbook.json (loaded by the worker, injected 
  "print_ready": "Create at the provider print-area size (11oz mug: 2700x1120, white background)",
  "text_spelled_exactly": true,
  "no_trademarks": true,
- "no_real_people": true
+ "no_real_people": true,
+ "both_sides": "Every mug: design on BOTH sides (two copies at x=0.25 and x=0.75 of the wrap) so handle-left and handle-right views each show one complete design.",
+ "no_drawn_products": "Design prompts ask for flat standalone print artwork; never \"mug wrap\"; no mugs/panels/boxes/frames/overlays in the art. Print artifact check (vision + pixel) at design step and in the gate."
 }
 ```
 ## consistency
@@ -147,12 +160,13 @@ Machine-readable source: research/playbook.json (loaded by the worker, injected 
 ## etsy_post_publish_checklist
 ```json
 [
- "Shipping profile: Free US Shipping - Printify",
- "Production partner: Printify",
- "How it's made > What tools are used: ONLY 'An AI generator' checked (Etsy AI disclosure; production partner covers Printify printing)",
+ "Shipping profile: NiftyNestGifts Free US Shipping",
+ "How it's made > What tools are used: ONLY 'An AI generator' checked",
  "Renewal: Automatic",
- "Photo 1 = styled lifestyle scene, 5+ photos visible on Etsy (upload QA'd lifestyle photos; Printify syncs only selected mockups)",
- "Etsy Offsite Ads ON (shop setting; Printify API cannot set it)"
+ "Production partner: none for now (Dom's choice)",
+ "Photos: VERIFY only - never upload/edit in Etsy; fix in Printify and republish Mockups",
+ "Etsy Offsite Ads ON (shop setting)",
+ "Post-release flags review: Etsy listing health/search visibility/pricing warnings/attribute suggestions/recommendations; Printify listing health (e.g. 'Pricing: Too high') + publish status"
 ]
 ```
 ## personalization
@@ -246,7 +260,10 @@ Machine-readable source: research/playbook.json (loaded by the worker, injected 
   "free shipping on",
   "personalization on with Dom exact text",
   "5+ photos selected for publishing",
-  "print file passes artifact check (vision + pixel)"
+  "print file passes artifact check (vision + pixel)",
+  "no front seam mockup selected",
+  "photo #2 handle opposite photo #1",
+  "layout-exact photo QA"
  ],
  "on_fail": "block publish; reasons to approval queue (state \"blocked by review gate\"), Live Ops panel and daily digest",
  "post_publish": "verify photos that actually synced (Printify selected images >= 5); flag in audit/digest if fewer"
@@ -269,6 +286,39 @@ Machine-readable source: research/playbook.json (loaded by the worker, injected 
  "vision": "xAI prompt asks explicitly about gray/white semi-transparent rectangles, panels, boxes, frames, seams/hard straight edges, drawn mugs/mockups, smudges, garbled text, logos",
  "pixel": "flat light-gray panel >4% of print OR a straight vertical/horizontal edge spanning >40% of height/width (src/artifact.js pixelArtifact; tools/artifact_check.py)",
  "prompt_rule": "Design prompts say \"flat standalone print artwork, NOT a product photo\"; never ask the image model for a \"mug wrap\" (it draws a mug into the art)."
+}
+```
+## release_flow
+```json
+[
+ "generate design (flat art, both sides) -> artifact check",
+ "create Printify draft (title/tags/desc/price/free ship/personalization)",
+ "generate styled #1 (handle right) and #2 (handle left) from exact mockups -> layout QA",
+ "contact sheet preview (all photos in order, numbered, title/price) -> approval item/email/Live Ops",
+ "browser: Printify Mockup Library upload + order + deselect seam view",
+ "pre-publish review gate (never click Publish without it)",
+ "publish via Printify with Mockups checked",
+ "post-publish: sync verify (photos/order), flags review, Etsy checklist"
+]
+```
+## weekly_cleanup
+```json
+"Mondays: recheck every live product (flags, photo count/order, no seam view, free shipping, personalization text, price floor, settings drift) -> digest."
+```
+## etsy_recommendations
+```json
+{
+ "status": "to collect",
+ "note": "Record Etsy's listing recommendations (attribute suggestions, search visibility tips) per listing during the post-release flags review and add durable ones here as rules."
+}
+```
+## etsy_oauth
+```json
+{
+ "app": "NiftyNest Robot",
+ "status": "keys not present in worker (no ETSY_CLIENT_ID/SECRET secrets)",
+ "redirect_uri": "https://robot-founder-server.dominicgiordanodg.workers.dev/oauth/etsy/callback",
+ "scopes": "listings_r listings_w listings_d transactions_r transactions_w shops_r shops_w email_r"
 }
 ```
 ## Lessons
@@ -295,3 +345,15 @@ Machine-readable source: research/playbook.json (loaded by the worker, injected 
 - 2026-10-11 (Dom): Mountain Man (worker draft) was NOT published: it waited for approval because guardrails failed (4 photos, 68-char title, no lifestyle main photo). Its Printify photo 1 is a plain white mockup, so photo 1 must be a QA'd lifestyle upload.
 - 2026-10-11 (Dom): Etsy 'How it's made > What tools are used' must have ONLY 'An AI generator' checked; not readable via API, so daily digest reminds.
 - 2026-10-11 (Dom): Fairway Birthday Throw print file had a gray semi-transparent mug/panel over the right half (the image model drew a mug because the prompt said 'mug wrap'). Every print file now gets a vision + pixel artifact check in the design step and the pre-publish gate; prompts ask for flat artwork only.
+- 2026-10-11 (Dom): Design prompts must never ask for a 'mug wrap' - the image model drew a gray mug/panel into the Fairway art. Flat artwork only + print artifact check (vision + pixel).
+- 2026-10-11 (Dom): Photo QA must compare LAYOUT/arrangement, not just elements present (Teacher gift photo split the single cluster into two and still passed the old QA).
+- 2026-10-11 (Dom): Never use Printify's front camera (seam view between the two design copies) as a listing photo; exclude/deselect it (Teacher last photo, Fairway #4).
+- 2026-10-11 (Dom): All mugs: design on both sides (two copies), handle-left and handle-right views each show one full design.
+- 2026-10-11 (Dom): Photo #2 = styled shot of the other side with the handle opposite photo #1.
+- 2026-10-11 (Dom): Styled lifestyle photo is ALWAYS #1; 5+ photos; verify after sync that Etsy shows them in order.
+- 2026-10-11 (Dom): Never click Publish without the pre-publish gate (Mountain Man was published by an accidental click and skipped the gate).
+- 2026-10-11 (Dom): Etsy checklist after every release: NiftyNestGifts free shipping profile, 'What tools are used' = ONLY 'An AI generator', Renewal = Automatic.
+- 2026-10-11 (Dom): No Etsy production partner for now (Dom's choice).
+- 2026-10-11 (Dom): Never upload/edit photos or designs in Etsy; ALL photo/design changes happen in Printify (Mockup Library supports custom uploads in the UI, not the API) and sync to Etsy.
+- 2026-10-11 (Dom): After every release review all flags on Etsy (listing health, search visibility, pricing warnings, attribute suggestions, recommendations) and Printify (listing health e.g. 'Pricing: Too high', publish status); collect Etsy recommendations into the playbook.
+- 2026-10-11 (Dom): Preview contact sheet of all photos in order before every publish; weekly cleanup of all live products.
