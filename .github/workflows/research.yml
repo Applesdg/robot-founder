@@ -20,4 +20,19 @@ jobs:
       - run: |
           git config user.name "robot-founder-research"; git config user.email "actions@users.noreply.github.com"
           git add research/market.json research/backlog.json research/curated.json
-          git diff --cached --quiet || (git commit -m "research: daily all-category niche signals $(date -u +%F)" && git push)
+          if git diff --cached --quiet; then
+            echo "No research file changes to commit"
+            exit 0
+          fi
+          git commit -m "research: daily all-category niche signals $(date -u +%F)"
+          # Pages deploys and other pushes often land while research runs; rebase then push.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejected (attempt $i); pulling with rebase..."
+            git pull --rebase --autostash origin main
+            sleep $((i * 2))
+          done
+          echo "Failed to push research after retries" >&2
+          exit 1
