@@ -1,32 +1,161 @@
 {
- "version": "1.0.0",
+ "version": "1.1.0",
  "updated": "2026-10-11",
- "shop": {"name": "NiftyNestGifts", "positioning": "General gift store (not pet-focused): occasions, hobbies, professions, family roles, locations; pets are one category among many."},
- "pricing": {"free_us_shipping": true, "shipping_baked_into_price": true, "margin_floor": 0.30, "note": "Price covers Printify item + US first-item shipping + Etsy fees and keeps >=30% margin."},
- "timing": {"line": "Made to order: ships in 2-7 business days (Printify production), then 2-5 business days US delivery. Free US shipping.",
-  "sources": [{"claim": "Printify production time 2-7 business days", "url": "https://help.printify.com/hc/en-us/articles/4483629751825-What-are-Printify-s-production-times-like"},
-              {"claim": "Printify standard US shipping 2-5 business days", "url": "https://help.printify.com/hc/en-us/articles/4483626155409-What-are-Printify-s-shipping-options"}]},
- "description": {"must_include": ["Made to order: ships in 2-7 business days", "production partner, Printify"], "banned_regex": ["\\bAI\\b", "AI-assisted", "artificial intelligence", "generated"], "note": "No AI wording in descriptions; the Etsy AI flag is set separately in listing settings."},
- "production_partner": {"name": "Printify", "location": "United States", "description": "Print-on-demand partner prints and ships our original designs"},
- "title": {"pattern": "<Design phrase> <Product type>, <Occasion/recipient> Gift, <Style> <Synonym product word> <Size>", "min": 70, "max": 140, "keyword_within": 40, "no_repeated_words": true, "product_word_once": true, "title_case": true,
-  "example": "Sleigh All Day Coffee Mug, Boho Christmas Gift, Eucalyptus Holiday Cup 11oz"},
- "tags": {"count": 13, "max_len": 20, "unique": true},
- "photos": {"min": 5, "main_photo": "styled lifestyle scene with background (product in use, liquid visible, seasonal props) - NEVER a plain white mockup as photo 1; white mockups go later in the gallery", "front_mockup_in_gallery": true},
- "design": {"print_ready": "Create at the provider print-area size (11oz mug: 2700x1120, white background)", "text_spelled_exactly": true, "no_trademarks": true, "no_real_people": true},
- "consistency": {"rule": "Every lifestyle photo/video is generated FROM the real Printify mockup as reference/first frame. Keep the exact product: plain glossy white 11oz ceramic mug, C-handle, identical design, text and colors. Never generic, speckled, colored or different mugs.",
-  "qa": "xAI vision compares each generated asset to the mockup (same shape, handle, design, text spelled identically); mismatches are rejected before use."},
- "lifestyle": {"rules": ["Show the product in use (liquid in mugs, steam ok)", "Seasonal props that match the design", "No visible brand names or logos on props", "Warm, eye-catching, uncluttered background"]},
- "video": {"recipe": ["Animate from a still that already shows the FINAL scene (e.g. liquid already in the mug)", "Locked-off camera - no pans, zooms or orbits", "Only subtle motion: steam, twinkle lights, light flicker", "Big camera moves cause morphing (handle vanished, marshmallows appeared) - never use them"], "model": "grok-imagine-video", "duration_s": 5, "enabled_by_default": false},
- "branding": {"banner": "Etsy shop banner 3360x840 with all text in the center band (safe on mobile crop)"},
- "etsy_post_publish_checklist": ["Shipping profile: Free US Shipping - Printify", "Production partner: Printify", "AI disclosure flag set in listing settings", "Renewal: Automatic", "Photo 1 = lifestyle scene (upload if channel did not)"],
+ "shop": {
+  "name": "NiftyNestGifts",
+  "positioning": "General gift store (not pet-focused): occasions, hobbies, professions, family roles, locations; pets are one category among many."
+ },
+ "pricing": {
+  "free_us_shipping": true,
+  "shipping_baked_into_price": true,
+  "margin_floor": 0.3,
+  "note": "Price covers Printify item + US first-item shipping + Etsy fees and keeps >=30% margin.",
+  "shipping_charge_mug_11oz": 7.29,
+  "offsite_ads_pct": 0.12,
+  "worst_case_rule": "margin after Etsy fees, item, $7.29 free-shipping charge AND 12% offsite ads must stay >= 30%; otherwise raise price",
+  "printify_free_shipping_toggle": "set via sales_channel_properties.free_shipping=true"
+ },
+ "timing": {
+  "line": "Made to order: ships in 2-7 business days (Printify production), then 2-5 business days US delivery. Free US shipping.",
+  "sources": [
+   {
+    "claim": "Printify production time 2-7 business days",
+    "url": "https://help.printify.com/hc/en-us/articles/4483629751825-What-are-Printify-s-production-times-like"
+   },
+   {
+    "claim": "Printify standard US shipping 2-5 business days",
+    "url": "https://help.printify.com/hc/en-us/articles/4483626155409-What-are-Printify-s-shipping-options"
+   }
+  ]
+ },
+ "description": {
+  "must_include": [
+   "Made to order: ships in 2-7 business days",
+   "production partner, Printify"
+  ],
+  "banned_regex": [
+   "\\bAI\\b",
+   "AI-assisted",
+   "artificial intelligence",
+   "generated"
+  ],
+  "note": "No AI wording in descriptions; the Etsy AI flag is set separately in listing settings."
+ },
+ "production_partner": {
+  "name": "Printify",
+  "location": "United States",
+  "description": "Print-on-demand partner prints and ships our original designs"
+ },
+ "title": {
+  "pattern": "<Design phrase> <Product type>, <Occasion/recipient> Gift, <Style> <Synonym product word> <Size>",
+  "min": 70,
+  "max": 140,
+  "keyword_within": 40,
+  "no_repeated_words": true,
+  "product_word_once": true,
+  "title_case": true,
+  "example": "Sleigh All Day Coffee Mug, Boho Christmas Gift, Eucalyptus Holiday Cup 11oz"
+ },
+ "tags": {
+  "count": 13,
+  "max_len": 20,
+  "unique": true
+ },
+ "photos": {
+  "min": 5,
+  "main_photo": "styled lifestyle scene with background (product in use, liquid visible, seasonal props) - NEVER a plain white mockup as photo 1; white mockups go later in the gallery",
+  "front_mockup_in_gallery": true
+ },
+ "design": {
+  "print_ready": "Create at the provider print-area size (11oz mug: 2700x1120, white background)",
+  "text_spelled_exactly": true,
+  "no_trademarks": true,
+  "no_real_people": true
+ },
+ "consistency": {
+  "rule": "Every lifestyle photo/video is generated FROM the real Printify mockup as reference/first frame. Keep the exact product: plain glossy white 11oz ceramic mug, C-handle, identical design, text and colors. Never generic, speckled, colored or different mugs.",
+  "qa": "xAI vision compares each generated asset to the mockup (same shape, handle, design, text spelled identically); mismatches are rejected before use."
+ },
+ "lifestyle": {
+  "rules": [
+   "Show the product in use (liquid in mugs, steam ok)",
+   "Seasonal props that match the design",
+   "No visible brand names or logos on props",
+   "Warm, eye-catching, uncluttered background"
+  ]
+ },
+ "video": {
+  "recipe": [
+   "Animate from a still that already shows the FINAL scene (e.g. liquid already in the mug)",
+   "Locked-off camera - no pans, zooms or orbits",
+   "Only subtle motion: steam, twinkle lights, light flicker",
+   "Big camera moves cause morphing (handle vanished, marshmallows appeared) - never use them"
+  ],
+  "model": "grok-imagine-video",
+  "duration_s": 5,
+  "enabled_by_default": false
+ },
+ "branding": {
+  "banner": "Etsy shop banner 3360x840 with all text in the center band (safe on mobile crop)"
+ },
+ "etsy_post_publish_checklist": [
+  "Shipping profile: Free US Shipping - Printify",
+  "Production partner: Printify",
+  "AI disclosure flag set in listing settings",
+  "Renewal: Automatic",
+  "Photo 1 = lifestyle scene (upload if channel did not)",
+  "Etsy Offsite Ads ON (shop setting; Printify API cannot set it)"
+ ],
  "lessons": [
-  {"date": "2026-10-11", "source": "Dom", "lesson": "Shop is a general gift store, not dog-focused."},
-  {"date": "2026-10-11", "source": "Dom", "lesson": "Always free US shipping, baked into price; keep 30% margin floor."},
-  {"date": "2026-10-11", "source": "Etsy", "lesson": "Etsy flagged repeated title words ('christmas', 'mug'): never repeat words; product word once with synonyms."},
-  {"date": "2026-10-11", "source": "Dom", "lesson": "Remove AI wording from descriptions; AI disclosure is a listing setting only."},
-  {"date": "2026-10-11", "source": "QA", "lesson": "Video with big camera moves morphed the product (handle vanished, marshmallows appeared): use locked-off camera, subtle motion only, start from final-scene still."},
-  {"date": "2026-10-11", "source": "Dom", "lesson": "Product consistency across ALL images/videos: generate from the real Printify mockup; exact plain glossy white 11oz mug, C-handle, identical design; QA-reject mismatches."},
-  {"date": "2026-10-11", "source": "Dom", "lesson": "Main (first) listing photo must be a styled lifestyle scene, never a plain white mockup."},
-  {"date": "2026-10-11", "source": "Dom", "lesson": "Listings need 5-10 photos; Etsy auto-renew on."}
+  {
+   "date": "2026-10-11",
+   "source": "Dom",
+   "lesson": "Shop is a general gift store, not dog-focused."
+  },
+  {
+   "date": "2026-10-11",
+   "source": "Dom",
+   "lesson": "Always free US shipping, baked into price; keep 30% margin floor."
+  },
+  {
+   "date": "2026-10-11",
+   "source": "Etsy",
+   "lesson": "Etsy flagged repeated title words ('christmas', 'mug'): never repeat words; product word once with synonyms."
+  },
+  {
+   "date": "2026-10-11",
+   "source": "Dom",
+   "lesson": "Remove AI wording from descriptions; AI disclosure is a listing setting only."
+  },
+  {
+   "date": "2026-10-11",
+   "source": "QA",
+   "lesson": "Video with big camera moves morphed the product (handle vanished, marshmallows appeared): use locked-off camera, subtle motion only, start from final-scene still."
+  },
+  {
+   "date": "2026-10-11",
+   "source": "Dom",
+   "lesson": "Product consistency across ALL images/videos: generate from the real Printify mockup; exact plain glossy white 11oz mug, C-handle, identical design; QA-reject mismatches."
+  },
+  {
+   "date": "2026-10-11",
+   "source": "Dom",
+   "lesson": "Main (first) listing photo must be a styled lifestyle scene, never a plain white mockup."
+  },
+  {
+   "date": "2026-10-11",
+   "source": "Dom",
+   "lesson": "Listings need 5-10 photos; Etsy auto-renew on."
+  },
+  {
+   "date": "2026-10-11",
+   "source": "Dom",
+   "lesson": "Enable Printify free Standard shipping ($7.29) and Etsy Offsite Ads (12%) on every release; price so worst-case margin (incl. ads) stays >= 30% (mug $29.99)."
+  },
+  {
+   "date": "2026-10-11",
+   "source": "Dom",
+   "lesson": "Every lifestyle photo/video must start from the real Printify mockup; automated vision QA rejects mismatched mugs."
+  }
  ]
 }

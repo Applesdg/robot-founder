@@ -1,4 +1,4 @@
-# NiftyNestGifts Playbook v1.0.0 (2026-10-11)
+# NiftyNestGifts Playbook v1.1.0 (2026-10-11)
 
 Machine-readable source: `research/playbook.json` (the worker loads it every run, injects it into xAI prompts, enforces checkable rules in the grader). New lessons are appended via the worker's signed `/api/lessons` endpoint and merged on load.
 
@@ -15,7 +15,11 @@ Machine-readable source: `research/playbook.json` (the worker loads it every run
  "free_us_shipping": true,
  "shipping_baked_into_price": true,
  "margin_floor": 0.3,
- "note": "Price covers Printify item + US first-item shipping + Etsy fees and keeps >=30% margin."
+ "note": "Price covers Printify item + US first-item shipping + Etsy fees and keeps >=30% margin.",
+ "shipping_charge_mug_11oz": 7.29,
+ "offsite_ads_pct": 0.12,
+ "worst_case_rule": "margin after Etsy fees, item, $7.29 free-shipping charge AND 12% offsite ads must stay >= 30%; otherwise raise price",
+ "printify_free_shipping_toggle": "set via sales_channel_properties.free_shipping=true"
 }
 ```
 ## Timing
@@ -141,7 +145,8 @@ Machine-readable source: `research/playbook.json` (the worker loads it every run
  "Production partner: Printify",
  "AI disclosure flag set in listing settings",
  "Renewal: Automatic",
- "Photo 1 = lifestyle scene (upload if channel did not)"
+ "Photo 1 = lifestyle scene (upload if channel did not)",
+ "Etsy Offsite Ads ON (shop setting; Printify API cannot set it)"
 ]
 ```
 ## Lessons
@@ -153,3 +158,5 @@ Machine-readable source: `research/playbook.json` (the worker loads it every run
 - **2026-10-11** (Dom): Product consistency across ALL images/videos: generate from the real Printify mockup; exact plain glossy white 11oz mug, C-handle, identical design; QA-reject mismatches.
 - **2026-10-11** (Dom): Main (first) listing photo must be a styled lifestyle scene, never a plain white mockup.
 - **2026-10-11** (Dom): Listings need 5-10 photos; Etsy auto-renew on.
+- **2026-10-11** (Dom): Enable Printify free Standard shipping ($7.29) and Etsy Offsite Ads (12%) on every release; price so worst-case margin (incl. ads) stays >= 30% (mug $29.99).
+- **2026-10-11** (Dom): Every lifestyle photo/video must start from the real Printify mockup; automated vision QA rejects mismatched mugs.

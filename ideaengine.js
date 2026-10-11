@@ -4,8 +4,8 @@
 const STYLES=[['watercolor',1.0],['christmas illustrated',1.0],['renaissance royal',1.05],['minimalist line art',.9],['pop art',.85],['vintage travel poster',.8],['cartoon caricature',.85],['oil painting',.95],['pastel kawaii',.8],['boho floral',.85],['stained glass',.75],
  // risky styles exist on purpose so guardrails visibly reject them (buyers search for these; using them risks IP takedowns)
  ['Disney princess style',1.2],['Marvel superhero',1.1],['Pixar 3D',1.1],['Studio Ghibli style',1.1],['Star Wars Jedi',1],['Harry Potter house',1],['Pokemon trainer',1],['AKC champion badge',.9]];
-// FREE SHIPPING prices (cost + US shipping + Etsy fees, ≥30% margin). Mug verified on Printify 2026-10-11: $6.44 + $6.69 ship → $25.99.
-const PRODUCTS=[['Mug 11oz',25.99],['Poster 18x24',38.99],['Canvas 12x16',68.99],['Canvas 16x20',88.99],['Fleece blanket 50x60',68.99],['Digital portrait',29]];
+// FREE SHIPPING prices (cost + US shipping + Etsy fees, ≥30% margin). Mug verified on Printify 2026-10-11: $6.44 + $7.29 free-shipping charge + 12% offsite ads worst case → $29.99.
+const PRODUCTS=[['Mug 11oz',29.99],['Poster 18x24',38.99],['Canvas 12x16',68.99],['Canvas 16x20',88.99],['Fleece blanket 50x60',68.99],['Digital portrait',29]];
 const OCC=[['everyday','',1],['Christmas','christmas',null],['birthday','birthday',1],['memorial','memorial',1],["Mother's Day",'mothers day',null],["Father's Day",'fathers day',.8],["Valentine's",'valentine',null],['gotcha day','adoption',.7],['new puppy','new puppy',.6]];
 const NICHES=[['single pet','',1],['couple + pet','couple',.8],['family + pet','family',.75],['two pets','two',.85],['pet + owner portrait','owner',.8]];
 const HORSES=[['Quarter_Horse',.22],['Arabian_horse',.2],['Thoroughbred',.2],['Friesian_horse',.15]];
@@ -14,7 +14,7 @@ const TM=['disney','marvel','pixar','ghibli','star wars','jedi','harry potter','
 const SEAS={christmas:12,valentine:2,'mothers day':5,'fathers day':6};
 const E=root.ECON;
 function margin(prod,price){if(!E)return .45;const v=(E.lines.find(l=>l.mode==='pod').variants[2]).find(x=>x[0]===prod),f=E.etsy,fee=f.listingFee+(f.txnPct+f.payPct)*price+f.payFixed,c=v?v[2]+v[3]:0;return (price-fee-c-E.pod.aiPerPortrait)/price}
-const MARG={'Mug 11oz':.38,'Poster 18x24':.59,'Canvas 12x16':.59,'Canvas 16x20':.62,'Fleece blanket 50x60':.56,'Digital portrait':.86};
+const MARG={'Mug 11oz':.31,'Poster 18x24':.59,'Canvas 12x16':.59,'Canvas 16x20':.62,'Fleece blanket 50x60':.56,'Digital portrait':.86};
 function seasonal(occKey,month,mk){// real Wikipedia seasonal peak months from market.json when available; months-ahead window 1–3 = boost
  const peak=SEAS[occKey];if(!peak)return 1;const ahead=(peak-month+12)%12;return ahead>=1&&ahead<=3?1.6:ahead===0?1.2:.55}
 function norm(t){return t.toLowerCase().replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(w=>w.length>2&&!['and','the','for','gift','portrait','custom','pet'].includes(w))}
@@ -31,9 +31,9 @@ function propose(today,prev){// keep past experiments (cumulative), add 2 new se
 
 // ================= wide net: general gift ideas from research/taxonomy.json (data-driven; grow the JSON) =================
 function generateGeneral(tax,market,o){const TMX=[...new Set([...TM,...(tax.trademark_blocklist||[])])],R=rng('g'+o.today),hsh=s=>{let h=7;for(const c of s)h=(h*31+c.charCodeAt(0))>>>0;return h};
- const SP=(tax&&tax.shipping_policy)||{margin_floor:.3,ship_est_by_cat:{}},FL=SP.margin_floor??.3,shipOf=pr=>pr.ship??(SP.ship_est_by_cat||{})[pr.cat]??6;
+ const SP=(tax&&tax.shipping_policy)||{margin_floor:.3,ship_est_by_cat:{}},FL=SP.margin_floor??.3,ADS=SP.offsite_ads_pct??.12,shipOf=pr=>pr.ship??(SP.ship_est_by_cat||{})[pr.cat]??6;
  // FREE SHIPPING: price must cover item cost + shipping + Etsy fees and keep the margin floor.
- const fee=p=>.2+.095*p+.25,mg=(p,c)=>(p-fee(p)-c)/p,fsPrice=(p,c)=>{if(!c)return p;let q=Math.max(p,Math.ceil((c+.45)/(1-.095-FL))-.01);q=Math.ceil(q)-.01;return +q.toFixed(2)};const mon=o.month,season=m=>!m?1:(()=>{const a=(m-mon+12)%12;return a>=1&&a<=2?1.7:a===0?1.25:a===3?1.1:.5})();
+ const fee=p=>.2+.095*p+.25,mg=(p,c)=>(p-fee(p)-c)/p,fsPrice=(p,c)=>{if(!c)return p;let q=Math.max(p,Math.ceil((c+.45)/(1-.095-ADS-FL))-.01);q=Math.ceil(q)-.01;return +q.toFixed(2)};const mon=o.month,season=m=>!m?1:(()=>{const a=(m-mon+12)%12;return a>=1&&a<=2?1.7:a===0?1.25:a===3?1.1:.5})();
  const auto=((market.trends&&market.trends.auto_added)||[]).map(n=>({n:n.toLowerCase(),w:1.15,auto:true}));
  const AUD=[...Object.entries(tax.audiences).flatMap(([k,v])=>v.map(a=>({...a,k}))),...auto.map(a=>({...a,k:'hobby'}))];
  const LOC=[...tax.locations.states.map(n=>({n,k:'state'})),...tax.locations.cities.map(n=>({n,k:'city'})),...tax.locations.beaches.map(n=>({n,k:'beach'}))];

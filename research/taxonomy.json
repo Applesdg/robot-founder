@@ -2644,13 +2644,13 @@
  ],
  "shipping_policy": {
   "free_shipping": true,
-  "rule": "Dom's standing rule: ALWAYS free shipping. Every price includes the Printify US first-item shipping cost; price is raised (to .99) until contribution margin after Etsy fees >= margin_floor.",
+  "rule": "Dom's standing rule: ALWAYS free shipping. Every price includes the Printify US first-item shipping cost; price is raised (to .99) until contribution margin after Etsy fees >= margin_floor. Worst-case margin also subtracts Etsy Offsite Ads 12%.",
   "margin_floor": 0.3,
   "ship_est_by_cat": {
    "apparel": 4.75,
    "baby": 4.75,
    "bag": 5.5,
-   "drinkware": 6.69,
+   "drinkware": 7.29,
    "game": 6.5,
    "home": 8.5,
    "kids": 4.75,
@@ -2666,11 +2666,13 @@
    {
     "product": "Mug 11oz (bp 68, SPOKE Norcross GA)",
     "cost": 6.44,
-    "ship_us_first": 6.69,
-    "price": 25.99,
+    "free_shipping_charge": 7.29,
+    "price": 29.99,
+    "worst_case_margin": 0.31,
     "date": "2026-10-11"
    }
   ],
-  "note": "ship_est values are ESTIMATES except verified rows"
+  "note": "ship_est values are ESTIMATES except verified rows",
+  "offsite_ads_pct": 0.12
  }
 }

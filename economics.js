@@ -168,7 +168,7 @@ window.ECON={
   {n:'Digital + Print-on-Demand',u:'portraits',shape:'mug',risk:'low',mode:'pod',src:'podCosts',note:'digital downloads + AI pet portraits printed & shipped by a POD partner (Printify); Space Coast designs unlock later',
    kinds:['digital','custom','podCustom','pod'],unlockRD:[0,0,30,180],
    skus:[['Printable Planner & Wall-Art Pack',0,1,8,0,4.2],['Custom Pet Portrait (digital file)',1.0,14,29,0,4.3],['Pet Portrait Print / Gift',1.0,16,59,0,4.3],['Space Coast Launch Designs',0,1,29,0,4.1]],
-   variants:{2:[['Poster 18x24',39,4.73,5.99,.25],['Canvas 12x16',69,11.26,9.19,.30],['Canvas 16x20',89,15.5,10.5,.15],['Mug 11oz',25.99,6.44,6.69,.20],['Fleece blanket 50x60',69,12.84,9.5,.10]],
+   variants:{2:[['Poster 18x24',39,4.73,5.99,.25],['Canvas 12x16',69,11.26,9.19,.30],['Canvas 16x20',89,15.5,10.5,.15],['Mug 11oz',29.99,6.44,7.29,.20],['Fleece blanket 50x60',69,12.84,9.5,.10]],
              3:[['Launch poster 18x24',29,4.73,5.99,.45],['Rocket mug 11oz',19,4.69,4.39,.40],['Canvas 12x16',59,11.26,9.19,.15]]}}],
  priceExp:.5,elasticity:1.5,priceSrc:'est',priceNote:'demand falls with price: category factor (45/avg price)^0.5 and own-price elasticity −1.5 vs. original price (inflation-adjusted)',
  skuUnlockRD:[0,30,90,180], rdNote:'R&D points to unlock SKUs (game mechanic)',
