@@ -1,4 +1,4 @@
-# NiftyNestGifts Playbook v1.3.0 (2026-10-11)
+# NiftyNestGifts Playbook v1.3.1 (2026-10-11)
 
 Machine-readable source: `research/playbook.json` (loaded by the worker every run, injected into xAI prompts, enforced in the grader where checkable). Runtime lessons are appended via the signed `/api/lessons` endpoint.
 
@@ -182,7 +182,7 @@ Machine-readable source: `research/playbook.json` (loaded by the worker every ru
  "store_settings_monthly_confirm": {
   "delayed_orders": "auto send to production",
   "order_submission": "automatically (1 hour)",
-  "personalized_orders": "automatically (1 hour)",
+  "personalized_orders": "MANUAL (so the worker proof step can run before production)",
   "auto_submit_buyer_approved_personalization": true,
   "skip_review_imported_other_orders": false,
   "publishing": {
@@ -238,3 +238,5 @@ Machine-readable source: `research/playbook.json` (loaded by the worker every ru
 - **2026-10-11** (Dom): Printify delayed orders auto-send to production; flag held orders in the digest.
 - **2026-10-11** (Dom): Standard release checks = Dom's Printify store settings (auto-send delayed orders, 1-hour auto submission incl. personalized, details-to-publish: mockups and shipping profile OFF). Verify per-product settings before publish + daily audit; monthly confirm store settings.
 - **2026-10-11** (QA): Conflict: personalized orders auto-submit after 1 hour, so worker proofs may arrive after production starts - proofs are best-effort unless Dom changes that setting.
+- **2026-10-11** (Dom): Personalized orders set to Manual in Printify so proofs are approved before production (resolves the auto-submit conflict).
+- **2026-10-11** (Dom): Deleted 'Cozy Electric Sparks' electrician mug draft: did not meet requirements (1 photo, no lifestyle main photo, personalization off). Only release ideas that pass the full playbook.

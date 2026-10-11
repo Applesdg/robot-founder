@@ -1,5 +1,5 @@
 {
- "version": "1.3.0",
+ "version": "1.3.1",
  "updated": "2026-10-11",
  "shop": {
   "name": "NiftyNestGifts",
@@ -188,6 +188,16 @@
    "date": "2026-10-11",
    "source": "QA",
    "lesson": "Conflict: personalized orders auto-submit after 1 hour, so worker proofs may arrive after production starts - proofs are best-effort unless Dom changes that setting."
+  },
+  {
+   "date": "2026-10-11",
+   "source": "Dom",
+   "lesson": "Personalized orders set to Manual in Printify so proofs are approved before production (resolves the auto-submit conflict)."
+  },
+  {
+   "date": "2026-10-11",
+   "source": "Dom",
+   "lesson": "Deleted 'Cozy Electric Sparks' electrician mug draft: did not meet requirements (1 photo, no lifestyle main photo, personalization off). Only release ideas that pass the full playbook."
   }
  ],
  "personalization": {
@@ -208,7 +218,7 @@
   "store_settings_monthly_confirm": {
    "delayed_orders": "auto send to production",
    "order_submission": "automatically (1 hour)",
-   "personalized_orders": "automatically (1 hour)",
+   "personalized_orders": "MANUAL (so the worker proof step can run before production)",
    "auto_submit_buyer_approved_personalization": true,
    "skip_review_imported_other_orders": false,
    "publishing": {
