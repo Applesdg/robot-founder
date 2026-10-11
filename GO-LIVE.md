@@ -1,4 +1,11 @@
-# GO-LIVE — connecting the robot to real accounts
+# GO-LIVE — NiftyNestGifts (the robot's real shop)
+
+Brand: **NiftyNestGifts** (Etsy shop name, Shopify store, email sign-off, digests). Benji the dog stays the mascot.
+
+## Channel rules (enforced server-side in `src/gate.js` `channelPolicy`)
+- **Etsy:** original designs only — our artwork made with Printify (production partner **Printify** disclosed on every physical listing in Shop Manager → Production partners) or our own digital files. AI-disclosure flag required. Drop-ship/resold items are rejected (HTTP 422).
+- **Shopify:** originals + optional general drop-ship supplier adapter (`src/suppliers.js`, `SUPPLIER=none` by default). Vetting: rating ≥ `SUPPLIER_MIN_RATING` (4.5), ≥100 reviews, US delivery ≤ `SUPPLIER_MAX_SHIP_DAYS` (10), returns policy, no brands/trademarks, sample order first. Margin floor `SHOPIFY_MARGIN_FLOOR` (30%) after 2.9%+$0.30 + cost + shipping. Still approval-gated.
+
 
 The game's 🛰 Live Ops mode runs the robot against **mock** connectors that return Etsy Open API v3 / Shopify Admin API / Printify API v1 shaped data. The robot logic only talks to an `Adapter` interface (`MockAdapter` | `LiveAdapter` in `liveops.js`); live mode swaps adapters, same logic.
 
@@ -46,6 +53,7 @@ Safety: per-hour idempotency + lock, `KILL_SWITCH` / `POST /api/worker/kill`, `M
 | Image AI | OpenAI API (gpt-image-1) | `OPENAI_API_KEY`; var `IMAGE_PROVIDER=openai` |
 | Notifier | Quo (SMS) or email API or webhook | `QUO_API_KEY`, `QUO_FROM_NUMBER`, `DOM_PHONE` (var `NOTIFIER=quo`) — or `EMAIL_API_URL/KEY`, `DOM_EMAIL` |
 | Inbox | Cloudflare Email Routing on a domain (or Postmark/Resend inbound) | `INBOUND_EMAIL_TOKEN` (webhook option) |
+| Drop-ship supplier (optional) | Supplier with API, US warehouse | `SUPPLIER`, `SUPPLIER_API_KEY` |
 | Backend | Cloudflare account (Workers + KV) | `GAME_SHARED_SECRET`, `DOM_APPROVAL_SECRET`, KV namespace id |
 
 ### Monthly cost estimate (ESTIMATES, Oct 2026 list prices — verify)

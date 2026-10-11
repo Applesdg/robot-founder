@@ -27,14 +27,14 @@ function grade(L){const c=[],t=L.title||'',kw=(L.keyword||'').toLowerCase(),tags
  add(tags.length===13,15,`${tags.length}/13 tags`);add(tags.every(x=>x.length<=20),10,'all tags ≤20 chars'+(tags.some(x=>x.length>20)?` (${tags.filter(x=>x.length>20).length} too long)`:''));
  add(new Set(tags.map(x=>x.toLowerCase())).size===tags.length,5,'no duplicate tags');add(tags.filter(x=>x.includes(' ')).length>=10,7,'≥10 multi-word (long-tail) tags');
  add(d.length>=160,8,`description ${d.length} chars (≥160)`);add(kw&&d.toLowerCase().slice(0,160).includes(kw.split(' ')[0]),5,'keyword in first sentence of description');
- add((L.photos||0)>=5,5,`${L.photos||0} photos/mockups (≥5)`);add(!!L.attributes,4,'attributes set (occasion, recipient, style)');add(L.ai_disclosure===true,3,'AI disclosure flag');
+ add((L.photos||0)>=5,5,`${L.photos||0} photos/mockups (≥5)`);add(!!L.attributes,4,'attributes set (occasion, recipient, style)');add(L.ai_disclosure===true,3,'AI disclosure flag');if(L.product&&!/Digital|Printable|SVG|template|planner/i.test(L.product))add(!!L.production_partner,4,'production partner disclosed (Printify) — Etsy rule');
  const score=c.reduce((a,x)=>a+(x.ok?x.pts:0),0);return {score,checks:c}}
 function rewrite(L){const kw=L.keyword,cap=s=>s.replace(/\b\w/g,c=>c.toUpperCase());const sub=L.subject||kw.split(' ').slice(0,2).join(' '),pn=(L.product||'').replace(/ \d.*$/,'').replace('Fleece blanket','Blanket').replace('Digital portrait','Digital Download');
  const title=`${cap(kw)} | ${cap(L.style||'watercolor')} ${sub} Portrait from Photo, Personalized ${pn} Gift for Pet Lover`.replace(/\s+/g,' ').slice(0,140);
  const base=[kw.slice(0,20),`${sub} gift`.toLowerCase().slice(0,20),`${sub} portrait`.toLowerCase().slice(0,20),'custom pet portrait','pet portrait gift','dog mom gift','pet memorial gift','gift for pet lover',`${(L.style||'watercolor').split(' ')[0]} pet art`,'portrait from photo',`custom ${pn.toLowerCase()}`.slice(0,20),'personalized gift','pet keepsake','dog lover gift','christmas pet gift'];
  const tags=[...new Set(base.map(x=>x.trim().slice(0,20).trim()))].slice(0,13);
  const desc=`${cap(kw)}: a ${L.style||'watercolor'} portrait of your ${sub} made from your photo and printed on a ${L.product||'product'}. Upload a clear photo after checkout; we send a digital proof within 24h and only print after you approve. AI-assisted artwork, finished and checked by a person (Etsy AI disclosure). Ships from our print partner in ${window.ECON?ECON.pod.fulfillDays.join('–'):'2–5'} business days + transit.`;
- return {...L,title,tags,desc,photos:6,attributes:{occasion:L.occasion||'everyday',recipient:'pet lovers',style:L.style||'watercolor'},ai_disclosure:true}}
+ return {...L,title,tags,desc,photos:6,production_partner:/Digital|Printable|SVG|template|planner/i.test(L.product||'')?null:'Printify',attributes:{occasion:L.occasion||'everyday',recipient:'pet lovers',style:L.style||'watercolor'},ai_disclosure:true}}
 // ---------------- customer reply library ----------------
 const REPLIES=[['photo_request','Photo request (right after order)','Hi {name}! Thank you for ordering your {product} 🐾 To start, please reply with 1–3 clear, well-lit photos of {pet} looking at the camera (phone photos are perfect). Tip: daylight, eye level, no filters. I\'ll send a proof within 24 hours.'],
  ['bad_photo','Photo too blurry / dark','Hi {name}, thanks for the photo of {pet}! It\'s a little {issue} for a crisp portrait. Could you send one taken near a window in daylight, at {pet}\'s eye level? If that\'s hard, I can work from 2–3 photos combined.'],
@@ -44,9 +44,9 @@ const REPLIES=[['photo_request','Photo request (right after order)','Hi {name}! 
  ['shipped','Shipped + tracking','Good news {name}! Your {product} has shipped 📦 Tracking: {tracking}. Most orders arrive in {days} business days.'],
  ['misprint','Misprint / damage','I\'m so sorry, {name} — that\'s not the quality we promise. Could you send a photo of the issue? I\'ll get a free replacement printed right away (no need to return the damaged one).'],
  ['refund','Refund request','Hi {name}, I\'m sorry {product} didn\'t work out. I can offer {option}. Let me know which you prefer and I\'ll take care of it today.'],
- ['review_ask','Review request (3 days after delivery)','Hi {name}! I hope {pet}\'s portrait made you smile. If you have a moment, a review with a photo helps my small shop a lot 🙏 Thank you!'],
+ ['review_ask','Review request (3 days after delivery)','Hi {name}! I hope {pet}\'s portrait made you smile. If you have a moment, a review with a photo helps NiftyNestGifts a lot 🙏 Thank you!'],
  ['review_bad','Reply to a low review','Thank you for the feedback, {name}. I\'m sorry the {issue}. I\'ve sent you a message to make it right with a free remake.']];
-function fill(t,v){return t.replace(/\{(\w+)\}/g,(m,k)=>v[k]??m)}
+function fill(t,v){return t.replace(/\{(\w+)\}/g,(m,k)=>v[k]??m)+'\n— NiftyNestGifts'}
 // Wired to the connector adapter: when Etsy is live the robot calls POST /api/etsy/conversations via the backend; that route is
 // "safe" in routes.js but in the initial phase the backend holds every customer message as a DRAFT for Dom's approval.
 // Note: Etsy Open API v3 has no public messaging endpoint today — the backend turns the draft into a notification Dom sends from the Etsy app.

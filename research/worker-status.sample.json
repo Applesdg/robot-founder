@@ -1,17 +1,17 @@
 {
  "sample": true,
  "note": "SAMPLE from an offline mock run (no backend deployed, no keys, no money).",
- "generated": "2026-10-11T12:17:11.594Z",
+ "generated": "2026-10-11T16:37:09.842Z",
  "mode": "mock",
  "kill": false,
  "last_run": {
-  "id": "2026-10-11T12",
-  "finished": 1791721031594,
+  "id": "2026-10-11T16",
+  "finished": 1791736629841,
   "steps": 5,
   "errors": [],
   "skipped": null
  },
- "next_run": "2026-10-11T13:00:00.000Z",
+ "next_run": "2026-10-11T17:00:00.000Z",
  "queue": {
   "awaiting_approval": 3,
   "approved_unpublished": 0,
