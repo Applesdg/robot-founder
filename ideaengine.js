@@ -27,6 +27,32 @@ function propose(today,prev){// keep past experiments (cumulative), add 2 new se
  for(let k=ex.some(e=>e.started===today)?2:0,tries=0;k<2&&tries<50;tries++){const m=MODS[Math.floor(R()*MODS.length)],b=base[Math.floor(R()*base.length)],label=b+' + '+m[0];if(used.has(label))continue;used.add(label);
   ex.push({id:'exp'+today.replace(/-/g,'')+k,label,kw:m[1],niche:XN[Math.floor(R()*XN.length)],started:today,status:'testing — waiting for real views/sales',metric:'favorites per 100 views vs. house style (needs Etsy)'});k++}
  return ex.filter(e=>!e.status.startsWith('retired')||(Date.parse(today)-Date.parse(e.started))/864e5<60)}
+
+// ================= wide net: general gift ideas from research/taxonomy.json (data-driven; grow the JSON) =================
+function generateGeneral(tax,market,o){const TMX=[...new Set([...TM,...(tax.trademark_blocklist||[])])],R=rng('g'+o.today),hsh=s=>{let h=7;for(const c of s)h=(h*31+c.charCodeAt(0))>>>0;return h};
+ const fee=p=>.2+.095*p+.25,mg=(p,c)=>(p-fee(p)-c)/p;const mon=o.month,season=m=>!m?1:(()=>{const a=(m-mon+12)%12;return a>=1&&a<=2?1.7:a===0?1.25:a===3?1.1:.5})();
+ const auto=((market.trends&&market.trends.auto_added)||[]).map(n=>({n:n.toLowerCase(),w:1.15,auto:true}));
+ const AUD=[...Object.entries(tax.audiences).flatMap(([k,v])=>v.map(a=>({...a,k}))),...auto.map(a=>({...a,k:'hobby'}))];
+ const LOC=[...tax.locations.states.map(n=>({n,k:'state'})),...tax.locations.cities.map(n=>({n,k:'city'})),...tax.locations.beaches.map(n=>({n,k:'beach'}))];
+ const POD=tax.products.pod.filter(p=>p.cat!=='pet'),DIG=tax.products.digital,occ=tax.occasions,tones=tax.tones,aes=tax.aesthetics;
+ const kindW={profession:.9,hobby:1,role:1.05,state:.75,city:.8,beach:.85};
+ const theo=(AUD.length*occ.length+LOC.length*occ.length)*tones.length*aes.length*(POD.length+DIG.length);
+ const st={candidates:0,rejected:{}},acc=[],rej=[],byK={};const bump=(r,t)=>{const k=r.split(':')[0];st.rejected[k]=(st.rejected[k]||0)+1;if(rej.length<300&&(/trademark/.test(r)||R()<.01))rej.push({title:t,reason:r})};
+ const cap=s=>s.replace(/(^|[\s\/-])([a-z])/g,(m,a,b)=>a+b.toUpperCase());
+ const push=(c)=>{st.candidates++;const low=c.title.toLowerCase(),tm=TMX.find(t=>new RegExp('(^|[^a-z])'+t.replace(/[.*+?^${}()|[\]\\']/g,'\\$&')+'([^a-z]|$)').test(low));
+  if(tm)return bump('trademark/copyright: "'+tm+'"',c.title);if(c.score<o.minScore)return bump('below quality threshold',c.title);
+  const K=c.subject+'|'+c.product,L=byK[K]||(byK[K]=[]),nt=norm(c.title);if(L.length>=2||L.some(x=>jac(x,nt)>=.7))return bump('near-duplicate of a higher-scored idea',c.title);L.push(nt);acc.push(c)};
+ const cands=[];
+ for(const a of AUD){const h=hsh(a.n);// per audience: best 4 occasions now (season-weighted) + birthday/just because; products & styles rotate daily (exploration)
+  const os=occ.map(x=>({x,s:x.w*season(x.month)})).sort((p,q)=>q.s-p.s).slice(0,3).map(z=>z.x).concat(occ.filter(x=>x.n==='birthday'||x.n==='just because'));
+  for(const oc of os)for(let j=0;j<3;j++){const isDig=j===2,pr=isDig?DIG.filter(d=>d.fit==='any'||(d.fit==='event'&&oc.type==='event')||(d.fit==='wedding'&&/wedding|bridal|bride|groom|maid|best man/.test(oc.n+a.n))||(d.fit==='teacher'&&/teacher/.test(a.n))||(d.fit==='career'&&a.k==='profession'))[(h+j+Math.floor(R()*7))%5]:POD[(h+j*17+Math.floor(R()*POD.length))%POD.length];if(!pr)continue;
+   const tone=tones[(h+j+Math.floor(R()*tones.length))%tones.length],ae=aes[(h*3+j+Math.floor(R()*aes.length))%aes.length];const price=pr.price,m=mg(price,pr.cost||0);
+   const title=cap(`${tone==='funny'||tone==='sarcastic'||tone==='pun'?cap(tone)+' ':''}${a.n} ${oc.n==='just because'?'':oc.n+' '}${pr.n} — ${ae} ${tone==='personalized name'?'personalized ':''}gift for ${a.k==='role'?'a '+a.n:a.k==='profession'?a.n+'s':a.n+' lovers'}`).replace(/\s+/g,' ').slice(0,140);
+   cands.push({id:'g'+h.toString(36)+oc.n.length+j,title,category:a.k,subject:a.n,kind:'general',style:ae,tone,product:pr.n,price,occasion:oc.n,niche:a.k+(a.auto?' (auto-added from trends)':''),score:+(a.w*kindW[a.k]*oc.w*season(oc.month)*(m/.6)*.55).toFixed(3),est_margin:+m.toFixed(2),keyword:`${a.n} ${oc.n==='just because'?'gift':oc.n} ${pr.n.toLowerCase().split(' ')[0]}`.toLowerCase(),ai_disclosure:true,digital:isDig,channels:['etsy','shopify'],auto:!!a.auto})}}
+ for(const l of LOC){const h=hsh(l.n);for(let j=0;j<3;j++){const pr=POD[(h+j*11+Math.floor(R()*POD.length))%POD.length],ae=aes[(h+j+Math.floor(R()*aes.length))%aes.length],oc=occ.find(x=>x.n===(l.k==='beach'?'summer vacation':j===1?'housewarming':'just because'));
+  const m=mg(pr.price,pr.cost);cands.push({id:'l'+h.toString(36)+j,title:cap(`${ae} ${l.n} ${pr.n} — ${l.k==='beach'?'beach vacation souvenir':l.k==='state'?'home state pride':'hometown'} gift`).slice(0,140),category:'location',subject:l.n,kind:'general',style:ae,product:pr.n,price:pr.price,occasion:oc.n,niche:l.k,score:+(kindW[l.k]*oc.w*season(oc.month)*(m/.6)*.55).toFixed(3),est_margin:+m.toFixed(2),keyword:`${l.n} ${l.k==='beach'?'beach':''} ${pr.n.split(' ')[0]}`.toLowerCase().replace(/\s+/g,' '),ai_disclosure:true,digital:false,channels:['etsy','shopify']})}}
+ cands.sort((a,b)=>b.score-a.score).forEach(push);
+ return {acc,rej,stats:{theoretical_combinations:theo,candidates:st.candidates,rejected_by:st.rejected,passed:acc.length,taxonomy:{occasions:occ.length,professions:tax.audiences.profession.length,hobbies:tax.audiences.hobby.length,roles:tax.audiences.role.length,auto_added_niches:auto.length,tones:tones.length,aesthetics:aes.length,locations:LOC.length,pod_products:tax.products.pod.length,digital_products:DIG.length,trademark_terms:TMX.length}}}}
 function generate(market,opt={}){const o={explore:opt.explore??.1,digitalShare:opt.digitalShare??.4,house:opt.house||'renaissance royal',today:opt.today||new Date().toISOString().slice(0,10),target:opt.target||1200,dailyCap:opt.dailyCap||8,minScore:opt.minScore||.18,month:opt.month||(new Date().getMonth()+1),styles:opt.styles||STYLES.length,seedExtra:opt.extra||0};
  const subj=market.breeds.map(b=>[b.article,b.score,b.akc_rank_2025?'dog':'cat']).concat(HORSES.map(h=>[h[0],h[1],'horse']),EXOTIC.map(x=>[x[0],x[1],'pet']));
  const st={generated:0,rejected:{},accepted:0},acc=[],rej=[],seen=new Set();
@@ -52,18 +78,22 @@ function generate(market,opt={}){const o={explore:opt.explore??.1,digitalShare:o
   const name=s.replace(/_cat$|_horse$/,'').replace(/_/g,' '),pn=prod.replace(/ \d.*$/,'').replace('Fleece blanket','Blanket').replace('Digital portrait','Digital Download');
   const title=`${name} ${ex.label} ${pn} — Custom ${kind==='cat'?'Cat':kind==='horse'?'Horse':'Dog'} Portrait from Photo`.replace(/\b\w/g,c=>c.toUpperCase()).slice(0,140);if(TM.some(t=>title.toLowerCase().includes(t)))continue;
   pool.push({id:'x'+ex.id+'_'+pool.length,title,subject:name,kind,style:ex.label,product:prod,price,occasion:'everyday',niche:ex.niche||'single pet',score:+(ss**.7*.9*(MARG[prod]/.6)).toFixed(3),est_margin:MARG[prod],keyword:`${name.toLowerCase()} ${ex.kw}`,ai_disclosure:true,channels:['etsy','shopify'],experiment:ex.id})}
+ let G=null;if(opt.taxonomy){G=generateGeneral(opt.taxonomy,market,o);for(const k in G.stats.rejected_by)st.rejected[k]=(st.rejected[k]||0)+G.stats.rejected_by[k];st.generated+=G.stats.candidates;rej.push(...G.rej.slice(0,150));acc.push(...G.acc);acc.sort((a,b)=>b.score-a.score);st.accepted=acc.length}
  // ---- daily batches with product mix + exploration slots, rotating subjects ----
- const isD=x=>/Digital/.test(x.product),rot=(arr,f=x=>x.subject)=>{const b={};arr.forEach(x=>(b[f(x)]=b[f(x)]||[]).push(x));const r=[];for(let i=0;r.length<arr.length;i++)for(const k in b)if(b[k][i])r.push(b[k][i]);return r};
- const dq=rot(acc.filter(isD)),pq=(()=>{const b={};rot(acc.filter(x=>!isD(x))).forEach(x=>(b[x.product]=b[x.product]||[]).push(x));const ks=Object.keys(b);ks.forEach((k,j)=>b[k]=b[k].slice(j).concat(b[k].slice(0,j)));const r=[];for(let i=0;ks.some(k=>b[k][i]);i++)ks.forEach(k=>b[k][i]&&r.push(b[k][i]));return r})(),xq=rot(pool),kept=[],start=new Date(o.today+'T12:00:00Z');
- const nX=Math.max(o.explore>0?1:0,Math.round(o.dailyCap*o.explore)),nD=Math.round((o.dailyCap-nX)*o.digitalShare);
- for(let day=0;kept.length<o.target&&(dq.length||pq.length||xq.length);day++){const date=new Date(start.getTime()+day*864e5).toISOString().slice(0,10),batch=[];
-  for(let i=0;i<nX&&xq.length;i++)batch.push(xq.shift());for(let i=0;i<nD&&dq.length;i++)batch.push(dq.shift());while(batch.length<o.dailyCap&&(pq.length||dq.length))batch.push((pq.length?pq:dq).shift());
+ const isD=x=>x.digital||/Digital/.test(x.product),rot=(arr,f=x=>x.subject)=>{const b={};arr.forEach(x=>(b[f(x)]=b[f(x)]||[]).push(x));const r=[];for(let i=0;r.length<arr.length;i++)for(const k in b)if(b[k][i])r.push(b[k][i]);return r};
+ const isPet=x=>x.kind!=='general',petShare=opt.petShare??.3,gen=acc.filter(x=>!isPet(x)),pet=acc.filter(isPet);
+ const mixQ=list=>{const b={};rot(list).forEach(x=>(b[x.product]=b[x.product]||[]).push(x));const ks=Object.keys(b);ks.forEach((k,j)=>b[k]=b[k].slice(j%Math.max(1,b[k].length)).concat(b[k].slice(0,j%Math.max(1,b[k].length))));const r=[];for(let i=0;ks.some(k=>b[k][i]);i++)ks.forEach(k=>b[k][i]&&r.push(b[k][i]));return r};
+ const petQ=mixQ(pet),dq=rot(gen.filter(isD)),pq=mixQ(gen.filter(x=>!isD(x))),xq=rot(pool),kept=[],start=new Date(o.today+'T12:00:00Z');
+ const nX=Math.max(o.explore>0?1:0,Math.round(o.dailyCap*o.explore)),nP=Math.round(o.dailyCap*petShare),nD=Math.round((o.dailyCap-nX-nP)*o.digitalShare);
+ for(let day=0;kept.length<o.target&&(dq.length||pq.length||xq.length||petQ.length);day++){const date=new Date(start.getTime()+day*864e5).toISOString().slice(0,10),batch=[];
+  for(let i=0;i<nX&&xq.length;i++)batch.push(xq.shift());for(let i=0;i<nP&&petQ.length;i++)batch.push(petQ.shift());for(let i=0;i<nD&&dq.length;i++)batch.push(dq.shift());
+  while(batch.length<o.dailyCap&&(pq.length||dq.length||petQ.length))batch.push((pq.length?pq:dq.length?dq:petQ).shift());
   batch.forEach(x=>{x.stage=day===0?'ready':'queued';x.publish_on=date;kept.push(x)})}
  kept.length=Math.min(kept.length,o.target);
  return {generated_at:new Date().toISOString(),config:o,counts:{generated:st.generated,rejected:Object.values(st.rejected).reduce((a,b)=>a+b,0),rejected_by:st.rejected,passed:st.accepted,backlog:kept.length,ready:kept.filter(x=>x.stage==='ready').length,queued:kept.filter(x=>x.stage==='queued').length,days_to_publish:Math.ceil(kept.length/o.dailyCap)},
   guardrails:{trademark_blocklist:TM,near_duplicate:'≤3 ideas per subject+product+occasion and title Jaccard <0.8',ai_disclosure:'required on every listing (Etsy policy, Jan 2026)',daily_publish_cap:o.dailyCap,pacing_note:'Etsy publishes no hard daily cap, but bursts of near-identical new listings from a new shop risk review/suspension; robot drips listings (configurable cap, ESTIMATE).',min_score:o.minScore},
   channels:[{n:'Etsy',status:'pending connection',role:'primary'},{n:'Shopify',status:'pending connection',role:'mirror every Etsy listing'},{n:'Amazon Handmade',status:'later — needs Handmade application + approval',role:'top 50 sellers after 90 days'},{n:'eBay',status:'later — needs eBay developer key',role:'test canvases/blankets'}],
   note:'Scores are ESTIMATES: sqrt-ish of real breed interest score (Wikipedia + AKC) × style weight (assumption) × occasion seasonality (Wikipedia peaks + RankHero estimate) × niche weight (assumption) × est. margin (economics.js). No sales data.',
-  backlog:kept,rejected_samples:rej,experiments:exps,mix:{digital:o.digitalShare,physical:+(1-o.digitalShare).toFixed(2),explore:o.explore,house:o.house}}}
-const api={generate,STYLES,TM};if(typeof module!=='undefined')module.exports=api;else root.IDEAS=api;
+  backlog:kept,rejected_samples:rej,experiments:exps,wide:G?G.stats:null,categories:G?Object.entries(acc.reduce((m,x)=>(m[x.category||'pet portrait']=(m[x.category||'pet portrait']||0)+1,m),{})):null,mix:{pet:opt.petShare??.3,digital:o.digitalShare,physical:+(1-o.digitalShare).toFixed(2),explore:o.explore,house:o.house}}}
+const api={generate,generateGeneral,STYLES,TM};if(typeof module!=='undefined')module.exports=api;else root.IDEAS=api;
 })(typeof window!=='undefined'?window:globalThis);

@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-11T10:55:10+00:00",
+ "generated": "2026-10-11T16:30:55+00:00",
  "window": [
   "2024-09-01",
   "2026-09-30"
@@ -3745,6 +3745,566 @@
    "mockup": "placeholder"
   }
  ],
+ "trends": {
+  "rule": "auto-add a niche when 12-month Wikipedia views \u2265 500/mo and YoY \u2265 0% (Wikipedia overall fell ~20% YoY, so flat = relative growth). Blocked if trademark.",
+  "items": [
+   {
+    "article": "Van_life",
+    "url": "https://en.wikipedia.org/wiki/Van_life",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Van_life/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 302,
+    "yoy": 1.656,
+    "peak_month": "202601",
+    "niche": "Van life",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Journaling",
+    "url": "https://en.wikipedia.org/wiki/Journaling",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Journaling/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 680,
+    "yoy": 0.896,
+    "peak_month": "202608",
+    "niche": "Journaling",
+    "auto_add": true,
+    "blocked": null
+   },
+   {
+    "article": "Thrifting",
+    "url": "https://en.wikipedia.org/wiki/Thrifting",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Thrifting/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 64,
+    "yoy": 0.573,
+    "peak_month": "202604",
+    "niche": "Thrifting",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Rucking",
+    "url": "https://en.wikipedia.org/wiki/Rucking",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Rucking/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 79,
+    "yoy": 0.199,
+    "peak_month": "202601",
+    "niche": "Rucking",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Cold_plunge",
+    "url": "https://en.wikipedia.org/wiki/Cold_plunge",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Cold_plunge/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 98,
+    "yoy": 0.113,
+    "peak_month": "202510",
+    "niche": "Cold plunge",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Mahjong",
+    "url": "https://en.wikipedia.org/wiki/Mahjong",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Mahjong/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 79179,
+    "yoy": 0.088,
+    "peak_month": "202605",
+    "niche": "Mahjong",
+    "auto_add": true,
+    "blocked": null
+   },
+   {
+    "article": "Gravel_cycling",
+    "url": "https://en.wikipedia.org/wiki/Gravel_cycling",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Gravel_cycling/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 1674,
+    "yoy": 0.011,
+    "peak_month": "202604",
+    "niche": "Gravel cycling",
+    "auto_add": true,
+    "blocked": null
+   },
+   {
+    "article": "Polaroid",
+    "url": "https://en.wikipedia.org/wiki/Polaroid",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Polaroid/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 2516,
+    "yoy": 0.011,
+    "peak_month": "202512",
+    "niche": "Polaroid",
+    "auto_add": false,
+    "blocked": "polaroid"
+   },
+   {
+    "article": "Bouldering",
+    "url": "https://en.wikipedia.org/wiki/Bouldering",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Bouldering/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 10234,
+    "yoy": -0.001,
+    "peak_month": "202601",
+    "niche": "Bouldering",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Axe_throwing",
+    "url": "https://en.wikipedia.org/wiki/Axe_throwing",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Axe_throwing/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 1912,
+    "yoy": -0.027,
+    "peak_month": "202510",
+    "niche": "Axe throwing",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Tiny_house_movement",
+    "url": "https://en.wikipedia.org/wiki/Tiny_house_movement",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Tiny_house_movement/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 652,
+    "yoy": -0.085,
+    "peak_month": "202512",
+    "niche": "Tiny house movement",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Birdwatching",
+    "url": "https://en.wikipedia.org/wiki/Birdwatching",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Birdwatching/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 6030,
+    "yoy": -0.094,
+    "peak_month": "202510",
+    "niche": "Birdwatching",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Bird_feeder",
+    "url": "https://en.wikipedia.org/wiki/Bird_feeder",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Bird_feeder/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 2049,
+    "yoy": -0.12,
+    "peak_month": "202605",
+    "niche": "Bird feeder",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Cottagecore",
+    "url": "https://en.wikipedia.org/wiki/Cottagecore",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Cottagecore/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 9242,
+    "yoy": -0.129,
+    "peak_month": "202512",
+    "niche": "Cottagecore",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Crochet",
+    "url": "https://en.wikipedia.org/wiki/Crochet",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Crochet/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 12634,
+    "yoy": -0.138,
+    "peak_month": "202601",
+    "niche": "Crochet",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Tarot",
+    "url": "https://en.wikipedia.org/wiki/Tarot",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Tarot/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 67604,
+    "yoy": -0.14,
+    "peak_month": "202510",
+    "niche": "Tarot",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Padel",
+    "url": "https://en.wikipedia.org/wiki/Padel",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Padel/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 56106,
+    "yoy": -0.167,
+    "peak_month": "202510",
+    "niche": "Padel",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Cornhole",
+    "url": "https://en.wikipedia.org/wiki/Cornhole",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Cornhole/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 15313,
+    "yoy": -0.169,
+    "peak_month": "202603",
+    "niche": "Cornhole",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Astrology",
+    "url": "https://en.wikipedia.org/wiki/Astrology",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Astrology/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 37272,
+    "yoy": -0.176,
+    "peak_month": "202601",
+    "niche": "Astrology",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Minimalism",
+    "url": "https://en.wikipedia.org/wiki/Minimalism",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Minimalism/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 11422,
+    "yoy": -0.185,
+    "peak_month": "202605",
+    "niche": "Minimalism",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Vinyl_revival",
+    "url": "https://en.wikipedia.org/wiki/Vinyl_revival",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Vinyl_revival/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 4025,
+    "yoy": -0.195,
+    "peak_month": "202601",
+    "niche": "Vinyl revival",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Sim_racing",
+    "url": "https://en.wikipedia.org/wiki/Sim_racing",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Sim_racing/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 4096,
+    "yoy": -0.198,
+    "peak_month": "202512",
+    "niche": "Sim racing",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Embroidery",
+    "url": "https://en.wikipedia.org/wiki/Embroidery",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Embroidery/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 8997,
+    "yoy": -0.2,
+    "peak_month": "202601",
+    "niche": "Embroidery",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Foraging",
+    "url": "https://en.wikipedia.org/wiki/Foraging",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Foraging/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 3115,
+    "yoy": -0.206,
+    "peak_month": "202510",
+    "niche": "Foraging",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Trail_running",
+    "url": "https://en.wikipedia.org/wiki/Trail_running",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Trail_running/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 2696,
+    "yoy": -0.213,
+    "peak_month": "202609",
+    "niche": "Trail running",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Charcuterie",
+    "url": "https://en.wikipedia.org/wiki/Charcuterie",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Charcuterie/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 15782,
+    "yoy": -0.225,
+    "peak_month": "202512",
+    "niche": "Charcuterie",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Pottery",
+    "url": "https://en.wikipedia.org/wiki/Pottery",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Pottery/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 13668,
+    "yoy": -0.228,
+    "peak_month": "202510",
+    "niche": "Pottery",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Film_photography",
+    "url": "https://en.wikipedia.org/wiki/Film_photography",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Film_photography/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 166,
+    "yoy": -0.228,
+    "peak_month": "202605",
+    "niche": "Film photography",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Pickleball",
+    "url": "https://en.wikipedia.org/wiki/Pickleball",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Pickleball/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 98573,
+    "yoy": -0.241,
+    "peak_month": "202601",
+    "niche": "Pickleball",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Pilates",
+    "url": "https://en.wikipedia.org/wiki/Pilates",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Pilates/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 46911,
+    "yoy": -0.253,
+    "peak_month": "202601",
+    "niche": "Pilates",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Upcycling",
+    "url": "https://en.wikipedia.org/wiki/Upcycling",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Upcycling/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 3410,
+    "yoy": -0.253,
+    "peak_month": "202510",
+    "niche": "Upcycling",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Lego_Technic",
+    "url": "https://en.wikipedia.org/wiki/Lego_Technic",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Lego_Technic/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 3388,
+    "yoy": -0.254,
+    "peak_month": "202512",
+    "niche": "Lego Technic",
+    "auto_add": false,
+    "blocked": "lego"
+   },
+   {
+    "article": "Kayak_fishing",
+    "url": "https://en.wikipedia.org/wiki/Kayak_fishing",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Kayak_fishing/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 205,
+    "yoy": -0.255,
+    "peak_month": "202604",
+    "niche": "Kayak fishing",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Disc_golf",
+    "url": "https://en.wikipedia.org/wiki/Disc_golf",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Disc_golf/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 8405,
+    "yoy": -0.258,
+    "peak_month": "202606",
+    "niche": "Disc golf",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Bonsai",
+    "url": "https://en.wikipedia.org/wiki/Bonsai",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Bonsai/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 19078,
+    "yoy": -0.287,
+    "peak_month": "202510",
+    "niche": "Bonsai",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Hydroponics",
+    "url": "https://en.wikipedia.org/wiki/Hydroponics",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Hydroponics/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 13175,
+    "yoy": -0.315,
+    "peak_month": "202510",
+    "niche": "Hydroponics",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Homesteading",
+    "url": "https://en.wikipedia.org/wiki/Homesteading",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Homesteading/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 3527,
+    "yoy": -0.331,
+    "peak_month": "202601",
+    "niche": "Homesteading",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Overlanding",
+    "url": "https://en.wikipedia.org/wiki/Overlanding",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Overlanding/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 1882,
+    "yoy": -0.335,
+    "peak_month": "202511",
+    "niche": "Overlanding",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Sourdough",
+    "url": "https://en.wikipedia.org/wiki/Sourdough",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Sourdough/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 37221,
+    "yoy": -0.345,
+    "peak_month": "202510",
+    "niche": "Sourdough",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Beekeeping",
+    "url": "https://en.wikipedia.org/wiki/Beekeeping",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Beekeeping/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 7355,
+    "yoy": -0.357,
+    "peak_month": "202602",
+    "niche": "Beekeeping",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Crystal_healing",
+    "url": "https://en.wikipedia.org/wiki/Crystal_healing",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Crystal_healing/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 3596,
+    "yoy": -0.377,
+    "peak_month": "202510",
+    "niche": "Crystal healing",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Bullet_journal",
+    "url": "https://en.wikipedia.org/wiki/Bullet_journal",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Bullet_journal/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 4014,
+    "yoy": -0.379,
+    "peak_month": "202601",
+    "niche": "Bullet journal",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Spikeball",
+    "url": "https://en.wikipedia.org/wiki/Spikeball",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Spikeball/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 109,
+    "yoy": -0.389,
+    "peak_month": "202601",
+    "niche": "Spikeball",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Barre_(exercise)",
+    "url": "https://en.wikipedia.org/wiki/Barre_(exercise)",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Barre_(exercise)/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 5645,
+    "yoy": -0.397,
+    "peak_month": "202603",
+    "niche": "Barre",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Matcha",
+    "url": "https://en.wikipedia.org/wiki/Matcha",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Matcha/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 83291,
+    "yoy": -0.409,
+    "peak_month": "202510",
+    "niche": "Matcha",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Hot_yoga",
+    "url": "https://en.wikipedia.org/wiki/Hot_yoga",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Hot_yoga/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 3622,
+    "yoy": -0.457,
+    "peak_month": "202601",
+    "niche": "Hot yoga",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Kombucha",
+    "url": "https://en.wikipedia.org/wiki/Kombucha",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Kombucha/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 61338,
+    "yoy": -0.487,
+    "peak_month": "202510",
+    "niche": "Kombucha",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Terrarium",
+    "url": "https://en.wikipedia.org/wiki/Terrarium",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Terrarium/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 4145,
+    "yoy": -0.529,
+    "peak_month": "202512",
+    "niche": "Terrarium",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Sound_bath",
+    "url": "https://en.wikipedia.org/wiki/Sound_bath",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Sound_bath/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 1,
+    "yoy": null,
+    "peak_month": "202603",
+    "niche": "Sound bath",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Chicken_keeping",
+    "url": "https://en.wikipedia.org/wiki/Chicken_keeping",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Chicken_keeping/monthly/2024090100/2026093000",
+    "avg_monthly_12m": 0,
+    "yoy": null,
+    "peak_month": "202608",
+    "niche": "Chicken keeping",
+    "auto_add": false,
+    "blocked": null
+   }
+  ],
+  "auto_added": [
+   "Journaling",
+   "Mahjong",
+   "Gravel cycling"
+  ]
+ },
  "competitors": {
   "note": "Competitor price benchmarks from public, ToS-compliant sources (articles/keyword-tool pages read without login; no Etsy scraping). Ranges are what the SOURCE reports; treat as ESTIMATES. Reviewed by hand; the daily Action flags entries older than 60 days.",
   "reviewed": "2026-10-10",

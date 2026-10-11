@@ -62,6 +62,16 @@ ideas.append({'title':'Royal Renaissance Pet Portrait — Digital File from Your
 ideas.append({'title':'Pet Memorial Portrait Canvas — Rainbow Bridge Keepsake','product':'Canvas 12x16','price':69,'price_basis':'economics.js','keyword':'pet memorial gift',
   'why':'Memorial gifts are a common pet-gift search with no holiday dependency (our assumption — not yet measured; Etsy API pending). High emotional value; handle with care in copy.','brief':'Soft watercolor portrait with halo light, name and dates.','prompt':'gentle watercolor portrait of [PET], soft golden light, peaceful sky, space for name and dates','sources':[],'mockup':'placeholder'})
 out['ideas']=ideas
+# ---- trend signals → auto-add niches (real Wikipedia pageview growth; threshold is OUR rule) ----
+tax=json.load(open(os.path.join(HERE,'taxonomy.json')));TM=tax['trademark_blocklist'];trends=[]
+for a in tax['trend_candidates']:
+    v=views(a)
+    if not v:continue
+    s_=summarize(v);name=a.replace('_',' ').split(' (')[0];blocked=next((t for t in TM if t in name.lower()),None)
+    s_['niche']=name;s_['auto_add']=bool(not blocked and s_['yoy'] is not None and s_['yoy']>=0.0 and s_['avg_monthly_12m']>=500)
+    s_['blocked']=blocked;s_.pop('monthly',None);trends.append(s_)
+trends.sort(key=lambda x:-(x['yoy'] or -9))
+out['trends']={'rule':'auto-add a niche when 12-month Wikipedia views ≥ 500/mo and YoY ≥ 0% (Wikipedia overall fell ~20% YoY, so flat = relative growth). Blocked if trademark.','items':trends,'auto_added':[t['niche'] for t in trends if t['auto_add']]}
 comp=json.load(open(os.path.join(HERE,'competitors.json')));age=(today-datetime.date.fromisoformat(comp['reviewed'])).days
 for b in comp['benchmarks']:b['position']='above range' if b['ours']>b['high'] else 'below range' if b['ours']<b['low'] else 'within range'
 comp['age_days']=age;comp['stale']=age>60;out['competitors']=comp

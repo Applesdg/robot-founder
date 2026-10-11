@@ -1,0 +1,2645 @@
+{
+ "version": 1,
+ "updated": "2026-10-11",
+ "note": "Data-driven taxonomy for the idea engine. Add entries freely; weights are ESTIMATES (relative demand guesses), month = peak gifting month (0 = evergreen). Product prices/costs are ESTIMATES from typical Printify ranges, not quotes.",
+ "occasions": [
+  {
+   "n": "birthday",
+   "month": 0,
+   "w": 1,
+   "type": "personal"
+  },
+  {
+   "n": "just because",
+   "month": 0,
+   "w": 0.8,
+   "type": "personal"
+  },
+  {
+   "n": "thank you",
+   "month": 0,
+   "w": 0.6,
+   "type": "personal"
+  },
+  {
+   "n": "get well",
+   "month": 0,
+   "w": 0.4,
+   "type": "personal"
+  },
+  {
+   "n": "sympathy / memorial",
+   "month": 0,
+   "w": 0.6,
+   "type": "personal"
+  },
+  {
+   "n": "housewarming",
+   "month": 0,
+   "w": 0.6,
+   "type": "personal"
+  },
+  {
+   "n": "new job",
+   "month": 0,
+   "w": 0.5,
+   "type": "milestone"
+  },
+  {
+   "n": "promotion",
+   "month": 0,
+   "w": 0.4,
+   "type": "milestone"
+  },
+  {
+   "n": "retirement",
+   "month": 0,
+   "w": 0.8,
+   "type": "milestone"
+  },
+  {
+   "n": "graduation",
+   "month": 5,
+   "w": 1,
+   "type": "milestone"
+  },
+  {
+   "n": "back to school",
+   "month": 8,
+   "w": 0.7,
+   "type": "milestone"
+  },
+  {
+   "n": "first day of school",
+   "month": 8,
+   "w": 0.5,
+   "type": "milestone"
+  },
+  {
+   "n": "wedding",
+   "month": 6,
+   "w": 1,
+   "type": "event"
+  },
+  {
+   "n": "engagement",
+   "month": 0,
+   "w": 0.7,
+   "type": "event"
+  },
+  {
+   "n": "bridal shower",
+   "month": 0,
+   "w": 0.6,
+   "type": "event"
+  },
+  {
+   "n": "bachelorette",
+   "month": 0,
+   "w": 0.7,
+   "type": "event"
+  },
+  {
+   "n": "bachelor party",
+   "month": 0,
+   "w": 0.5,
+   "type": "event"
+  },
+  {
+   "n": "anniversary",
+   "month": 0,
+   "w": 0.9,
+   "type": "personal"
+  },
+  {
+   "n": "baby shower",
+   "month": 0,
+   "w": 0.8,
+   "type": "event"
+  },
+  {
+   "n": "gender reveal",
+   "month": 0,
+   "w": 0.5,
+   "type": "event"
+  },
+  {
+   "n": "pregnancy announcement",
+   "month": 0,
+   "w": 0.6,
+   "type": "milestone"
+  },
+  {
+   "n": "new baby",
+   "month": 0,
+   "w": 0.8,
+   "type": "milestone"
+  },
+  {
+   "n": "first birthday",
+   "month": 0,
+   "w": 0.6,
+   "type": "event"
+  },
+  {
+   "n": "baptism / christening",
+   "month": 0,
+   "w": 0.4,
+   "type": "event"
+  },
+  {
+   "n": "bar / bat mitzvah",
+   "month": 0,
+   "w": 0.3,
+   "type": "event"
+  },
+  {
+   "n": "quincea\u00f1era",
+   "month": 0,
+   "w": 0.3,
+   "type": "event"
+  },
+  {
+   "n": "sweet 16",
+   "month": 0,
+   "w": 0.4,
+   "type": "event"
+  },
+  {
+   "n": "30th birthday",
+   "month": 0,
+   "w": 0.6,
+   "type": "event"
+  },
+  {
+   "n": "40th birthday",
+   "month": 0,
+   "w": 0.6,
+   "type": "event"
+  },
+  {
+   "n": "50th birthday",
+   "month": 0,
+   "w": 0.6,
+   "type": "event"
+  },
+  {
+   "n": "family reunion",
+   "month": 7,
+   "w": 0.5,
+   "type": "event"
+  },
+  {
+   "n": "class reunion",
+   "month": 0,
+   "w": 0.3,
+   "type": "event"
+  },
+  {
+   "n": "team gift",
+   "month": 0,
+   "w": 0.5,
+   "type": "personal"
+  },
+  {
+   "n": "teacher appreciation",
+   "month": 5,
+   "w": 0.8,
+   "type": "holiday"
+  },
+  {
+   "n": "nurses week",
+   "month": 5,
+   "w": 0.6,
+   "type": "holiday"
+  },
+  {
+   "n": "employee appreciation",
+   "month": 3,
+   "w": 0.4,
+   "type": "holiday"
+  },
+  {
+   "n": "New Year's",
+   "month": 1,
+   "w": 0.6,
+   "type": "holiday"
+  },
+  {
+   "n": "Valentine's Day",
+   "month": 2,
+   "w": 1,
+   "type": "holiday"
+  },
+  {
+   "n": "Galentine's Day",
+   "month": 2,
+   "w": 0.5,
+   "type": "holiday"
+  },
+  {
+   "n": "St. Patrick's Day",
+   "month": 3,
+   "w": 0.7,
+   "type": "holiday"
+  },
+  {
+   "n": "Easter",
+   "month": 4,
+   "w": 0.8,
+   "type": "holiday"
+  },
+  {
+   "n": "Earth Day",
+   "month": 4,
+   "w": 0.4,
+   "type": "holiday"
+  },
+  {
+   "n": "Cinco de Mayo",
+   "month": 5,
+   "w": 0.4,
+   "type": "holiday"
+  },
+  {
+   "n": "Mother's Day",
+   "month": 5,
+   "w": 1,
+   "type": "holiday"
+  },
+  {
+   "n": "Memorial Day",
+   "month": 5,
+   "w": 0.4,
+   "type": "holiday"
+  },
+  {
+   "n": "Father's Day",
+   "month": 6,
+   "w": 1,
+   "type": "holiday"
+  },
+  {
+   "n": "Pride",
+   "month": 6,
+   "w": 0.6,
+   "type": "holiday"
+  },
+  {
+   "n": "Juneteenth",
+   "month": 6,
+   "w": 0.4,
+   "type": "holiday"
+  },
+  {
+   "n": "4th of July",
+   "month": 7,
+   "w": 0.8,
+   "type": "holiday"
+  },
+  {
+   "n": "summer vacation",
+   "month": 7,
+   "w": 0.6,
+   "type": "season"
+  },
+  {
+   "n": "Grandparents Day",
+   "month": 9,
+   "w": 0.5,
+   "type": "holiday"
+  },
+  {
+   "n": "Labor Day",
+   "month": 9,
+   "w": 0.3,
+   "type": "holiday"
+  },
+  {
+   "n": "fall / autumn",
+   "month": 10,
+   "w": 0.7,
+   "type": "season"
+  },
+  {
+   "n": "Halloween",
+   "month": 10,
+   "w": 1,
+   "type": "holiday"
+  },
+  {
+   "n": "D\u00eda de los Muertos",
+   "month": 11,
+   "w": 0.4,
+   "type": "holiday"
+  },
+  {
+   "n": "Veterans Day",
+   "month": 11,
+   "w": 0.5,
+   "type": "holiday"
+  },
+  {
+   "n": "Friendsgiving",
+   "month": 11,
+   "w": 0.5,
+   "type": "holiday"
+  },
+  {
+   "n": "Thanksgiving",
+   "month": 11,
+   "w": 0.8,
+   "type": "holiday"
+  },
+  {
+   "n": "Hanukkah",
+   "month": 12,
+   "w": 0.5,
+   "type": "holiday"
+  },
+  {
+   "n": "Christmas",
+   "month": 12,
+   "w": 1.3,
+   "type": "holiday"
+  },
+  {
+   "n": "ugly sweater party",
+   "month": 12,
+   "w": 0.6,
+   "type": "event"
+  },
+  {
+   "n": "Kwanzaa",
+   "month": 12,
+   "w": 0.3,
+   "type": "holiday"
+  },
+  {
+   "n": "winter",
+   "month": 1,
+   "w": 0.5,
+   "type": "season"
+  },
+  {
+   "n": "National Pet Day",
+   "month": 4,
+   "w": 0.4,
+   "type": "niche holiday"
+  },
+  {
+   "n": "National Dog Day",
+   "month": 8,
+   "w": 0.5,
+   "type": "niche holiday"
+  },
+  {
+   "n": "International Cat Day",
+   "month": 8,
+   "w": 0.4,
+   "type": "niche holiday"
+  },
+  {
+   "n": "Pi Day",
+   "month": 3,
+   "w": 0.3,
+   "type": "niche holiday"
+  },
+  {
+   "n": "National Coffee Day",
+   "month": 9,
+   "w": 0.4,
+   "type": "niche holiday"
+  },
+  {
+   "n": "National Donut Day",
+   "month": 6,
+   "w": 0.3,
+   "type": "niche holiday"
+  },
+  {
+   "n": "Talk Like a Pirate Day",
+   "month": 9,
+   "w": 0.3,
+   "type": "niche holiday"
+  },
+  {
+   "n": "World Kindness Day",
+   "month": 11,
+   "w": 0.3,
+   "type": "niche holiday"
+  },
+  {
+   "n": "Leap Day",
+   "month": 2,
+   "w": 0.1,
+   "type": "niche holiday"
+  },
+  {
+   "n": "Mardi Gras",
+   "month": 2,
+   "w": 0.4,
+   "type": "holiday"
+  },
+  {
+   "n": "Lunar New Year",
+   "month": 2,
+   "w": 0.4,
+   "type": "holiday"
+  },
+  {
+   "n": "Diwali",
+   "month": 11,
+   "w": 0.3,
+   "type": "holiday"
+  },
+  {
+   "n": "Eid",
+   "month": 0,
+   "w": 0.3,
+   "type": "holiday"
+  },
+  {
+   "n": "Boss's Day",
+   "month": 10,
+   "w": 0.4,
+   "type": "niche holiday"
+  },
+  {
+   "n": "Siblings Day",
+   "month": 4,
+   "w": 0.3,
+   "type": "niche holiday"
+  },
+  {
+   "n": "Best Friends Day",
+   "month": 6,
+   "w": 0.3,
+   "type": "niche holiday"
+  },
+  {
+   "n": "Shark Week",
+   "month": 7,
+   "w": 0.3,
+   "type": "niche holiday"
+  },
+  {
+   "n": "Space Coast launch day",
+   "month": 0,
+   "w": 0.4,
+   "type": "local"
+  }
+ ],
+ "audiences": {
+  "profession": [
+   {
+    "n": "nurse",
+    "w": 1
+   },
+   {
+    "n": "teacher",
+    "w": 1
+   },
+   {
+    "n": "doctor",
+    "w": 1
+   },
+   {
+    "n": "dentist",
+    "w": 1
+   },
+   {
+    "n": "dental hygienist",
+    "w": 1
+   },
+   {
+    "n": "pharmacist",
+    "w": 1
+   },
+   {
+    "n": "veterinarian",
+    "w": 1
+   },
+   {
+    "n": "vet tech",
+    "w": 1
+   },
+   {
+    "n": "paramedic",
+    "w": 1
+   },
+   {
+    "n": "firefighter",
+    "w": 1
+   },
+   {
+    "n": "police officer",
+    "w": 1
+   },
+   {
+    "n": "dispatcher",
+    "w": 1
+   },
+   {
+    "n": "nurse practitioner",
+    "w": 1
+   },
+   {
+    "n": "physical therapist",
+    "w": 1
+   },
+   {
+    "n": "occupational therapist",
+    "w": 1
+   },
+   {
+    "n": "speech therapist",
+    "w": 1
+   },
+   {
+    "n": "respiratory therapist",
+    "w": 1
+   },
+   {
+    "n": "radiology tech",
+    "w": 1
+   },
+   {
+    "n": "lab tech",
+    "w": 1
+   },
+   {
+    "n": "surgeon",
+    "w": 1
+   },
+   {
+    "n": "midwife",
+    "w": 1
+   },
+   {
+    "n": "doula",
+    "w": 1
+   },
+   {
+    "n": "social worker",
+    "w": 1
+   },
+   {
+    "n": "counselor",
+    "w": 1
+   },
+   {
+    "n": "psychologist",
+    "w": 1
+   },
+   {
+    "n": "librarian",
+    "w": 1
+   },
+   {
+    "n": "principal",
+    "w": 1
+   },
+   {
+    "n": "school counselor",
+    "w": 1
+   },
+   {
+    "n": "lunch lady",
+    "w": 1
+   },
+   {
+    "n": "bus driver",
+    "w": 1
+   },
+   {
+    "n": "coach",
+    "w": 1
+   },
+   {
+    "n": "professor",
+    "w": 1
+   },
+   {
+    "n": "engineer",
+    "w": 1
+   },
+   {
+    "n": "software developer",
+    "w": 1
+   },
+   {
+    "n": "data scientist",
+    "w": 1
+   },
+   {
+    "n": "accountant",
+    "w": 1
+   },
+   {
+    "n": "CPA",
+    "w": 1
+   },
+   {
+    "n": "lawyer",
+    "w": 1
+   },
+   {
+    "n": "paralegal",
+    "w": 1
+   },
+   {
+    "n": "realtor",
+    "w": 1
+   },
+   {
+    "n": "mortgage broker",
+    "w": 1
+   },
+   {
+    "n": "banker",
+    "w": 1
+   },
+   {
+    "n": "financial advisor",
+    "w": 1
+   },
+   {
+    "n": "insurance agent",
+    "w": 1
+   },
+   {
+    "n": "HR manager",
+    "w": 1
+   },
+   {
+    "n": "recruiter",
+    "w": 1
+   },
+   {
+    "n": "project manager",
+    "w": 1
+   },
+   {
+    "n": "marketer",
+    "w": 1
+   },
+   {
+    "n": "graphic designer",
+    "w": 1
+   },
+   {
+    "n": "photographer",
+    "w": 1
+   },
+   {
+    "n": "architect",
+    "w": 1
+   },
+   {
+    "n": "electrician",
+    "w": 1
+   },
+   {
+    "n": "plumber",
+    "w": 1
+   },
+   {
+    "n": "welder",
+    "w": 1
+   },
+   {
+    "n": "carpenter",
+    "w": 1
+   },
+   {
+    "n": "mechanic",
+    "w": 1
+   },
+   {
+    "n": "HVAC tech",
+    "w": 1
+   },
+   {
+    "n": "lineman",
+    "w": 1
+   },
+   {
+    "n": "truck driver",
+    "w": 1
+   },
+   {
+    "n": "pilot",
+    "w": 1
+   },
+   {
+    "n": "flight attendant",
+    "w": 1
+   },
+   {
+    "n": "air traffic controller",
+    "w": 1
+   },
+   {
+    "n": "space fan",
+    "w": 1
+   },
+   {
+    "n": "rocket engineer",
+    "w": 1
+   },
+   {
+    "n": "chef",
+    "w": 1
+   },
+   {
+    "n": "baker",
+    "w": 1
+   },
+   {
+    "n": "barista",
+    "w": 1
+   },
+   {
+    "n": "bartender",
+    "w": 1
+   },
+   {
+    "n": "server",
+    "w": 1
+   },
+   {
+    "n": "hairstylist",
+    "w": 1
+   },
+   {
+    "n": "barber",
+    "w": 1
+   },
+   {
+    "n": "nail tech",
+    "w": 1
+   },
+   {
+    "n": "esthetician",
+    "w": 1
+   },
+   {
+    "n": "makeup artist",
+    "w": 1
+   },
+   {
+    "n": "tattoo artist",
+    "w": 1
+   },
+   {
+    "n": "florist",
+    "w": 1
+   },
+   {
+    "n": "farmer",
+    "w": 1
+   },
+   {
+    "n": "rancher",
+    "w": 1
+   },
+   {
+    "n": "landscaper",
+    "w": 1
+   },
+   {
+    "n": "military",
+    "w": 1
+   },
+   {
+    "n": "soldier",
+    "w": 1
+   },
+   {
+    "n": "sailor",
+    "w": 1
+   },
+   {
+    "n": "veteran",
+    "w": 1
+   },
+   {
+    "n": "scientist",
+    "w": 1
+   },
+   {
+    "n": "biologist",
+    "w": 1
+   },
+   {
+    "n": "chemist",
+    "w": 1
+   },
+   {
+    "n": "geologist",
+    "w": 1
+   },
+   {
+    "n": "meteorologist",
+    "w": 1
+   },
+   {
+    "n": "mail carrier",
+    "w": 1
+   },
+   {
+    "n": "cashier",
+    "w": 1
+   },
+   {
+    "n": "retail worker",
+    "w": 1
+   },
+   {
+    "n": "small business owner",
+    "w": 1
+   },
+   {
+    "n": "entrepreneur",
+    "w": 1
+   },
+   {
+    "n": "content creator",
+    "w": 1
+   },
+   {
+    "n": "podcaster",
+    "w": 1
+   },
+   {
+    "n": "writer",
+    "w": 1
+   },
+   {
+    "n": "editor",
+    "w": 1
+   },
+   {
+    "n": "musician",
+    "w": 1
+   },
+   {
+    "n": "dancer",
+    "w": 1
+   },
+   {
+    "n": "actor",
+    "w": 1
+   },
+   {
+    "n": "artist",
+    "w": 1
+   },
+   {
+    "n": "pastor",
+    "w": 1
+   },
+   {
+    "n": "nanny",
+    "w": 1
+   },
+   {
+    "n": "daycare teacher",
+    "w": 1
+   },
+   {
+    "n": "crossing guard",
+    "w": 1
+   },
+   {
+    "n": "security guard",
+    "w": 1
+   },
+   {
+    "n": "custodian",
+    "w": 1
+   },
+   {
+    "n": "construction worker",
+    "w": 1
+   },
+   {
+    "n": "surveyor",
+    "w": 1
+   },
+   {
+    "n": "court reporter",
+    "w": 1
+   },
+   {
+    "n": "judge",
+    "w": 1
+   },
+   {
+    "n": "notary",
+    "w": 1
+   }
+  ],
+  "hobby": [
+   {
+    "n": "fishing",
+    "w": 1
+   },
+   {
+    "n": "fly fishing",
+    "w": 1
+   },
+   {
+    "n": "golf",
+    "w": 1
+   },
+   {
+    "n": "pickleball",
+    "w": 1
+   },
+   {
+    "n": "tennis",
+    "w": 1
+   },
+   {
+    "n": "running",
+    "w": 1
+   },
+   {
+    "n": "marathon",
+    "w": 1
+   },
+   {
+    "n": "cycling",
+    "w": 1
+   },
+   {
+    "n": "mountain biking",
+    "w": 1
+   },
+   {
+    "n": "hiking",
+    "w": 1
+   },
+   {
+    "n": "camping",
+    "w": 1
+   },
+   {
+    "n": "RV life",
+    "w": 1
+   },
+   {
+    "n": "kayaking",
+    "w": 1
+   },
+   {
+    "n": "surfing",
+    "w": 1
+   },
+   {
+    "n": "paddleboarding",
+    "w": 1
+   },
+   {
+    "n": "scuba diving",
+    "w": 1
+   },
+   {
+    "n": "sailing",
+    "w": 1
+   },
+   {
+    "n": "boating",
+    "w": 1
+   },
+   {
+    "n": "hunting",
+    "w": 1
+   },
+   {
+    "n": "archery",
+    "w": 1
+   },
+   {
+    "n": "gardening",
+    "w": 1
+   },
+   {
+    "n": "houseplants",
+    "w": 1
+   },
+   {
+    "n": "succulents",
+    "w": 1
+   },
+   {
+    "n": "beekeeping",
+    "w": 1
+   },
+   {
+    "n": "birdwatching",
+    "w": 1
+   },
+   {
+    "n": "baking",
+    "w": 1
+   },
+   {
+    "n": "cooking",
+    "w": 1
+   },
+   {
+    "n": "grilling",
+    "w": 1
+   },
+   {
+    "n": "BBQ smoking",
+    "w": 1
+   },
+   {
+    "n": "coffee",
+    "w": 1
+   },
+   {
+    "n": "tea",
+    "w": 1
+   },
+   {
+    "n": "wine",
+    "w": 1
+   },
+   {
+    "n": "craft beer",
+    "w": 1
+   },
+   {
+    "n": "bourbon",
+    "w": 1
+   },
+   {
+    "n": "books",
+    "w": 1
+   },
+   {
+    "n": "book club",
+    "w": 1
+   },
+   {
+    "n": "reading",
+    "w": 1
+   },
+   {
+    "n": "writing",
+    "w": 1
+   },
+   {
+    "n": "knitting",
+    "w": 1
+   },
+   {
+    "n": "crochet",
+    "w": 1
+   },
+   {
+    "n": "quilting",
+    "w": 1
+   },
+   {
+    "n": "sewing",
+    "w": 1
+   },
+   {
+    "n": "embroidery",
+    "w": 1
+   },
+   {
+    "n": "pottery",
+    "w": 1
+   },
+   {
+    "n": "painting",
+    "w": 1
+   },
+   {
+    "n": "drawing",
+    "w": 1
+   },
+   {
+    "n": "photography",
+    "w": 1
+   },
+   {
+    "n": "woodworking",
+    "w": 1
+   },
+   {
+    "n": "DIY",
+    "w": 1
+   },
+   {
+    "n": "gaming",
+    "w": 1
+   },
+   {
+    "n": "board games",
+    "w": 1
+   },
+   {
+    "n": "tabletop RPG",
+    "w": 1
+   },
+   {
+    "n": "puzzles",
+    "w": 1
+   },
+   {
+    "n": "chess",
+    "w": 1
+   },
+   {
+    "n": "crosswords",
+    "w": 1
+   },
+   {
+    "n": "yoga",
+    "w": 1
+   },
+   {
+    "n": "pilates",
+    "w": 1
+   },
+   {
+    "n": "weightlifting",
+    "w": 1
+   },
+   {
+    "n": "crossfit",
+    "w": 1
+   },
+   {
+    "n": "fitness",
+    "w": 1
+   },
+   {
+    "n": "dance",
+    "w": 1
+   },
+   {
+    "n": "music",
+    "w": 1
+   },
+   {
+    "n": "guitar",
+    "w": 1
+   },
+   {
+    "n": "piano",
+    "w": 1
+   },
+   {
+    "n": "drums",
+    "w": 1
+   },
+   {
+    "n": "singing",
+    "w": 1
+   },
+   {
+    "n": "karaoke",
+    "w": 1
+   },
+   {
+    "n": "vinyl records",
+    "w": 1
+   },
+   {
+    "n": "astronomy",
+    "w": 1
+   },
+   {
+    "n": "rocket launches",
+    "w": 1
+   },
+   {
+    "n": "space",
+    "w": 1
+   },
+   {
+    "n": "travel",
+    "w": 1
+   },
+   {
+    "n": "road trips",
+    "w": 1
+   },
+   {
+    "n": "beach",
+    "w": 1
+   },
+   {
+    "n": "lake life",
+    "w": 1
+   },
+   {
+    "n": "mountains",
+    "w": 1
+   },
+   {
+    "n": "cars",
+    "w": 1
+   },
+   {
+    "n": "classic cars",
+    "w": 1
+   },
+   {
+    "n": "motorcycles",
+    "w": 1
+   },
+   {
+    "n": "trucks",
+    "w": 1
+   },
+   {
+    "n": "jeep life",
+    "w": 1
+   },
+   {
+    "n": "horses",
+    "w": 1
+   },
+   {
+    "n": "chickens",
+    "w": 1
+   },
+   {
+    "n": "farming",
+    "w": 1
+   },
+   {
+    "n": "cats",
+    "w": 1
+   },
+   {
+    "n": "dogs",
+    "w": 1
+   },
+   {
+    "n": "reptiles",
+    "w": 1
+   },
+   {
+    "n": "fish tanks",
+    "w": 1
+   },
+   {
+    "n": "science",
+    "w": 1
+   },
+   {
+    "n": "history",
+    "w": 1
+   },
+   {
+    "n": "true crime",
+    "w": 1
+   },
+   {
+    "n": "horror movies",
+    "w": 1
+   },
+   {
+    "n": "skiing",
+    "w": 1
+   },
+   {
+    "n": "snowboarding",
+    "w": 1
+   },
+   {
+    "n": "ice hockey",
+    "w": 1
+   },
+   {
+    "n": "soccer",
+    "w": 1
+   },
+   {
+    "n": "baseball",
+    "w": 1
+   },
+   {
+    "n": "softball",
+    "w": 1
+   },
+   {
+    "n": "basketball",
+    "w": 1
+   },
+   {
+    "n": "volleyball",
+    "w": 1
+   },
+   {
+    "n": "football",
+    "w": 1
+   },
+   {
+    "n": "cheer",
+    "w": 1
+   },
+   {
+    "n": "gymnastics",
+    "w": 1
+   },
+   {
+    "n": "swimming",
+    "w": 1
+   },
+   {
+    "n": "martial arts",
+    "w": 1
+   },
+   {
+    "n": "boxing",
+    "w": 1
+   },
+   {
+    "n": "disc golf",
+    "w": 1
+   },
+   {
+    "n": "bowling",
+    "w": 1
+   },
+   {
+    "n": "darts",
+    "w": 1
+   },
+   {
+    "n": "poker",
+    "w": 1
+   },
+   {
+    "n": "thrifting",
+    "w": 1
+   },
+   {
+    "n": "antiques",
+    "w": 1
+   },
+   {
+    "n": "genealogy",
+    "w": 1
+   },
+   {
+    "n": "meditation",
+    "w": 1
+   },
+   {
+    "n": "tarot",
+    "w": 1
+   },
+   {
+    "n": "astrology",
+    "w": 1
+   },
+   {
+    "n": "crystals",
+    "w": 1
+   },
+   {
+    "n": "camping coffee",
+    "w": 1
+   },
+   {
+    "n": "sourdough",
+    "w": 1
+   },
+   {
+    "n": "canning",
+    "w": 1
+   },
+   {
+    "n": "foraging",
+    "w": 1
+   },
+   {
+    "n": "mushrooms",
+    "w": 1
+   },
+   {
+    "n": "coding",
+    "w": 1
+   },
+   {
+    "n": "3D printing",
+    "w": 1
+   },
+   {
+    "n": "drones",
+    "w": 1
+   },
+   {
+    "n": "ham radio",
+    "w": 1
+   },
+   {
+    "n": "costume making",
+    "w": 1
+   }
+  ],
+  "role": [
+   {
+    "n": "mom",
+    "w": 1
+   },
+   {
+    "n": "dad",
+    "w": 1
+   },
+   {
+    "n": "grandma",
+    "w": 1
+   },
+   {
+    "n": "grandpa",
+    "w": 1
+   },
+   {
+    "n": "nana",
+    "w": 1
+   },
+   {
+    "n": "papa",
+    "w": 1
+   },
+   {
+    "n": "mimi",
+    "w": 1
+   },
+   {
+    "n": "gigi",
+    "w": 1
+   },
+   {
+    "n": "auntie",
+    "w": 1
+   },
+   {
+    "n": "uncle",
+    "w": 1
+   },
+   {
+    "n": "sister",
+    "w": 1
+   },
+   {
+    "n": "brother",
+    "w": 1
+   },
+   {
+    "n": "daughter",
+    "w": 1
+   },
+   {
+    "n": "son",
+    "w": 1
+   },
+   {
+    "n": "wife",
+    "w": 1
+   },
+   {
+    "n": "husband",
+    "w": 1
+   },
+   {
+    "n": "girlfriend",
+    "w": 1
+   },
+   {
+    "n": "boyfriend",
+    "w": 1
+   },
+   {
+    "n": "fianc\u00e9",
+    "w": 1
+   },
+   {
+    "n": "fianc\u00e9e",
+    "w": 1
+   },
+   {
+    "n": "bride",
+    "w": 1
+   },
+   {
+    "n": "groom",
+    "w": 1
+   },
+   {
+    "n": "maid of honor",
+    "w": 1
+   },
+   {
+    "n": "best man",
+    "w": 1
+   },
+   {
+    "n": "bridesmaid",
+    "w": 1
+   },
+   {
+    "n": "groomsman",
+    "w": 1
+   },
+   {
+    "n": "flower girl",
+    "w": 1
+   },
+   {
+    "n": "ring bearer",
+    "w": 1
+   },
+   {
+    "n": "mom-to-be",
+    "w": 1
+   },
+   {
+    "n": "dad-to-be",
+    "w": 1
+   },
+   {
+    "n": "new mom",
+    "w": 1
+   },
+   {
+    "n": "new dad",
+    "w": 1
+   },
+   {
+    "n": "boy mom",
+    "w": 1
+   },
+   {
+    "n": "girl mom",
+    "w": 1
+   },
+   {
+    "n": "dog mom",
+    "w": 1
+   },
+   {
+    "n": "dog dad",
+    "w": 1
+   },
+   {
+    "n": "cat mom",
+    "w": 1
+   },
+   {
+    "n": "cat dad",
+    "w": 1
+   },
+   {
+    "n": "stepmom",
+    "w": 1
+   },
+   {
+    "n": "stepdad",
+    "w": 1
+   },
+   {
+    "n": "bonus mom",
+    "w": 1
+   },
+   {
+    "n": "godmother",
+    "w": 1
+   },
+   {
+    "n": "godfather",
+    "w": 1
+   },
+   {
+    "n": "best friend",
+    "w": 1
+   },
+   {
+    "n": "bestie",
+    "w": 1
+   },
+   {
+    "n": "coworker",
+    "w": 1
+   },
+   {
+    "n": "boss",
+    "w": 1
+   },
+   {
+    "n": "neighbor",
+    "w": 1
+   },
+   {
+    "n": "teacher bestie",
+    "w": 1
+   },
+   {
+    "n": "twin",
+    "w": 1
+   },
+   {
+    "n": "big sister",
+    "w": 1
+   },
+   {
+    "n": "big brother",
+    "w": 1
+   },
+   {
+    "n": "little sister",
+    "w": 1
+   },
+   {
+    "n": "little brother",
+    "w": 1
+   },
+   {
+    "n": "great grandma",
+    "w": 1
+   },
+   {
+    "n": "first-time grandma",
+    "w": 1
+   },
+   {
+    "n": "empty nester",
+    "w": 1
+   },
+   {
+    "n": "homeschool mom",
+    "w": 1
+   },
+   {
+    "n": "soccer mom",
+    "w": 1
+   },
+   {
+    "n": "hockey mom",
+    "w": 1
+   },
+   {
+    "n": "band mom",
+    "w": 1
+   },
+   {
+    "n": "cheer mom",
+    "w": 1
+   },
+   {
+    "n": "baseball mom",
+    "w": 1
+   },
+   {
+    "n": "football mom",
+    "w": 1
+   },
+   {
+    "n": "dance mom",
+    "w": 1
+   },
+   {
+    "n": "swim mom",
+    "w": 1
+   },
+   {
+    "n": "military wife",
+    "w": 1
+   },
+   {
+    "n": "military mom",
+    "w": 1
+   },
+   {
+    "n": "introvert",
+    "w": 1
+   },
+   {
+    "n": "extrovert",
+    "w": 1
+   },
+   {
+    "n": "night owl",
+    "w": 1
+   },
+   {
+    "n": "morning person",
+    "w": 1
+   },
+   {
+    "n": "plant mom",
+    "w": 1
+   },
+   {
+    "n": "coffee lover",
+    "w": 1
+   },
+   {
+    "n": "book lover",
+    "w": 1
+   },
+   {
+    "n": "cat lady",
+    "w": 1
+   },
+   {
+    "n": "crazy cat lady",
+    "w": 1
+   },
+   {
+    "n": "dog lover",
+    "w": 1
+   },
+   {
+    "n": "horse girl",
+    "w": 1
+   },
+   {
+    "n": "farm girl",
+    "w": 1
+   },
+   {
+    "n": "country girl",
+    "w": 1
+   },
+   {
+    "n": "beach girl",
+    "w": 1
+   },
+   {
+    "n": "mountain man",
+    "w": 1
+   },
+   {
+    "n": "outdoorsman",
+    "w": 1
+   },
+   {
+    "n": "gamer girl",
+    "w": 1
+   },
+   {
+    "n": "nerd",
+    "w": 1
+   },
+   {
+    "n": "birthday girl",
+    "w": 1
+   },
+   {
+    "n": "birthday boy",
+    "w": 1
+   },
+   {
+    "n": "retiree",
+    "w": 1
+   },
+   {
+    "n": "new homeowner",
+    "w": 1
+   },
+   {
+    "n": "graduate",
+    "w": 1
+   },
+   {
+    "n": "senior class",
+    "w": 1
+   },
+   {
+    "n": "freshman",
+    "w": 1
+   }
+  ]
+ },
+ "tones": [
+  "funny",
+  "sarcastic",
+  "pun",
+  "cute",
+  "sentimental",
+  "inspirational",
+  "minimalist",
+  "vintage",
+  "bold typography",
+  "personalized name",
+  "personalized photo",
+  "custom date",
+  "matching set",
+  "inside joke",
+  "affirmation",
+  "motivational",
+  "cozy",
+  "spooky-cute",
+  "patriotic",
+  "faith-based"
+ ],
+ "aesthetics": [
+  "boho",
+  "retro 70s",
+  "groovy",
+  "y2k",
+  "cottagecore",
+  "dark academia",
+  "coquette",
+  "western cowgirl",
+  "coastal grandmother",
+  "mid-century modern",
+  "minimalist line art",
+  "watercolor",
+  "vintage botanical",
+  "pastel kawaii",
+  "grunge",
+  "preppy",
+  "art deco",
+  "Scandinavian",
+  "farmhouse",
+  "tropical",
+  "nautical",
+  "celestial",
+  "mushroom core",
+  "frog core",
+  "neon",
+  "distressed",
+  "hand-lettered",
+  "chalkboard",
+  "pixel art",
+  "stained glass",
+  "cyberpunk",
+  "maximalist",
+  "Memphis 80s",
+  "goblincore",
+  "fairycore",
+  "space age"
+ ],
+ "locations": {
+  "states": [
+   "Alabama",
+   "Alaska",
+   "Arizona",
+   "Arkansas",
+   "California",
+   "Colorado",
+   "Connecticut",
+   "Delaware",
+   "Florida",
+   "Georgia",
+   "Hawaii",
+   "Idaho",
+   "Illinois",
+   "Indiana",
+   "Iowa",
+   "Kansas",
+   "Kentucky",
+   "Louisiana",
+   "Maine",
+   "Maryland",
+   "Massachusetts",
+   "Michigan",
+   "Minnesota",
+   "Mississippi",
+   "Missouri",
+   "Montana",
+   "Nebraska",
+   "Nevada",
+   "New Hampshire",
+   "New Jersey",
+   "New Mexico",
+   "New York",
+   "North Carolina",
+   "North Dakota",
+   "Ohio",
+   "Oklahoma",
+   "Oregon",
+   "Pennsylvania",
+   "Rhode Island",
+   "South Carolina",
+   "South Dakota",
+   "Tennessee",
+   "Texas",
+   "Utah",
+   "Vermont",
+   "Virginia",
+   "Washington",
+   "West Virginia",
+   "Wisconsin",
+   "Wyoming"
+  ],
+  "cities": [
+   "Melbourne FL",
+   "Cocoa Beach",
+   "Titusville",
+   "Palm Bay",
+   "Satellite Beach",
+   "Orlando",
+   "Tampa",
+   "St. Petersburg",
+   "Miami",
+   "Jacksonville",
+   "Key West",
+   "Daytona Beach",
+   "Sarasota",
+   "Naples",
+   "Destin",
+   "Pensacola",
+   "Austin",
+   "Nashville",
+   "Asheville",
+   "Savannah",
+   "Charleston",
+   "New Orleans",
+   "Denver",
+   "Boulder",
+   "Seattle",
+   "Portland",
+   "San Diego",
+   "Chicago",
+   "Boston",
+   "Brooklyn",
+   "Philadelphia",
+   "Pittsburgh",
+   "Detroit",
+   "Minneapolis",
+   "Phoenix",
+   "Scottsdale",
+   "Las Vegas",
+   "Salt Lake City",
+   "Boise",
+   "Anchorage",
+   "Honolulu",
+   "Outer Banks",
+   "Myrtle Beach",
+   "Gulf Shores",
+   "Lake Tahoe",
+   "Cape Cod",
+   "Bar Harbor",
+   "Sedona",
+   "Moab",
+   "Jackson Hole"
+  ],
+  "beaches": [
+   "Cocoa Beach",
+   "Daytona Beach",
+   "Clearwater Beach",
+   "Siesta Key",
+   "Miami Beach",
+   "Myrtle Beach",
+   "Outer Banks",
+   "Gulf Shores",
+   "Destin",
+   "Malibu",
+   "Huntington Beach",
+   "Waikiki",
+   "Cape Cod",
+   "Tybee Island",
+   "Hilton Head",
+   "Virginia Beach",
+   "Ocean City",
+   "Galveston",
+   "South Padre",
+   "Santa Cruz"
+  ]
+ },
+ "products": {
+  "pod": [
+   {
+    "n": "T-shirt",
+    "price": 24,
+    "cost": 13.5,
+    "cat": "apparel"
+   },
+   {
+    "n": "Hoodie",
+    "price": 44,
+    "cost": 28,
+    "cat": "apparel"
+   },
+   {
+    "n": "Crewneck sweatshirt",
+    "price": 38,
+    "cost": 23,
+    "cat": "apparel"
+   },
+   {
+    "n": "Tank top",
+    "price": 22,
+    "cost": 13,
+    "cat": "apparel"
+   },
+   {
+    "n": "Kids tee",
+    "price": 20,
+    "cost": 12,
+    "cat": "kids"
+   },
+   {
+    "n": "Baby onesie",
+    "price": 20,
+    "cost": 12,
+    "cat": "baby"
+   },
+   {
+    "n": "Toddler tee",
+    "price": 20,
+    "cost": 12,
+    "cat": "kids"
+   },
+   {
+    "n": "Mug 11oz",
+    "price": 24,
+    "cost": 9.08,
+    "cat": "drinkware"
+   },
+   {
+    "n": "Mug 15oz",
+    "price": 27,
+    "cost": 10.5,
+    "cat": "drinkware"
+   },
+   {
+    "n": "Travel mug",
+    "price": 28,
+    "cost": 14,
+    "cat": "drinkware"
+   },
+   {
+    "n": "Tumbler 20oz",
+    "price": 32,
+    "cost": 17,
+    "cat": "drinkware"
+   },
+   {
+    "n": "Water bottle",
+    "price": 30,
+    "cost": 17,
+    "cat": "drinkware"
+   },
+   {
+    "n": "Can cooler",
+    "price": 14,
+    "cost": 7,
+    "cat": "drinkware"
+   },
+   {
+    "n": "Poster 18x24",
+    "price": 39,
+    "cost": 10.72,
+    "cat": "wall"
+   },
+   {
+    "n": "Canvas 12x16",
+    "price": 69,
+    "cost": 20.45,
+    "cat": "wall"
+   },
+   {
+    "n": "Canvas 16x20",
+    "price": 89,
+    "cost": 26,
+    "cat": "wall"
+   },
+   {
+    "n": "Framed poster",
+    "price": 59,
+    "cost": 30,
+    "cat": "wall"
+   },
+   {
+    "n": "Metal sign",
+    "price": 39,
+    "cost": 20,
+    "cat": "wall"
+   },
+   {
+    "n": "Acrylic print",
+    "price": 59,
+    "cost": 30,
+    "cat": "wall"
+   },
+   {
+    "n": "Wall clock",
+    "price": 36,
+    "cost": 20,
+    "cat": "home"
+   },
+   {
+    "n": "Throw pillow",
+    "price": 32,
+    "cost": 17,
+    "cat": "home"
+   },
+   {
+    "n": "Fleece blanket 50x60",
+    "price": 69,
+    "cost": 22.34,
+    "cat": "home"
+   },
+   {
+    "n": "Sherpa blanket",
+    "price": 79,
+    "cost": 34,
+    "cat": "home"
+   },
+   {
+    "n": "Doormat",
+    "price": 36,
+    "cost": 20,
+    "cat": "home"
+   },
+   {
+    "n": "Bath mat",
+    "price": 30,
+    "cost": 16,
+    "cat": "home"
+   },
+   {
+    "n": "Shower curtain",
+    "price": 49,
+    "cost": 28,
+    "cat": "home"
+   },
+   {
+    "n": "Kitchen towel",
+    "price": 18,
+    "cost": 9,
+    "cat": "home"
+   },
+   {
+    "n": "Apron",
+    "price": 28,
+    "cost": 15,
+    "cat": "home"
+   },
+   {
+    "n": "Coaster set",
+    "price": 24,
+    "cost": 12,
+    "cat": "home"
+   },
+   {
+    "n": "Candle",
+    "price": 28,
+    "cost": 15,
+    "cat": "home"
+   },
+   {
+    "n": "Christmas ornament",
+    "price": 16,
+    "cost": 7,
+    "cat": "seasonal"
+   },
+   {
+    "n": "Holiday stocking",
+    "price": 28,
+    "cost": 15,
+    "cat": "seasonal"
+   },
+   {
+    "n": "Wrapping paper",
+    "price": 20,
+    "cost": 11,
+    "cat": "seasonal"
+   },
+   {
+    "n": "Greeting card",
+    "price": 7,
+    "cost": 3,
+    "cat": "paper"
+   },
+   {
+    "n": "Notebook",
+    "price": 18,
+    "cost": 9,
+    "cat": "paper"
+   },
+   {
+    "n": "Hardcover journal",
+    "price": 24,
+    "cost": 12,
+    "cat": "paper"
+   },
+   {
+    "n": "Wall calendar",
+    "price": 28,
+    "cost": 15,
+    "cat": "paper"
+   },
+   {
+    "n": "Sticker",
+    "price": 5,
+    "cost": 2.2,
+    "cat": "small"
+   },
+   {
+    "n": "Sticker sheet",
+    "price": 8,
+    "cost": 3.5,
+    "cat": "small"
+   },
+   {
+    "n": "Magnet",
+    "price": 8,
+    "cost": 3.5,
+    "cat": "small"
+   },
+   {
+    "n": "Keychain",
+    "price": 12,
+    "cost": 5.5,
+    "cat": "small"
+   },
+   {
+    "n": "Enamel-style pin",
+    "price": 12,
+    "cost": 6,
+    "cat": "small"
+   },
+   {
+    "n": "Phone case",
+    "price": 24,
+    "cost": 12,
+    "cat": "tech"
+   },
+   {
+    "n": "Mouse pad",
+    "price": 16,
+    "cost": 8,
+    "cat": "tech"
+   },
+   {
+    "n": "Desk mat",
+    "price": 29,
+    "cost": 15,
+    "cat": "tech"
+   },
+   {
+    "n": "Laptop sleeve",
+    "price": 32,
+    "cost": 17,
+    "cat": "tech"
+   },
+   {
+    "n": "Tote bag",
+    "price": 22,
+    "cost": 12,
+    "cat": "bag"
+   },
+   {
+    "n": "Backpack",
+    "price": 49,
+    "cost": 30,
+    "cat": "bag"
+   },
+   {
+    "n": "Socks",
+    "price": 18,
+    "cost": 10,
+    "cat": "apparel"
+   },
+   {
+    "n": "Baseball cap",
+    "price": 26,
+    "cost": 15,
+    "cat": "apparel"
+   },
+   {
+    "n": "Beanie",
+    "price": 22,
+    "cost": 12,
+    "cat": "apparel"
+   },
+   {
+    "n": "Pet bandana",
+    "price": 16,
+    "cost": 8,
+    "cat": "pet"
+   },
+   {
+    "n": "Pet bowl",
+    "price": 24,
+    "cost": 13,
+    "cat": "pet"
+   },
+   {
+    "n": "Pet bed",
+    "price": 59,
+    "cost": 32,
+    "cat": "pet"
+   },
+   {
+    "n": "Jigsaw puzzle",
+    "price": 29,
+    "cost": 15,
+    "cat": "game"
+   },
+   {
+    "n": "Playing cards",
+    "price": 16,
+    "cost": 8,
+    "cat": "game"
+   },
+   {
+    "n": "Beach towel",
+    "price": 36,
+    "cost": 20,
+    "cat": "summer"
+   },
+   {
+    "n": "Flip-flops",
+    "price": 26,
+    "cost": 14,
+    "cat": "summer"
+   }
+  ],
+  "digital": [
+   {
+    "n": "Printable wall art",
+    "price": 8,
+    "fit": "any"
+   },
+   {
+    "n": "Printable planner",
+    "price": 9,
+    "fit": "any"
+   },
+   {
+    "n": "Digital planner (GoodNotes)",
+    "price": 12,
+    "fit": "any"
+   },
+   {
+    "n": "SVG cut file bundle",
+    "price": 5,
+    "fit": "any"
+   },
+   {
+    "n": "Sublimation PNG",
+    "price": 4,
+    "fit": "any"
+   },
+   {
+    "n": "Canva template",
+    "price": 12,
+    "fit": "event"
+   },
+   {
+    "n": "Wedding invitation template",
+    "price": 14,
+    "fit": "wedding"
+   },
+   {
+    "n": "Wedding signs bundle",
+    "price": 18,
+    "fit": "wedding"
+   },
+   {
+    "n": "Party printables kit",
+    "price": 10,
+    "fit": "event"
+   },
+   {
+    "n": "Baby shower games",
+    "price": 7,
+    "fit": "baby"
+   },
+   {
+    "n": "Bridal shower games",
+    "price": 7,
+    "fit": "wedding"
+   },
+   {
+    "n": "Bingo cards",
+    "price": 6,
+    "fit": "event"
+   },
+   {
+    "n": "Printable greeting card",
+    "price": 4,
+    "fit": "any"
+   },
+   {
+    "n": "Coloring pages",
+    "price": 5,
+    "fit": "kids"
+   },
+   {
+    "n": "Kids worksheets",
+    "price": 6,
+    "fit": "kids"
+   },
+   {
+    "n": "Chore chart",
+    "price": 5,
+    "fit": "kids"
+   },
+   {
+    "n": "Recipe cards",
+    "price": 6,
+    "fit": "any"
+   },
+   {
+    "n": "Budget spreadsheet",
+    "price": 9,
+    "fit": "any"
+   },
+   {
+    "n": "Habit tracker",
+    "price": 5,
+    "fit": "any"
+   },
+   {
+    "n": "Resume template",
+    "price": 10,
+    "fit": "career"
+   },
+   {
+    "n": "Social media templates",
+    "price": 15,
+    "fit": "career"
+   },
+   {
+    "n": "Business card template",
+    "price": 8,
+    "fit": "career"
+   },
+   {
+    "n": "Clipart bundle",
+    "price": 7,
+    "fit": "any"
+   },
+   {
+    "n": "Digital stickers",
+    "price": 5,
+    "fit": "any"
+   },
+   {
+    "n": "Phone wallpaper pack",
+    "price": 3,
+    "fit": "any"
+   },
+   {
+    "n": "Gift certificate template",
+    "price": 5,
+    "fit": "any"
+   },
+   {
+    "n": "Teacher classroom decor",
+    "price": 8,
+    "fit": "teacher"
+   },
+   {
+    "n": "Trivia game",
+    "price": 7,
+    "fit": "event"
+   }
+  ]
+ },
+ "trend_candidates": [
+  "Pickleball",
+  "Padel",
+  "Sourdough",
+  "Birdwatching",
+  "Cold_plunge",
+  "Disc_golf",
+  "Bouldering",
+  "Axe_throwing",
+  "Mahjong",
+  "Crochet",
+  "Cottagecore",
+  "Van_life",
+  "Homesteading",
+  "Foraging",
+  "Kombucha",
+  "Matcha",
+  "Pottery",
+  "Embroidery",
+  "Journaling",
+  "Bullet_journal",
+  "Terrarium",
+  "Bonsai",
+  "Hydroponics",
+  "Beekeeping",
+  "Rucking",
+  "Trail_running",
+  "Gravel_cycling",
+  "Kayak_fishing",
+  "Overlanding",
+  "Sim_racing",
+  "Lego_Technic",
+  "Tarot",
+  "Astrology",
+  "Crystal_healing",
+  "Sound_bath",
+  "Pilates",
+  "Barre_(exercise)",
+  "Hot_yoga",
+  "Spikeball",
+  "Cornhole",
+  "Charcuterie",
+  "Tiny_house_movement",
+  "Minimalism",
+  "Thrifting",
+  "Upcycling",
+  "Vinyl_revival",
+  "Film_photography",
+  "Polaroid",
+  "Bird_feeder",
+  "Chicken_keeping"
+ ],
+ "trademark_blocklist": [
+  "adidas",
+  "akc",
+  "barbie",
+  "beyonce",
+  "bluey",
+  "callaway",
+  "chevy",
+  "coca",
+  "crayola",
+  "cricut",
+  "crossfit",
+  "crufts",
+  "disney",
+  "dunder mifflin",
+  "dunkin",
+  "eras tour",
+  "fifa",
+  "ford",
+  "fortnite",
+  "friends tv",
+  "garfield",
+  "ghibli",
+  "grey's anatomy",
+  "grinch",
+  "harley",
+  "harry potter",
+  "hello kitty",
+  "hogwarts",
+  "hot wheels",
+  "jedi",
+  "jeep",
+  "john deere",
+  "kennel club",
+  "lego",
+  "march madness",
+  "mario",
+  "marvel",
+  "minecraft",
+  "minions",
+  "mlb",
+  "nascar",
+  "nba",
+  "ncaa",
+  "nfl",
+  "nhl",
+  "nike",
+  "nintendo",
+  "olympic",
+  "paw patrol",
+  "peanuts",
+  "peloton",
+  "pepsi",
+  "pixar",
+  "play-doh",
+  "pokemon",
+  "polaroid",
+  "roblox",
+  "sanrio",
+  "scooby",
+  "snoopy",
+  "stanley cup",
+  "stanley tumbler",
+  "star wars",
+  "starbucks",
+  "stranger things",
+  "super bowl",
+  "swiftie",
+  "taylor made",
+  "taylor swift",
+  "the office",
+  "titleist",
+  "ufc",
+  "ugg",
+  "westminster",
+  "world series",
+  "wwe",
+  "yellowstone",
+  "yeti",
+  "yoda",
+  "zelda"
+ ]
+}
