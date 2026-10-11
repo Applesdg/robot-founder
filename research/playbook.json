@@ -1,5 +1,5 @@
 {
- "version": "1.9.0",
+ "version": "1.10.0",
  "updated": "2026-10-11",
  "shop": {
   "name": "NiftyNestGifts",
@@ -327,6 +327,11 @@
    "date": "2026-10-11",
    "source": "Dom",
    "lesson": "Printify republish with 'Shipping profile' ON can reassign the Etsy listing to Printify's 'Standard: SPOKE...' profile (happened on Fairway). Keep publish setting 'Shipping profile' OFF; after every republish the flags review verifies the Etsy profile is 'NiftyNestGifts' ($7.29/$3.09)."
+  },
+  {
+   "date": "2026-10-11",
+   "source": "Dom",
+   "lesson": "New mugs default to blueprint 478 (SPOKE, provider 1) with both 11oz and 15oz white variants in one listing; two-sided print file 2475x1155. Printify cannot change an existing product's blueprint."
   }
  ],
  "personalization": {
@@ -468,5 +473,40 @@
   "2. Publish/republish from Printify (selected fields)",
   "3. Only afterwards change in Etsy what Printify cannot sync: shipping profile assignment if needed, listing settings (Renewal Automatic, What tools are used = An AI generator), shop settings (Offsite Ads)",
   "Never upload/edit photos, designs, prices or descriptions in Etsy."
- ]
+ ],
+ "products": {
+  "mug_default": {
+   "blueprint_id": 478,
+   "print_provider_id": 1,
+   "provider": "SPOKE Custom Products (ship-from 30093 GA)",
+   "variants": {
+    "11oz": {
+     "variant_id": 65216,
+     "cost": 6.57,
+     "ship_us": [
+      7.29,
+      3.09
+     ]
+    },
+    "15oz": {
+     "variant_id": 104692,
+     "cost": 8.62,
+     "ship_us": [
+      9.39,
+      3.99
+     ]
+    }
+   },
+   "print_area_px": [
+    2475,
+    1155
+   ],
+   "two_sided": true,
+   "prices": {
+    "11oz": 16.49,
+    "15oz": 19.99
+   },
+   "price_note": "Costs read from Printify test draft 2026-10-11. At $15.99 the 478 11oz worst case is $3.96 (< $4 floor) -> $16.49 ($4.35) pending Dom; 15oz $19.99 = $4.61 worst case. Legacy live listings stay on blueprint 68 (cost $6.44) at $15.99."
+  }
+ }
 }

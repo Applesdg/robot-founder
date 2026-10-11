@@ -1,4 +1,4 @@
-# NiftyNestGifts AI Founder Playbook v1.9.0 (2026-10-11)
+# NiftyNestGifts AI Founder Playbook v1.10.0 (2026-10-11)
 
 Machine-readable source: research/playbook.json.
 
@@ -349,6 +349,44 @@ Machine-readable source: research/playbook.json.
  "Never upload/edit photos, designs, prices or descriptions in Etsy."
 ]
 ```
+## products
+```json
+{
+ "mug_default": {
+  "blueprint_id": 478,
+  "print_provider_id": 1,
+  "provider": "SPOKE Custom Products (ship-from 30093 GA)",
+  "variants": {
+   "11oz": {
+    "variant_id": 65216,
+    "cost": 6.57,
+    "ship_us": [
+     7.29,
+     3.09
+    ]
+   },
+   "15oz": {
+    "variant_id": 104692,
+    "cost": 8.62,
+    "ship_us": [
+     9.39,
+     3.99
+    ]
+   }
+  },
+  "print_area_px": [
+   2475,
+   1155
+  ],
+  "two_sided": true,
+  "prices": {
+   "11oz": 16.49,
+   "15oz": 19.99
+  },
+  "price_note": "Costs read from Printify test draft 2026-10-11. At $15.99 the 478 11oz worst case is $3.96 (< $4 floor) -> $16.49 ($4.35) pending Dom; 15oz $19.99 = $4.61 worst case. Legacy live listings stay on blueprint 68 (cost $6.44) at $15.99."
+ }
+}
+```
 ## Lessons
 - 2026-10-11 (Dom): Shop is a general gift store, not dog-focused.
 - 2026-10-11 (Dom): Always free US shipping, baked into price; keep 30% margin floor.
@@ -389,3 +427,4 @@ Machine-readable source: research/playbook.json.
 - 2026-10-11 (Dom): Shipping = Printify Standard profile published from Printify (publish setting 'Shipping profile' ON), not a custom Etsy profile. [SUPERSEDED: 2026-10-11: shipping profile publish setting OFF; Etsy 'NiftyNestGifts' paid profile]
 - 2026-10-11 (Dom): Order of operations: all updates in Printify first, publish from Printify, then change in Etsy only what Printify cannot sync.
 - 2026-10-11 (Dom): Printify republish with 'Shipping profile' ON can reassign the Etsy listing to Printify's 'Standard: SPOKE...' profile (happened on Fairway). Keep publish setting 'Shipping profile' OFF; after every republish the flags review verifies the Etsy profile is 'NiftyNestGifts' ($7.29/$3.09).
+- 2026-10-11 (Dom): New mugs default to blueprint 478 (SPOKE, provider 1) with both 11oz and 15oz white variants in one listing; two-sided print file 2475x1155. Printify cannot change an existing product's blueprint.
