@@ -1,0 +1,155 @@
+# NiftyNestGifts Playbook v1.0.0 (2026-10-11)
+
+Machine-readable source: `research/playbook.json` (the worker loads it every run, injects it into xAI prompts, enforces checkable rules in the grader). New lessons are appended via the worker's signed `/api/lessons` endpoint and merged on load.
+
+## Shop
+```json
+{
+ "name": "NiftyNestGifts",
+ "positioning": "General gift store (not pet-focused): occasions, hobbies, professions, family roles, locations; pets are one category among many."
+}
+```
+## Pricing
+```json
+{
+ "free_us_shipping": true,
+ "shipping_baked_into_price": true,
+ "margin_floor": 0.3,
+ "note": "Price covers Printify item + US first-item shipping + Etsy fees and keeps >=30% margin."
+}
+```
+## Timing
+```json
+{
+ "line": "Made to order: ships in 2-7 business days (Printify production), then 2-5 business days US delivery. Free US shipping.",
+ "sources": [
+  {
+   "claim": "Printify production time 2-7 business days",
+   "url": "https://help.printify.com/hc/en-us/articles/4483629751825-What-are-Printify-s-production-times-like"
+  },
+  {
+   "claim": "Printify standard US shipping 2-5 business days",
+   "url": "https://help.printify.com/hc/en-us/articles/4483626155409-What-are-Printify-s-shipping-options"
+  }
+ ]
+}
+```
+## Description
+```json
+{
+ "must_include": [
+  "Made to order: ships in 2-7 business days",
+  "production partner, Printify"
+ ],
+ "banned_regex": [
+  "\\bAI\\b",
+  "AI-assisted",
+  "artificial intelligence",
+  "generated"
+ ],
+ "note": "No AI wording in descriptions; the Etsy AI flag is set separately in listing settings."
+}
+```
+## Production Partner
+```json
+{
+ "name": "Printify",
+ "location": "United States",
+ "description": "Print-on-demand partner prints and ships our original designs"
+}
+```
+## Title
+```json
+{
+ "pattern": "<Design phrase> <Product type>, <Occasion/recipient> Gift, <Style> <Synonym product word> <Size>",
+ "min": 70,
+ "max": 140,
+ "keyword_within": 40,
+ "no_repeated_words": true,
+ "product_word_once": true,
+ "title_case": true,
+ "example": "Sleigh All Day Coffee Mug, Boho Christmas Gift, Eucalyptus Holiday Cup 11oz"
+}
+```
+## Tags
+```json
+{
+ "count": 13,
+ "max_len": 20,
+ "unique": true
+}
+```
+## Photos
+```json
+{
+ "min": 5,
+ "main_photo": "styled lifestyle scene with background (product in use, liquid visible, seasonal props) - NEVER a plain white mockup as photo 1; white mockups go later in the gallery",
+ "front_mockup_in_gallery": true
+}
+```
+## Design
+```json
+{
+ "print_ready": "Create at the provider print-area size (11oz mug: 2700x1120, white background)",
+ "text_spelled_exactly": true,
+ "no_trademarks": true,
+ "no_real_people": true
+}
+```
+## Consistency
+```json
+{
+ "rule": "Every lifestyle photo/video is generated FROM the real Printify mockup as reference/first frame. Keep the exact product: plain glossy white 11oz ceramic mug, C-handle, identical design, text and colors. Never generic, speckled, colored or different mugs.",
+ "qa": "xAI vision compares each generated asset to the mockup (same shape, handle, design, text spelled identically); mismatches are rejected before use."
+}
+```
+## Lifestyle
+```json
+{
+ "rules": [
+  "Show the product in use (liquid in mugs, steam ok)",
+  "Seasonal props that match the design",
+  "No visible brand names or logos on props",
+  "Warm, eye-catching, uncluttered background"
+ ]
+}
+```
+## Video
+```json
+{
+ "recipe": [
+  "Animate from a still that already shows the FINAL scene (e.g. liquid already in the mug)",
+  "Locked-off camera - no pans, zooms or orbits",
+  "Only subtle motion: steam, twinkle lights, light flicker",
+  "Big camera moves cause morphing (handle vanished, marshmallows appeared) - never use them"
+ ],
+ "model": "grok-imagine-video",
+ "duration_s": 5,
+ "enabled_by_default": false
+}
+```
+## Branding
+```json
+{
+ "banner": "Etsy shop banner 3360x840 with all text in the center band (safe on mobile crop)"
+}
+```
+## Etsy Post Publish Checklist
+```json
+[
+ "Shipping profile: Free US Shipping - Printify",
+ "Production partner: Printify",
+ "AI disclosure flag set in listing settings",
+ "Renewal: Automatic",
+ "Photo 1 = lifestyle scene (upload if channel did not)"
+]
+```
+## Lessons
+- **2026-10-11** (Dom): Shop is a general gift store, not dog-focused.
+- **2026-10-11** (Dom): Always free US shipping, baked into price; keep 30% margin floor.
+- **2026-10-11** (Etsy): Etsy flagged repeated title words ('christmas', 'mug'): never repeat words; product word once with synonyms.
+- **2026-10-11** (Dom): Remove AI wording from descriptions; AI disclosure is a listing setting only.
+- **2026-10-11** (QA): Video with big camera moves morphed the product (handle vanished, marshmallows appeared): use locked-off camera, subtle motion only, start from final-scene still.
+- **2026-10-11** (Dom): Product consistency across ALL images/videos: generate from the real Printify mockup; exact plain glossy white 11oz mug, C-handle, identical design; QA-reject mismatches.
+- **2026-10-11** (Dom): Main (first) listing photo must be a styled lifestyle scene, never a plain white mockup.
+- **2026-10-11** (Dom): Listings need 5-10 photos; Etsy auto-renew on.
