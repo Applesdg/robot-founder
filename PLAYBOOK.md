@@ -1,6 +1,6 @@
-# NiftyNestGifts Playbook v1.1.0 (2026-10-11)
+# NiftyNestGifts Playbook v1.2.0 (2026-10-11)
 
-Machine-readable source: `research/playbook.json` (the worker loads it every run, injects it into xAI prompts, enforces checkable rules in the grader). New lessons are appended via the worker's signed `/api/lessons` endpoint and merged on load.
+Machine-readable source: `research/playbook.json` (loaded by the worker every run, injected into xAI prompts, enforced in the grader where checkable). Runtime lessons are appended via the signed `/api/lessons` endpoint.
 
 ## Shop
 ```json
@@ -14,12 +14,18 @@ Machine-readable source: `research/playbook.json` (the worker loads it every run
 {
  "free_us_shipping": true,
  "shipping_baked_into_price": true,
- "margin_floor": 0.3,
- "note": "Price covers Printify item + US first-item shipping + Etsy fees and keeps >=30% margin.",
- "shipping_charge_mug_11oz": 7.29,
- "offsite_ads_pct": 0.12,
- "worst_case_rule": "margin after Etsy fees, item, $7.29 free-shipping charge AND 12% offsite ads must stay >= 30%; otherwise raise price",
- "printify_free_shipping_toggle": "set via sales_channel_properties.free_shipping=true"
+ "strategy": "Price competitively: at or slightly below competitor benchmarks (research/competitors.json). Margins don't need to be high.",
+ "min_profit_worst_case": 5.5,
+ "worst_case_includes": [
+  "Etsy fees 6.5% + 3% + $0.45",
+  "Printify item cost",
+  "Printify free Standard shipping charge (mug $7.29)",
+  "Etsy Offsite Ads 12%"
+ ],
+ "example": "Mug 11oz $25.99 -> worst-case profit $6.22",
+ "shopify_margin_floor": 0.3,
+ "personalized_price_uplift": 0.2,
+ "printify_free_shipping_toggle": "sales_channel_properties.free_shipping=true (API)"
 }
 ```
 ## Timing
@@ -146,8 +152,29 @@ Machine-readable source: `research/playbook.json` (the worker loads it every run
  "AI disclosure flag set in listing settings",
  "Renewal: Automatic",
  "Photo 1 = lifestyle scene (upload if channel did not)",
- "Etsy Offsite Ads ON (shop setting; Printify API cannot set it)"
+ "Etsy Offsite Ads ON (shop setting; Printify API cannot set it)",
+ "Personalization: enable in Printify editor (instructions for buyer) and republish"
 ]
+```
+## Personalization
+```json
+{
+ "enabled_every_release": true,
+ "api": "Printify accepts sales_channel_properties.personalisation but its schema is undocumented; until confirmed, Dom enables 'Personalization' in the Printify editor (post-publish checklist).",
+ "pricing": "personalized option ~20% higher, still >= $5.50 worst-case profit",
+ "pipeline": [
+  "Personalized orders are detected (on-hold) by the hourly worker",
+  "Custom design generated from the buyer request + playbook rules; consistency QA vs the original mockup",
+  "Proof emailed to Dom (queued until email provider) + shown in Live Ops approvals",
+  "On approval: new Printify order with the custom design, original on-hold order cancelled"
+ ]
+}
+```
+## Orders
+```json
+{
+ "delayed_orders": "Dom set Printify to auto-send delayed orders to production; the worker flags any held/on-hold orders in the daily digest."
+}
 ```
 ## Lessons
 - **2026-10-11** (Dom): Shop is a general gift store, not dog-focused.
@@ -160,3 +187,6 @@ Machine-readable source: `research/playbook.json` (the worker loads it every run
 - **2026-10-11** (Dom): Listings need 5-10 photos; Etsy auto-renew on.
 - **2026-10-11** (Dom): Enable Printify free Standard shipping ($7.29) and Etsy Offsite Ads (12%) on every release; price so worst-case margin (incl. ads) stays >= 30% (mug $29.99).
 - **2026-10-11** (Dom): Every lifestyle photo/video must start from the real Printify mockup; automated vision QA rejects mismatched mugs.
+- **2026-10-11** (Dom): Price competitively at/slightly below benchmarks; margins don't need to be high; floor = $5-6 worst-case profit (incl. 12% offsite ads). Sleigh All Day stays $25.99.
+- **2026-10-11** (Dom): Enable personalization on every release (~20% higher price for personalized); proofs need Dom approval before production.
+- **2026-10-11** (Dom): Printify delayed orders auto-send to production; flag held orders in the digest.
