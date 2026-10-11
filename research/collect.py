@@ -20,7 +20,7 @@ def views(article):
     except Exception as e:return None
     time.sleep(0.2);return {'article':article,'url':'https://en.wikipedia.org/wiki/'+article,'api':u,'monthly':[[i['timestamp'][:6],i['views']] for i in items]}
 BREEDS=['French_Bulldog','Labrador_Retriever','Golden_Retriever','German_Shepherd','Dachshund','Poodle','Beagle','Rottweiler','German_Shorthaired_Pointer','Bulldog','Cane_Corso','Cavalier_King_Charles_Spaniel','Yorkshire_Terrier','Australian_Shepherd','Pembroke_Welsh_Corgi','Siberian_Husky','Pug','Border_Collie','Chihuahua','Shih_Tzu','Maine_Coon','Ragdoll_cat','British_Shorthair','Siamese_cat','Bengal_cat']
-SEASON=['Christmas_ornament','Halloween','Valentine%27s_Day','Mother%27s_Day','Pet_memorial','Portrait_painting','Print_on_demand']
+SEASON=['Christmas','Christmas_ornament','Thanksgiving','Hanukkah','New_Year%27s_Eve','Valentine%27s_Day','Mother%27s_Day','Father%27s_Day','Halloween','Graduation_ceremony']
 def summarize(v):
     m=v['monthly'];last12=[x[1] for x in m[-12:]];prev12=[x[1] for x in m[-24:-12]]
     avg=statistics.mean(last12) if last12 else 0;yoy=(sum(last12)/sum(prev12)-1) if prev12 and sum(prev12) else None
@@ -72,8 +72,46 @@ for a in tax['trend_candidates']:
     s_['blocked']=blocked;s_.pop('monthly',None);trends.append(s_)
 trends.sort(key=lambda x:-(x['yoy'] or -9))
 out['trends']={'rule':'auto-add a niche when 12-month Wikipedia views ≥ 500/mo and YoY ≥ 0% (Wikipedia overall fell ~20% YoY, so flat = relative growth). Blocked if trademark.','items':trends,'auto_added':[t['niche'] for t in trends if t['auto_add']]}
+# ---- GENERAL niche signals across all NiftyNestGifts categories (real Wikipedia pageviews; ranking score is OUR heuristic) ----
+WIKI={'mom':'Mother','dad':'Father','grandma':'Grandmother','grandpa':'Grandfather','wife':'Wife','husband':'Husband','sister':'Sister','brother':'Brother','daughter':'Daughter','son':'Son','aunt':'Aunt','uncle':'Uncle','best friend':'Best_friend','bride':'Bride','teacher':'Teacher','nurse':'Nurse','doctor':'Physician','firefighter':'Firefighter','police officer':'Police_officer','electrician':'Electrician','engineer':'Engineer','lawyer':'Lawyer','chef':'Chef','accountant':'Accountant','dentist':'Dentist','pharmacist':'Pharmacist','mechanic':'Mechanic','farmer':'Farmer','pilot':'Aircraft_pilot','veterinarian':'Veterinarian','fishing':'Fishing','fly fishing':'Fly_fishing','golf':'Golf','gaming':'Video_game','gardening':'Gardening','camping':'Camping','coffee':'Coffee','books':'Book','reading':'Reading','hiking':'Hiking','knitting':'Knitting','crochet':'Crochet','baking':'Baking','yoga':'Yoga','pickleball':'Pickleball','running':'Running','cycling':'Cycling','hunting':'Hunting','birdwatching':'Birdwatching','photography':'Photography','wine':'Wine','beer':'Beer','tea':'Tea','cars':'Car','music':'Music','guitar':'Guitar','painting':'Painting','travel':'Travel','soccer':'Association_football','basketball':'Basketball','baseball':'Baseball','football':'American_football'}
+OCC_WIKI={'birthday':'Birthday','wedding':'Wedding','anniversary':'Wedding_anniversary','graduation':'Graduation_ceremony','retirement':'Retirement','baby shower':'Baby_shower','christmas':'Christmas','thanksgiving':'Thanksgiving','hanukkah':'Hanukkah','valentine':'Valentine%27s_Day','mother':'Mother%27s_Day','father':'Father%27s_Day','halloween':'Halloween','easter':'Easter','teacher appreciation':'Teacher_Appreciation_Week','new year':'New_Year%27s_Eve','housewarming':'Housewarming_party','bachelorette':'Bachelorette_party'}
+HUMOR=['Humour','Sarcasm','Pun','Dad_joke']
+def art(name,m=WIKI):
+    k=name.lower();return m.get(k) or next((v for kk,v in m.items() if kk in k),None) or (name[:1].upper()+name[1:]).replace(' ','_')
+cat_items=[]
+for cat,label in (('profession','professions'),('hobby','hobbies'),('role','family roles')):
+    for it in tax['audiences'][cat][:14]:cat_items.append((label,it['n'],art(it['n'])))
+occ=sorted(tax['occasions'],key=lambda x:(((x.get('month') or 99)-today.month)%12 if x.get('month') else 6, -x.get('w',1)))
+for o in occ[:22]:cat_items.append(('holidays & occasions',o['n'],art(o['n'],OCC_WIKI)))
+for h in HUMOR:cat_items.append(('humor',h.replace('_',' ').lower(),h))
+for b in out['breeds'][:6]:cat_items.append(('pets',b['article'].replace('_',' '),b['article']))
+seen=set();niches=[];mon=today.month
+for label,name,a in cat_items:
+    if a in seen:continue
+    seen.add(a);v=next(({**x} for x in out['breeds'] if x['article']==a),None) or views(a)
+    if not v or 'monthly' not in v:continue
+    s_=summarize(v) if 'avg_monthly_12m' not in v else v
+    nxt=[(mon+i-1)%12+1 for i in range(3)];m12=s_['monthly'][-12:];up=[x[1] for x in m12 if int(x[0][4:]) in nxt]
+    sr=round(min(3,max(.5,(sum(up)/len(up))/(s_['avg_monthly_12m'] or 1))),2) if up else 1.0
+    niches.append({'category':label,'niche':name,'article':a,'url':s_['url'],'api':s_['api'],'avg_monthly_12m':s_['avg_monthly_12m'],'yoy':s_['yoy'],'peak_month':s_['peak_month'],'monthly':s_['monthly'][-24:],'season_ratio':sr})
+CW={'pets':.6}
+for n in niches:
+    cm=max(x['avg_monthly_12m'] for x in niches if x['category']==n['category']) or 1
+    n['score']=round((n['avg_monthly_12m']/cm)**.5*n['season_ratio']*CW.get(n['category'],1),3)
+niches.sort(key=lambda x:-x['score'])
+out['niches']=niches;out['niche_method']='Score = sqrt(views / top views in its category) x season ratio (last-year views for the coming 3 months / 12-month average, capped 0.5-3) x category weight (pets 0.6, others 1). Our heuristic, labeled. Wikipedia pageviews = public interest proxy, NOT sales. Keyword volumes shown are third-party ESTIMATES with links.'
+out['caveats']=['Wikipedia pageviews measure curiosity, not purchases; overall Wikipedia traffic fell in 2025-26, so compare niches relative to each other.','Niche score is our heuristic (interest x upcoming-season boost), not data.','No sales numbers are claimed; Etsy keyword volumes are third-party estimates with links and access dates.']
+PRODS=['Mug 11oz','Poster 18x24','Canvas 12x16','Fleece blanket 50x60']
+gen=[]
+for i,n in enumerate([x for x in niches if x['category']!='pets'][:9]):
+    nm=n['niche'].title();prod=PRODS[i%4];kw=f"{n['niche']} gift" if n['category']!='holidays & occasions' else f"{n['niche']} gift idea"
+    gen.append({'title':f"{nm} Gift {prod.split(' ')[0]} — Original Illustrated Design",'product':prod,'price':ECON[prod],'price_basis':'economics.js POD variant price','keyword':kw.lower(),'kind':'general',
+      'why':f"{n['category'].title()}: '{n['niche']}' ~{n['avg_monthly_12m']:,} Wikipedia views/mo (real interest proxy), season ratio {n['season_ratio']} for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
+      'brief':f"Original illustrated {n['niche']} design with short witty phrase, cohesive house palette, gift-ready.",'prompt':f"original flat illustration celebrating {n['niche']}, warm palette, clean composition, room for short phrase, no logos or trademarks",
+      'sources':['etsy_holiday','etsy_fw25'],'mockup':'placeholder','category':n['category']})
+out['ideas']=gen+ideas[:2]
 comp=json.load(open(os.path.join(HERE,'competitors.json')));age=(today-datetime.date.fromisoformat(comp['reviewed'])).days
 for b in comp['benchmarks']:b['position']='above range' if b['ours']>b['high'] else 'below range' if b['ours']<b['low'] else 'within range'
 comp['age_days']=age;comp['stale']=age>60;out['competitors']=comp
 json.dump(out,open(os.path.join(HERE,'market.json'),'w'),indent=1)
-print('breeds',len(out['breeds']),'seasonal',len(out['seasonal']),'ideas',len(ideas))
+print('niches',len(out['niches']),'breeds',len(out['breeds']),'seasonal',len(out['seasonal']),'ideas',len(ideas))

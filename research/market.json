@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-11T16:32:45+00:00",
+ "generated": "2026-10-11T18:03:55+00:00",
  "window": [
   "2024-09-01",
   "2026-09-30"
@@ -2809,6 +2809,116 @@
  ],
  "seasonal": [
   {
+   "article": "Christmas",
+   "url": "https://en.wikipedia.org/wiki/Christmas",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Christmas/monthly/2024090100/2026093000",
+   "monthly": [
+    [
+     "202409",
+     68325
+    ],
+    [
+     "202410",
+     103847
+    ],
+    [
+     "202411",
+     210651
+    ],
+    [
+     "202412",
+     797755
+    ],
+    [
+     "202501",
+     134215
+    ],
+    [
+     "202502",
+     49771
+    ],
+    [
+     "202503",
+     51372
+    ],
+    [
+     "202504",
+     65301
+    ],
+    [
+     "202505",
+     44347
+    ],
+    [
+     "202506",
+     39297
+    ],
+    [
+     "202507",
+     38854
+    ],
+    [
+     "202508",
+     47456
+    ],
+    [
+     "202509",
+     59951
+    ],
+    [
+     "202510",
+     80647
+    ],
+    [
+     "202511",
+     160362
+    ],
+    [
+     "202512",
+     570208
+    ],
+    [
+     "202601",
+     82977
+    ],
+    [
+     "202602",
+     40388
+    ],
+    [
+     "202603",
+     38842
+    ],
+    [
+     "202604",
+     36437
+    ],
+    [
+     "202605",
+     34954
+    ],
+    [
+     "202606",
+     30951
+    ],
+    [
+     "202607",
+     32553
+    ],
+    [
+     "202608",
+     36753
+    ],
+    [
+     "202609",
+     44663
+    ]
+   ],
+   "avg_monthly_12m": 99145,
+   "yoy": -0.276,
+   "peak_month": "202512"
+  },
+  {
    "article": "Christmas_ornament",
    "url": "https://en.wikipedia.org/wiki/Christmas_ornament",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Christmas_ornament/monthly/2024090100/2026093000",
@@ -2919,114 +3029,334 @@
    "peak_month": "202512"
   },
   {
-   "article": "Halloween",
-   "url": "https://en.wikipedia.org/wiki/Halloween",
-   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Halloween/monthly/2024090100/2026093000",
+   "article": "Thanksgiving",
+   "url": "https://en.wikipedia.org/wiki/Thanksgiving",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Thanksgiving/monthly/2024090100/2026093000",
    "monthly": [
     [
      "202409",
-     199141
+     79846
     ],
     [
      "202410",
-     1265009
+     208822
     ],
     [
      "202411",
-     400047
+     991984
     ],
     [
      "202412",
-     71749
+     156366
     ],
     [
      "202501",
-     52819
+     47047
     ],
     [
      "202502",
-     46564
+     29919
     ],
     [
      "202503",
-     45857
+     33353
     ],
     [
      "202504",
-     43877
+     31322
     ],
     [
      "202505",
-     42238
+     31003
     ],
     [
      "202506",
-     41031
+     27881
     ],
     [
      "202507",
-     45063
+     30475
     ],
     [
      "202508",
-     60906
+     36680
     ],
     [
      "202509",
-     130742
+     62590
     ],
     [
      "202510",
-     892498
+     167259
     ],
     [
      "202511",
-     322752
+     767059
     ],
     [
      "202512",
-     57397
+     97301
     ],
     [
      "202601",
-     52181
+     27941
     ],
     [
      "202602",
-     34446
+     19277
     ],
     [
      "202603",
-     36467
+     19768
     ],
     [
      "202604",
-     34699
+     18923
     ],
     [
      "202605",
-     37177
+     19527
     ],
     [
      "202606",
-     32200
+     17258
     ],
     [
      "202607",
-     36752
+     18497
     ],
     [
      "202608",
-     50180
+     25901
     ],
     [
      "202609",
-     111206
+     37497
     ]
    ],
-   "avg_monthly_12m": 141496,
-   "yoy": -0.244,
-   "peak_month": "202510"
+   "avg_monthly_12m": 103017,
+   "yoy": -0.267,
+   "peak_month": "202511"
+  },
+  {
+   "article": "Hanukkah",
+   "url": "https://en.wikipedia.org/wiki/Hanukkah",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Hanukkah/monthly/2024090100/2026093000",
+   "monthly": [
+    [
+     "202409",
+     30845
+    ],
+    [
+     "202410",
+     51686
+    ],
+    [
+     "202411",
+     93834
+    ],
+    [
+     "202412",
+     818189
+    ],
+    [
+     "202501",
+     91375
+    ],
+    [
+     "202502",
+     23738
+    ],
+    [
+     "202503",
+     27012
+    ],
+    [
+     "202504",
+     25479
+    ],
+    [
+     "202505",
+     23965
+    ],
+    [
+     "202506",
+     27556
+    ],
+    [
+     "202507",
+     21493
+    ],
+    [
+     "202508",
+     22407
+    ],
+    [
+     "202509",
+     27695
+    ],
+    [
+     "202510",
+     37448
+    ],
+    [
+     "202511",
+     77542
+    ],
+    [
+     "202512",
+     741823
+    ],
+    [
+     "202601",
+     41709
+    ],
+    [
+     "202602",
+     22688
+    ],
+    [
+     "202603",
+     24155
+    ],
+    [
+     "202604",
+     21119
+    ],
+    [
+     "202605",
+     17218
+    ],
+    [
+     "202606",
+     15497
+    ],
+    [
+     "202607",
+     14824
+    ],
+    [
+     "202608",
+     16386
+    ],
+    [
+     "202609",
+     24116
+    ]
+   ],
+   "avg_monthly_12m": 87877,
+   "yoy": -0.159,
+   "peak_month": "202512"
+  },
+  {
+   "article": "New_Year%27s_Eve",
+   "url": "https://en.wikipedia.org/wiki/New_Year%27s_Eve",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/New_Year%27s_Eve/monthly/2024090100/2026093000",
+   "monthly": [
+    [
+     "202409",
+     10305
+    ],
+    [
+     "202410",
+     13641
+    ],
+    [
+     "202411",
+     19310
+    ],
+    [
+     "202412",
+     311719
+    ],
+    [
+     "202501",
+     109966
+    ],
+    [
+     "202502",
+     11202
+    ],
+    [
+     "202503",
+     11134
+    ],
+    [
+     "202504",
+     18139
+    ],
+    [
+     "202505",
+     9564
+    ],
+    [
+     "202506",
+     8969
+    ],
+    [
+     "202507",
+     8213
+    ],
+    [
+     "202508",
+     8940
+    ],
+    [
+     "202509",
+     10295
+    ],
+    [
+     "202510",
+     10906
+    ],
+    [
+     "202511",
+     15174
+    ],
+    [
+     "202512",
+     333389
+    ],
+    [
+     "202601",
+     108452
+    ],
+    [
+     "202602",
+     12327
+    ],
+    [
+     "202603",
+     10264
+    ],
+    [
+     "202604",
+     8513
+    ],
+    [
+     "202605",
+     8344
+    ],
+    [
+     "202606",
+     12976
+    ],
+    [
+     "202607",
+     11436
+    ],
+    [
+     "202608",
+     9345
+    ],
+    [
+     "202609",
+     9990
+    ]
+   ],
+   "avg_monthly_12m": 45926,
+   "yoy": 0.019,
+   "peak_month": "202512"
   },
   {
    "article": "Valentine%27s_Day",
@@ -3249,323 +3579,646 @@
    "peak_month": "202605"
   },
   {
-   "article": "Portrait_painting",
-   "url": "https://en.wikipedia.org/wiki/Portrait_painting",
-   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Portrait_painting/monthly/2024090100/2026093000",
+   "article": "Father%27s_Day",
+   "url": "https://en.wikipedia.org/wiki/Father%27s_Day",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Father%27s_Day/monthly/2024090100/2026093000",
    "monthly": [
     [
      "202409",
-     4491
+     30019
     ],
     [
      "202410",
-     4804
+     13723
     ],
     [
      "202411",
-     4485
+     29667
     ],
     [
      "202412",
-     4461
+     19006
     ],
     [
      "202501",
-     5089
+     17667
     ],
     [
      "202502",
-     4532
+     15862
     ],
     [
      "202503",
-     4961
+     59012
     ],
     [
      "202504",
-     4332
+     28854
     ],
     [
      "202505",
-     4100
+     185138
     ],
     [
      "202506",
-     3630
+     636731
     ],
     [
      "202507",
-     3567
+     23549
     ],
     [
      "202508",
-     3961
+     33221
     ],
     [
      "202509",
-     4236
+     40592
     ],
     [
      "202510",
-     4393
+     12575
     ],
     [
      "202511",
-     4049
+     25994
     ],
     [
      "202512",
-     3822
+     11554
     ],
     [
      "202601",
-     4136
+     11384
     ],
     [
      "202602",
-     3615
+     12863
     ],
     [
      "202603",
-     3791
+     39648
     ],
     [
      "202604",
-     3486
+     23087
     ],
     [
      "202605",
-     4092
+     144435
     ],
     [
      "202606",
-     3738
+     501427
     ],
     [
      "202607",
-     3313
+     34458
     ],
     [
      "202608",
-     3132
+     18956
     ],
     [
      "202609",
-     3396
+     23781
     ]
    ],
-   "avg_monthly_12m": 3747,
-   "yoy": -0.138,
+   "avg_monthly_12m": 71680,
+   "yoy": -0.22,
+   "peak_month": "202606"
+  },
+  {
+   "article": "Halloween",
+   "url": "https://en.wikipedia.org/wiki/Halloween",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Halloween/monthly/2024090100/2026093000",
+   "monthly": [
+    [
+     "202409",
+     199141
+    ],
+    [
+     "202410",
+     1265009
+    ],
+    [
+     "202411",
+     400047
+    ],
+    [
+     "202412",
+     71749
+    ],
+    [
+     "202501",
+     52819
+    ],
+    [
+     "202502",
+     46564
+    ],
+    [
+     "202503",
+     45857
+    ],
+    [
+     "202504",
+     43877
+    ],
+    [
+     "202505",
+     42238
+    ],
+    [
+     "202506",
+     41031
+    ],
+    [
+     "202507",
+     45063
+    ],
+    [
+     "202508",
+     60906
+    ],
+    [
+     "202509",
+     130742
+    ],
+    [
+     "202510",
+     892498
+    ],
+    [
+     "202511",
+     322752
+    ],
+    [
+     "202512",
+     57397
+    ],
+    [
+     "202601",
+     52181
+    ],
+    [
+     "202602",
+     34446
+    ],
+    [
+     "202603",
+     36467
+    ],
+    [
+     "202604",
+     34699
+    ],
+    [
+     "202605",
+     37177
+    ],
+    [
+     "202606",
+     32200
+    ],
+    [
+     "202607",
+     36752
+    ],
+    [
+     "202608",
+     50180
+    ],
+    [
+     "202609",
+     111206
+    ]
+   ],
+   "avg_monthly_12m": 141496,
+   "yoy": -0.244,
    "peak_month": "202510"
   },
   {
-   "article": "Print_on_demand",
-   "url": "https://en.wikipedia.org/wiki/Print_on_demand",
-   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Print_on_demand/monthly/2024090100/2026093000",
+   "article": "Graduation_ceremony",
+   "url": "https://en.wikipedia.org/wiki/Graduation_ceremony",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Graduation_ceremony/monthly/2024090100/2026093000",
    "monthly": [
     [
      "202409",
-     1938
+     63
     ],
     [
      "202410",
-     2356
+     112
     ],
     [
      "202411",
-     2140
+     121
     ],
     [
      "202412",
-     2159
+     105
     ],
     [
      "202501",
-     2395
+     168
     ],
     [
      "202502",
-     2024
+     152
     ],
     [
      "202503",
-     2185
+     211
     ],
     [
      "202504",
-     1822
+     443
     ],
     [
      "202505",
-     1874
+     348
     ],
     [
      "202506",
-     1547
+     94
     ],
     [
      "202507",
-     1496
+     61
     ],
     [
      "202508",
-     1505
+     73
     ],
     [
      "202509",
-     1464
+     100
     ],
     [
      "202510",
-     1593
+     81
     ],
     [
      "202511",
-     1703
+     71
     ],
     [
      "202512",
-     1410
+     56
     ],
     [
      "202601",
-     1714
+     61
     ],
     [
      "202602",
-     1387
+     49
     ],
     [
      "202603",
-     1597
+     88
     ],
     [
      "202604",
-     1551
+     83
     ],
     [
      "202605",
-     1906
+     96
     ],
     [
      "202606",
-     1545
+     73
     ],
     [
      "202607",
-     1787
+     71
     ],
     [
      "202608",
-     1485
+     69
     ],
     [
      "202609",
-     1338
+     70
     ]
    ],
-   "avg_monthly_12m": 1585,
-   "yoy": -0.172,
+   "avg_monthly_12m": 72,
+   "yoy": -0.563,
    "peak_month": "202605"
   }
  ],
  "curated": {
-  "note": "Hand-curated public sources (read via web search on the access date, no login). Numbers quoted are the SOURCE's claims, not ours; third-party keyword tools are estimates.",
+  "note": "Hand-curated public sources (read via web search on the access date, no login). Numbers quoted are the SOURCE's claims; third-party Etsy keyword volumes are modeled ESTIMATES (Etsy does not publish search counts).",
   "sources": [
    {
-    "id": "akc2025",
-    "title": "AKC: Most Popular Dog Breeds of 2025",
-    "url": "https://www.akc.org/expert-advice/dog-breeds/most-popular-dog-breeds-2025/",
-    "publisher": "American Kennel Club",
-    "published": "2026-03-18",
-    "accessed": "2026-10-10",
-    "type": "official registry data",
-    "finding": "Top 10 US breeds 2025: French Bulldog, Labrador Retriever, Golden Retriever, German Shepherd, Dachshund, Poodle, Beagle, Rottweiler, German Shorthaired Pointer, Bulldog. Dachshund up to #5; Cane Corso #11 rising."
+    "id": "etsy_fw25",
+    "title": "Seller Trend Report: Fall and Winter 2025",
+    "publisher": "Etsy",
+    "type": "official Etsy report (Etsy search/sales data as of Sep 2, 2025)",
+    "url": "https://www.etsy.com/seller-handbook/article/1417223353768",
+    "accessed": "2026-10-11",
+    "finding": "Holiday gifting themes: personalized & sentimental gifts for family/milestones, elevated entertaining for hosts, playful/nostalgic pieces, cozy home updates. Rising: table settings +1,000%, engraved cutting boards +60%, maximalist prints tripled."
    },
    {
-    "id": "listadum",
-    "title": "What Pet Product Designs Actually Sell on Etsy",
-    "url": "https://www.listadum.com/blog/pet-designs-that-sell-on-etsy",
-    "publisher": "Listadum",
-    "accessed": "2026-10-10",
-    "type": "third-party study of 1,097 top Etsy listings",
-    "finding": "Illustrated custom pet portraits were 43% of top listings but ~70% of 'winners' (1.63x over-index); name-on-collar/tag products under-index (0.56x). Median price ~$14.95; only ~60% of listings run ads."
+    "id": "etsy_holiday",
+    "title": "Etsy Success: Your Holiday Merchandising Guide",
+    "publisher": "Etsy",
+    "type": "official seller guide",
+    "url": "https://www.etsy.com/seller-handbook/article/22818264711",
+    "accessed": "2026-10-11",
+    "finding": "Holiday shoppers search by gift type, price and RECIPIENT; personalization (name, initial, location like state) is a perennial favorite."
    },
    {
-    "id": "rankhero_ppp",
-    "title": "'personalized pet portrait' keyword data",
-    "url": "https://www.rankhero.com/keywords/personalized-pet-portrait",
-    "publisher": "RankHero",
-    "accessed": "2026-10-10",
-    "type": "third-party keyword ESTIMATE",
-    "finding": "~1,300 avg monthly Etsy searches, ~215k competing listings, typical price ~$19.99. Strongly seasonal: ~720 (Oct 2025) \u2192 2,400 (Nov) \u2192 5,400 (Dec) \u2192 1,600 (Jan); low in summer."
-   },
-   {
-    "id": "rankhero_pp",
-    "title": "'personalized pet' keyword data",
-    "url": "https://www.rankhero.com/keywords/personalized-pet",
-    "publisher": "RankHero",
-    "accessed": "2026-10-10",
-    "type": "third-party keyword ESTIMATE",
-    "finding": "~720 avg monthly searches, ~670k listings (very crowded), median price ~$28; use as a supporting tag, not the main keyword."
-   },
-   {
-    "id": "catalogpush",
-    "title": "How to Create Pet Portrait Products on Print-on-Demand",
-    "url": "https://www.catalogpush.com/blog/pet-portrait-products-pod",
-    "publisher": "CatalogPush",
-    "accessed": "2026-10-10",
-    "type": "seller guide (opinion)",
-    "finding": "Breed-specific (non-custom) designs scale: one breed illustration \u2192 mug, tee, canvas, blanket, phone case, tote. Canvas $55\u201385 is highest AOV; breed mugs $17\u201320; 'Golden Retriever Mom Mug' cited as a top mug search."
+    "id": "erank_h26",
+    "title": "2026 Holiday Trends for Etsy Sellers: Ideas & Keywords",
+    "publisher": "eRank (third-party)",
+    "type": "third-party tool blog",
+    "url": "https://help.erank.com/blog/holiday-2026-trends-etsy-sellers/",
+    "accessed": "2026-10-11",
+    "finding": "Get holiday listings live early; later shoppers search specific recipients and stocking fillers. 'Christmas' still had 17,760 Etsy searches in January 2026 (eRank estimate)."
    },
    {
     "id": "etsy_ss26",
     "title": "Etsy Seller Trend Report: Spring and Summer 2026",
-    "url": "https://www.etsy.com/seller-handbook/article/1473931456647",
     "publisher": "Etsy",
-    "accessed": "2026-10-10",
     "type": "official Etsy report",
-    "finding": "'Just because' gifting growing (\"petit cadeau\" searches +277%); recommends gift-recipient framing and personalization; Mother's Day shopping Feb\u2013May."
+    "url": "https://www.etsy.com/seller-handbook",
+    "accessed": "2026-10-10",
+    "finding": "Seasonal trend themes from Etsy search data (see report)."
    },
    {
-    "id": "pawsonnet",
-    "title": "Why Renaissance pet portraits became 2026's most-shared gift",
-    "url": "https://pawsonnet.com/blog/renaissance-pet-portraits-2026-trend",
-    "publisher": "PawSonnet (a portrait seller \u2014 biased)",
+    "id": "rh_xmas_mug",
+    "title": "'christmas mug' Etsy keyword data",
+    "publisher": "RankHero (third-party ESTIMATE)",
+    "type": "keyword estimate",
+    "url": "https://www.rankhero.com/keywords/christmas-mug",
+    "accessed": "2026-10-11",
+    "finding": "~49,500 avg monthly searches; Nov\u2013Dec 2025 ~246,000/mo; 455,082 competing listings; typical price ~$15."
+   },
+   {
+    "id": "rh_xmas_dad",
+    "title": "'christmas gift for dad' Etsy keyword data",
+    "publisher": "RankHero (third-party ESTIMATE)",
+    "type": "keyword estimate",
+    "url": "https://www.rankhero.com/keywords/christmas-gift-for-dad",
+    "accessed": "2026-10-11",
+    "finding": "~60,500 avg monthly; Dec 2025 ~450,000; 396,521 listings; typical ~$22.60."
+   },
+   {
+    "id": "rh_teacher",
+    "title": "'teacher gifts' Etsy keyword data",
+    "publisher": "RankHero (third-party ESTIMATE)",
+    "type": "keyword estimate",
+    "url": "https://www.rankhero.com/keywords/teacher-gifts",
+    "accessed": "2026-10-11",
+    "finding": "~60,500 avg monthly; peaks Dec (~110,000) and May\u2013Jul (~135,000 Jul 2026); 1.68M listings; typical ~$11."
+   },
+   {
+    "id": "rh_teacher_mug",
+    "title": "'teacher mug' Etsy keyword data",
+    "publisher": "RankHero (third-party ESTIMATE)",
+    "type": "keyword estimate",
+    "url": "https://www.rankhero.com/keywords/teacher-mug",
+    "accessed": "2026-10-11",
+    "finding": "~3,600 avg monthly; Dec 2025 ~8,100; typical ~$19.33."
+   },
+   {
+    "id": "rh_dad_mug",
+    "title": "'dad mug' Etsy keyword data",
+    "publisher": "RankHero (third-party ESTIMATE)",
+    "type": "keyword estimate",
+    "url": "https://www.rankhero.com/keywords/dad-mug",
+    "accessed": "2026-10-11",
+    "finding": "~14,800 avg monthly; Dec 2025 ~33,100, Jun 2026 ~40,500; +49% Sep 2025\u2192Aug 2026; typical ~$19.99."
+   },
+   {
+    "id": "sellerapp_26",
+    "title": "Etsy Trends 2026: Complete Guide",
+    "publisher": "SellerApp (third-party blog)",
+    "type": "third-party blog (unverified claims)",
+    "url": "https://www.sellerapp.com/blog/etsy-trends/",
+    "accessed": "2026-10-11",
+    "finding": "Q4 relationship keywords ('gift for mom', 'Christmas gifts for her') spike; mid-December shifts to 'last minute', 'digital download Christmas', 'printable gift'."
+   },
+   {
+    "id": "akc2025",
+    "title": "AKC: Most Popular Dog Breeds of 2025",
+    "publisher": "American Kennel Club",
+    "type": "official registry data",
+    "url": "https://www.akc.org/most-popular-breeds/",
     "accessed": "2026-10-10",
-    "type": "vendor blog, UNVERIFIED claims",
-    "finding": "Claims Royal/Renaissance style drives much of pet-portrait growth and notes Etsy's AI-disclosure requirement for listings. Treat as a style hint only."
+    "finding": "Pets category only: top US breeds 2025 (French Bulldog #1, Labrador #2, Golden #3)."
+   }
+  ],
+  "keyword_estimates": [
+   {
+    "kw": "christmas gift for dad",
+    "avg_monthly": 60500,
+    "peak": "Dec 2025 ~450,000",
+    "src": "rh_xmas_dad",
+    "niche": "dad"
+   },
+   {
+    "kw": "teacher gifts",
+    "avg_monthly": 60500,
+    "peak": "Jul 2026 ~135,000",
+    "src": "rh_teacher",
+    "niche": "teacher"
+   },
+   {
+    "kw": "christmas mug",
+    "avg_monthly": 49500,
+    "peak": "Nov\u2013Dec 2025 ~246,000",
+    "src": "rh_xmas_mug",
+    "niche": "Christmas"
+   },
+   {
+    "kw": "dad mug",
+    "avg_monthly": 14800,
+    "peak": "Jun 2026 ~40,500",
+    "src": "rh_dad_mug",
+    "niche": "dad"
+   },
+   {
+    "kw": "teacher mug",
+    "avg_monthly": 3600,
+    "peak": "Dec 2025 ~8,100",
+    "src": "rh_teacher_mug",
+    "niche": "teacher"
    }
   ],
   "pending": [
    {
-    "source": "Etsy Open API v3 (findAllListingsActive / trending)",
-    "needs": "Etsy developer key \u2014 pending connection"
+    "source": "Etsy Open API v3",
+    "needs": "Etsy app approval \u2192 real active-listing counts/prices per niche"
    },
    {
-    "source": "Google Trends",
-    "needs": "No official public API (Trends API alpha requires approval); trends.google.com disallowed for bots in robots.txt \u2014 pending"
-   },
-   {
-    "source": "eBay Browse API sold/active items",
-    "needs": "eBay developer key \u2014 pending"
-   },
-   {
-    "source": "Amazon Best Sellers",
-    "needs": "Amazon Conditions of Use forbid robots/data mining \u2014 not used"
-   },
-   {
-    "source": "Etsy search/market pages",
-    "needs": "returns 403 to bots; Etsy terms forbid scraping \u2014 not used"
+    "source": "eRank / RankHero API",
+    "needs": "paid plan or Dom's account to pull keyword estimates for every niche automatically"
    }
   ]
  },
  "caveats": [
-  "Wikipedia pageviews measure curiosity, not purchases; overall Wikipedia traffic fell in 2025-26 (all YoY negative), so compare breeds relative to each other.",
-  "Score = sqrt(normalized pageviews) x sqrt(1/AKC rank) is our heuristic, not data.",
-  "No sales numbers are claimed; keyword volumes quoted are third-party estimates with links."
+  "Wikipedia pageviews measure curiosity, not purchases; overall Wikipedia traffic fell in 2025-26, so compare niches relative to each other.",
+  "Niche score is our heuristic (interest x upcoming-season boost), not data.",
+  "No sales numbers are claimed; Etsy keyword volumes are third-party estimates with links and access dates."
  ],
  "ideas": [
+  {
+   "title": "Diwali Gift Mug \u2014 Original Illustrated Design",
+   "product": "Mug 11oz",
+   "price": 24,
+   "price_basis": "economics.js POD variant price",
+   "keyword": "diwali gift idea",
+   "kind": "general",
+   "why": "Holidays & Occasions: 'Diwali' ~202,183 Wikipedia views/mo (real interest proxy), season ratio 3 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
+   "brief": "Original illustrated Diwali design with short witty phrase, cohesive house palette, gift-ready.",
+   "prompt": "original flat illustration celebrating Diwali, warm palette, clean composition, room for short phrase, no logos or trademarks",
+   "sources": [
+    "etsy_holiday",
+    "etsy_fw25"
+   ],
+   "mockup": "placeholder",
+   "category": "holidays & occasions"
+  },
+  {
+   "title": "Halloween Gift Poster \u2014 Original Illustrated Design",
+   "product": "Poster 18x24",
+   "price": 39,
+   "price_basis": "economics.js POD variant price",
+   "keyword": "halloween gift idea",
+   "kind": "general",
+   "why": "Holidays & Occasions: 'Halloween' ~141,496 Wikipedia views/mo (real interest proxy), season ratio 3.0 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
+   "brief": "Original illustrated Halloween design with short witty phrase, cohesive house palette, gift-ready.",
+   "prompt": "original flat illustration celebrating Halloween, warm palette, clean composition, room for short phrase, no logos or trademarks",
+   "sources": [
+    "etsy_holiday",
+    "etsy_fw25"
+   ],
+   "mockup": "placeholder",
+   "category": "holidays & occasions"
+  },
+  {
+   "title": "Thanksgiving Gift Canvas \u2014 Original Illustrated Design",
+   "product": "Canvas 12x16",
+   "price": 69,
+   "price_basis": "economics.js POD variant price",
+   "keyword": "thanksgiving gift idea",
+   "kind": "general",
+   "why": "Holidays & Occasions: 'Thanksgiving' ~103,017 Wikipedia views/mo (real interest proxy), season ratio 3 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
+   "brief": "Original illustrated Thanksgiving design with short witty phrase, cohesive house palette, gift-ready.",
+   "prompt": "original flat illustration celebrating Thanksgiving, warm palette, clean composition, room for short phrase, no logos or trademarks",
+   "sources": [
+    "etsy_holiday",
+    "etsy_fw25"
+   ],
+   "mockup": "placeholder",
+   "category": "holidays & occasions"
+  },
+  {
+   "title": "Hanukkah Gift Fleece \u2014 Original Illustrated Design",
+   "product": "Fleece blanket 50x60",
+   "price": 69,
+   "price_basis": "economics.js POD variant price",
+   "keyword": "hanukkah gift idea",
+   "kind": "general",
+   "why": "Holidays & Occasions: 'Hanukkah' ~87,877 Wikipedia views/mo (real interest proxy), season ratio 3 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
+   "brief": "Original illustrated Hanukkah design with short witty phrase, cohesive house palette, gift-ready.",
+   "prompt": "original flat illustration celebrating Hanukkah, warm palette, clean composition, room for short phrase, no logos or trademarks",
+   "sources": [
+    "etsy_holiday",
+    "etsy_fw25"
+   ],
+   "mockup": "placeholder",
+   "category": "holidays & occasions"
+  },
+  {
+   "title": "Christmas Gift Mug \u2014 Original Illustrated Design",
+   "product": "Mug 11oz",
+   "price": 24,
+   "price_basis": "economics.js POD variant price",
+   "keyword": "christmas gift idea",
+   "kind": "general",
+   "why": "Holidays & Occasions: 'Christmas' ~99,145 Wikipedia views/mo (real interest proxy), season ratio 2.73 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
+   "brief": "Original illustrated Christmas design with short witty phrase, cohesive house palette, gift-ready.",
+   "prompt": "original flat illustration celebrating Christmas, warm palette, clean composition, room for short phrase, no logos or trademarks",
+   "sources": [
+    "etsy_holiday",
+    "etsy_fw25"
+   ],
+   "mockup": "placeholder",
+   "category": "holidays & occasions"
+  },
+  {
+   "title": "Kwanzaa Gift Poster \u2014 Original Illustrated Design",
+   "product": "Poster 18x24",
+   "price": 39,
+   "price_basis": "economics.js POD variant price",
+   "keyword": "kwanzaa gift idea",
+   "kind": "general",
+   "why": "Holidays & Occasions: 'Kwanzaa' ~81,249 Wikipedia views/mo (real interest proxy), season ratio 3 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
+   "brief": "Original illustrated Kwanzaa design with short witty phrase, cohesive house palette, gift-ready.",
+   "prompt": "original flat illustration celebrating Kwanzaa, warm palette, clean composition, room for short phrase, no logos or trademarks",
+   "sources": [
+    "etsy_holiday",
+    "etsy_fw25"
+   ],
+   "mockup": "placeholder",
+   "category": "holidays & occasions"
+  },
+  {
+   "title": "Teacher Gift Canvas \u2014 Original Illustrated Design",
+   "product": "Canvas 12x16",
+   "price": 69,
+   "price_basis": "economics.js POD variant price",
+   "keyword": "teacher gift",
+   "kind": "general",
+   "why": "Professions: 'teacher' ~14,278 Wikipedia views/mo (real interest proxy), season ratio 1.59 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
+   "brief": "Original illustrated teacher design with short witty phrase, cohesive house palette, gift-ready.",
+   "prompt": "original flat illustration celebrating teacher, warm palette, clean composition, room for short phrase, no logos or trademarks",
+   "sources": [
+    "etsy_holiday",
+    "etsy_fw25"
+   ],
+   "mockup": "placeholder",
+   "category": "professions"
+  },
+  {
+   "title": "Veterans Day Gift Fleece \u2014 Original Illustrated Design",
+   "product": "Fleece blanket 50x60",
+   "price": 69,
+   "price_basis": "economics.js POD variant price",
+   "keyword": "veterans day gift idea",
+   "kind": "general",
+   "why": "Holidays & Occasions: 'Veterans Day' ~44,826 Wikipedia views/mo (real interest proxy), season ratio 3 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
+   "brief": "Original illustrated Veterans Day design with short witty phrase, cohesive house palette, gift-ready.",
+   "prompt": "original flat illustration celebrating Veterans Day, warm palette, clean composition, room for short phrase, no logos or trademarks",
+   "sources": [
+    "etsy_holiday",
+    "etsy_fw25"
+   ],
+   "mockup": "placeholder",
+   "category": "holidays & occasions"
+  },
+  {
+   "title": "New Year'S Gift Mug \u2014 Original Illustrated Design",
+   "product": "Mug 11oz",
+   "price": 24,
+   "price_basis": "economics.js POD variant price",
+   "keyword": "new year's gift idea",
+   "kind": "general",
+   "why": "Holidays & Occasions: 'New Year's' ~45,926 Wikipedia views/mo (real interest proxy), season ratio 2.61 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
+   "brief": "Original illustrated New Year's design with short witty phrase, cohesive house palette, gift-ready.",
+   "prompt": "original flat illustration celebrating New Year's, warm palette, clean composition, room for short phrase, no logos or trademarks",
+   "sources": [
+    "etsy_holiday",
+    "etsy_fw25"
+   ],
+   "mockup": "placeholder",
+   "category": "holidays & occasions"
+  },
   {
    "title": "French Bulldog Mom Mug \u2014 Watercolor French Bulldog Portrait Gift",
    "product": "Mug 11oz",
@@ -3598,150 +4251,6 @@
     "listadum"
    ],
    "breed": "Labrador_Retriever",
-   "mockup": "placeholder"
-  },
-  {
-   "title": "Golden Retriever Blanket \u2014 Watercolor Golden Retriever Portrait Gift",
-   "product": "Fleece blanket 50x60",
-   "price": 69,
-   "price_basis": "economics.js POD variant price",
-   "keyword": "golden retriever gift",
-   "why": "Golden Retriever: ~64,684 Wikipedia views/mo (real, interest proxy; YoY -20%). Breed-specific designs scale across products (catalogpush); illustrated designs out-pull name-only items (listadum).",
-   "brief": "Watercolor illustration of a Golden Retriever dog, head-and-shoulders, warm pastel palette, white background, generous margin for Fleece blanket 50x60.",
-   "prompt": "watercolor painting of a Golden Retriever dog, soft pastel colors, loose brush strokes, white background, centered portrait, high detail eyes, no text",
-   "sources": [
-    "akc2025",
-    "catalogpush",
-    "listadum"
-   ],
-   "breed": "Golden_Retriever",
-   "mockup": "placeholder"
-  },
-  {
-   "title": "Dachshund Poster \u2014 Watercolor Dachshund Portrait Gift",
-   "product": "Poster 18x24",
-   "price": 39,
-   "price_basis": "economics.js POD variant price",
-   "keyword": "dachshund gift",
-   "why": "Dachshund: ~88,294 Wikipedia views/mo (real, interest proxy; YoY -9%). Breed-specific designs scale across products (catalogpush); illustrated designs out-pull name-only items (listadum).",
-   "brief": "Watercolor illustration of a Dachshund dog, head-and-shoulders, warm pastel palette, white background, generous margin for Poster 18x24.",
-   "prompt": "watercolor painting of a Dachshund dog, soft pastel colors, loose brush strokes, white background, centered portrait, high detail eyes, no text",
-   "sources": [
-    "akc2025",
-    "catalogpush",
-    "listadum"
-   ],
-   "breed": "Dachshund",
-   "mockup": "placeholder"
-  },
-  {
-   "title": "German Shepherd Mom Mug \u2014 Watercolor German Shepherd Portrait Gift",
-   "product": "Mug 11oz",
-   "price": 24,
-   "price_basis": "economics.js POD variant price",
-   "keyword": "german shepherd mom mug",
-   "why": "German Shepherd: ~66,145 Wikipedia views/mo (real, interest proxy; YoY -26%). Breed-specific designs scale across products (catalogpush); illustrated designs out-pull name-only items (listadum).",
-   "brief": "Watercolor illustration of a German Shepherd dog, head-and-shoulders, warm pastel palette, white background, generous margin for Mug 11oz.",
-   "prompt": "watercolor painting of a German Shepherd dog, soft pastel colors, loose brush strokes, white background, centered portrait, high detail eyes, no text",
-   "sources": [
-    "akc2025",
-    "catalogpush",
-    "listadum"
-   ],
-   "breed": "German_Shepherd",
-   "mockup": "placeholder"
-  },
-  {
-   "title": "Maine Coon Canvas \u2014 Watercolor Maine Coon Portrait Gift",
-   "product": "Canvas 12x16",
-   "price": 69,
-   "price_basis": "economics.js POD variant price",
-   "keyword": "maine coon gift",
-   "why": "Maine Coon: ~79,366 Wikipedia views/mo (real, interest proxy; YoY -28%). Breed-specific designs scale across products (catalogpush); illustrated designs out-pull name-only items (listadum).",
-   "brief": "Watercolor illustration of a Maine Coon cat, head-and-shoulders, warm pastel palette, white background, generous margin for Canvas 12x16.",
-   "prompt": "watercolor painting of a Maine Coon cat, soft pastel colors, loose brush strokes, white background, centered portrait, high detail eyes, no text",
-   "sources": [
-    "akc2025",
-    "catalogpush",
-    "listadum"
-   ],
-   "breed": "Maine_Coon",
-   "mockup": "placeholder"
-  },
-  {
-   "title": "Cane Corso Blanket \u2014 Watercolor Cane Corso Portrait Gift",
-   "product": "Fleece blanket 50x60",
-   "price": 69,
-   "price_basis": "economics.js POD variant price",
-   "keyword": "cane corso gift",
-   "why": "Cane Corso: ~104,036 Wikipedia views/mo (real, interest proxy; YoY -27%). Breed-specific designs scale across products (catalogpush); illustrated designs out-pull name-only items (listadum).",
-   "brief": "Watercolor illustration of a Cane Corso dog, head-and-shoulders, warm pastel palette, white background, generous margin for Fleece blanket 50x60.",
-   "prompt": "watercolor painting of a Cane Corso dog, soft pastel colors, loose brush strokes, white background, centered portrait, high detail eyes, no text",
-   "sources": [
-    "akc2025",
-    "catalogpush",
-    "listadum"
-   ],
-   "breed": "Cane_Corso",
-   "mockup": "placeholder"
-  },
-  {
-   "title": "Rottweiler Poster \u2014 Watercolor Rottweiler Portrait Gift",
-   "product": "Poster 18x24",
-   "price": 39,
-   "price_basis": "economics.js POD variant price",
-   "keyword": "rottweiler gift",
-   "why": "Rottweiler: ~61,270 Wikipedia views/mo (real, interest proxy; YoY -18%). Breed-specific designs scale across products (catalogpush); illustrated designs out-pull name-only items (listadum).",
-   "brief": "Watercolor illustration of a Rottweiler dog, head-and-shoulders, warm pastel palette, white background, generous margin for Poster 18x24.",
-   "prompt": "watercolor painting of a Rottweiler dog, soft pastel colors, loose brush strokes, white background, centered portrait, high detail eyes, no text",
-   "sources": [
-    "akc2025",
-    "catalogpush",
-    "listadum"
-   ],
-   "breed": "Rottweiler",
-   "mockup": "placeholder"
-  },
-  {
-   "title": "Custom Pet Portrait Christmas Ornament / Mug from Your Photo",
-   "product": "Mug 11oz",
-   "price": 24,
-   "price_basis": "economics.js (ornament not in model yet \u2192 mug)",
-   "keyword": "personalized pet portrait christmas",
-   "why": "\"personalized pet portrait\" Etsy searches jump ~7x Oct\u2192Dec (rankhero estimate); Christmas ornament Wikipedia interest peaks in 202512 (real). Must be live by early November.",
-   "brief": "Customer photo \u2192 AI portrait in festive frame with name + year.",
-   "prompt": "portrait of [PET] from photo, cozy Christmas watercolor style, red scarf, soft snow, name banner",
-   "sources": [
-    "rankhero_ppp"
-   ],
-   "mockup": "placeholder",
-   "season": "Christmas"
-  },
-  {
-   "title": "Royal Renaissance Pet Portrait \u2014 Digital File from Your Photo",
-   "product": "Digital portrait",
-   "price": 29,
-   "price_basis": "economics.js digital portrait",
-   "keyword": "renaissance pet portrait",
-   "why": "Illustrated custom portraits over-index on Etsy (listadum); Renaissance style claimed popular (vendor blog \u2014 unverified). Zero COGS; good review seeder. Etsy requires AI disclosure.",
-   "brief": "Pet head on a royal oil-painting body, velvet cape, gold frame.",
-   "prompt": "renaissance oil painting of [PET] as a royal noble, velvet robe, ornate gold frame, dramatic lighting",
-   "sources": [
-    "listadum",
-    "pawsonnet"
-   ],
-   "mockup": "placeholder"
-  },
-  {
-   "title": "Pet Memorial Portrait Canvas \u2014 Rainbow Bridge Keepsake",
-   "product": "Canvas 12x16",
-   "price": 69,
-   "price_basis": "economics.js",
-   "keyword": "pet memorial gift",
-   "why": "Memorial gifts are a common pet-gift search with no holiday dependency (our assumption \u2014 not yet measured; Etsy API pending). High emotional value; handle with care in copy.",
-   "brief": "Soft watercolor portrait with halo light, name and dates.",
-   "prompt": "gentle watercolor portrait of [PET], soft golden light, peaceful sky, space for name and dates",
-   "sources": [],
    "mockup": "placeholder"
   }
  ],
@@ -4305,6 +4814,7379 @@
    "Gravel cycling"
   ]
  },
+ "niches": [
+  {
+   "category": "holidays & occasions",
+   "niche": "Diwali",
+   "article": "Diwali",
+   "url": "https://en.wikipedia.org/wiki/Diwali",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Diwali/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 202183,
+   "yoy": -0.014,
+   "peak_month": "202510",
+   "monthly": [
+    [
+     "202410",
+     1109764
+    ],
+    [
+     "202411",
+     649067
+    ],
+    [
+     "202412",
+     107100
+    ],
+    [
+     "202501",
+     68808
+    ],
+    [
+     "202502",
+     49564
+    ],
+    [
+     "202503",
+     61675
+    ],
+    [
+     "202504",
+     50425
+    ],
+    [
+     "202505",
+     42557
+    ],
+    [
+     "202506",
+     44256
+    ],
+    [
+     "202507",
+     48442
+    ],
+    [
+     "202508",
+     75528
+    ],
+    [
+     "202509",
+     154142
+    ],
+    [
+     "202510",
+     1713911
+    ],
+    [
+     "202511",
+     134909
+    ],
+    [
+     "202512",
+     97944
+    ],
+    [
+     "202601",
+     74630
+    ],
+    [
+     "202602",
+     58107
+    ],
+    [
+     "202603",
+     67254
+    ],
+    [
+     "202604",
+     37436
+    ],
+    [
+     "202605",
+     35462
+    ],
+    [
+     "202606",
+     32781
+    ],
+    [
+     "202607",
+     33237
+    ],
+    [
+     "202608",
+     47969
+    ],
+    [
+     "202609",
+     92553
+    ]
+   ],
+   "season_ratio": 3,
+   "score": 3.0
+  },
+  {
+   "category": "holidays & occasions",
+   "niche": "Halloween",
+   "article": "Halloween",
+   "url": "https://en.wikipedia.org/wiki/Halloween",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Halloween/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 141496,
+   "yoy": -0.244,
+   "peak_month": "202510",
+   "monthly": [
+    [
+     "202410",
+     1265009
+    ],
+    [
+     "202411",
+     400047
+    ],
+    [
+     "202412",
+     71749
+    ],
+    [
+     "202501",
+     52819
+    ],
+    [
+     "202502",
+     46564
+    ],
+    [
+     "202503",
+     45857
+    ],
+    [
+     "202504",
+     43877
+    ],
+    [
+     "202505",
+     42238
+    ],
+    [
+     "202506",
+     41031
+    ],
+    [
+     "202507",
+     45063
+    ],
+    [
+     "202508",
+     60906
+    ],
+    [
+     "202509",
+     130742
+    ],
+    [
+     "202510",
+     892498
+    ],
+    [
+     "202511",
+     322752
+    ],
+    [
+     "202512",
+     57397
+    ],
+    [
+     "202601",
+     52181
+    ],
+    [
+     "202602",
+     34446
+    ],
+    [
+     "202603",
+     36467
+    ],
+    [
+     "202604",
+     34699
+    ],
+    [
+     "202605",
+     37177
+    ],
+    [
+     "202606",
+     32200
+    ],
+    [
+     "202607",
+     36752
+    ],
+    [
+     "202608",
+     50180
+    ],
+    [
+     "202609",
+     111206
+    ]
+   ],
+   "season_ratio": 3.0,
+   "score": 2.51
+  },
+  {
+   "category": "holidays & occasions",
+   "niche": "Thanksgiving",
+   "article": "Thanksgiving",
+   "url": "https://en.wikipedia.org/wiki/Thanksgiving",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Thanksgiving/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 103017,
+   "yoy": -0.267,
+   "peak_month": "202511",
+   "monthly": [
+    [
+     "202410",
+     208822
+    ],
+    [
+     "202411",
+     991984
+    ],
+    [
+     "202412",
+     156366
+    ],
+    [
+     "202501",
+     47047
+    ],
+    [
+     "202502",
+     29919
+    ],
+    [
+     "202503",
+     33353
+    ],
+    [
+     "202504",
+     31322
+    ],
+    [
+     "202505",
+     31003
+    ],
+    [
+     "202506",
+     27881
+    ],
+    [
+     "202507",
+     30475
+    ],
+    [
+     "202508",
+     36680
+    ],
+    [
+     "202509",
+     62590
+    ],
+    [
+     "202510",
+     167259
+    ],
+    [
+     "202511",
+     767059
+    ],
+    [
+     "202512",
+     97301
+    ],
+    [
+     "202601",
+     27941
+    ],
+    [
+     "202602",
+     19277
+    ],
+    [
+     "202603",
+     19768
+    ],
+    [
+     "202604",
+     18923
+    ],
+    [
+     "202605",
+     19527
+    ],
+    [
+     "202606",
+     17258
+    ],
+    [
+     "202607",
+     18497
+    ],
+    [
+     "202608",
+     25901
+    ],
+    [
+     "202609",
+     37497
+    ]
+   ],
+   "season_ratio": 3,
+   "score": 2.141
+  },
+  {
+   "category": "holidays & occasions",
+   "niche": "Hanukkah",
+   "article": "Hanukkah",
+   "url": "https://en.wikipedia.org/wiki/Hanukkah",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Hanukkah/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 87877,
+   "yoy": -0.159,
+   "peak_month": "202512",
+   "monthly": [
+    [
+     "202410",
+     51686
+    ],
+    [
+     "202411",
+     93834
+    ],
+    [
+     "202412",
+     818189
+    ],
+    [
+     "202501",
+     91375
+    ],
+    [
+     "202502",
+     23738
+    ],
+    [
+     "202503",
+     27012
+    ],
+    [
+     "202504",
+     25479
+    ],
+    [
+     "202505",
+     23965
+    ],
+    [
+     "202506",
+     27556
+    ],
+    [
+     "202507",
+     21493
+    ],
+    [
+     "202508",
+     22407
+    ],
+    [
+     "202509",
+     27695
+    ],
+    [
+     "202510",
+     37448
+    ],
+    [
+     "202511",
+     77542
+    ],
+    [
+     "202512",
+     741823
+    ],
+    [
+     "202601",
+     41709
+    ],
+    [
+     "202602",
+     22688
+    ],
+    [
+     "202603",
+     24155
+    ],
+    [
+     "202604",
+     21119
+    ],
+    [
+     "202605",
+     17218
+    ],
+    [
+     "202606",
+     15497
+    ],
+    [
+     "202607",
+     14824
+    ],
+    [
+     "202608",
+     16386
+    ],
+    [
+     "202609",
+     24116
+    ]
+   ],
+   "season_ratio": 3,
+   "score": 1.978
+  },
+  {
+   "category": "holidays & occasions",
+   "niche": "Christmas",
+   "article": "Christmas",
+   "url": "https://en.wikipedia.org/wiki/Christmas",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Christmas/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 99145,
+   "yoy": -0.276,
+   "peak_month": "202512",
+   "monthly": [
+    [
+     "202410",
+     103847
+    ],
+    [
+     "202411",
+     210651
+    ],
+    [
+     "202412",
+     797755
+    ],
+    [
+     "202501",
+     134215
+    ],
+    [
+     "202502",
+     49771
+    ],
+    [
+     "202503",
+     51372
+    ],
+    [
+     "202504",
+     65301
+    ],
+    [
+     "202505",
+     44347
+    ],
+    [
+     "202506",
+     39297
+    ],
+    [
+     "202507",
+     38854
+    ],
+    [
+     "202508",
+     47456
+    ],
+    [
+     "202509",
+     59951
+    ],
+    [
+     "202510",
+     80647
+    ],
+    [
+     "202511",
+     160362
+    ],
+    [
+     "202512",
+     570208
+    ],
+    [
+     "202601",
+     82977
+    ],
+    [
+     "202602",
+     40388
+    ],
+    [
+     "202603",
+     38842
+    ],
+    [
+     "202604",
+     36437
+    ],
+    [
+     "202605",
+     34954
+    ],
+    [
+     "202606",
+     30951
+    ],
+    [
+     "202607",
+     32553
+    ],
+    [
+     "202608",
+     36753
+    ],
+    [
+     "202609",
+     44663
+    ]
+   ],
+   "season_ratio": 2.73,
+   "score": 1.912
+  },
+  {
+   "category": "holidays & occasions",
+   "niche": "Kwanzaa",
+   "article": "Kwanzaa",
+   "url": "https://en.wikipedia.org/wiki/Kwanzaa",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Kwanzaa/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 81249,
+   "yoy": -0.133,
+   "peak_month": "202512",
+   "monthly": [
+    [
+     "202410",
+     41372
+    ],
+    [
+     "202411",
+     85794
+    ],
+    [
+     "202412",
+     709184
+    ],
+    [
+     "202501",
+     81957
+    ],
+    [
+     "202502",
+     23084
+    ],
+    [
+     "202503",
+     27245
+    ],
+    [
+     "202504",
+     25255
+    ],
+    [
+     "202505",
+     22615
+    ],
+    [
+     "202506",
+     26890
+    ],
+    [
+     "202507",
+     22994
+    ],
+    [
+     "202508",
+     29924
+    ],
+    [
+     "202509",
+     28359
+    ],
+    [
+     "202510",
+     41966
+    ],
+    [
+     "202511",
+     80786
+    ],
+    [
+     "202512",
+     614913
+    ],
+    [
+     "202601",
+     64829
+    ],
+    [
+     "202602",
+     24511
+    ],
+    [
+     "202603",
+     19412
+    ],
+    [
+     "202604",
+     18466
+    ],
+    [
+     "202605",
+     17466
+    ],
+    [
+     "202606",
+     18282
+    ],
+    [
+     "202607",
+     34861
+    ],
+    [
+     "202608",
+     18599
+    ],
+    [
+     "202609",
+     20893
+    ]
+   ],
+   "season_ratio": 3,
+   "score": 1.902
+  },
+  {
+   "category": "professions",
+   "niche": "teacher",
+   "article": "Teacher",
+   "url": "https://en.wikipedia.org/wiki/Teacher",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Teacher/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 14278,
+   "yoy": -0.43,
+   "peak_month": "202510",
+   "monthly": [
+    [
+     "202410",
+     27103
+    ],
+    [
+     "202411",
+     25726
+    ],
+    [
+     "202412",
+     23346
+    ],
+    [
+     "202501",
+     24871
+    ],
+    [
+     "202502",
+     22988
+    ],
+    [
+     "202503",
+     63843
+    ],
+    [
+     "202504",
+     19325
+    ],
+    [
+     "202505",
+     20342
+    ],
+    [
+     "202506",
+     16068
+    ],
+    [
+     "202507",
+     15619
+    ],
+    [
+     "202508",
+     18276
+    ],
+    [
+     "202509",
+     23315
+    ],
+    [
+     "202510",
+     26161
+    ],
+    [
+     "202511",
+     22537
+    ],
+    [
+     "202512",
+     19427
+    ],
+    [
+     "202601",
+     14050
+    ],
+    [
+     "202602",
+     13248
+    ],
+    [
+     "202603",
+     11047
+    ],
+    [
+     "202604",
+     10053
+    ],
+    [
+     "202605",
+     10081
+    ],
+    [
+     "202606",
+     9096
+    ],
+    [
+     "202607",
+     9681
+    ],
+    [
+     "202608",
+     11144
+    ],
+    [
+     "202609",
+     14810
+    ]
+   ],
+   "season_ratio": 1.59,
+   "score": 1.59
+  },
+  {
+   "category": "holidays & occasions",
+   "niche": "Veterans Day",
+   "article": "Veterans_Day",
+   "url": "https://en.wikipedia.org/wiki/Veterans_Day",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Veterans_Day/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 44826,
+   "yoy": -0.24,
+   "peak_month": "202511",
+   "monthly": [
+    [
+     "202410",
+     52108
+    ],
+    [
+     "202411",
+     479711
+    ],
+    [
+     "202412",
+     12494
+    ],
+    [
+     "202501",
+     11595
+    ],
+    [
+     "202502",
+     9391
+    ],
+    [
+     "202503",
+     9577
+    ],
+    [
+     "202504",
+     10222
+    ],
+    [
+     "202505",
+     64012
+    ],
+    [
+     "202506",
+     14782
+    ],
+    [
+     "202507",
+     10066
+    ],
+    [
+     "202508",
+     13092
+    ],
+    [
+     "202509",
+     20601
+    ],
+    [
+     "202510",
+     45160
+    ],
+    [
+     "202511",
+     404319
+    ],
+    [
+     "202512",
+     10299
+    ],
+    [
+     "202601",
+     8152
+    ],
+    [
+     "202602",
+     6423
+    ],
+    [
+     "202603",
+     6447
+    ],
+    [
+     "202604",
+     6663
+    ],
+    [
+     "202605",
+     17195
+    ],
+    [
+     "202606",
+     7883
+    ],
+    [
+     "202607",
+     6853
+    ],
+    [
+     "202608",
+     7045
+    ],
+    [
+     "202609",
+     11468
+    ]
+   ],
+   "season_ratio": 3,
+   "score": 1.413
+  },
+  {
+   "category": "holidays & occasions",
+   "niche": "New Year's",
+   "article": "New_Year%27s_Eve",
+   "url": "https://en.wikipedia.org/wiki/New_Year%27s_Eve",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/New_Year%27s_Eve/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 45926,
+   "yoy": 0.019,
+   "peak_month": "202512",
+   "monthly": [
+    [
+     "202410",
+     13641
+    ],
+    [
+     "202411",
+     19310
+    ],
+    [
+     "202412",
+     311719
+    ],
+    [
+     "202501",
+     109966
+    ],
+    [
+     "202502",
+     11202
+    ],
+    [
+     "202503",
+     11134
+    ],
+    [
+     "202504",
+     18139
+    ],
+    [
+     "202505",
+     9564
+    ],
+    [
+     "202506",
+     8969
+    ],
+    [
+     "202507",
+     8213
+    ],
+    [
+     "202508",
+     8940
+    ],
+    [
+     "202509",
+     10295
+    ],
+    [
+     "202510",
+     10906
+    ],
+    [
+     "202511",
+     15174
+    ],
+    [
+     "202512",
+     333389
+    ],
+    [
+     "202601",
+     108452
+    ],
+    [
+     "202602",
+     12327
+    ],
+    [
+     "202603",
+     10264
+    ],
+    [
+     "202604",
+     8513
+    ],
+    [
+     "202605",
+     8344
+    ],
+    [
+     "202606",
+     12976
+    ],
+    [
+     "202607",
+     11436
+    ],
+    [
+     "202608",
+     9345
+    ],
+    [
+     "202609",
+     9990
+    ]
+   ],
+   "season_ratio": 2.61,
+   "score": 1.244
+  },
+  {
+   "category": "family roles",
+   "niche": "dad",
+   "article": "Father",
+   "url": "https://en.wikipedia.org/wiki/Father",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Father/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 9894,
+   "yoy": -0.191,
+   "peak_month": "202606",
+   "monthly": [
+    [
+     "202410",
+     13325
+    ],
+    [
+     "202411",
+     12765
+    ],
+    [
+     "202412",
+     11254
+    ],
+    [
+     "202501",
+     11457
+    ],
+    [
+     "202502",
+     10301
+    ],
+    [
+     "202503",
+     10675
+    ],
+    [
+     "202504",
+     10735
+    ],
+    [
+     "202505",
+     13446
+    ],
+    [
+     "202506",
+     16836
+    ],
+    [
+     "202507",
+     12813
+    ],
+    [
+     "202508",
+     11646
+    ],
+    [
+     "202509",
+     11444
+    ],
+    [
+     "202510",
+     10573
+    ],
+    [
+     "202511",
+     11129
+    ],
+    [
+     "202512",
+     10299
+    ],
+    [
+     "202601",
+     9785
+    ],
+    [
+     "202602",
+     7843
+    ],
+    [
+     "202603",
+     8985
+    ],
+    [
+     "202604",
+     8383
+    ],
+    [
+     "202605",
+     10117
+    ],
+    [
+     "202606",
+     13421
+    ],
+    [
+     "202607",
+     9711
+    ],
+    [
+     "202608",
+     9562
+    ],
+    [
+     "202609",
+     8924
+    ]
+   ],
+   "season_ratio": 1.08,
+   "score": 1.08
+  },
+  {
+   "category": "humor",
+   "niche": "pun",
+   "article": "Pun",
+   "url": "https://en.wikipedia.org/wiki/Pun",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Pun/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 9425,
+   "yoy": -0.185,
+   "peak_month": "202510",
+   "monthly": [
+    [
+     "202410",
+     13460
+    ],
+    [
+     "202411",
+     13145
+    ],
+    [
+     "202412",
+     11823
+    ],
+    [
+     "202501",
+     13661
+    ],
+    [
+     "202502",
+     11559
+    ],
+    [
+     "202503",
+     11313
+    ],
+    [
+     "202504",
+     10676
+    ],
+    [
+     "202505",
+     11921
+    ],
+    [
+     "202506",
+     9778
+    ],
+    [
+     "202507",
+     10247
+    ],
+    [
+     "202508",
+     10398
+    ],
+    [
+     "202509",
+     10752
+    ],
+    [
+     "202510",
+     10815
+    ],
+    [
+     "202511",
+     10453
+    ],
+    [
+     "202512",
+     8979
+    ],
+    [
+     "202601",
+     9150
+    ],
+    [
+     "202602",
+     8843
+    ],
+    [
+     "202603",
+     9541
+    ],
+    [
+     "202604",
+     8567
+    ],
+    [
+     "202605",
+     9471
+    ],
+    [
+     "202606",
+     8863
+    ],
+    [
+     "202607",
+     8521
+    ],
+    [
+     "202608",
+     9815
+    ],
+    [
+     "202609",
+     10087
+    ]
+   ],
+   "season_ratio": 1.07,
+   "score": 1.07
+  },
+  {
+   "category": "professions",
+   "niche": "doctor",
+   "article": "Physician",
+   "url": "https://en.wikipedia.org/wiki/Physician",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Physician/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 11236,
+   "yoy": -0.585,
+   "peak_month": "202510",
+   "monthly": [
+    [
+     "202410",
+     31670
+    ],
+    [
+     "202411",
+     26998
+    ],
+    [
+     "202412",
+     28852
+    ],
+    [
+     "202501",
+     30212
+    ],
+    [
+     "202502",
+     23221
+    ],
+    [
+     "202503",
+     27463
+    ],
+    [
+     "202504",
+     26831
+    ],
+    [
+     "202505",
+     26991
+    ],
+    [
+     "202506",
+     24714
+    ],
+    [
+     "202507",
+     24321
+    ],
+    [
+     "202508",
+     26709
+    ],
+    [
+     "202509",
+     27095
+    ],
+    [
+     "202510",
+     16034
+    ],
+    [
+     "202511",
+     11710
+    ],
+    [
+     "202512",
+     12525
+    ],
+    [
+     "202601",
+     11752
+    ],
+    [
+     "202602",
+     10465
+    ],
+    [
+     "202603",
+     11504
+    ],
+    [
+     "202604",
+     10835
+    ],
+    [
+     "202605",
+     10912
+    ],
+    [
+     "202606",
+     9927
+    ],
+    [
+     "202607",
+     9548
+    ],
+    [
+     "202608",
+     9503
+    ],
+    [
+     "202609",
+     10121
+    ]
+   ],
+   "season_ratio": 1.19,
+   "score": 1.056
+  },
+  {
+   "category": "family roles",
+   "niche": "mom",
+   "article": "Mother",
+   "url": "https://en.wikipedia.org/wiki/Mother",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Mother/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 9614,
+   "yoy": -0.165,
+   "peak_month": "202605",
+   "monthly": [
+    [
+     "202410",
+     11886
+    ],
+    [
+     "202411",
+     11846
+    ],
+    [
+     "202412",
+     10615
+    ],
+    [
+     "202501",
+     10585
+    ],
+    [
+     "202502",
+     9250
+    ],
+    [
+     "202503",
+     11630
+    ],
+    [
+     "202504",
+     11094
+    ],
+    [
+     "202505",
+     19673
+    ],
+    [
+     "202506",
+     10708
+    ],
+    [
+     "202507",
+     10267
+    ],
+    [
+     "202508",
+     10533
+    ],
+    [
+     "202509",
+     10058
+    ],
+    [
+     "202510",
+     10048
+    ],
+    [
+     "202511",
+     11231
+    ],
+    [
+     "202512",
+     9494
+    ],
+    [
+     "202601",
+     9339
+    ],
+    [
+     "202602",
+     8666
+    ],
+    [
+     "202603",
+     9778
+    ],
+    [
+     "202604",
+     9073
+    ],
+    [
+     "202605",
+     14148
+    ],
+    [
+     "202606",
+     8469
+    ],
+    [
+     "202607",
+     8433
+    ],
+    [
+     "202608",
+     8549
+    ],
+    [
+     "202609",
+     8143
+    ]
+   ],
+   "season_ratio": 1.07,
+   "score": 1.055
+  },
+  {
+   "category": "hobbies",
+   "niche": "pickleball",
+   "article": "Pickleball",
+   "url": "https://en.wikipedia.org/wiki/Pickleball",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Pickleball/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 98573,
+   "yoy": -0.241,
+   "peak_month": "202601",
+   "monthly": [
+    [
+     "202410",
+     128750
+    ],
+    [
+     "202411",
+     122779
+    ],
+    [
+     "202412",
+     117177
+    ],
+    [
+     "202501",
+     147401
+    ],
+    [
+     "202502",
+     135081
+    ],
+    [
+     "202503",
+     149632
+    ],
+    [
+     "202504",
+     117626
+    ],
+    [
+     "202505",
+     124624
+    ],
+    [
+     "202506",
+     119810
+    ],
+    [
+     "202507",
+     145856
+    ],
+    [
+     "202508",
+     137047
+    ],
+    [
+     "202509",
+     113044
+    ],
+    [
+     "202510",
+     106463
+    ],
+    [
+     "202511",
+     101937
+    ],
+    [
+     "202512",
+     96141
+    ],
+    [
+     "202601",
+     113392
+    ],
+    [
+     "202602",
+     89150
+    ],
+    [
+     "202603",
+     101659
+    ],
+    [
+     "202604",
+     89109
+    ],
+    [
+     "202605",
+     102203
+    ],
+    [
+     "202606",
+     93187
+    ],
+    [
+     "202607",
+     108388
+    ],
+    [
+     "202608",
+     98480
+    ],
+    [
+     "202609",
+     82765
+    ]
+   ],
+   "season_ratio": 1.03,
+   "score": 1.03
+  },
+  {
+   "category": "humor",
+   "niche": "sarcasm",
+   "article": "Sarcasm",
+   "url": "https://en.wikipedia.org/wiki/Sarcasm",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Sarcasm/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 8386,
+   "yoy": -0.359,
+   "peak_month": "202604",
+   "monthly": [
+    [
+     "202410",
+     32403
+    ],
+    [
+     "202411",
+     15092
+    ],
+    [
+     "202412",
+     13512
+    ],
+    [
+     "202501",
+     13972
+    ],
+    [
+     "202502",
+     10789
+    ],
+    [
+     "202503",
+     12709
+    ],
+    [
+     "202504",
+     11120
+    ],
+    [
+     "202505",
+     10713
+    ],
+    [
+     "202506",
+     8968
+    ],
+    [
+     "202507",
+     9072
+    ],
+    [
+     "202508",
+     9078
+    ],
+    [
+     "202509",
+     9527
+    ],
+    [
+     "202510",
+     9430
+    ],
+    [
+     "202511",
+     8774
+    ],
+    [
+     "202512",
+     8247
+    ],
+    [
+     "202601",
+     8582
+    ],
+    [
+     "202602",
+     8420
+    ],
+    [
+     "202603",
+     8361
+    ],
+    [
+     "202604",
+     9798
+    ],
+    [
+     "202605",
+     8180
+    ],
+    [
+     "202606",
+     8060
+    ],
+    [
+     "202607",
+     7892
+    ],
+    [
+     "202608",
+     7949
+    ],
+    [
+     "202609",
+     6933
+    ]
+   ],
+   "season_ratio": 1.05,
+   "score": 0.99
+  },
+  {
+   "category": "professions",
+   "niche": "dentist",
+   "article": "Dentist",
+   "url": "https://en.wikipedia.org/wiki/Dentist",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Dentist/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 12980,
+   "yoy": -0.515,
+   "peak_month": "202608",
+   "monthly": [
+    [
+     "202410",
+     39011
+    ],
+    [
+     "202411",
+     29459
+    ],
+    [
+     "202412",
+     30696
+    ],
+    [
+     "202501",
+     39893
+    ],
+    [
+     "202502",
+     31742
+    ],
+    [
+     "202503",
+     25242
+    ],
+    [
+     "202504",
+     20018
+    ],
+    [
+     "202505",
+     28526
+    ],
+    [
+     "202506",
+     22601
+    ],
+    [
+     "202507",
+     18493
+    ],
+    [
+     "202508",
+     17487
+    ],
+    [
+     "202509",
+     17832
+    ],
+    [
+     "202510",
+     15166
+    ],
+    [
+     "202511",
+     12580
+    ],
+    [
+     "202512",
+     11230
+    ],
+    [
+     "202601",
+     13498
+    ],
+    [
+     "202602",
+     15955
+    ],
+    [
+     "202603",
+     15199
+    ],
+    [
+     "202604",
+     11769
+    ],
+    [
+     "202605",
+     11699
+    ],
+    [
+     "202606",
+     8644
+    ],
+    [
+     "202607",
+     15919
+    ],
+    [
+     "202608",
+     16221
+    ],
+    [
+     "202609",
+     7878
+    ]
+   ],
+   "season_ratio": 1.0,
+   "score": 0.953
+  },
+  {
+   "category": "humor",
+   "niche": "humour",
+   "article": "Humour",
+   "url": "https://en.wikipedia.org/wiki/Humour",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Humour/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 7930,
+   "yoy": -0.169,
+   "peak_month": "202605",
+   "monthly": [
+    [
+     "202410",
+     11587
+    ],
+    [
+     "202411",
+     10660
+    ],
+    [
+     "202412",
+     10639
+    ],
+    [
+     "202501",
+     10823
+    ],
+    [
+     "202502",
+     8624
+    ],
+    [
+     "202503",
+     9592
+    ],
+    [
+     "202504",
+     9430
+    ],
+    [
+     "202505",
+     9339
+    ],
+    [
+     "202506",
+     8608
+    ],
+    [
+     "202507",
+     8628
+    ],
+    [
+     "202508",
+     8217
+    ],
+    [
+     "202509",
+     8399
+    ],
+    [
+     "202510",
+     8596
+    ],
+    [
+     "202511",
+     7935
+    ],
+    [
+     "202512",
+     7606
+    ],
+    [
+     "202601",
+     7434
+    ],
+    [
+     "202602",
+     7219
+    ],
+    [
+     "202603",
+     7654
+    ],
+    [
+     "202604",
+     7826
+    ],
+    [
+     "202605",
+     8600
+    ],
+    [
+     "202606",
+     8589
+    ],
+    [
+     "202607",
+     7606
+    ],
+    [
+     "202608",
+     7862
+    ],
+    [
+     "202609",
+     8239
+    ]
+   ],
+   "season_ratio": 1.01,
+   "score": 0.926
+  },
+  {
+   "category": "humor",
+   "niche": "dad joke",
+   "article": "Dad_joke",
+   "url": "https://en.wikipedia.org/wiki/Dad_joke",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Dad_joke/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 6551,
+   "yoy": -0.195,
+   "peak_month": "202601",
+   "monthly": [
+    [
+     "202410",
+     8075
+    ],
+    [
+     "202411",
+     8997
+    ],
+    [
+     "202412",
+     10313
+    ],
+    [
+     "202501",
+     9716
+    ],
+    [
+     "202502",
+     7982
+    ],
+    [
+     "202503",
+     8407
+    ],
+    [
+     "202504",
+     6762
+    ],
+    [
+     "202505",
+     7408
+    ],
+    [
+     "202506",
+     8569
+    ],
+    [
+     "202507",
+     6712
+    ],
+    [
+     "202508",
+     7999
+    ],
+    [
+     "202509",
+     6710
+    ],
+    [
+     "202510",
+     7007
+    ],
+    [
+     "202511",
+     6395
+    ],
+    [
+     "202512",
+     7758
+    ],
+    [
+     "202601",
+     7769
+    ],
+    [
+     "202602",
+     6447
+    ],
+    [
+     "202603",
+     6496
+    ],
+    [
+     "202604",
+     5761
+    ],
+    [
+     "202605",
+     6656
+    ],
+    [
+     "202606",
+     6602
+    ],
+    [
+     "202607",
+     5822
+    ],
+    [
+     "202608",
+     5991
+    ],
+    [
+     "202609",
+     5908
+    ]
+   ],
+   "season_ratio": 1.08,
+   "score": 0.9
+  },
+  {
+   "category": "professions",
+   "niche": "firefighter",
+   "article": "Firefighter",
+   "url": "https://en.wikipedia.org/wiki/Firefighter",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Firefighter/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 9157,
+   "yoy": -0.327,
+   "peak_month": "202510",
+   "monthly": [
+    [
+     "202410",
+     17744
+    ],
+    [
+     "202411",
+     18520
+    ],
+    [
+     "202412",
+     15244
+    ],
+    [
+     "202501",
+     16852
+    ],
+    [
+     "202502",
+     12425
+    ],
+    [
+     "202503",
+     15609
+    ],
+    [
+     "202504",
+     12773
+    ],
+    [
+     "202505",
+     13326
+    ],
+    [
+     "202506",
+     10010
+    ],
+    [
+     "202507",
+     9302
+    ],
+    [
+     "202508",
+     10088
+    ],
+    [
+     "202509",
+     11358
+    ],
+    [
+     "202510",
+     10815
+    ],
+    [
+     "202511",
+     10142
+    ],
+    [
+     "202512",
+     8584
+    ],
+    [
+     "202601",
+     9299
+    ],
+    [
+     "202602",
+     8075
+    ],
+    [
+     "202603",
+     8633
+    ],
+    [
+     "202604",
+     8495
+    ],
+    [
+     "202605",
+     9971
+    ],
+    [
+     "202606",
+     8043
+    ],
+    [
+     "202607",
+     8665
+    ],
+    [
+     "202608",
+     9170
+    ],
+    [
+     "202609",
+     9996
+    ]
+   ],
+   "season_ratio": 1.08,
+   "score": 0.865
+  },
+  {
+   "category": "family roles",
+   "niche": "uncle",
+   "article": "Uncle",
+   "url": "https://en.wikipedia.org/wiki/Uncle",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Uncle/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 4786,
+   "yoy": -0.218,
+   "peak_month": "202511",
+   "monthly": [
+    [
+     "202410",
+     8432
+    ],
+    [
+     "202411",
+     6898
+    ],
+    [
+     "202412",
+     7883
+    ],
+    [
+     "202501",
+     7395
+    ],
+    [
+     "202502",
+     6436
+    ],
+    [
+     "202503",
+     5258
+    ],
+    [
+     "202504",
+     5076
+    ],
+    [
+     "202505",
+     5251
+    ],
+    [
+     "202506",
+     4869
+    ],
+    [
+     "202507",
+     5275
+    ],
+    [
+     "202508",
+     5661
+    ],
+    [
+     "202509",
+     4989
+    ],
+    [
+     "202510",
+     6015
+    ],
+    [
+     "202511",
+     6251
+    ],
+    [
+     "202512",
+     5504
+    ],
+    [
+     "202601",
+     4765
+    ],
+    [
+     "202602",
+     4479
+    ],
+    [
+     "202603",
+     4262
+    ],
+    [
+     "202604",
+     4458
+    ],
+    [
+     "202605",
+     4687
+    ],
+    [
+     "202606",
+     4374
+    ],
+    [
+     "202607",
+     4147
+    ],
+    [
+     "202608",
+     4175
+    ],
+    [
+     "202609",
+     4311
+    ]
+   ],
+   "season_ratio": 1.24,
+   "score": 0.862
+  },
+  {
+   "category": "professions",
+   "niche": "police officer",
+   "article": "Police_officer",
+   "url": "https://en.wikipedia.org/wiki/Police_officer",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Police_officer/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 8428,
+   "yoy": -0.187,
+   "peak_month": "202601",
+   "monthly": [
+    [
+     "202410",
+     10482
+    ],
+    [
+     "202411",
+     10115
+    ],
+    [
+     "202412",
+     10117
+    ],
+    [
+     "202501",
+     10881
+    ],
+    [
+     "202502",
+     9684
+    ],
+    [
+     "202503",
+     11516
+    ],
+    [
+     "202504",
+     10252
+    ],
+    [
+     "202505",
+     11098
+    ],
+    [
+     "202506",
+     10446
+    ],
+    [
+     "202507",
+     9289
+    ],
+    [
+     "202508",
+     10289
+    ],
+    [
+     "202509",
+     10299
+    ],
+    [
+     "202510",
+     9150
+    ],
+    [
+     "202511",
+     9083
+    ],
+    [
+     "202512",
+     9291
+    ],
+    [
+     "202601",
+     9710
+    ],
+    [
+     "202602",
+     8050
+    ],
+    [
+     "202603",
+     8304
+    ],
+    [
+     "202604",
+     8248
+    ],
+    [
+     "202605",
+     8485
+    ],
+    [
+     "202606",
+     7655
+    ],
+    [
+     "202607",
+     7577
+    ],
+    [
+     "202608",
+     7943
+    ],
+    [
+     "202609",
+     7644
+    ]
+   ],
+   "season_ratio": 1.09,
+   "score": 0.837
+  },
+  {
+   "category": "hobbies",
+   "niche": "marathon",
+   "article": "Marathon",
+   "url": "https://en.wikipedia.org/wiki/Marathon",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Marathon/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 53930,
+   "yoy": -0.089,
+   "peak_month": "202604",
+   "monthly": [
+    [
+     "202410",
+     78578
+    ],
+    [
+     "202411",
+     61219
+    ],
+    [
+     "202412",
+     48407
+    ],
+    [
+     "202501",
+     52797
+    ],
+    [
+     "202502",
+     44700
+    ],
+    [
+     "202503",
+     55143
+    ],
+    [
+     "202504",
+     92376
+    ],
+    [
+     "202505",
+     68860
+    ],
+    [
+     "202506",
+     48251
+    ],
+    [
+     "202507",
+     49071
+    ],
+    [
+     "202508",
+     49681
+    ],
+    [
+     "202509",
+     61108
+    ],
+    [
+     "202510",
+     65865
+    ],
+    [
+     "202511",
+     58356
+    ],
+    [
+     "202512",
+     41256
+    ],
+    [
+     "202601",
+     44308
+    ],
+    [
+     "202602",
+     45606
+    ],
+    [
+     "202603",
+     57813
+    ],
+    [
+     "202604",
+     112501
+    ],
+    [
+     "202605",
+     64266
+    ],
+    [
+     "202606",
+     38755
+    ],
+    [
+     "202607",
+     34367
+    ],
+    [
+     "202608",
+     42428
+    ],
+    [
+     "202609",
+     41634
+    ]
+   ],
+   "season_ratio": 1.02,
+   "score": 0.754
+  },
+  {
+   "category": "family roles",
+   "niche": "sister",
+   "article": "Sister",
+   "url": "https://en.wikipedia.org/wiki/Sister",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Sister/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 3243,
+   "yoy": -0.164,
+   "peak_month": "202512",
+   "monthly": [
+    [
+     "202410",
+     4005
+    ],
+    [
+     "202411",
+     3880
+    ],
+    [
+     "202412",
+     4273
+    ],
+    [
+     "202501",
+     4061
+    ],
+    [
+     "202502",
+     3574
+    ],
+    [
+     "202503",
+     3780
+    ],
+    [
+     "202504",
+     4007
+    ],
+    [
+     "202505",
+     3960
+    ],
+    [
+     "202506",
+     3588
+    ],
+    [
+     "202507",
+     3556
+    ],
+    [
+     "202508",
+     4076
+    ],
+    [
+     "202509",
+     3814
+    ],
+    [
+     "202510",
+     3889
+    ],
+    [
+     "202511",
+     4265
+    ],
+    [
+     "202512",
+     4355
+    ],
+    [
+     "202601",
+     3785
+    ],
+    [
+     "202602",
+     3101
+    ],
+    [
+     "202603",
+     2863
+    ],
+    [
+     "202604",
+     2673
+    ],
+    [
+     "202605",
+     2839
+    ],
+    [
+     "202606",
+     2644
+    ],
+    [
+     "202607",
+     3088
+    ],
+    [
+     "202608",
+     2718
+    ],
+    [
+     "202609",
+     2694
+    ]
+   ],
+   "season_ratio": 1.29,
+   "score": 0.739
+  },
+  {
+   "category": "family roles",
+   "niche": "daughter",
+   "article": "Daughter",
+   "url": "https://en.wikipedia.org/wiki/Daughter",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Daughter/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 3294,
+   "yoy": -0.243,
+   "peak_month": "202512",
+   "monthly": [
+    [
+     "202410",
+     4086
+    ],
+    [
+     "202411",
+     4050
+    ],
+    [
+     "202412",
+     4662
+    ],
+    [
+     "202501",
+     5475
+    ],
+    [
+     "202502",
+     4710
+    ],
+    [
+     "202503",
+     4533
+    ],
+    [
+     "202504",
+     4704
+    ],
+    [
+     "202505",
+     4513
+    ],
+    [
+     "202506",
+     3722
+    ],
+    [
+     "202507",
+     3976
+    ],
+    [
+     "202508",
+     4027
+    ],
+    [
+     "202509",
+     3757
+    ],
+    [
+     "202510",
+     3803
+    ],
+    [
+     "202511",
+     4300
+    ],
+    [
+     "202512",
+     4352
+    ],
+    [
+     "202601",
+     3934
+    ],
+    [
+     "202602",
+     3131
+    ],
+    [
+     "202603",
+     2774
+    ],
+    [
+     "202604",
+     2778
+    ],
+    [
+     "202605",
+     2810
+    ],
+    [
+     "202606",
+     3100
+    ],
+    [
+     "202607",
+     2858
+    ],
+    [
+     "202608",
+     2660
+    ],
+    [
+     "202609",
+     3025
+    ]
+   ],
+   "season_ratio": 1.26,
+   "score": 0.727
+  },
+  {
+   "category": "professions",
+   "niche": "paramedic",
+   "article": "Paramedic",
+   "url": "https://en.wikipedia.org/wiki/Paramedic",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Paramedic/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 6829,
+   "yoy": -0.242,
+   "peak_month": "202510",
+   "monthly": [
+    [
+     "202410",
+     12885
+    ],
+    [
+     "202411",
+     10108
+    ],
+    [
+     "202412",
+     9126
+    ],
+    [
+     "202501",
+     10164
+    ],
+    [
+     "202502",
+     8731
+    ],
+    [
+     "202503",
+     8608
+    ],
+    [
+     "202504",
+     8563
+    ],
+    [
+     "202505",
+     8621
+    ],
+    [
+     "202506",
+     7871
+    ],
+    [
+     "202507",
+     7608
+    ],
+    [
+     "202508",
+     8089
+    ],
+    [
+     "202509",
+     7804
+    ],
+    [
+     "202510",
+     7733
+    ],
+    [
+     "202511",
+     6764
+    ],
+    [
+     "202512",
+     6771
+    ],
+    [
+     "202601",
+     7667
+    ],
+    [
+     "202602",
+     6924
+    ],
+    [
+     "202603",
+     6765
+    ],
+    [
+     "202604",
+     6865
+    ],
+    [
+     "202605",
+     7149
+    ],
+    [
+     "202606",
+     5968
+    ],
+    [
+     "202607",
+     6403
+    ],
+    [
+     "202608",
+     6077
+    ],
+    [
+     "202609",
+     6863
+    ]
+   ],
+   "season_ratio": 1.04,
+   "score": 0.719
+  },
+  {
+   "category": "professions",
+   "niche": "veterinarian",
+   "article": "Veterinarian",
+   "url": "https://en.wikipedia.org/wiki/Veterinarian",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Veterinarian/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 12706,
+   "yoy": -0.061,
+   "peak_month": "202603",
+   "monthly": [
+    [
+     "202410",
+     13816
+    ],
+    [
+     "202411",
+     16689
+    ],
+    [
+     "202412",
+     18014
+    ],
+    [
+     "202501",
+     15390
+    ],
+    [
+     "202502",
+     13420
+    ],
+    [
+     "202503",
+     13658
+    ],
+    [
+     "202504",
+     12070
+    ],
+    [
+     "202505",
+     13822
+    ],
+    [
+     "202506",
+     11965
+    ],
+    [
+     "202507",
+     9631
+    ],
+    [
+     "202508",
+     12591
+    ],
+    [
+     "202509",
+     11365
+    ],
+    [
+     "202510",
+     10718
+    ],
+    [
+     "202511",
+     8876
+    ],
+    [
+     "202512",
+     8396
+    ],
+    [
+     "202601",
+     8933
+    ],
+    [
+     "202602",
+     8305
+    ],
+    [
+     "202603",
+     22727
+    ],
+    [
+     "202604",
+     22686
+    ],
+    [
+     "202605",
+     13616
+    ],
+    [
+     "202606",
+     10771
+    ],
+    [
+     "202607",
+     10374
+    ],
+    [
+     "202608",
+     11416
+    ],
+    [
+     "202609",
+     15650
+    ]
+   ],
+   "season_ratio": 0.73,
+   "score": 0.689
+  },
+  {
+   "category": "professions",
+   "niche": "pharmacist",
+   "article": "Pharmacist",
+   "url": "https://en.wikipedia.org/wiki/Pharmacist",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Pharmacist/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 5316,
+   "yoy": -0.457,
+   "peak_month": "202510",
+   "monthly": [
+    [
+     "202410",
+     15656
+    ],
+    [
+     "202411",
+     14197
+    ],
+    [
+     "202412",
+     14936
+    ],
+    [
+     "202501",
+     11084
+    ],
+    [
+     "202502",
+     7946
+    ],
+    [
+     "202503",
+     9899
+    ],
+    [
+     "202504",
+     8877
+    ],
+    [
+     "202505",
+     8486
+    ],
+    [
+     "202506",
+     6389
+    ],
+    [
+     "202507",
+     5501
+    ],
+    [
+     "202508",
+     7088
+    ],
+    [
+     "202509",
+     7478
+    ],
+    [
+     "202510",
+     6653
+    ],
+    [
+     "202511",
+     5598
+    ],
+    [
+     "202512",
+     5203
+    ],
+    [
+     "202601",
+     5595
+    ],
+    [
+     "202602",
+     4796
+    ],
+    [
+     "202603",
+     5134
+    ],
+    [
+     "202604",
+     4938
+    ],
+    [
+     "202605",
+     5430
+    ],
+    [
+     "202606",
+     4712
+    ],
+    [
+     "202607",
+     4825
+    ],
+    [
+     "202608",
+     5345
+    ],
+    [
+     "202609",
+     5557
+    ]
+   ],
+   "season_ratio": 1.09,
+   "score": 0.665
+  },
+  {
+   "category": "pets",
+   "niche": "Dachshund",
+   "article": "Dachshund",
+   "url": "https://en.wikipedia.org/wiki/Dachshund",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Dachshund/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 88294,
+   "yoy": -0.088,
+   "peak_month": "202510",
+   "monthly": [
+    [
+     "202410",
+     100798
+    ],
+    [
+     "202411",
+     97374
+    ],
+    [
+     "202412",
+     100054
+    ],
+    [
+     "202501",
+     95988
+    ],
+    [
+     "202502",
+     79234
+    ],
+    [
+     "202503",
+     97930
+    ],
+    [
+     "202504",
+     97182
+    ],
+    [
+     "202505",
+     110880
+    ],
+    [
+     "202506",
+     95068
+    ],
+    [
+     "202507",
+     93323
+    ],
+    [
+     "202508",
+     103277
+    ],
+    [
+     "202509",
+     90374
+    ],
+    [
+     "202510",
+     94965
+    ],
+    [
+     "202511",
+     92072
+    ],
+    [
+     "202512",
+     91758
+    ],
+    [
+     "202601",
+     89330
+    ],
+    [
+     "202602",
+     74050
+    ],
+    [
+     "202603",
+     85040
+    ],
+    [
+     "202604",
+     85922
+    ],
+    [
+     "202605",
+     89310
+    ],
+    [
+     "202606",
+     90081
+    ],
+    [
+     "202607",
+     93186
+    ],
+    [
+     "202608",
+     85742
+    ],
+    [
+     "202609",
+     88070
+    ]
+   ],
+   "season_ratio": 1.05,
+   "score": 0.63
+  },
+  {
+   "category": "family roles",
+   "niche": "auntie",
+   "article": "Aunt",
+   "url": "https://en.wikipedia.org/wiki/Aunt",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Aunt/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 2945,
+   "yoy": -0.199,
+   "peak_month": "202605",
+   "monthly": [
+    [
+     "202410",
+     4145
+    ],
+    [
+     "202411",
+     4042
+    ],
+    [
+     "202412",
+     3858
+    ],
+    [
+     "202501",
+     3888
+    ],
+    [
+     "202502",
+     4090
+    ],
+    [
+     "202503",
+     3462
+    ],
+    [
+     "202504",
+     3331
+    ],
+    [
+     "202505",
+     3703
+    ],
+    [
+     "202506",
+     3369
+    ],
+    [
+     "202507",
+     3457
+    ],
+    [
+     "202508",
+     3460
+    ],
+    [
+     "202509",
+     3309
+    ],
+    [
+     "202510",
+     3299
+    ],
+    [
+     "202511",
+     3266
+    ],
+    [
+     "202512",
+     3423
+    ],
+    [
+     "202601",
+     3025
+    ],
+    [
+     "202602",
+     2520
+    ],
+    [
+     "202603",
+     2510
+    ],
+    [
+     "202604",
+     2822
+    ],
+    [
+     "202605",
+     3439
+    ],
+    [
+     "202606",
+     3041
+    ],
+    [
+     "202607",
+     2742
+    ],
+    [
+     "202608",
+     2650
+    ],
+    [
+     "202609",
+     2598
+    ]
+   ],
+   "season_ratio": 1.13,
+   "score": 0.617
+  },
+  {
+   "category": "pets",
+   "niche": "Maine Coon",
+   "article": "Maine_Coon",
+   "url": "https://en.wikipedia.org/wiki/Maine_Coon",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Maine_Coon/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 79366,
+   "yoy": -0.284,
+   "peak_month": "202601",
+   "monthly": [
+    [
+     "202410",
+     120175
+    ],
+    [
+     "202411",
+     109756
+    ],
+    [
+     "202412",
+     121106
+    ],
+    [
+     "202501",
+     122489
+    ],
+    [
+     "202502",
+     104806
+    ],
+    [
+     "202503",
+     168036
+    ],
+    [
+     "202504",
+     93296
+    ],
+    [
+     "202505",
+     103545
+    ],
+    [
+     "202506",
+     95185
+    ],
+    [
+     "202507",
+     105613
+    ],
+    [
+     "202508",
+     95353
+    ],
+    [
+     "202509",
+     90586
+    ],
+    [
+     "202510",
+     81452
+    ],
+    [
+     "202511",
+     86347
+    ],
+    [
+     "202512",
+     85490
+    ],
+    [
+     "202601",
+     99771
+    ],
+    [
+     "202602",
+     72738
+    ],
+    [
+     "202603",
+     76019
+    ],
+    [
+     "202604",
+     76285
+    ],
+    [
+     "202605",
+     73372
+    ],
+    [
+     "202606",
+     69622
+    ],
+    [
+     "202607",
+     72889
+    ],
+    [
+     "202608",
+     80686
+    ],
+    [
+     "202609",
+     77725
+    ]
+   ],
+   "season_ratio": 1.06,
+   "score": 0.603
+  },
+  {
+   "category": "pets",
+   "niche": "German Shepherd",
+   "article": "German_Shepherd",
+   "url": "https://en.wikipedia.org/wiki/German_Shepherd",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/German_Shepherd/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 66145,
+   "yoy": -0.264,
+   "peak_month": "202510",
+   "monthly": [
+    [
+     "202410",
+     83212
+    ],
+    [
+     "202411",
+     85901
+    ],
+    [
+     "202412",
+     86674
+    ],
+    [
+     "202501",
+     92972
+    ],
+    [
+     "202502",
+     80995
+    ],
+    [
+     "202503",
+     136300
+    ],
+    [
+     "202504",
+     85285
+    ],
+    [
+     "202505",
+     92286
+    ],
+    [
+     "202506",
+     84498
+    ],
+    [
+     "202507",
+     89244
+    ],
+    [
+     "202508",
+     88747
+    ],
+    [
+     "202509",
+     72031
+    ],
+    [
+     "202510",
+     74518
+    ],
+    [
+     "202511",
+     73974
+    ],
+    [
+     "202512",
+     69896
+    ],
+    [
+     "202601",
+     74034
+    ],
+    [
+     "202602",
+     67183
+    ],
+    [
+     "202603",
+     65125
+    ],
+    [
+     "202604",
+     63199
+    ],
+    [
+     "202605",
+     64835
+    ],
+    [
+     "202606",
+     63508
+    ],
+    [
+     "202607",
+     60114
+    ],
+    [
+     "202608",
+     59908
+    ],
+    [
+     "202609",
+     57447
+    ]
+   ],
+   "season_ratio": 1.1,
+   "score": 0.571
+  },
+  {
+   "category": "family roles",
+   "niche": "brother",
+   "article": "Brother",
+   "url": "https://en.wikipedia.org/wiki/Brother",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Brother/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 3057,
+   "yoy": -0.132,
+   "peak_month": "202601",
+   "monthly": [
+    [
+     "202410",
+     4459
+    ],
+    [
+     "202411",
+     4233
+    ],
+    [
+     "202412",
+     3904
+    ],
+    [
+     "202501",
+     3862
+    ],
+    [
+     "202502",
+     3245
+    ],
+    [
+     "202503",
+     3626
+    ],
+    [
+     "202504",
+     3458
+    ],
+    [
+     "202505",
+     3475
+    ],
+    [
+     "202506",
+     3044
+    ],
+    [
+     "202507",
+     2851
+    ],
+    [
+     "202508",
+     3099
+    ],
+    [
+     "202509",
+     3023
+    ],
+    [
+     "202510",
+     2909
+    ],
+    [
+     "202511",
+     3040
+    ],
+    [
+     "202512",
+     3269
+    ],
+    [
+     "202601",
+     3501
+    ],
+    [
+     "202602",
+     3061
+    ],
+    [
+     "202603",
+     3274
+    ],
+    [
+     "202604",
+     3090
+    ],
+    [
+     "202605",
+     3378
+    ],
+    [
+     "202606",
+     2684
+    ],
+    [
+     "202607",
+     2771
+    ],
+    [
+     "202608",
+     2700
+    ],
+    [
+     "202609",
+     3003
+    ]
+   ],
+   "season_ratio": 1.01,
+   "score": 0.561
+  },
+  {
+   "category": "hobbies",
+   "niche": "golf",
+   "article": "Golf",
+   "url": "https://en.wikipedia.org/wiki/Golf",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Golf/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 27509,
+   "yoy": -0.228,
+   "peak_month": "202604",
+   "monthly": [
+    [
+     "202410",
+     34081
+    ],
+    [
+     "202411",
+     31267
+    ],
+    [
+     "202412",
+     28558
+    ],
+    [
+     "202501",
+     30455
+    ],
+    [
+     "202502",
+     27885
+    ],
+    [
+     "202503",
+     34453
+    ],
+    [
+     "202504",
+     47027
+    ],
+    [
+     "202505",
+     36482
+    ],
+    [
+     "202506",
+     36539
+    ],
+    [
+     "202507",
+     45837
+    ],
+    [
+     "202508",
+     38180
+    ],
+    [
+     "202509",
+     36689
+    ],
+    [
+     "202510",
+     29073
+    ],
+    [
+     "202511",
+     32898
+    ],
+    [
+     "202512",
+     23326
+    ],
+    [
+     "202601",
+     23914
+    ],
+    [
+     "202602",
+     23244
+    ],
+    [
+     "202603",
+     24954
+    ],
+    [
+     "202604",
+     35972
+    ],
+    [
+     "202605",
+     31228
+    ],
+    [
+     "202606",
+     26639
+    ],
+    [
+     "202607",
+     30986
+    ],
+    [
+     "202608",
+     24616
+    ],
+    [
+     "202609",
+     23257
+    ]
+   ],
+   "season_ratio": 1.03,
+   "score": 0.544
+  },
+  {
+   "category": "holidays & occasions",
+   "niche": "winter",
+   "article": "Winter",
+   "url": "https://en.wikipedia.org/wiki/Winter",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Winter/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 19776,
+   "yoy": -0.29,
+   "peak_month": "202512",
+   "monthly": [
+    [
+     "202410",
+     29893
+    ],
+    [
+     "202411",
+     39786
+    ],
+    [
+     "202412",
+     49264
+    ],
+    [
+     "202501",
+     38717
+    ],
+    [
+     "202502",
+     29059
+    ],
+    [
+     "202503",
+     25845
+    ],
+    [
+     "202504",
+     17758
+    ],
+    [
+     "202505",
+     19398
+    ],
+    [
+     "202506",
+     19673
+    ],
+    [
+     "202507",
+     18774
+    ],
+    [
+     "202508",
+     21449
+    ],
+    [
+     "202509",
+     24784
+    ],
+    [
+     "202510",
+     26966
+    ],
+    [
+     "202511",
+     36984
+    ],
+    [
+     "202512",
+     39124
+    ],
+    [
+     "202601",
+     27545
+    ],
+    [
+     "202602",
+     18714
+    ],
+    [
+     "202603",
+     14731
+    ],
+    [
+     "202604",
+     11154
+    ],
+    [
+     "202605",
+     11717
+    ],
+    [
+     "202606",
+     11494
+    ],
+    [
+     "202607",
+     11080
+    ],
+    [
+     "202608",
+     12237
+    ],
+    [
+     "202609",
+     15569
+    ]
+   ],
+   "season_ratio": 1.74,
+   "score": 0.544
+  },
+  {
+   "category": "pets",
+   "niche": "Labrador Retriever",
+   "article": "Labrador_Retriever",
+   "url": "https://en.wikipedia.org/wiki/Labrador_Retriever",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Labrador_Retriever/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 59743,
+   "yoy": -0.247,
+   "peak_month": "202510",
+   "monthly": [
+    [
+     "202410",
+     71606
+    ],
+    [
+     "202411",
+     75442
+    ],
+    [
+     "202412",
+     81471
+    ],
+    [
+     "202501",
+     88948
+    ],
+    [
+     "202502",
+     71327
+    ],
+    [
+     "202503",
+     98187
+    ],
+    [
+     "202504",
+     74136
+    ],
+    [
+     "202505",
+     83741
+    ],
+    [
+     "202506",
+     78868
+    ],
+    [
+     "202507",
+     83093
+    ],
+    [
+     "202508",
+     77948
+    ],
+    [
+     "202509",
+     67186
+    ],
+    [
+     "202510",
+     67604
+    ],
+    [
+     "202511",
+     66400
+    ],
+    [
+     "202512",
+     62497
+    ],
+    [
+     "202601",
+     65070
+    ],
+    [
+     "202602",
+     56876
+    ],
+    [
+     "202603",
+     59574
+    ],
+    [
+     "202604",
+     55978
+    ],
+    [
+     "202605",
+     56208
+    ],
+    [
+     "202606",
+     55059
+    ],
+    [
+     "202607",
+     57188
+    ],
+    [
+     "202608",
+     59581
+    ],
+    [
+     "202609",
+     54885
+    ]
+   ],
+   "season_ratio": 1.1,
+   "score": 0.543
+  },
+  {
+   "category": "pets",
+   "niche": "Golden Retriever",
+   "article": "Golden_Retriever",
+   "url": "https://en.wikipedia.org/wiki/Golden_Retriever",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Golden_Retriever/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 64684,
+   "yoy": -0.203,
+   "peak_month": "202510",
+   "monthly": [
+    [
+     "202410",
+     72234
+    ],
+    [
+     "202411",
+     73024
+    ],
+    [
+     "202412",
+     76819
+    ],
+    [
+     "202501",
+     79140
+    ],
+    [
+     "202502",
+     69433
+    ],
+    [
+     "202503",
+     154491
+    ],
+    [
+     "202504",
+     76242
+    ],
+    [
+     "202505",
+     81770
+    ],
+    [
+     "202506",
+     71909
+    ],
+    [
+     "202507",
+     75813
+    ],
+    [
+     "202508",
+     75691
+    ],
+    [
+     "202509",
+     66894
+    ],
+    [
+     "202510",
+     70548
+    ],
+    [
+     "202511",
+     68527
+    ],
+    [
+     "202512",
+     64643
+    ],
+    [
+     "202601",
+     66355
+    ],
+    [
+     "202602",
+     59575
+    ],
+    [
+     "202603",
+     62599
+    ],
+    [
+     "202604",
+     64706
+    ],
+    [
+     "202605",
+     64890
+    ],
+    [
+     "202606",
+     63773
+    ],
+    [
+     "202607",
+     64492
+    ],
+    [
+     "202608",
+     63325
+    ],
+    [
+     "202609",
+     62775
+    ]
+   ],
+   "season_ratio": 1.05,
+   "score": 0.539
+  },
+  {
+   "category": "hobbies",
+   "niche": "tennis",
+   "article": "Tennis",
+   "url": "https://en.wikipedia.org/wiki/Tennis",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Tennis/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 35070,
+   "yoy": -0.278,
+   "peak_month": "202607",
+   "monthly": [
+    [
+     "202410",
+     46955
+    ],
+    [
+     "202411",
+     40460
+    ],
+    [
+     "202412",
+     35952
+    ],
+    [
+     "202501",
+     55263
+    ],
+    [
+     "202502",
+     39672
+    ],
+    [
+     "202503",
+     64350
+    ],
+    [
+     "202504",
+     36777
+    ],
+    [
+     "202505",
+     42511
+    ],
+    [
+     "202506",
+     56765
+    ],
+    [
+     "202507",
+     74684
+    ],
+    [
+     "202508",
+     43300
+    ],
+    [
+     "202509",
+     46538
+    ],
+    [
+     "202510",
+     33362
+    ],
+    [
+     "202511",
+     32439
+    ],
+    [
+     "202512",
+     26544
+    ],
+    [
+     "202601",
+     40675
+    ],
+    [
+     "202602",
+     35770
+    ],
+    [
+     "202603",
+     32426
+    ],
+    [
+     "202604",
+     28839
+    ],
+    [
+     "202605",
+     33601
+    ],
+    [
+     "202606",
+     39830
+    ],
+    [
+     "202607",
+     47507
+    ],
+    [
+     "202608",
+     29361
+    ],
+    [
+     "202609",
+     40483
+    ]
+   ],
+   "season_ratio": 0.88,
+   "score": 0.525
+  },
+  {
+   "category": "family roles",
+   "niche": "son",
+   "article": "Son",
+   "url": "https://en.wikipedia.org/wiki/Son",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Son/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 2852,
+   "yoy": -0.036,
+   "peak_month": "202605",
+   "monthly": [
+    [
+     "202410",
+     2977
+    ],
+    [
+     "202411",
+     3282
+    ],
+    [
+     "202412",
+     3045
+    ],
+    [
+     "202501",
+     3459
+    ],
+    [
+     "202502",
+     2797
+    ],
+    [
+     "202503",
+     3213
+    ],
+    [
+     "202504",
+     3018
+    ],
+    [
+     "202505",
+     3213
+    ],
+    [
+     "202506",
+     2720
+    ],
+    [
+     "202507",
+     2539
+    ],
+    [
+     "202508",
+     2862
+    ],
+    [
+     "202509",
+     2382
+    ],
+    [
+     "202510",
+     2310
+    ],
+    [
+     "202511",
+     2431
+    ],
+    [
+     "202512",
+     2596
+    ],
+    [
+     "202601",
+     3088
+    ],
+    [
+     "202602",
+     2366
+    ],
+    [
+     "202603",
+     2486
+    ],
+    [
+     "202604",
+     2610
+    ],
+    [
+     "202605",
+     3625
+    ],
+    [
+     "202606",
+     3613
+    ],
+    [
+     "202607",
+     3295
+    ],
+    [
+     "202608",
+     2775
+    ],
+    [
+     "202609",
+     3024
+    ]
+   ],
+   "season_ratio": 0.86,
+   "score": 0.462
+  },
+  {
+   "category": "holidays & occasions",
+   "niche": "Boss's Day",
+   "article": "Boss's_Day",
+   "url": "https://en.wikipedia.org/wiki/Boss's_Day",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Boss's_Day/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 4766,
+   "yoy": -0.413,
+   "peak_month": "202510",
+   "monthly": [
+    [
+     "202410",
+     68838
+    ],
+    [
+     "202411",
+     2414
+    ],
+    [
+     "202412",
+     1879
+    ],
+    [
+     "202501",
+     1763
+    ],
+    [
+     "202502",
+     1788
+    ],
+    [
+     "202503",
+     2769
+    ],
+    [
+     "202504",
+     3420
+    ],
+    [
+     "202505",
+     3199
+    ],
+    [
+     "202506",
+     1727
+    ],
+    [
+     "202507",
+     1990
+    ],
+    [
+     "202508",
+     2812
+    ],
+    [
+     "202509",
+     4822
+    ],
+    [
+     "202510",
+     39973
+    ],
+    [
+     "202511",
+     1419
+    ],
+    [
+     "202512",
+     1479
+    ],
+    [
+     "202601",
+     1168
+    ],
+    [
+     "202602",
+     1227
+    ],
+    [
+     "202603",
+     1530
+    ],
+    [
+     "202604",
+     2086
+    ],
+    [
+     "202605",
+     1581
+    ],
+    [
+     "202606",
+     1241
+    ],
+    [
+     "202607",
+     1256
+    ],
+    [
+     "202608",
+     1435
+    ],
+    [
+     "202609",
+     2795
+    ]
+   ],
+   "season_ratio": 3.0,
+   "score": 0.461
+  },
+  {
+   "category": "professions",
+   "niche": "dental hygienist",
+   "article": "Dental_hygienist",
+   "url": "https://en.wikipedia.org/wiki/Dental_hygienist",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Dental_hygienist/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 2900,
+   "yoy": -0.417,
+   "peak_month": "202608",
+   "monthly": [
+    [
+     "202410",
+     6889
+    ],
+    [
+     "202411",
+     6769
+    ],
+    [
+     "202412",
+     6446
+    ],
+    [
+     "202501",
+     5986
+    ],
+    [
+     "202502",
+     4950
+    ],
+    [
+     "202503",
+     6527
+    ],
+    [
+     "202504",
+     4552
+    ],
+    [
+     "202505",
+     4530
+    ],
+    [
+     "202506",
+     3440
+    ],
+    [
+     "202507",
+     3182
+    ],
+    [
+     "202508",
+     3214
+    ],
+    [
+     "202509",
+     3208
+    ],
+    [
+     "202510",
+     2985
+    ],
+    [
+     "202511",
+     2990
+    ],
+    [
+     "202512",
+     2570
+    ],
+    [
+     "202601",
+     2790
+    ],
+    [
+     "202602",
+     2630
+    ],
+    [
+     "202603",
+     2568
+    ],
+    [
+     "202604",
+     2664
+    ],
+    [
+     "202605",
+     3026
+    ],
+    [
+     "202606",
+     2974
+    ],
+    [
+     "202607",
+     2778
+    ],
+    [
+     "202608",
+     3648
+    ],
+    [
+     "202609",
+     3181
+    ]
+   ],
+   "season_ratio": 0.98,
+   "score": 0.442
+  },
+  {
+   "category": "professions",
+   "niche": "dispatcher",
+   "article": "Dispatcher",
+   "url": "https://en.wikipedia.org/wiki/Dispatcher",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Dispatcher/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 1845,
+   "yoy": -0.305,
+   "peak_month": "202511",
+   "monthly": [
+    [
+     "202410",
+     3446
+    ],
+    [
+     "202411",
+     3270
+    ],
+    [
+     "202412",
+     3114
+    ],
+    [
+     "202501",
+     3000
+    ],
+    [
+     "202502",
+     2566
+    ],
+    [
+     "202503",
+     2833
+    ],
+    [
+     "202504",
+     2606
+    ],
+    [
+     "202505",
+     2467
+    ],
+    [
+     "202506",
+     2143
+    ],
+    [
+     "202507",
+     1975
+    ],
+    [
+     "202508",
+     2250
+    ],
+    [
+     "202509",
+     2165
+    ],
+    [
+     "202510",
+     2192
+    ],
+    [
+     "202511",
+     2357
+    ],
+    [
+     "202512",
+     2098
+    ],
+    [
+     "202601",
+     2073
+    ],
+    [
+     "202602",
+     1319
+    ],
+    [
+     "202603",
+     1796
+    ],
+    [
+     "202604",
+     1770
+    ],
+    [
+     "202605",
+     1831
+    ],
+    [
+     "202606",
+     1565
+    ],
+    [
+     "202607",
+     1528
+    ],
+    [
+     "202608",
+     1647
+    ],
+    [
+     "202609",
+     1961
+    ]
+   ],
+   "season_ratio": 1.2,
+   "score": 0.431
+  },
+  {
+   "category": "hobbies",
+   "niche": "surfing",
+   "article": "Surfing",
+   "url": "https://en.wikipedia.org/wiki/Surfing",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Surfing/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 12073,
+   "yoy": -0.246,
+   "peak_month": "202511",
+   "monthly": [
+    [
+     "202410",
+     18371
+    ],
+    [
+     "202411",
+     17296
+    ],
+    [
+     "202412",
+     16256
+    ],
+    [
+     "202501",
+     18798
+    ],
+    [
+     "202502",
+     14785
+    ],
+    [
+     "202503",
+     17741
+    ],
+    [
+     "202504",
+     13335
+    ],
+    [
+     "202505",
+     15505
+    ],
+    [
+     "202506",
+     14571
+    ],
+    [
+     "202507",
+     14581
+    ],
+    [
+     "202508",
+     15911
+    ],
+    [
+     "202509",
+     14948
+    ],
+    [
+     "202510",
+     13322
+    ],
+    [
+     "202511",
+     18263
+    ],
+    [
+     "202512",
+     12198
+    ],
+    [
+     "202601",
+     11719
+    ],
+    [
+     "202602",
+     11230
+    ],
+    [
+     "202603",
+     11004
+    ],
+    [
+     "202604",
+     10062
+    ],
+    [
+     "202605",
+     11754
+    ],
+    [
+     "202606",
+     11329
+    ],
+    [
+     "202607",
+     11143
+    ],
+    [
+     "202608",
+     11957
+    ],
+    [
+     "202609",
+     10899
+    ]
+   ],
+   "season_ratio": 1.21,
+   "score": 0.423
+  },
+  {
+   "category": "family roles",
+   "niche": "papa",
+   "article": "Papa",
+   "url": "https://en.wikipedia.org/wiki/Papa",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Papa/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 1534,
+   "yoy": 0.013,
+   "peak_month": "202601",
+   "monthly": [
+    [
+     "202410",
+     1149
+    ],
+    [
+     "202411",
+     1163
+    ],
+    [
+     "202412",
+     1310
+    ],
+    [
+     "202501",
+     1384
+    ],
+    [
+     "202502",
+     1350
+    ],
+    [
+     "202503",
+     1411
+    ],
+    [
+     "202504",
+     2313
+    ],
+    [
+     "202505",
+     2735
+    ],
+    [
+     "202506",
+     1415
+    ],
+    [
+     "202507",
+     1320
+    ],
+    [
+     "202508",
+     1392
+    ],
+    [
+     "202509",
+     1224
+    ],
+    [
+     "202510",
+     1493
+    ],
+    [
+     "202511",
+     1551
+    ],
+    [
+     "202512",
+     1788
+    ],
+    [
+     "202601",
+     2088
+    ],
+    [
+     "202602",
+     1790
+    ],
+    [
+     "202603",
+     1265
+    ],
+    [
+     "202604",
+     1383
+    ],
+    [
+     "202605",
+     1601
+    ],
+    [
+     "202606",
+     1544
+    ],
+    [
+     "202607",
+     1469
+    ],
+    [
+     "202608",
+     1198
+    ],
+    [
+     "202609",
+     1241
+    ]
+   ],
+   "season_ratio": 1.05,
+   "score": 0.413
+  },
+  {
+   "category": "pets",
+   "niche": "French Bulldog",
+   "article": "French_Bulldog",
+   "url": "https://en.wikipedia.org/wiki/French_Bulldog",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/French_Bulldog/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 31269,
+   "yoy": -0.377,
+   "peak_month": "202510",
+   "monthly": [
+    [
+     "202410",
+     44332
+    ],
+    [
+     "202411",
+     50105
+    ],
+    [
+     "202412",
+     49911
+    ],
+    [
+     "202501",
+     45333
+    ],
+    [
+     "202502",
+     39791
+    ],
+    [
+     "202503",
+     108726
+    ],
+    [
+     "202504",
+     45466
+    ],
+    [
+     "202505",
+     46523
+    ],
+    [
+     "202506",
+     43541
+    ],
+    [
+     "202507",
+     46404
+    ],
+    [
+     "202508",
+     44205
+    ],
+    [
+     "202509",
+     37528
+    ],
+    [
+     "202510",
+     36712
+    ],
+    [
+     "202511",
+     36234
+    ],
+    [
+     "202512",
+     34144
+    ],
+    [
+     "202601",
+     33371
+    ],
+    [
+     "202602",
+     27851
+    ],
+    [
+     "202603",
+     30232
+    ],
+    [
+     "202604",
+     29969
+    ],
+    [
+     "202605",
+     31402
+    ],
+    [
+     "202606",
+     30044
+    ],
+    [
+     "202607",
+     30532
+    ],
+    [
+     "202608",
+     28314
+    ],
+    [
+     "202609",
+     26426
+    ]
+   ],
+   "season_ratio": 1.14,
+   "score": 0.407
+  },
+  {
+   "category": "holidays & occasions",
+   "niche": "World Kindness Day",
+   "article": "World_Kindness_Day",
+   "url": "https://en.wikipedia.org/wiki/World_Kindness_Day",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/World_Kindness_Day/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 3461,
+   "yoy": -0.074,
+   "peak_month": "202511",
+   "monthly": [
+    [
+     "202410",
+     4634
+    ],
+    [
+     "202411",
+     30434
+    ],
+    [
+     "202412",
+     1166
+    ],
+    [
+     "202501",
+     1215
+    ],
+    [
+     "202502",
+     1068
+    ],
+    [
+     "202503",
+     864
+    ],
+    [
+     "202504",
+     911
+    ],
+    [
+     "202505",
+     855
+    ],
+    [
+     "202506",
+     645
+    ],
+    [
+     "202507",
+     738
+    ],
+    [
+     "202508",
+     910
+    ],
+    [
+     "202509",
+     1391
+    ],
+    [
+     "202510",
+     3945
+    ],
+    [
+     "202511",
+     29293
+    ],
+    [
+     "202512",
+     990
+    ],
+    [
+     "202601",
+     923
+    ],
+    [
+     "202602",
+     1124
+    ],
+    [
+     "202603",
+     685
+    ],
+    [
+     "202604",
+     565
+    ],
+    [
+     "202605",
+     642
+    ],
+    [
+     "202606",
+     664
+    ],
+    [
+     "202607",
+     625
+    ],
+    [
+     "202608",
+     811
+    ],
+    [
+     "202609",
+     1260
+    ]
+   ],
+   "season_ratio": 3,
+   "score": 0.393
+  },
+  {
+   "category": "family roles",
+   "niche": "nana",
+   "article": "Nana",
+   "url": "https://en.wikipedia.org/wiki/Nana",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Nana/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 1010,
+   "yoy": -0.174,
+   "peak_month": "202511",
+   "monthly": [
+    [
+     "202410",
+     1259
+    ],
+    [
+     "202411",
+     1232
+    ],
+    [
+     "202412",
+     1263
+    ],
+    [
+     "202501",
+     1422
+    ],
+    [
+     "202502",
+     1236
+    ],
+    [
+     "202503",
+     1170
+    ],
+    [
+     "202504",
+     1124
+    ],
+    [
+     "202505",
+     1141
+    ],
+    [
+     "202506",
+     1191
+    ],
+    [
+     "202507",
+     1262
+    ],
+    [
+     "202508",
+     1204
+    ],
+    [
+     "202509",
+     1173
+    ],
+    [
+     "202510",
+     1264
+    ],
+    [
+     "202511",
+     1382
+    ],
+    [
+     "202512",
+     1046
+    ],
+    [
+     "202601",
+     1120
+    ],
+    [
+     "202602",
+     1021
+    ],
+    [
+     "202603",
+     1082
+    ],
+    [
+     "202604",
+     911
+    ],
+    [
+     "202605",
+     852
+    ],
+    [
+     "202606",
+     731
+    ],
+    [
+     "202607",
+     1033
+    ],
+    [
+     "202608",
+     856
+    ],
+    [
+     "202609",
+     828
+    ]
+   ],
+   "season_ratio": 1.22,
+   "score": 0.39
+  },
+  {
+   "category": "professions",
+   "niche": "nurse",
+   "article": "Nurse",
+   "url": "https://en.wikipedia.org/wiki/Nurse",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Nurse/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 1728,
+   "yoy": -0.12,
+   "peak_month": "202510",
+   "monthly": [
+    [
+     "202410",
+     1918
+    ],
+    [
+     "202411",
+     1902
+    ],
+    [
+     "202412",
+     1831
+    ],
+    [
+     "202501",
+     2055
+    ],
+    [
+     "202502",
+     1841
+    ],
+    [
+     "202503",
+     1926
+    ],
+    [
+     "202504",
+     2119
+    ],
+    [
+     "202505",
+     2147
+    ],
+    [
+     "202506",
+     2127
+    ],
+    [
+     "202507",
+     1783
+    ],
+    [
+     "202508",
+     1933
+    ],
+    [
+     "202509",
+     1992
+    ],
+    [
+     "202510",
+     2256
+    ],
+    [
+     "202511",
+     1691
+    ],
+    [
+     "202512",
+     1648
+    ],
+    [
+     "202601",
+     2048
+    ],
+    [
+     "202602",
+     1584
+    ],
+    [
+     "202603",
+     1848
+    ],
+    [
+     "202604",
+     1690
+    ],
+    [
+     "202605",
+     1871
+    ],
+    [
+     "202606",
+     1499
+    ],
+    [
+     "202607",
+     1501
+    ],
+    [
+     "202608",
+     1537
+    ],
+    [
+     "202609",
+     1568
+    ]
+   ],
+   "season_ratio": 1.08,
+   "score": 0.376
+  },
+  {
+   "category": "holidays & occasions",
+   "niche": "Valentine's Day",
+   "article": "Valentine%27s_Day",
+   "url": "https://en.wikipedia.org/wiki/Valentine%27s_Day",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Valentine%27s_Day/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 107532,
+   "yoy": -0.338,
+   "peak_month": "202602",
+   "monthly": [
+    [
+     "202410",
+     35421
+    ],
+    [
+     "202411",
+     38286
+    ],
+    [
+     "202412",
+     45923
+    ],
+    [
+     "202501",
+     202778
+    ],
+    [
+     "202502",
+     1308908
+    ],
+    [
+     "202503",
+     96036
+    ],
+    [
+     "202504",
+     42824
+    ],
+    [
+     "202505",
+     39835
+    ],
+    [
+     "202506",
+     38852
+    ],
+    [
+     "202507",
+     33729
+    ],
+    [
+     "202508",
+     34556
+    ],
+    [
+     "202509",
+     31626
+    ],
+    [
+     "202510",
+     36216
+    ],
+    [
+     "202511",
+     28501
+    ],
+    [
+     "202512",
+     33485
+    ],
+    [
+     "202601",
+     122033
+    ],
+    [
+     "202602",
+     896690
+    ],
+    [
+     "202603",
+     40371
+    ],
+    [
+     "202604",
+     23440
+    ],
+    [
+     "202605",
+     22169
+    ],
+    [
+     "202606",
+     25057
+    ],
+    [
+     "202607",
+     22160
+    ],
+    [
+     "202608",
+     21083
+    ],
+    [
+     "202609",
+     19178
+    ]
+   ],
+   "season_ratio": 0.5,
+   "score": 0.365
+  },
+  {
+   "category": "holidays & occasions",
+   "niche": "Mardi Gras",
+   "article": "Mardi_Gras",
+   "url": "https://en.wikipedia.org/wiki/Mardi_Gras",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Mardi_Gras/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 67328,
+   "yoy": -0.317,
+   "peak_month": "202602",
+   "monthly": [
+    [
+     "202410",
+     44428
+    ],
+    [
+     "202411",
+     46590
+    ],
+    [
+     "202412",
+     56594
+    ],
+    [
+     "202501",
+     118191
+    ],
+    [
+     "202502",
+     194284
+    ],
+    [
+     "202503",
+     488235
+    ],
+    [
+     "202504",
+     48151
+    ],
+    [
+     "202505",
+     38583
+    ],
+    [
+     "202506",
+     34092
+    ],
+    [
+     "202507",
+     34999
+    ],
+    [
+     "202508",
+     42991
+    ],
+    [
+     "202509",
+     36574
+    ],
+    [
+     "202510",
+     37874
+    ],
+    [
+     "202511",
+     36304
+    ],
+    [
+     "202512",
+     44555
+    ],
+    [
+     "202601",
+     89921
+    ],
+    [
+     "202602",
+     357391
+    ],
+    [
+     "202603",
+     63539
+    ],
+    [
+     "202604",
+     35475
+    ],
+    [
+     "202605",
+     31306
+    ],
+    [
+     "202606",
+     26999
+    ],
+    [
+     "202607",
+     27567
+    ],
+    [
+     "202608",
+     29468
+    ],
+    [
+     "202609",
+     27537
+    ]
+   ],
+   "season_ratio": 0.59,
+   "score": 0.34
+  },
+  {
+   "category": "holidays & occasions",
+   "niche": "Friendsgiving",
+   "article": "Friendsgiving",
+   "url": "https://en.wikipedia.org/wiki/Friendsgiving",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Friendsgiving/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 2118,
+   "yoy": -0.164,
+   "peak_month": "202511",
+   "monthly": [
+    [
+     "202410",
+     442
+    ],
+    [
+     "202411",
+     19963
+    ],
+    [
+     "202412",
+     3089
+    ],
+    [
+     "202501",
+     989
+    ],
+    [
+     "202502",
+     685
+    ],
+    [
+     "202503",
+     796
+    ],
+    [
+     "202504",
+     586
+    ],
+    [
+     "202505",
+     632
+    ],
+    [
+     "202506",
+     608
+    ],
+    [
+     "202507",
+     686
+    ],
+    [
+     "202508",
+     827
+    ],
+    [
+     "202509",
+     1100
+    ],
+    [
+     "202510",
+     2436
+    ],
+    [
+     "202511",
+     15642
+    ],
+    [
+     "202512",
+     2043
+    ],
+    [
+     "202601",
+     573
+    ],
+    [
+     "202602",
+     450
+    ],
+    [
+     "202603",
+     342
+    ],
+    [
+     "202604",
+     414
+    ],
+    [
+     "202605",
+     463
+    ],
+    [
+     "202606",
+     751
+    ],
+    [
+     "202607",
+     640
+    ],
+    [
+     "202608",
+     723
+    ],
+    [
+     "202609",
+     942
+    ]
+   ],
+   "season_ratio": 3,
+   "score": 0.307
+  },
+  {
+   "category": "hobbies",
+   "niche": "fly fishing",
+   "article": "Fly_fishing",
+   "url": "https://en.wikipedia.org/wiki/Fly_fishing",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Fly_fishing/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 8822,
+   "yoy": -0.269,
+   "peak_month": "202605",
+   "monthly": [
+    [
+     "202410",
+     12654
+    ],
+    [
+     "202411",
+     11783
+    ],
+    [
+     "202412",
+     12905
+    ],
+    [
+     "202501",
+     12560
+    ],
+    [
+     "202502",
+     9933
+    ],
+    [
+     "202503",
+     12577
+    ],
+    [
+     "202504",
+     11404
+    ],
+    [
+     "202505",
+     12801
+    ],
+    [
+     "202506",
+     12280
+    ],
+    [
+     "202507",
+     12774
+    ],
+    [
+     "202508",
+     12907
+    ],
+    [
+     "202509",
+     10330
+    ],
+    [
+     "202510",
+     8331
+    ],
+    [
+     "202511",
+     8313
+    ],
+    [
+     "202512",
+     8067
+    ],
+    [
+     "202601",
+     7876
+    ],
+    [
+     "202602",
+     7750
+    ],
+    [
+     "202603",
+     8696
+    ],
+    [
+     "202604",
+     9239
+    ],
+    [
+     "202605",
+     10550
+    ],
+    [
+     "202606",
+     9546
+    ],
+    [
+     "202607",
+     9732
+    ],
+    [
+     "202608",
+     9384
+    ],
+    [
+     "202609",
+     8383
+    ]
+   ],
+   "season_ratio": 0.93,
+   "score": 0.278
+  },
+  {
+   "category": "hobbies",
+   "niche": "running",
+   "article": "Running",
+   "url": "https://en.wikipedia.org/wiki/Running",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Running/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 19038,
+   "yoy": 0.245,
+   "peak_month": "202609",
+   "monthly": [
+    [
+     "202410",
+     19354
+    ],
+    [
+     "202411",
+     19424
+    ],
+    [
+     "202412",
+     17331
+    ],
+    [
+     "202501",
+     18110
+    ],
+    [
+     "202502",
+     14967
+    ],
+    [
+     "202503",
+     15058
+    ],
+    [
+     "202504",
+     13853
+    ],
+    [
+     "202505",
+     14601
+    ],
+    [
+     "202506",
+     13494
+    ],
+    [
+     "202507",
+     12705
+    ],
+    [
+     "202508",
+     12311
+    ],
+    [
+     "202509",
+     12336
+    ],
+    [
+     "202510",
+     12318
+    ],
+    [
+     "202511",
+     11691
+    ],
+    [
+     "202512",
+     11043
+    ],
+    [
+     "202601",
+     11696
+    ],
+    [
+     "202602",
+     10633
+    ],
+    [
+     "202603",
+     10184
+    ],
+    [
+     "202604",
+     10070
+    ],
+    [
+     "202605",
+     11104
+    ],
+    [
+     "202606",
+     24003
+    ],
+    [
+     "202607",
+     8594
+    ],
+    [
+     "202608",
+     20970
+    ],
+    [
+     "202609",
+     86149
+    ]
+   ],
+   "season_ratio": 0.61,
+   "score": 0.268
+  },
+  {
+   "category": "family roles",
+   "niche": "grandma",
+   "article": "Grandmother",
+   "url": "https://en.wikipedia.org/wiki/Grandmother",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Grandmother/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 547,
+   "yoy": -0.078,
+   "peak_month": "202510",
+   "monthly": [
+    [
+     "202410",
+     584
+    ],
+    [
+     "202411",
+     538
+    ],
+    [
+     "202412",
+     659
+    ],
+    [
+     "202501",
+     707
+    ],
+    [
+     "202502",
+     589
+    ],
+    [
+     "202503",
+     651
+    ],
+    [
+     "202504",
+     588
+    ],
+    [
+     "202505",
+     584
+    ],
+    [
+     "202506",
+     481
+    ],
+    [
+     "202507",
+     492
+    ],
+    [
+     "202508",
+     618
+    ],
+    [
+     "202509",
+     626
+    ],
+    [
+     "202510",
+     731
+    ],
+    [
+     "202511",
+     572
+    ],
+    [
+     "202512",
+     536
+    ],
+    [
+     "202601",
+     532
+    ],
+    [
+     "202602",
+     469
+    ],
+    [
+     "202603",
+     476
+    ],
+    [
+     "202604",
+     550
+    ],
+    [
+     "202605",
+     659
+    ],
+    [
+     "202606",
+     524
+    ],
+    [
+     "202607",
+     477
+    ],
+    [
+     "202608",
+     552
+    ],
+    [
+     "202609",
+     482
+    ]
+   ],
+   "season_ratio": 1.12,
+   "score": 0.263
+  },
+  {
+   "category": "family roles",
+   "niche": "mimi",
+   "article": "Mimi",
+   "url": "https://en.wikipedia.org/wiki/Mimi",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Mimi/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 495,
+   "yoy": -0.152,
+   "peak_month": "202512",
+   "monthly": [
+    [
+     "202410",
+     685
+    ],
+    [
+     "202411",
+     575
+    ],
+    [
+     "202412",
+     540
+    ],
+    [
+     "202501",
+     610
+    ],
+    [
+     "202502",
+     582
+    ],
+    [
+     "202503",
+     567
+    ],
+    [
+     "202504",
+     536
+    ],
+    [
+     "202505",
+     587
+    ],
+    [
+     "202506",
+     544
+    ],
+    [
+     "202507",
+     568
+    ],
+    [
+     "202508",
+     693
+    ],
+    [
+     "202509",
+     518
+    ],
+    [
+     "202510",
+     413
+    ],
+    [
+     "202511",
+     384
+    ],
+    [
+     "202512",
+     947
+    ],
+    [
+     "202601",
+     459
+    ],
+    [
+     "202602",
+     375
+    ],
+    [
+     "202603",
+     404
+    ],
+    [
+     "202604",
+     415
+    ],
+    [
+     "202605",
+     454
+    ],
+    [
+     "202606",
+     487
+    ],
+    [
+     "202607",
+     450
+    ],
+    [
+     "202608",
+     526
+    ],
+    [
+     "202609",
+     628
+    ]
+   ],
+   "season_ratio": 1.17,
+   "score": 0.262
+  },
+  {
+   "category": "hobbies",
+   "niche": "hiking",
+   "article": "Hiking",
+   "url": "https://en.wikipedia.org/wiki/Hiking",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Hiking/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 12075,
+   "yoy": 0.092,
+   "peak_month": "202609",
+   "monthly": [
+    [
+     "202410",
+     15706
+    ],
+    [
+     "202411",
+     12457
+    ],
+    [
+     "202412",
+     10933
+    ],
+    [
+     "202501",
+     12381
+    ],
+    [
+     "202502",
+     10218
+    ],
+    [
+     "202503",
+     13396
+    ],
+    [
+     "202504",
+     10107
+    ],
+    [
+     "202505",
+     10796
+    ],
+    [
+     "202506",
+     8657
+    ],
+    [
+     "202507",
+     9063
+    ],
+    [
+     "202508",
+     9527
+    ],
+    [
+     "202509",
+     9495
+    ],
+    [
+     "202510",
+     9419
+    ],
+    [
+     "202511",
+     9485
+    ],
+    [
+     "202512",
+     6605
+    ],
+    [
+     "202601",
+     7879
+    ],
+    [
+     "202602",
+     7234
+    ],
+    [
+     "202603",
+     7913
+    ],
+    [
+     "202604",
+     7268
+    ],
+    [
+     "202605",
+     8732
+    ],
+    [
+     "202606",
+     20658
+    ],
+    [
+     "202607",
+     7292
+    ],
+    [
+     "202608",
+     11625
+    ],
+    [
+     "202609",
+     40790
+    ]
+   ],
+   "season_ratio": 0.7,
+   "score": 0.245
+  },
+  {
+   "category": "hobbies",
+   "niche": "fishing",
+   "article": "Fishing",
+   "url": "https://en.wikipedia.org/wiki/Fishing",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Fishing/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 14347,
+   "yoy": 0.319,
+   "peak_month": "202609",
+   "monthly": [
+    [
+     "202410",
+     14453
+    ],
+    [
+     "202411",
+     13647
+    ],
+    [
+     "202412",
+     11541
+    ],
+    [
+     "202501",
+     12222
+    ],
+    [
+     "202502",
+     11189
+    ],
+    [
+     "202503",
+     11298
+    ],
+    [
+     "202504",
+     9513
+    ],
+    [
+     "202505",
+     10578
+    ],
+    [
+     "202506",
+     9182
+    ],
+    [
+     "202507",
+     8194
+    ],
+    [
+     "202508",
+     8883
+    ],
+    [
+     "202509",
+     9788
+    ],
+    [
+     "202510",
+     9235
+    ],
+    [
+     "202511",
+     8712
+    ],
+    [
+     "202512",
+     7689
+    ],
+    [
+     "202601",
+     8692
+    ],
+    [
+     "202602",
+     7957
+    ],
+    [
+     "202603",
+     8403
+    ],
+    [
+     "202604",
+     8095
+    ],
+    [
+     "202605",
+     9430
+    ],
+    [
+     "202606",
+     16119
+    ],
+    [
+     "202607",
+     9020
+    ],
+    [
+     "202608",
+     15144
+    ],
+    [
+     "202609",
+     63665
+    ]
+   ],
+   "season_ratio": 0.6,
+   "score": 0.229
+  },
+  {
+   "category": "hobbies",
+   "niche": "mountain biking",
+   "article": "Mountain_biking",
+   "url": "https://en.wikipedia.org/wiki/Mountain_biking",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Mountain_biking/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 4488,
+   "yoy": -0.136,
+   "peak_month": "202510",
+   "monthly": [
+    [
+     "202410",
+     7383
+    ],
+    [
+     "202411",
+     5948
+    ],
+    [
+     "202412",
+     5436
+    ],
+    [
+     "202501",
+     5138
+    ],
+    [
+     "202502",
+     4575
+    ],
+    [
+     "202503",
+     5298
+    ],
+    [
+     "202504",
+     4692
+    ],
+    [
+     "202505",
+     5259
+    ],
+    [
+     "202506",
+     4662
+    ],
+    [
+     "202507",
+     4458
+    ],
+    [
+     "202508",
+     5045
+    ],
+    [
+     "202509",
+     4461
+    ],
+    [
+     "202510",
+     5428
+    ],
+    [
+     "202511",
+     4476
+    ],
+    [
+     "202512",
+     3858
+    ],
+    [
+     "202601",
+     3947
+    ],
+    [
+     "202602",
+     4329
+    ],
+    [
+     "202603",
+     5172
+    ],
+    [
+     "202604",
+     5182
+    ],
+    [
+     "202605",
+     5409
+    ],
+    [
+     "202606",
+     4148
+    ],
+    [
+     "202607",
+     4225
+    ],
+    [
+     "202608",
+     3868
+    ],
+    [
+     "202609",
+     3814
+    ]
+   ],
+   "season_ratio": 1.02,
+   "score": 0.218
+  },
+  {
+   "category": "family roles",
+   "niche": "gigi",
+   "article": "Gigi",
+   "url": "https://en.wikipedia.org/wiki/Gigi",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Gigi/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 1352,
+   "yoy": 0.653,
+   "peak_month": "202605",
+   "monthly": [
+    [
+     "202410",
+     894
+    ],
+    [
+     "202411",
+     788
+    ],
+    [
+     "202412",
+     1062
+    ],
+    [
+     "202501",
+     897
+    ],
+    [
+     "202502",
+     802
+    ],
+    [
+     "202503",
+     738
+    ],
+    [
+     "202504",
+     743
+    ],
+    [
+     "202505",
+     763
+    ],
+    [
+     "202506",
+     663
+    ],
+    [
+     "202507",
+     869
+    ],
+    [
+     "202508",
+     767
+    ],
+    [
+     "202509",
+     830
+    ],
+    [
+     "202510",
+     753
+    ],
+    [
+     "202511",
+     891
+    ],
+    [
+     "202512",
+     713
+    ],
+    [
+     "202601",
+     760
+    ],
+    [
+     "202602",
+     686
+    ],
+    [
+     "202603",
+     721
+    ],
+    [
+     "202604",
+     733
+    ],
+    [
+     "202605",
+     7234
+    ],
+    [
+     "202606",
+     1158
+    ],
+    [
+     "202607",
+     870
+    ],
+    [
+     "202608",
+     913
+    ],
+    [
+     "202609",
+     792
+    ]
+   ],
+   "season_ratio": 0.58,
+   "score": 0.214
+  },
+  {
+   "category": "hobbies",
+   "niche": "camping",
+   "article": "Camping",
+   "url": "https://en.wikipedia.org/wiki/Camping",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Camping/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 5260,
+   "yoy": -0.165,
+   "peak_month": "202609",
+   "monthly": [
+    [
+     "202410",
+     8017
+    ],
+    [
+     "202411",
+     6800
+    ],
+    [
+     "202412",
+     5769
+    ],
+    [
+     "202501",
+     6758
+    ],
+    [
+     "202502",
+     6493
+    ],
+    [
+     "202503",
+     7296
+    ],
+    [
+     "202504",
+     5845
+    ],
+    [
+     "202505",
+     5926
+    ],
+    [
+     "202506",
+     5603
+    ],
+    [
+     "202507",
+     6019
+    ],
+    [
+     "202508",
+     6134
+    ],
+    [
+     "202509",
+     4923
+    ],
+    [
+     "202510",
+     5098
+    ],
+    [
+     "202511",
+     5039
+    ],
+    [
+     "202512",
+     3980
+    ],
+    [
+     "202601",
+     4521
+    ],
+    [
+     "202602",
+     3722
+    ],
+    [
+     "202603",
+     4156
+    ],
+    [
+     "202604",
+     4123
+    ],
+    [
+     "202605",
+     5280
+    ],
+    [
+     "202606",
+     5513
+    ],
+    [
+     "202607",
+     5384
+    ],
+    [
+     "202608",
+     7196
+    ],
+    [
+     "202609",
+     9111
+    ]
+   ],
+   "season_ratio": 0.89,
+   "score": 0.206
+  },
+  {
+   "category": "family roles",
+   "niche": "grandpa",
+   "article": "Grandfather",
+   "url": "https://en.wikipedia.org/wiki/Grandfather",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Grandfather/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 228,
+   "yoy": 0.1,
+   "peak_month": "202512",
+   "monthly": [
+    [
+     "202410",
+     186
+    ],
+    [
+     "202411",
+     227
+    ],
+    [
+     "202412",
+     221
+    ],
+    [
+     "202501",
+     204
+    ],
+    [
+     "202502",
+     210
+    ],
+    [
+     "202503",
+     225
+    ],
+    [
+     "202504",
+     243
+    ],
+    [
+     "202505",
+     206
+    ],
+    [
+     "202506",
+     167
+    ],
+    [
+     "202507",
+     167
+    ],
+    [
+     "202508",
+     215
+    ],
+    [
+     "202509",
+     212
+    ],
+    [
+     "202510",
+     248
+    ],
+    [
+     "202511",
+     225
+    ],
+    [
+     "202512",
+     386
+    ],
+    [
+     "202601",
+     286
+    ],
+    [
+     "202602",
+     209
+    ],
+    [
+     "202603",
+     182
+    ],
+    [
+     "202604",
+     203
+    ],
+    [
+     "202605",
+     262
+    ],
+    [
+     "202606",
+     183
+    ],
+    [
+     "202607",
+     191
+    ],
+    [
+     "202608",
+     184
+    ],
+    [
+     "202609",
+     172
+    ]
+   ],
+   "season_ratio": 1.26,
+   "score": 0.191
+  },
+  {
+   "category": "hobbies",
+   "niche": "kayaking",
+   "article": "Kayaking",
+   "url": "https://en.wikipedia.org/wiki/Kayaking",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Kayaking/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 3030,
+   "yoy": -0.396,
+   "peak_month": "202510",
+   "monthly": [
+    [
+     "202410",
+     6643
+    ],
+    [
+     "202411",
+     6123
+    ],
+    [
+     "202412",
+     5423
+    ],
+    [
+     "202501",
+     5546
+    ],
+    [
+     "202502",
+     4622
+    ],
+    [
+     "202503",
+     4719
+    ],
+    [
+     "202504",
+     3978
+    ],
+    [
+     "202505",
+     4929
+    ],
+    [
+     "202506",
+     4607
+    ],
+    [
+     "202507",
+     4906
+    ],
+    [
+     "202508",
+     4801
+    ],
+    [
+     "202509",
+     3935
+    ],
+    [
+     "202510",
+     3463
+    ],
+    [
+     "202511",
+     3116
+    ],
+    [
+     "202512",
+     2708
+    ],
+    [
+     "202601",
+     3209
+    ],
+    [
+     "202602",
+     2583
+    ],
+    [
+     "202603",
+     2329
+    ],
+    [
+     "202604",
+     2668
+    ],
+    [
+     "202605",
+     3210
+    ],
+    [
+     "202606",
+     3163
+    ],
+    [
+     "202607",
+     3378
+    ],
+    [
+     "202608",
+     3451
+    ],
+    [
+     "202609",
+     3079
+    ]
+   ],
+   "season_ratio": 1.02,
+   "score": 0.179
+  },
+  {
+   "category": "hobbies",
+   "niche": "cycling",
+   "article": "Cycling",
+   "url": "https://en.wikipedia.org/wiki/Cycling",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Cycling/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 7799,
+   "yoy": 0.227,
+   "peak_month": "202609",
+   "monthly": [
+    [
+     "202410",
+     8124
+    ],
+    [
+     "202411",
+     7369
+    ],
+    [
+     "202412",
+     6383
+    ],
+    [
+     "202501",
+     6807
+    ],
+    [
+     "202502",
+     6083
+    ],
+    [
+     "202503",
+     6900
+    ],
+    [
+     "202504",
+     5902
+    ],
+    [
+     "202505",
+     6563
+    ],
+    [
+     "202506",
+     5300
+    ],
+    [
+     "202507",
+     5802
+    ],
+    [
+     "202508",
+     5617
+    ],
+    [
+     "202509",
+     5414
+    ],
+    [
+     "202510",
+     5223
+    ],
+    [
+     "202511",
+     4920
+    ],
+    [
+     "202512",
+     4625
+    ],
+    [
+     "202601",
+     4432
+    ],
+    [
+     "202602",
+     7607
+    ],
+    [
+     "202603",
+     4437
+    ],
+    [
+     "202604",
+     4312
+    ],
+    [
+     "202605",
+     5801
+    ],
+    [
+     "202606",
+     5851
+    ],
+    [
+     "202607",
+     5678
+    ],
+    [
+     "202608",
+     5981
+    ],
+    [
+     "202609",
+     34726
+    ]
+   ],
+   "season_ratio": 0.63,
+   "score": 0.177
+  },
+  {
+   "category": "professions",
+   "niche": "physical therapist",
+   "article": "Physical_therapist",
+   "url": "https://en.wikipedia.org/wiki/Physical_therapist",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Physical_therapist/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 389,
+   "yoy": -0.042,
+   "peak_month": "202601",
+   "monthly": [
+    [
+     "202410",
+     481
+    ],
+    [
+     "202411",
+     373
+    ],
+    [
+     "202412",
+     392
+    ],
+    [
+     "202501",
+     477
+    ],
+    [
+     "202502",
+     363
+    ],
+    [
+     "202503",
+     362
+    ],
+    [
+     "202504",
+     371
+    ],
+    [
+     "202505",
+     385
+    ],
+    [
+     "202506",
+     355
+    ],
+    [
+     "202507",
+     408
+    ],
+    [
+     "202508",
+     415
+    ],
+    [
+     "202509",
+     495
+    ],
+    [
+     "202510",
+     365
+    ],
+    [
+     "202511",
+     294
+    ],
+    [
+     "202512",
+     348
+    ],
+    [
+     "202601",
+     538
+    ],
+    [
+     "202602",
+     348
+    ],
+    [
+     "202603",
+     365
+    ],
+    [
+     "202604",
+     386
+    ],
+    [
+     "202605",
+     506
+    ],
+    [
+     "202606",
+     317
+    ],
+    [
+     "202607",
+     433
+    ],
+    [
+     "202608",
+     406
+    ],
+    [
+     "202609",
+     366
+    ]
+   ],
+   "season_ratio": 0.86,
+   "score": 0.142
+  },
+  {
+   "category": "holidays & occasions",
+   "niche": "St. Patrick's Day",
+   "article": "St._Patrick's_Day",
+   "url": "https://en.wikipedia.org/wiki/St._Patrick's_Day",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/St._Patrick's_Day/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 833,
+   "yoy": -0.216,
+   "peak_month": "202603",
+   "monthly": [
+    [
+     "202410",
+     865
+    ],
+    [
+     "202411",
+     816
+    ],
+    [
+     "202412",
+     871
+    ],
+    [
+     "202501",
+     976
+    ],
+    [
+     "202502",
+     1168
+    ],
+    [
+     "202503",
+     3277
+    ],
+    [
+     "202504",
+     920
+    ],
+    [
+     "202505",
+     844
+    ],
+    [
+     "202506",
+     724
+    ],
+    [
+     "202507",
+     722
+    ],
+    [
+     "202508",
+     753
+    ],
+    [
+     "202509",
+     810
+    ],
+    [
+     "202510",
+     742
+    ],
+    [
+     "202511",
+     791
+    ],
+    [
+     "202512",
+     717
+    ],
+    [
+     "202601",
+     792
+    ],
+    [
+     "202602",
+     925
+    ],
+    [
+     "202603",
+     2358
+    ],
+    [
+     "202604",
+     699
+    ],
+    [
+     "202605",
+     746
+    ],
+    [
+     "202606",
+     550
+    ],
+    [
+     "202607",
+     535
+    ],
+    [
+     "202608",
+     550
+    ],
+    [
+     "202609",
+     592
+    ]
+   ],
+   "season_ratio": 0.9,
+   "score": 0.058
+  },
+  {
+   "category": "holidays & occasions",
+   "niche": "Galentine's Day",
+   "article": "Galentine's_Day",
+   "url": "https://en.wikipedia.org/wiki/Galentine's_Day",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Galentine's_Day/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 1111,
+   "yoy": -0.529,
+   "peak_month": "202602",
+   "monthly": [
+    [
+     "202410",
+     860
+    ],
+    [
+     "202411",
+     1030
+    ],
+    [
+     "202412",
+     1067
+    ],
+    [
+     "202501",
+     3621
+    ],
+    [
+     "202502",
+     16289
+    ],
+    [
+     "202503",
+     1173
+    ],
+    [
+     "202504",
+     764
+    ],
+    [
+     "202505",
+     740
+    ],
+    [
+     "202506",
+     739
+    ],
+    [
+     "202507",
+     623
+    ],
+    [
+     "202508",
+     743
+    ],
+    [
+     "202509",
+     679
+    ],
+    [
+     "202510",
+     715
+    ],
+    [
+     "202511",
+     764
+    ],
+    [
+     "202512",
+     710
+    ],
+    [
+     "202601",
+     2164
+    ],
+    [
+     "202602",
+     6875
+    ],
+    [
+     "202603",
+     554
+    ],
+    [
+     "202604",
+     271
+    ],
+    [
+     "202605",
+     276
+    ],
+    [
+     "202606",
+     240
+    ],
+    [
+     "202607",
+     350
+    ],
+    [
+     "202608",
+     231
+    ],
+    [
+     "202609",
+     183
+    ]
+   ],
+   "season_ratio": 0.66,
+   "score": 0.049
+  },
+  {
+   "category": "holidays & occasions",
+   "niche": "Leap Day",
+   "article": "Leap_Day",
+   "url": "https://en.wikipedia.org/wiki/Leap_Day",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Leap_Day/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 164,
+   "yoy": 0.285,
+   "peak_month": "202512",
+   "monthly": [
+    [
+     "202410",
+     94
+    ],
+    [
+     "202411",
+     94
+    ],
+    [
+     "202412",
+     78
+    ],
+    [
+     "202501",
+     113
+    ],
+    [
+     "202502",
+     142
+    ],
+    [
+     "202503",
+     115
+    ],
+    [
+     "202504",
+     109
+    ],
+    [
+     "202505",
+     104
+    ],
+    [
+     "202506",
+     236
+    ],
+    [
+     "202507",
+     151
+    ],
+    [
+     "202508",
+     176
+    ],
+    [
+     "202509",
+     123
+    ],
+    [
+     "202510",
+     160
+    ],
+    [
+     "202511",
+     237
+    ],
+    [
+     "202512",
+     393
+    ],
+    [
+     "202601",
+     245
+    ],
+    [
+     "202602",
+     189
+    ],
+    [
+     "202603",
+     118
+    ],
+    [
+     "202604",
+     106
+    ],
+    [
+     "202605",
+     99
+    ],
+    [
+     "202606",
+     121
+    ],
+    [
+     "202607",
+     111
+    ],
+    [
+     "202608",
+     100
+    ],
+    [
+     "202609",
+     93
+    ]
+   ],
+   "season_ratio": 1.61,
+   "score": 0.046
+  },
+  {
+   "category": "professions",
+   "niche": "vet tech",
+   "article": "Vet_tech",
+   "url": "https://en.wikipedia.org/wiki/Vet_tech",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Vet_tech/monthly/2024090100/2026093000",
+   "avg_monthly_12m": 20,
+   "yoy": 0.303,
+   "peak_month": "202605",
+   "monthly": [
+    [
+     "202410",
+     5
+    ],
+    [
+     "202411",
+     4
+    ],
+    [
+     "202412",
+     4
+    ],
+    [
+     "202501",
+     3
+    ],
+    [
+     "202502",
+     14
+    ],
+    [
+     "202503",
+     14
+    ],
+    [
+     "202504",
+     14
+    ],
+    [
+     "202505",
+     32
+    ],
+    [
+     "202506",
+     23
+    ],
+    [
+     "202507",
+     13
+    ],
+    [
+     "202508",
+     31
+    ],
+    [
+     "202509",
+     31
+    ],
+    [
+     "202510",
+     20
+    ],
+    [
+     "202511",
+     26
+    ],
+    [
+     "202512",
+     5
+    ],
+    [
+     "202601",
+     26
+    ],
+    [
+     "202602",
+     12
+    ],
+    [
+     "202603",
+     21
+    ],
+    [
+     "202604",
+     19
+    ],
+    [
+     "202605",
+     32
+    ],
+    [
+     "202606",
+     21
+    ],
+    [
+     "202607",
+     31
+    ],
+    [
+     "202608",
+     12
+    ],
+    [
+     "202609",
+     20
+    ]
+   ],
+   "season_ratio": 0.85,
+   "score": 0.032
+  }
+ ],
+ "niche_method": "Score = sqrt(views / top views in its category) x season ratio (last-year views for the coming 3 months / 12-month average, capped 0.5-3) x category weight (pets 0.6, others 1). Our heuristic, labeled. Wikipedia pageviews = public interest proxy, NOT sales. Keyword volumes shown are third-party ESTIMATES with links.",
  "competitors": {
   "note": "Competitor price benchmarks from public, ToS-compliant sources (articles/keyword-tool pages read without login; no Etsy scraping). Ranges are what the SOURCE reports; treat as ESTIMATES. Reviewed by hand; the daily Action flags entries older than 60 days.",
   "reviewed": "2026-10-10",
