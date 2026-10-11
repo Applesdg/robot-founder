@@ -81,19 +81,22 @@ function generate(market,opt={}){const o={explore:opt.explore??.1,digitalShare:o
  let G=null;if(opt.taxonomy){G=generateGeneral(opt.taxonomy,market,o);for(const k in G.stats.rejected_by)st.rejected[k]=(st.rejected[k]||0)+G.stats.rejected_by[k];st.generated+=G.stats.candidates;rej.push(...G.rej.slice(0,150));acc.push(...G.acc);acc.sort((a,b)=>b.score-a.score);st.accepted=acc.length}
  // ---- daily batches with product mix + exploration slots, rotating subjects ----
  const isD=x=>x.digital||/Digital/.test(x.product),rot=(arr,f=x=>x.subject)=>{const b={};arr.forEach(x=>(b[f(x)]=b[f(x)]||[]).push(x));const r=[];for(let i=0;r.length<arr.length;i++)for(const k in b)if(b[k][i])r.push(b[k][i]);return r};
- const isPet=x=>x.kind!=='general',petShare=opt.petShare??.3,gen=acc.filter(x=>!isPet(x)),pet=acc.filter(isPet);
+ // General gift store: pets are ONE category weighted like the others (no guaranteed share). Queues interleave categories round-robin.
+ const cat=x=>x.category||'pet portraits';
  const mixQ=list=>{const b={};rot(list).forEach(x=>(b[x.product]=b[x.product]||[]).push(x));const ks=Object.keys(b);ks.forEach((k,j)=>b[k]=b[k].slice(j%Math.max(1,b[k].length)).concat(b[k].slice(0,j%Math.max(1,b[k].length))));const r=[];for(let i=0;ks.some(k=>b[k][i]);i++)ks.forEach(k=>b[k][i]&&r.push(b[k][i]));return r};
- const petQ=mixQ(pet),dq=rot(gen.filter(isD)),pq=mixQ(gen.filter(x=>!isD(x))),xq=rot(pool),kept=[],start=new Date(o.today+'T12:00:00Z');
- const nX=Math.max(o.explore>0?1:0,Math.round(o.dailyCap*o.explore)),nP=Math.round(o.dailyCap*petShare),nD=Math.round((o.dailyCap-nX-nP)*o.digitalShare);
- for(let day=0;kept.length<o.target&&(dq.length||pq.length||xq.length||petQ.length);day++){const date=new Date(start.getTime()+day*864e5).toISOString().slice(0,10),batch=[];
-  for(let i=0;i<nX&&xq.length;i++)batch.push(xq.shift());for(let i=0;i<nP&&petQ.length;i++)batch.push(petQ.shift());for(let i=0;i<nD&&dq.length;i++)batch.push(dq.shift());
-  while(batch.length<o.dailyCap&&(pq.length||dq.length||petQ.length))batch.push((pq.length?pq:dq.length?dq:petQ).shift());
+ const catQ=list=>rot(mixQ(list),cat);
+ const dq=catQ(acc.filter(isD)),pq=catQ(acc.filter(x=>!isD(x))),xq=rot(pool),kept=[],start=new Date(o.today+'T12:00:00Z');
+ const nX=Math.max(o.explore>0?1:0,Math.round(o.dailyCap*o.explore)),nD=Math.round((o.dailyCap-nX)*o.digitalShare);
+ for(let day=0;kept.length<o.target&&(dq.length||pq.length||xq.length);day++){const date=new Date(start.getTime()+day*864e5).toISOString().slice(0,10),batch=[];
+  const per=Math.ceil(o.dailyCap/5),cnt={},take=q=>{let j=q.findIndex(x=>(cnt[cat(x)]||0)<per);if(j<0)j=0;const x=q.splice(j,1)[0];cnt[cat(x)]=(cnt[cat(x)]||0)+1;return x};
+  for(let i=0;i<nX&&xq.length;i++)batch.push(take(xq));for(let i=0;i<nD&&dq.length;i++)batch.push(take(dq));
+  while(batch.length<o.dailyCap&&(pq.length||dq.length))batch.push(take(pq.length?pq:dq));
   batch.forEach(x=>{x.stage=day===0?'ready':'queued';x.publish_on=date;kept.push(x)})}
  kept.length=Math.min(kept.length,o.target);kept.forEach(x=>{const d=x.digital||/Digital/.test(x.product);x.source=d?'digital':'printify';x.production_partner=d?null:'Printify';x.channels=['etsy','shopify']});
  return {generated_at:new Date().toISOString(),config:o,counts:{generated:st.generated,rejected:Object.values(st.rejected).reduce((a,b)=>a+b,0),rejected_by:st.rejected,passed:st.accepted,backlog:kept.length,ready:kept.filter(x=>x.stage==='ready').length,queued:kept.filter(x=>x.stage==='queued').length,days_to_publish:Math.ceil(kept.length/o.dailyCap)},
   guardrails:{trademark_blocklist:TM,near_duplicate:'≤3 ideas per subject+product+occasion and title Jaccard <0.8',ai_disclosure:'required on every listing (Etsy policy, Jan 2026)',daily_publish_cap:o.dailyCap,pacing_note:'Etsy publishes no hard daily cap, but bursts of near-identical new listings from a new shop risk review/suspension; robot drips listings (configurable cap, ESTIMATE).',min_score:o.minScore},
   channels:[{n:'Etsy',status:'pending connection',role:'primary — ORIGINAL designs only (Printify-produced or own digital files), production partner disclosed, AI disclosure on; no drop-ship/resale'},{n:'Shopify',status:'pending connection',role:'mirror every original design + OPTIONAL vetted drop-ship supplier products (≥30% margin floor)'},{n:'Amazon Handmade',status:'later — needs Handmade application + approval',role:'top 50 sellers after 90 days'},{n:'eBay',status:'later — needs eBay developer key',role:'test canvases/blankets'}],
   note:'Scores are ESTIMATES: sqrt-ish of real breed interest score (Wikipedia + AKC) × style weight (assumption) × occasion seasonality (Wikipedia peaks + RankHero estimate) × niche weight (assumption) × est. margin (economics.js). No sales data.',
-  backlog:kept,rejected_samples:rej,experiments:exps,wide:G?G.stats:null,categories:G?Object.entries(acc.reduce((m,x)=>(m[x.category||'pet portrait']=(m[x.category||'pet portrait']||0)+1,m),{})):null,mix:{pet:opt.petShare??.3,digital:o.digitalShare,physical:+(1-o.digitalShare).toFixed(2),explore:o.explore,house:o.house}}}
+  backlog:kept,rejected_samples:rej,experiments:exps,wide:G?G.stats:null,categories:G?Object.entries(acc.reduce((m,x)=>(m[x.category||'pet portrait']=(m[x.category||'pet portrait']||0)+1,m),{})):null,mix:{pet:'weighted like any category (no guaranteed share)',digital:o.digitalShare,physical:+(1-o.digitalShare).toFixed(2),explore:o.explore,house:o.house}}}
 const api={generate,generateGeneral,STYLES,TM};if(typeof module!=='undefined')module.exports=api;else root.IDEAS=api;
 })(typeof window!=='undefined'?window:globalThis);

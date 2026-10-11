@@ -1,6 +1,6 @@
 {
  "note": "Real AI art samples. Label: AI sample (Etsy AI disclosure required).",
- "default_house": "renaissance royal",
+ "default_house": "boho floral",
  "images": [
   {
    "style": "watercolor",
@@ -41,7 +41,7 @@
   {
    "style": "christmas illustrated",
    "pet": "dog",
-   "subject": "mixed-breed (Benji-like house dog)",
+   "subject": "mixed-breed dog",
    "path": "assets/art/christmas-benji-house-dog.jpg",
    "label": "AI sample",
    "ai_generated": true,
