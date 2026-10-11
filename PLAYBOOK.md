@@ -1,4 +1,4 @@
-# NiftyNestGifts Playbook v1.2.0 (2026-10-11)
+# NiftyNestGifts Playbook v1.3.0 (2026-10-11)
 
 Machine-readable source: `research/playbook.json` (loaded by the worker every run, injected into xAI prompts, enforced in the grader where checkable). Runtime lessons are appended via the signed `/api/lessons` endpoint.
 
@@ -176,6 +176,52 @@ Machine-readable source: `research/playbook.json` (loaded by the worker every ru
  "delayed_orders": "Dom set Printify to auto-send delayed orders to production; the worker flags any held/on-hold orders in the daily digest."
 }
 ```
+## Release Checks
+```json
+{
+ "store_settings_monthly_confirm": {
+  "delayed_orders": "auto send to production",
+  "order_submission": "automatically (1 hour)",
+  "personalized_orders": "automatically (1 hour)",
+  "auto_submit_buyer_approved_personalization": true,
+  "skip_review_imported_other_orders": false,
+  "publishing": {
+   "hide_in_store": false,
+   "variant_visibility": "in-stock available + out-of-stock shown as sold out",
+   "details_to_publish": {
+    "title": true,
+    "description": true,
+    "variants_prices_skus": true,
+    "tags": true,
+    "category_attributes": true,
+    "mockups": false,
+    "shipping_profile": false
+   }
+  },
+  "note": "Store-level Printify settings are not readable via API - confirmed monthly by Dom (digest checklist)."
+ },
+ "per_product": {
+  "free_shipping": true,
+  "personalization": true,
+  "visible": true,
+  "min_photos": 5,
+  "offsite_ads": "Etsy checklist (shop setting)"
+ },
+ "publish_payload": {
+  "first_publish": "all details",
+  "republish": {
+   "title": true,
+   "description": true,
+   "variants": true,
+   "tags": true,
+   "keyFeatures": true,
+   "images": false,
+   "shipping_template": false
+  }
+ },
+ "audit": "Worker verifies readable per-product settings before every publish and in a daily audit of all products; mismatches are flagged in the digest (free_shipping auto-fixed)."
+}
+```
 ## Lessons
 - **2026-10-11** (Dom): Shop is a general gift store, not dog-focused.
 - **2026-10-11** (Dom): Always free US shipping, baked into price; keep 30% margin floor.
@@ -190,3 +236,5 @@ Machine-readable source: `research/playbook.json` (loaded by the worker every ru
 - **2026-10-11** (Dom): Price competitively at/slightly below benchmarks; margins don't need to be high; floor = $5-6 worst-case profit (incl. 12% offsite ads). Sleigh All Day stays $25.99.
 - **2026-10-11** (Dom): Enable personalization on every release (~20% higher price for personalized); proofs need Dom approval before production.
 - **2026-10-11** (Dom): Printify delayed orders auto-send to production; flag held orders in the digest.
+- **2026-10-11** (Dom): Standard release checks = Dom's Printify store settings (auto-send delayed orders, 1-hour auto submission incl. personalized, details-to-publish: mockups and shipping profile OFF). Verify per-product settings before publish + daily audit; monthly confirm store settings.
+- **2026-10-11** (QA): Conflict: personalized orders auto-submit after 1 hour, so worker proofs may arrive after production starts - proofs are best-effort unless Dom changes that setting.

@@ -1,5 +1,5 @@
 {
- "version": "1.2.0",
+ "version": "1.3.0",
  "updated": "2026-10-11",
  "shop": {
   "name": "NiftyNestGifts",
@@ -178,6 +178,16 @@
    "date": "2026-10-11",
    "source": "Dom",
    "lesson": "Printify delayed orders auto-send to production; flag held orders in the digest."
+  },
+  {
+   "date": "2026-10-11",
+   "source": "Dom",
+   "lesson": "Standard release checks = Dom's Printify store settings (auto-send delayed orders, 1-hour auto submission incl. personalized, details-to-publish: mockups and shipping profile OFF). Verify per-product settings before publish + daily audit; monthly confirm store settings."
+  },
+  {
+   "date": "2026-10-11",
+   "source": "QA",
+   "lesson": "Conflict: personalized orders auto-submit after 1 hour, so worker proofs may arrive after production starts - proofs are best-effort unless Dom changes that setting."
   }
  ],
  "personalization": {
@@ -193,5 +203,48 @@
  },
  "orders": {
   "delayed_orders": "Dom set Printify to auto-send delayed orders to production; the worker flags any held/on-hold orders in the daily digest."
+ },
+ "release_checks": {
+  "store_settings_monthly_confirm": {
+   "delayed_orders": "auto send to production",
+   "order_submission": "automatically (1 hour)",
+   "personalized_orders": "automatically (1 hour)",
+   "auto_submit_buyer_approved_personalization": true,
+   "skip_review_imported_other_orders": false,
+   "publishing": {
+    "hide_in_store": false,
+    "variant_visibility": "in-stock available + out-of-stock shown as sold out",
+    "details_to_publish": {
+     "title": true,
+     "description": true,
+     "variants_prices_skus": true,
+     "tags": true,
+     "category_attributes": true,
+     "mockups": false,
+     "shipping_profile": false
+    }
+   },
+   "note": "Store-level Printify settings are not readable via API - confirmed monthly by Dom (digest checklist)."
+  },
+  "per_product": {
+   "free_shipping": true,
+   "personalization": true,
+   "visible": true,
+   "min_photos": 5,
+   "offsite_ads": "Etsy checklist (shop setting)"
+  },
+  "publish_payload": {
+   "first_publish": "all details",
+   "republish": {
+    "title": true,
+    "description": true,
+    "variants": true,
+    "tags": true,
+    "keyFeatures": true,
+    "images": false,
+    "shipping_template": false
+   }
+  },
+  "audit": "Worker verifies readable per-product settings before every publish and in a daily audit of all products; mismatches are flagged in the digest (free_shipping auto-fixed)."
  }
 }
