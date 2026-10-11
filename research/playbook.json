@@ -1,5 +1,5 @@
 {
- "version": "1.13.0",
+ "version": "1.14.0",
  "updated": "2026-10-11",
  "shop": {
   "name": "NiftyNestGifts",
@@ -56,14 +56,33 @@
   "description_note": "description may still say printed and shipped by Printify (transparency)"
  },
  "title": {
-  "pattern": "<Design phrase> <Product type>, <Occasion/recipient> Gift, <Style> <Synonym product word> <Size>",
-  "min": 70,
-  "max": 140,
+  "pattern": "<Design/phrase> Mug, <design detail>, <recipient/occasion only if essential> (11oz/15oz)",
+  "min": 60,
+  "max": 90,
   "keyword_within": 40,
   "no_repeated_words": true,
   "product_word_once": true,
   "title_case": true,
-  "example": "Sleigh All Day Coffee Mug, Boho Christmas Gift, Eucalyptus Holiday Cup 11oz"
+  "example": "Sleigh All Day Coffee Mug, Boho Christmas Gift, Eucalyptus Holiday Cup 11oz",
+  "max_words": 14,
+  "banned_filler": [
+   "holiday gift",
+   "christmas gift",
+   "halloween gift",
+   "gift idea",
+   "perfect gift",
+   "stocking stuffer",
+   "accent mug",
+   "in 10 colors",
+   "in colors",
+   "colorful mug"
+  ],
+  "examples": [
+   "Boho Christmas Mug, Eucalyptus Berry Wreath, Sleigh All Day (11oz or 15oz)",
+   "Teacher of Little Elves Mug, Watercolor Apple, Holly, Elf Hat, 11oz/15oz",
+   "Mountain Man Birthday Mug, Line Art Hiking Coffee Cup, Outdoorsy Gift (11oz/15oz)",
+   "Disc Golf Birthday Mug, Watercolor Fairway Throw, Ceramic Coffee Cup (11oz/15oz)"
+  ]
  },
  "tags": {
   "count": 13,
@@ -348,6 +367,11 @@
    "date": "2026-10-11",
    "source": "Dom",
    "lesson": "After every new upload, check Etsy improvement suggestions and apply them: Printify-first for synced fields, Etsy-only for attributes/settings."
+  },
+  {
+   "date": "2026-10-11",
+   "source": "Dom",
+   "lesson": "Titles: <=14 words, aim 60-90 chars, no non-essential occasion phrases ('holiday gift') and no 'accent mug in 10 colors' filler; sizes as '(11oz/15oz)'."
   }
  ],
  "personalization": {

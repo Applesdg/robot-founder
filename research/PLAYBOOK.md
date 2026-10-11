@@ -1,4 +1,4 @@
-# NiftyNestGifts AI Founder Playbook v1.13.0 (2026-10-11)
+# NiftyNestGifts AI Founder Playbook v1.14.0 (2026-10-11)
 
 Machine-readable source: research/playbook.json.
 
@@ -74,14 +74,33 @@ Machine-readable source: research/playbook.json.
 ## title
 ```json
 {
- "pattern": "<Design phrase> <Product type>, <Occasion/recipient> Gift, <Style> <Synonym product word> <Size>",
- "min": 70,
- "max": 140,
+ "pattern": "<Design/phrase> Mug, <design detail>, <recipient/occasion only if essential> (11oz/15oz)",
+ "min": 60,
+ "max": 90,
  "keyword_within": 40,
  "no_repeated_words": true,
  "product_word_once": true,
  "title_case": true,
- "example": "Sleigh All Day Coffee Mug, Boho Christmas Gift, Eucalyptus Holiday Cup 11oz"
+ "example": "Sleigh All Day Coffee Mug, Boho Christmas Gift, Eucalyptus Holiday Cup 11oz",
+ "max_words": 14,
+ "banned_filler": [
+  "holiday gift",
+  "christmas gift",
+  "halloween gift",
+  "gift idea",
+  "perfect gift",
+  "stocking stuffer",
+  "accent mug",
+  "in 10 colors",
+  "in colors",
+  "colorful mug"
+ ],
+ "examples": [
+  "Boho Christmas Mug, Eucalyptus Berry Wreath, Sleigh All Day (11oz or 15oz)",
+  "Teacher of Little Elves Mug, Watercolor Apple, Holly, Elf Hat, 11oz/15oz",
+  "Mountain Man Birthday Mug, Line Art Hiking Coffee Cup, Outdoorsy Gift (11oz/15oz)",
+  "Disc Golf Birthday Mug, Watercolor Fairway Throw, Ceramic Coffee Cup (11oz/15oz)"
+ ]
 }
 ```
 ## tags
@@ -517,3 +536,4 @@ Machine-readable source: research/playbook.json.
 - 2026-10-11 (Dom): New mugs = sizes + colors: Accent Coffee Mug (635, Printify Choice) 11oz $15.99 / 15oz $19.49 in all colors; white companion on 478 (SPOKE) 11oz $16.49 / 15oz $19.99. Costs read from temporary drafts (deleted).
 - 2026-10-11 (Dom): Sell COLOR mugs only (635 accent, all colors, 11oz $15.99 / 15oz $21.49). White-only listings are retired once the color versions are live.
 - 2026-10-11 (Dom): After every new upload, check Etsy improvement suggestions and apply them: Printify-first for synced fields, Etsy-only for attributes/settings.
+- 2026-10-11 (Dom): Titles: <=14 words, aim 60-90 chars, no non-essential occasion phrases ('holiday gift') and no 'accent mug in 10 colors' filler; sizes as '(11oz/15oz)'.
