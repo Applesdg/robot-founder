@@ -1,1 +1,37 @@
-{"products":[{"title":"Sleigh All Day Christmas Mug, Boho Holiday Coffee Mug Gift, Eucalyptus Christmas Cup 11oz","printify_id":"6acbbfaa5a6821eb40039815","shop":29285825,"etsy_listing_id":"4593215092","etsy_url":"https://www.etsy.com/listing/4593215092/sleigh-all-day-christmas-mug-boho","blueprint":68,"provider":"SPOKE Custom Products (Norcross, GA)","price":25.99,"cost":6.44,"ship_us":6.69,"free_shipping":true,"est_profit":9.94,"published":"2026-10-11"}]}
+{
+ "products": [
+  {
+   "title": "Sleigh All Day Christmas Mug, Boho Holiday Coffee Mug Gift, Eucalyptus Christmas Cup 11oz",
+   "printify_id": "6acbbfaa5a6821eb40039815",
+   "shop": 29285825,
+   "etsy_listing_id": "4593215092",
+   "etsy_url": "https://www.etsy.com/listing/4593215092/sleigh-all-day-christmas-mug-boho",
+   "blueprint": 68,
+   "provider": "SPOKE Custom Products (Norcross, GA)",
+   "price": 25.99,
+   "cost": 6.44,
+   "ship_us": 6.69,
+   "free_shipping": true,
+   "est_profit": 9.94,
+   "published": "2026-10-11"
+  },
+  {
+   "printify_id": "6acbd03b18604c240802c8d6",
+   "etsy_listing_id": "4593258460",
+   "title": "Teacher Christmas Mug, Little Elves Holiday Coffee Cup, Gift for Daycare Staff 11oz",
+   "price": 25.99,
+   "unit_cost": 6.44,
+   "ship_cost": 7.29,
+   "free_shipping": true,
+   "personalization": true,
+   "category": "professions",
+   "occasion": "Christmas",
+   "published": "2026-10-11",
+   "lifestyle": [
+    "teacher-elves-lifestyle-main-2048.jpg",
+    "teacher-elves-lifestyle-desk-2048.jpg",
+    "teacher-elves-lifestyle-gift-2048.jpg"
+   ]
+  }
+ ]
+}
