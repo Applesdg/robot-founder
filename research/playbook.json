@@ -1,5 +1,5 @@
 {
- "version": "1.8.0",
+ "version": "1.9.0",
  "updated": "2026-10-11",
  "shop": {
   "name": "NiftyNestGifts",
@@ -122,7 +122,7 @@
   "banner": "Etsy shop banner 3360x840 with all text in the center band (safe on mobile crop)"
  },
  "etsy_post_publish_checklist": [
-  "Shipping profile: Printify Standard (buyer-paid) as published by Printify - confirm it is assigned, no free-shipping profile",
+  "After EVERY publish/republish: verify the Etsy listing's shipping profile is 'NiftyNestGifts' ($7.29/$3.09), NOT Printify's 'Standard: SPOKE...' profile; fix in Etsy if reassigned",
   "How it's made > What tools are used: ONLY 'An AI generator' checked",
   "Renewal: Automatic",
   "Production partner: none for now (Dom's choice)",
@@ -315,12 +315,18 @@
   {
    "date": "2026-10-11",
    "source": "Dom",
-   "lesson": "Shipping = Printify Standard profile published from Printify (publish setting 'Shipping profile' ON), not a custom Etsy profile."
+   "lesson": "Shipping = Printify Standard profile published from Printify (publish setting 'Shipping profile' ON), not a custom Etsy profile.",
+   "superseded": "2026-10-11: shipping profile publish setting OFF; Etsy 'NiftyNestGifts' paid profile"
   },
   {
    "date": "2026-10-11",
    "source": "Dom",
    "lesson": "Order of operations: all updates in Printify first, publish from Printify, then change in Etsy only what Printify cannot sync."
+  },
+  {
+   "date": "2026-10-11",
+   "source": "Dom",
+   "lesson": "Printify republish with 'Shipping profile' ON can reassign the Etsy listing to Printify's 'Standard: SPOKE...' profile (happened on Fairway). Keep publish setting 'Shipping profile' OFF; after every republish the flags review verifies the Etsy profile is 'NiftyNestGifts' ($7.29/$3.09)."
   }
  ],
  "personalization": {
@@ -359,7 +365,7 @@
      "tags": true,
      "category_attributes": true,
      "mockups": true,
-     "shipping_profile": true
+     "shipping_profile": false
     }
    },
    "note": "Store-level Printify settings are not readable via API - confirmed monthly by Dom (digest checklist)."
@@ -381,7 +387,7 @@
     "tags": true,
     "keyFeatures": true,
     "images": false,
-    "shipping_template": true
+    "shipping_template": false
    }
   },
   "audit": "Worker verifies readable per-product settings before every publish and in a daily audit of all products; mismatches are flagged in the digest (free_shipping auto-fixed)."
@@ -448,7 +454,7 @@
  "shipping": {
   "free_shipping": false,
   "who_pays": "buyer",
-  "profile": "Printify Standard shipping profile published by Printify to Etsy (publish setting \"Shipping profile\" ON) - not a custom Etsy profile",
+  "profile": "Etsy shipping profile 'NiftyNestGifts' (buyer-paid, $7.29 first / $3.09 additional, US). Printify publish setting 'Shipping profile' OFF.",
   "printify_rates_us_11oz_mug": {
    "first_item": 7.29,
    "additional_item": 3.09,
