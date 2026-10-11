@@ -2,6 +2,12 @@
 
 Brand: **NiftyNestGifts** (Etsy shop name, Shopify store, email sign-off, digests). Benji the dog stays the mascot.
 
+## DEPLOYED 2026-10-11
+- Worker: https://robot-founder-server.dominicgiordanodg.workers.dev (Cloudflare, KV bound). Hourly cron at :07.
+- MODE=prep, LIVE_SERVICES=printify: worker makes real Printify DRAFT mugs (≤1/run, ≤3/day) with xAI text (grok-4.3) + image (grok-imagine-image-quality); OpenAI is fallback if a key is added. $60/mo AI cap, actual costs tracked.
+- Publishing to Etsy only after Dom approves the signed link (Live Ops → Connect with the shared key in `.secrets-local.json` on the box). Etsy direct API off (key pending). Kill switch: Live Ops button or POST /api/worker/kill.
+- No email provider configured → approvals appear in the Live Ops panel.
+
 ## Free shipping — ALWAYS (Dom's rule, 2026-10-11)
 Every physical price includes Printify item cost + US first-item shipping + Etsy fees and keeps the 30% margin floor (`research/taxonomy.json` → `shipping_policy`, server `src/pricing.js`; server rejects listings without `free_shipping:true` or below floor). Free shipping itself is set on the **Etsy shipping profile** in Shop Manager (Settings → Shipping settings → Shipping profiles → edit the Printify profile → Standard shipping: Free) — Printify's API cannot set it.
 
