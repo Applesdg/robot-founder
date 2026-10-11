@@ -1,0 +1,15 @@
+{"note":"Competitor price benchmarks from public, ToS-compliant sources (articles/keyword-tool pages read without login; no Etsy scraping). Ranges are what the SOURCE reports; treat as ESTIMATES. Reviewed by hand; the daily Action flags entries older than 60 days.",
+"reviewed":"2026-10-10",
+"benchmarks":[
+ {"product":"Mug 11oz","low":17,"high":20,"ours":24,"src":"catalogpush","claim":"Breed mugs sell at $17–20 (base cost $5–6.50)."},
+ {"product":"Canvas 12x16","low":55,"high":85,"ours":69,"src":"catalogpush","claim":"Watercolor breed canvas $55–85 (base $22–30); highest-AOV standard POD pet item."},
+ {"product":"Canvas 16x20","low":40,"high":80,"ours":89,"src":"podifai","claim":"Mid tier $40–80 dominates canvas/framed portraits (Crown & Paw, West & Willow)."},
+ {"product":"Fleece blanket 50x60","low":45,"high":75,"ours":69,"src":"listybox","claim":"Velveteen/sherpa breed blankets $45–70 (catalogpush: $55–75)."},
+ {"product":"Digital portrait","low":15,"high":40,"ours":29,"src":"podifai","claim":"Entry tier $15–40 covers digital/small prints; listadum median pet-listing price ~$14.95; rankhero 'personalized pet portrait' typical ~$19.99."},
+ {"product":"Poster 18x24","low":20,"high":45,"ours":39,"src":"podifai","claim":"Small/medium prints in entry–mid tier ($15–40, $40–80)."}],
+"sources":{"catalogpush":{"title":"How to Create Pet Portrait Products on Print-on-Demand","url":"https://www.catalogpush.com/blog/pet-portrait-products-pod","accessed":"2026-10-10"},
+ "podifai":{"title":"Best Custom Pet Portrait Shopify Stores 2026 (30 stores reviewed)","url":"https://podifai.com/blog/top-30-custom-pet-portrait-shopify-stores-(2026)","accessed":"2026-10-10"},
+ "listybox":{"title":"Etsy POD Pet Products: Best Sellers & 2026 Profit Guide","url":"https://listybox.com/blog/print-on-demand-pet-products-etsy-2026/","accessed":"2026-10-10"},
+ "listadum":{"title":"What Pet Product Designs Actually Sell on Etsy","url":"https://www.listadum.com/blog/pet-designs-that-sell-on-etsy","accessed":"2026-10-10"},
+ "rankhero":{"title":"'personalized pet portrait' keyword data","url":"https://www.rankhero.com/keywords/personalized-pet-portrait","accessed":"2026-10-10"}},
+"pending":["Etsy Open API findAllListingsActive (real live competitor prices) — needs Etsy key","eBay Browse API (sold-price ranges) — needs eBay key"]}

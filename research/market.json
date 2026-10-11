@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-11T00:26:52+00:00",
+ "generated": "2026-10-11T10:51:49+00:00",
  "window": [
   "2024-09-01",
   "2026-09-30"
@@ -3744,5 +3744,98 @@
    "sources": [],
    "mockup": "placeholder"
   }
- ]
+ ],
+ "competitors": {
+  "note": "Competitor price benchmarks from public, ToS-compliant sources (articles/keyword-tool pages read without login; no Etsy scraping). Ranges are what the SOURCE reports; treat as ESTIMATES. Reviewed by hand; the daily Action flags entries older than 60 days.",
+  "reviewed": "2026-10-10",
+  "benchmarks": [
+   {
+    "product": "Mug 11oz",
+    "low": 17,
+    "high": 20,
+    "ours": 24,
+    "src": "catalogpush",
+    "claim": "Breed mugs sell at $17\u201320 (base cost $5\u20136.50).",
+    "position": "above range"
+   },
+   {
+    "product": "Canvas 12x16",
+    "low": 55,
+    "high": 85,
+    "ours": 69,
+    "src": "catalogpush",
+    "claim": "Watercolor breed canvas $55\u201385 (base $22\u201330); highest-AOV standard POD pet item.",
+    "position": "within range"
+   },
+   {
+    "product": "Canvas 16x20",
+    "low": 40,
+    "high": 80,
+    "ours": 89,
+    "src": "podifai",
+    "claim": "Mid tier $40\u201380 dominates canvas/framed portraits (Crown & Paw, West & Willow).",
+    "position": "above range"
+   },
+   {
+    "product": "Fleece blanket 50x60",
+    "low": 45,
+    "high": 75,
+    "ours": 69,
+    "src": "listybox",
+    "claim": "Velveteen/sherpa breed blankets $45\u201370 (catalogpush: $55\u201375).",
+    "position": "within range"
+   },
+   {
+    "product": "Digital portrait",
+    "low": 15,
+    "high": 40,
+    "ours": 29,
+    "src": "podifai",
+    "claim": "Entry tier $15\u201340 covers digital/small prints; listadum median pet-listing price ~$14.95; rankhero 'personalized pet portrait' typical ~$19.99.",
+    "position": "within range"
+   },
+   {
+    "product": "Poster 18x24",
+    "low": 20,
+    "high": 45,
+    "ours": 39,
+    "src": "podifai",
+    "claim": "Small/medium prints in entry\u2013mid tier ($15\u201340, $40\u201380).",
+    "position": "within range"
+   }
+  ],
+  "sources": {
+   "catalogpush": {
+    "title": "How to Create Pet Portrait Products on Print-on-Demand",
+    "url": "https://www.catalogpush.com/blog/pet-portrait-products-pod",
+    "accessed": "2026-10-10"
+   },
+   "podifai": {
+    "title": "Best Custom Pet Portrait Shopify Stores 2026 (30 stores reviewed)",
+    "url": "https://podifai.com/blog/top-30-custom-pet-portrait-shopify-stores-(2026)",
+    "accessed": "2026-10-10"
+   },
+   "listybox": {
+    "title": "Etsy POD Pet Products: Best Sellers & 2026 Profit Guide",
+    "url": "https://listybox.com/blog/print-on-demand-pet-products-etsy-2026/",
+    "accessed": "2026-10-10"
+   },
+   "listadum": {
+    "title": "What Pet Product Designs Actually Sell on Etsy",
+    "url": "https://www.listadum.com/blog/pet-designs-that-sell-on-etsy",
+    "accessed": "2026-10-10"
+   },
+   "rankhero": {
+    "title": "'personalized pet portrait' keyword data",
+    "url": "https://www.rankhero.com/keywords/personalized-pet-portrait",
+    "accessed": "2026-10-10"
+   }
+  },
+  "pending": [
+   "Etsy Open API findAllListingsActive (real live competitor prices) \u2014 needs Etsy key",
+   "eBay Browse API (sold-price ranges) \u2014 needs eBay key"
+  ],
+  "age_days": 1,
+  "stale": false
+ }
 }

@@ -62,5 +62,8 @@ ideas.append({'title':'Royal Renaissance Pet Portrait — Digital File from Your
 ideas.append({'title':'Pet Memorial Portrait Canvas — Rainbow Bridge Keepsake','product':'Canvas 12x16','price':69,'price_basis':'economics.js','keyword':'pet memorial gift',
   'why':'Memorial gifts are a common pet-gift search with no holiday dependency (our assumption — not yet measured; Etsy API pending). High emotional value; handle with care in copy.','brief':'Soft watercolor portrait with halo light, name and dates.','prompt':'gentle watercolor portrait of [PET], soft golden light, peaceful sky, space for name and dates','sources':[],'mockup':'placeholder'})
 out['ideas']=ideas
+comp=json.load(open(os.path.join(HERE,'competitors.json')));age=(today-datetime.date.fromisoformat(comp['reviewed'])).days
+for b in comp['benchmarks']:b['position']='above range' if b['ours']>b['high'] else 'below range' if b['ours']<b['low'] else 'within range'
+comp['age_days']=age;comp['stale']=age>60;out['competitors']=comp
 json.dump(out,open(os.path.join(HERE,'market.json'),'w'),indent=1)
 print('breeds',len(out['breeds']),'seasonal',len(out['seasonal']),'ideas',len(ideas))
