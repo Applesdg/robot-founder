@@ -1,4 +1,4 @@
-# NiftyNestGifts Playbook v1.3.1 (2026-10-11)
+# NiftyNestGifts Playbook v1.4.0 (2026-10-11)
 
 Machine-readable source: `research/playbook.json` (loaded by the worker every run, injected into xAI prompts, enforced in the grader where checkable). Runtime lessons are appended via the signed `/api/lessons` endpoint.
 
@@ -152,22 +152,26 @@ Machine-readable source: `research/playbook.json` (loaded by the worker every ru
  "AI disclosure flag set in listing settings",
  "Renewal: Automatic",
  "Photo 1 = lifestyle scene (upload if channel did not)",
- "Etsy Offsite Ads ON (shop setting; Printify API cannot set it)",
- "Personalization: enable in Printify editor (instructions for buyer) and republish"
+ "Etsy Offsite Ads ON (shop setting; Printify API cannot set it)"
 ]
 ```
 ## Personalization
 ```json
 {
  "enabled_every_release": true,
- "api": "Printify accepts sales_channel_properties.personalisation but its schema is undocumented; until confirmed, Dom enables 'Personalization' in the Printify editor (post-publish checklist).",
+ "api": "Captured from Printify editor 2026-10-11 (Sleigh All Day): sales_channel_properties.personalisation = {instructions, buyer_response_limit: 50}. Worker sets it on every new product; audit flags any mismatch.",
  "pricing": "personalized option ~20% higher, still >= $5.50 worst-case profit",
  "pipeline": [
   "Personalized orders are detected (on-hold) by the hourly worker",
   "Custom design generated from the buyer request + playbook rules; consistency QA vs the original mockup",
   "Proof emailed to Dom (queued until email provider) + shown in Live Ops approvals",
   "On approval: new Printify order with the custom design, original on-hold order cancelled"
- ]
+ ],
+ "buyer_instructions": "Please add only the text you want printed on your product. Reach out to us directly for any additional requests.",
+ "printify_format": {
+  "instructions": "Please add only the text you want printed on your product. Reach out to us directly for any additional requests.",
+  "buyer_response_limit": 50
+ }
 }
 ```
 ## Orders
@@ -205,7 +209,8 @@ Machine-readable source: `research/playbook.json` (loaded by the worker every ru
   "personalization": true,
   "visible": true,
   "min_photos": 5,
-  "offsite_ads": "Etsy checklist (shop setting)"
+  "offsite_ads": "Etsy checklist (shop setting)",
+  "personalization_instructions": "Please add only the text you want printed on your product. Reach out to us directly for any additional requests."
  },
  "publish_payload": {
   "first_publish": "all details",
@@ -240,3 +245,4 @@ Machine-readable source: `research/playbook.json` (loaded by the worker every ru
 - **2026-10-11** (QA): Conflict: personalized orders auto-submit after 1 hour, so worker proofs may arrive after production starts - proofs are best-effort unless Dom changes that setting.
 - **2026-10-11** (Dom): Personalized orders set to Manual in Printify so proofs are approved before production (resolves the auto-submit conflict).
 - **2026-10-11** (Dom): Deleted 'Cozy Electric Sparks' electrician mug draft: did not meet requirements (1 photo, no lifestyle main photo, personalization off). Only release ideas that pass the full playbook.
+- **2026-10-11** (Dom): Standard personalization buyer instructions: "Please add only the text you want printed on your product. Reach out to us directly for any additional requests." (Printify format captured; applied to every release).
