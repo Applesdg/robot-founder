@@ -75,7 +75,7 @@ Generated from playbook.json - edit the JSON, not this file.
 ## production_partner
 ```json
 {
- "etsy_setting": "none for now (Dom's choice, 2026-10-11)",
+ "etsy_setting": "Printify on every listing (Dom approved 2026-10-12; was 'none for now' 2026-10-11)",
  "description_note": "description may still say printed and shipped by Printify (transparency)"
 }
 ```
@@ -199,10 +199,10 @@ Generated from playbook.json - edit the JSON, not this file.
 ## etsy_post_publish_checklist
 ```json
 [
- "After EVERY publish/republish: verify the Etsy listing's shipping profile is 'NiftyNestGifts' ($7.29/$3.09), NOT Printify's 'Standard: SPOKE...' profile; fix in Etsy if reassigned",
+ "After EVERY publish/republish: verify the Etsy listing's shipping profile is Printify's synced Standard profile (whatever Printify names it, e.g. 'Standard: ...'), NOT a custom Etsy profile such as 'NiftyNestGifts'; fix in Etsy if reassigned (Dom 2026-10-12)",
  "How it's made > What tools are used: ONLY 'An AI generator' checked",
  "Renewal: Automatic",
- "Production partner: none for now (Dom's choice)",
+ "Production partner: Printify on EVERY listing (Dom approved 2026-10-12)",
  "Photos: VERIFY only - never upload/edit in Etsy; fix in Printify and republish Mockups",
  "Etsy Offsite Ads ON (shop setting)",
  "Post-release flags review: Etsy listing health/search visibility/pricing warnings/attribute suggestions/recommendations; Printify listing health (e.g. 'Pricing: Too high') + publish status",
@@ -372,7 +372,8 @@ Generated from playbook.json - edit the JSON, not this file.
  {
   "date": "2026-10-11",
   "source": "Dom",
-  "lesson": "No Etsy production partner for now (Dom's choice)."
+  "lesson": "No Etsy production partner for now (Dom's choice).",
+  "superseded": "2026-10-12: Dom approved production partner = Printify on every listing"
  },
  {
   "date": "2026-10-11",
@@ -633,7 +634,7 @@ Generated from playbook.json - edit the JSON, not this file.
 {
  "free_shipping": false,
  "who_pays": "buyer",
- "profile": "Etsy shipping profile 'NiftyNestGifts' (buyer-paid, $7.29 first / $3.09 additional, US). Printify publish setting 'Shipping profile' OFF.",
+ "profile": "Printify's Standard shipping profile synced to Etsy (buyer-paid, $7.29 first / $3.09 additional, US), never a custom 'NiftyNestGifts' Etsy profile (Dom 2026-10-12).",
  "printify_rates_us_11oz_mug": {
   "first_item": 7.29,
   "additional_item": 3.09,
@@ -658,7 +659,7 @@ Generated from playbook.json - edit the JSON, not this file.
 ```json
 {
  "mug_default": {
-  "note": "Dom 2026-10-11 6:10 PM: sell COLOR mugs only. Every mug idea = ONE Accent Coffee Mug (635, Printify Choice) with all colors, 11oz $15.99 / 15oz $21.49, Etsy profile 'NiftyNestGifts Accent' $7.29/$3.09. No white products, no cross-links to white versions.",
+  "note": "Dom 2026-10-11 6:10 PM: sell COLOR mugs only. Every mug idea = ONE Accent Coffee Mug (635, Printify Choice) with all colors, 11oz $15.99 / 15oz $21.49, Printify Standard shipping profile $7.29/$3.09 (Dom 2026-10-12). No white products, no cross-links to white versions.",
   "accent": {
    "blueprint_id": 635,
    "print_provider_id": 99,
@@ -989,7 +990,7 @@ Generated from playbook.json - edit the JSON, not this file.
   },
   {
    "id": "shipping_profile",
-   "text": "Etsy listing uses 'NiftyNestGifts' $7.29/$3.09 (republish can reassign it)",
+   "text": "Etsy listing uses Printify's synced Standard profile, not a custom 'NiftyNestGifts' profile (Dom 2026-10-12)",
    "check": "manual"
   }
  ]

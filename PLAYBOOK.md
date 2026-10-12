@@ -67,7 +67,7 @@ Machine-readable source: research/playbook.json (loaded by the worker, injected 
 ## production_partner
 ```json
 {
- "etsy_setting": "none for now (Dom's choice, 2026-10-11)",
+ "etsy_setting": "Printify on every listing (Dom approved 2026-10-12; was 'none for now' 2026-10-11)",
  "description_note": "description may still say printed and shipped by Printify (transparency)"
 }
 ```
@@ -167,7 +167,7 @@ Machine-readable source: research/playbook.json (loaded by the worker, injected 
  "Shipping profile: Printify Standard (buyer-paid) as published by Printify - confirm it is assigned, no free-shipping profile",
  "How it's made > What tools are used: ONLY 'An AI generator' checked",
  "Renewal: Automatic",
- "Production partner: none for now (Dom's choice)",
+ "Production partner: Printify on EVERY listing (Dom approved 2026-10-12)",
  "Photos: VERIFY only - never upload/edit in Etsy; fix in Printify and republish Mockups",
  "Etsy Offsite Ads ON (shop setting)",
  "Post-release flags review: Etsy listing health/search visibility/pricing warnings/attribute suggestions/recommendations; Printify listing health (e.g. 'Pricing: Too high') + publish status"
@@ -381,7 +381,7 @@ Machine-readable source: research/playbook.json (loaded by the worker, injected 
 - 2026-10-11 (Dom): Styled lifestyle photo is ALWAYS #1; 5+ photos; verify after sync that Etsy shows them in order.
 - 2026-10-11 (Dom): Never click Publish without the pre-publish gate (Mountain Man was published by an accidental click and skipped the gate).
 - 2026-10-11 (Dom): Etsy checklist after every release: NiftyNestGifts free shipping profile, 'What tools are used' = ONLY 'An AI generator', Renewal = Automatic. [SUPERSEDED: 2026-10-11: free shipping retired]
-- 2026-10-11 (Dom): No Etsy production partner for now (Dom's choice).
+- 2026-10-11 (Dom): No Etsy production partner for now (Dom's choice). [SUPERSEDED: 2026-10-12: production partner = Printify on every listing]
 - 2026-10-11 (Dom): Never upload/edit photos or designs in Etsy; ALL photo/design changes happen in Printify (Mockup Library supports custom uploads in the UI, not the API) and sync to Etsy.
 - 2026-10-11 (Dom): After every release review all flags on Etsy (listing health, search visibility, pricing warnings, attribute suggestions, recommendations) and Printify (listing health e.g. 'Pricing: Too high', publish status); collect Etsy recommendations into the playbook.
 - 2026-10-11 (Dom): Preview contact sheet of all photos in order before every publish; weekly cleanup of all live products.
