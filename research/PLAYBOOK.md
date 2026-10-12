@@ -1,4 +1,4 @@
-# NiftyNestGifts AI founder playbook v1.25.0
+# NiftyNestGifts AI founder playbook v1.26.0
 
 Generated from playbook.json - edit the JSON, not this file.
 
@@ -398,8 +398,7 @@ Generated from playbook.json - edit the JSON, not this file.
  {
   "date": "2026-10-11",
   "source": "Dom",
-  "lesson": "Shipping = Printify Standard profile published from Printify (publish setting 'Shipping profile' ON), not a custom Etsy profile.",
-  "superseded": "2026-10-11: shipping profile publish setting OFF; Etsy 'NiftyNestGifts' paid profile"
+  "lesson": "Shipping = Printify Standard profile published from Printify (publish setting 'Shipping profile' ON), not a custom Etsy profile."
  },
  {
   "date": "2026-10-11",
@@ -409,7 +408,8 @@ Generated from playbook.json - edit the JSON, not this file.
  {
   "date": "2026-10-11",
   "source": "Dom",
-  "lesson": "Printify republish with 'Shipping profile' ON can reassign the Etsy listing to Printify's 'Standard: SPOKE...' profile (happened on Fairway). Keep publish setting 'Shipping profile' OFF; after every republish the flags review verifies the Etsy profile is 'NiftyNestGifts' ($7.29/$3.09)."
+  "lesson": "Printify republish with 'Shipping profile' ON can reassign the Etsy listing to Printify's 'Standard: SPOKE...' profile (happened on Fairway). Keep publish setting 'Shipping profile' OFF; after every republish the flags review verifies the Etsy profile is 'NiftyNestGifts' ($7.29/$3.09).",
+  "superseded": "2026-10-12: shipping profile must be Printify's Standard profile"
  },
  {
   "date": "2026-10-11",
@@ -456,6 +456,11 @@ Generated from playbook.json - edit the JSON, not this file.
  {
   "date": "2026-10-11",
   "lesson": "Never retire seasonal listings; only roll/remove the order-by line."
+ },
+ {
+  "date": "2026-10-12",
+  "source": "Dom",
+  "lesson": "Standing rules: (1) Etsy shipping profile = Printify's synced Standard profile (whatever Printify names it); never flag it, flag any other profile incl. a custom 'NiftyNestGifts' one. (2) Production partner = Printify on EVERY listing; flag any listing missing it. (3) Photos = 5-6 styled photos; flag >8 (white Printify views slipped through)."
  }
 ]
 ```
@@ -834,6 +839,16 @@ Generated from playbook.json - edit the JSON, not this file.
  },
  "no_white_spill": {
   "rule": "Every composited photo: no white/near-white fringe, spill or halo outside the mug body (base, handle underside, bottom-right). Contact shadow is natural and dark, never white. Gate: programmatic (bright pixels outside the body mask near the base > 40 = fail) + vision (h2) on every photo.",
+  "since": "2026-10-12",
+  "by": "Dom"
+ },
+ "main_photo_edit_mode": {
+  "rule": "Main photo = Grok Imagine EDIT of the real Printify mockup (cut-and-paste composites rejected by Dom 09:25: floating/snippet look). Scene varies per mug, on-theme, mug ~62% of height, grounded with real contact shadow. Strict fidelity gate vs mockup (art, text, body/rim/handle color, handle side, attached handle, grounded, shadow, readable, theme, no extra cups, 50-75% height). Up to 4 tries; fallback Printify context-1 only (styled); otherwise hold the draft.",
+  "since": "2026-10-12",
+  "by": "Dom"
+ },
+ "never_white_backdrop": {
+  "rule": "Always a styled background in every photo slot. Never Printify context-2 (white studio) or any plain white/near-white backdrop, including as a fallback and for color/size photos. If the edit fails fidelity after retries, hold the draft back. Gate: programmatic border-ring white check on every slot + vision check (w).",
   "since": "2026-10-12",
   "by": "Dom"
  }

@@ -1,5 +1,5 @@
 {
- "version": "1.25.0",
+ "version": "1.26.0",
  "updated": "2026-10-11",
  "shop": {
   "name": "NiftyNestGifts",
@@ -711,6 +711,16 @@
   },
   "no_white_spill": {
    "rule": "Every composited photo: no white/near-white fringe, spill or halo outside the mug body (base, handle underside, bottom-right). Contact shadow is natural and dark, never white. Gate: programmatic (bright pixels outside the body mask near the base > 40 = fail) + vision (h2) on every photo.",
+   "since": "2026-10-12",
+   "by": "Dom"
+  },
+  "main_photo_edit_mode": {
+   "rule": "Main photo = Grok Imagine EDIT of the real Printify mockup (cut-and-paste composites rejected by Dom 09:25: floating/snippet look). Scene varies per mug, on-theme, mug ~62% of height, grounded with real contact shadow. Strict fidelity gate vs mockup (art, text, body/rim/handle color, handle side, attached handle, grounded, shadow, readable, theme, no extra cups, 50-75% height). Up to 4 tries; fallback Printify context-1 only (styled); otherwise hold the draft.",
+   "since": "2026-10-12",
+   "by": "Dom"
+  },
+  "never_white_backdrop": {
+   "rule": "Always a styled background in every photo slot. Never Printify context-2 (white studio) or any plain white/near-white backdrop, including as a fallback and for color/size photos. If the edit fails fidelity after retries, hold the draft back. Gate: programmatic border-ring white check on every slot + vision check (w).",
    "since": "2026-10-12",
    "by": "Dom"
   }
