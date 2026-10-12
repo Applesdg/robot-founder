@@ -1,4 +1,4 @@
-# NiftyNestGifts AI founder playbook v1.23.0
+# NiftyNestGifts AI founder playbook v1.25.0
 
 Generated from playbook.json - edit the JSON, not this file.
 
@@ -815,9 +815,19 @@ Generated from playbook.json - edit the JSON, not this file.
   "since": "2026-10-12"
  },
  "main_thumbnail_legible": {
-  "rule": "Main photo must be thumbnail-legible: product fills ~65-75% of the frame height, centered close-up, front design big and readable; background styled but SIMPLE and softly blurred (shallow depth of field), at most 2-3 on-theme props kept away from the product, good contrast. Gate: main is downscaled to 300px and vision must read the design text, or the photo fails.",
+  "rule": "Main photo must be thumbnail-legible: product fills ~65-75% of the frame height, centered close-up, front design big and readable; background styled but SIMPLE and softly blurred (shallow depth of field), at most 2-3 on-theme props kept away from the product, good contrast. Gate: main is downscaled to 300px and vision must read the design text, or the photo fails. v2 (Dom 10/12 08:47): background keeps 1-2 BOLD recognizable on-theme props at the blurred edges so the theme reads at 300px; full mug incl. rim inside the frame with margin (~65-70% height, never cropped); no extra cups/drinkware in any scene. Gate adds theme_recognizable, mug_fully_in_frame, extra_cups=0.",
   "since": "2026-10-12",
   "by": "Dom (phone shop-grid screenshots)"
+ },
+ "handle_attached": {
+  "rule": "Every composited photo (all slots): the mug handle is continuous and attached to the body at both joints - no gaps, white slivers, broken or floating handle. Gate: programmatic cutout check (opaque mask must be ONE connected component, body+handle) plus vision check (h) on every photo.",
+  "since": "2026-10-12",
+  "by": "Dom"
+ },
+ "no_white_spill": {
+  "rule": "Every composited photo: no white/near-white fringe, spill or halo outside the mug body (base, handle underside, bottom-right). Contact shadow is natural and dark, never white. Gate: programmatic (bright pixels outside the body mask near the base > 40 = fail) + vision (h2) on every photo.",
+  "since": "2026-10-12",
+  "by": "Dom"
  }
 }
 ```
