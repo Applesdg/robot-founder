@@ -1,4 +1,4 @@
-# NiftyNestGifts AI founder playbook v1.22.0
+# NiftyNestGifts AI founder playbook v1.23.0
 
 Generated from playbook.json - edit the JSON, not this file.
 
@@ -755,11 +755,16 @@ Generated from playbook.json - edit the JSON, not this file.
 {
  "rule": "Before drafting ANY new product type: research competitors (typical sizes/colors/variants, buyer price item+shipping, free vs paid shipping, top styles, review themes) from real public sources with links + dates (Etsy pages where fetchable, eRank/Marmalead/RankHero, articles; never invent numbers), read real Printify costs via a temporary draft (then delete), compute worst-case profit (>= $4), and get Dom's go before drafts.",
  "status": {
-  "ornament": "researched 2026-10-11, awaiting Dom",
-  "sweatshirt": "researched 2026-10-11, awaiting Dom",
-  "tote": "researched 2026-10-11, awaiting Dom",
-  "tumbler": "researched 2026-10-11, awaiting Dom"
- }
+  "ornament": "researched 2026-10-12, awaiting Dom pick",
+  "tee": "researched 2026-10-12, awaiting Dom pick",
+  "sweatshirt": "researched 2026-10-12, awaiting Dom pick",
+  "tote": "researched 2026-10-12, awaiting Dom pick",
+  "poster": "researched 2026-10-12, awaiting Dom pick",
+  "blanket": "researched 2026-10-12, awaiting Dom pick",
+  "tumbler": "researched 2026-10-12, recommend skip for now",
+  "sticker": "researched 2026-10-12, recommend skip singles"
+ },
+ "report": "/workspace/niftynest/types/product_type_recommendations.json"
 }
 ```
 
@@ -808,6 +813,11 @@ Generated from playbook.json - edit the JSON, not this file.
  "tee_pricing": {
   "rule": "Tees: $24.99 S-XL, $27.99 2XL, $29.99 3XL, $34.99 4XL (4XL at $31.99 would only clear $2.30) - every size must clear $4 worst case.",
   "since": "2026-10-12"
+ },
+ "main_thumbnail_legible": {
+  "rule": "Main photo must be thumbnail-legible: product fills ~65-75% of the frame height, centered close-up, front design big and readable; background styled but SIMPLE and softly blurred (shallow depth of field), at most 2-3 on-theme props kept away from the product, good contrast. Gate: main is downscaled to 300px and vision must read the design text, or the photo fails.",
+  "since": "2026-10-12",
+  "by": "Dom (phone shop-grid screenshots)"
  }
 }
 ```
