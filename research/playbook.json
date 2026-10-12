@@ -18,7 +18,6 @@
   ],
   "example": "Mug 11oz $25.99 -> worst-case profit $6.22",
   "shopify_margin_floor": 0.3,
-  "personalized_price_uplift": 0.2,
   "printify_free_shipping_toggle": "sales_channel_properties.free_shipping=true (API)",
   "mug_price": 15.99,
   "worst_case_at_15_99": "\u2248$4.09 (fees 6.5%+3%+$0.25 payment+$0.20 listing and 12% offsite ads on item+shipping; shipping passed through to Printify); \u2248$6.89 without offsite ads",
@@ -401,8 +400,6 @@
   "store_settings_monthly_confirm": {
    "delayed_orders": "auto send to production",
    "order_submission": "automatically (1 hour)",
-   "personalized_orders": "MANUAL (so the worker proof step can run before production)",
-   "auto_submit_buyer_approved_personalization": true,
    "skip_review_imported_other_orders": false,
    "publishing": {
     "hide_in_store": false,
@@ -455,7 +452,7 @@
    "no AI wording",
    "worst-case profit >= $5.50 (12% offsite ads)",
    "free shipping on",
-   "personalization on with Dom exact text",
+   "",
    "5+ photos selected for publishing",
    "print file passes artifact check (vision + pixel)",
    "no front seam mockup selected",
@@ -510,7 +507,7 @@
  },
  "release_flow": [
   "generate design (flat art, both sides) -> artifact check",
-  "create Printify draft (title/tags/desc/price/free ship/personalization)",
+  "",
   "generate styled #1 (handle right) and #2 (handle left) from exact mockups -> layout QA",
   "contact sheet preview (all photos in order, numbered, title/price) -> approval item/email/Live Ops",
   "browser: Printify Mockup Library upload + order + deselect seam view",
@@ -518,7 +515,7 @@
   "publish via Printify with Mockups checked",
   "post-publish: sync verify (photos/order), flags review, Etsy checklist"
  ],
- "weekly_cleanup": "Mondays: recheck every live product (flags, photo count/order, no seam view, free shipping, personalization text, price floor, settings drift) -> digest.",
+ "weekly_cleanup": "Mondays: recheck every live product (flags, photo count/order, no seam view, free shipping, price floor, settings drift) -> digest.",
  "etsy_recommendations": {
   "status": "to collect",
   "note": "Record Etsy's listing recommendations (attribute suggestions, search visibility tips) per listing during the post-release flags review and add durable ones here as rules."
@@ -632,7 +629,7 @@
   "record": "note applied suggestions as a lesson if they generalize"
  },
  "new_product_types": {
-  "rule": "Before drafting ANY new product type: research competitors (typical sizes/colors/variants, buyer price item+shipping, free vs paid shipping, personalization, top styles, review themes) from real public sources with links + dates (Etsy pages where fetchable, eRank/Marmalead/RankHero, articles; never invent numbers), read real Printify costs via a temporary draft (then delete), compute worst-case profit (>= $4), and get Dom's go before drafts.",
+  "rule": "Before drafting ANY new product type: research competitors (typical sizes/colors/variants, buyer price item+shipping, free vs paid shipping, top styles, review themes) from real public sources with links + dates (Etsy pages where fetchable, eRank/Marmalead/RankHero, articles; never invent numbers), read real Printify costs via a temporary draft (then delete), compute worst-case profit (>= $4), and get Dom's go before drafts.",
   "status": {
    "ornament": "researched 2026-10-11, awaiting Dom",
    "sweatshirt": "researched 2026-10-11, awaiting Dom",
@@ -642,7 +639,7 @@
  },
  "rules": {
   "new_product_types": {
-   "rule": "Before drafting ANY new product type, research competitors for that type independently (typical sizes/colors/variants, buyer price item+shipping, free vs paid shipping, personalization, top-seller styles, review themes) from real public sources with links+dates; never invent numbers. Compare to real Printify cost (temp draft, then delete), keep worst-case profit >= $4 with 12% offsite ads and buyer-paid shipping, and wait for Dom's go before drafts.",
+   "rule": "Before drafting ANY new product type, research competitors for that type independently (typical sizes/colors/variants, buyer price item+shipping, free vs paid shipping, top-seller styles, review themes) from real public sources with links+dates; never invent numbers. Compare to real Printify cost (temp draft, then delete), keep worst-case profit >= $4 with 12% offsite ads and buyer-paid shipping, and wait for Dom's go before drafts.",
    "since": "2026-10-11"
   },
   "orders": {
@@ -653,7 +650,7 @@
    "cancellation": "Flag in digest + confirmation draft."
   },
   "personalization": {
-   "rule": "NO personalization on any product (Dom 2026-10-11). Printify sales_channel_properties.personalisation=null, no personalization wording in descriptions/tags; orders with buyer personalization text are only flagged in the digest (no proofs).",
+   "rule": "NO personalization on any product (Dom 2026-10-11). personalisation=null, no wording; personalized-text orders only flagged in digest.",
    "since": "2026-10-11"
   },
   "seasonal": {

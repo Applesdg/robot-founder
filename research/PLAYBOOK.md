@@ -1,6 +1,11 @@
-# NiftyNestGifts AI Founder Playbook v1.15.0 (2026-10-11)
+# NiftyNestGifts AI founder playbook v1.18.0
 
-Machine-readable source: research/playbook.json.
+Generated from playbook.json - edit the JSON, not this file.
+
+## updated
+```json
+"2026-10-11"
+```
 
 ## shop
 ```json
@@ -9,6 +14,7 @@ Machine-readable source: research/playbook.json.
  "positioning": "General gift store (not pet-focused): occasions, hobbies, professions, family roles, locations; pets are one category among many."
 }
 ```
+
 ## pricing
 ```json
 {
@@ -24,13 +30,13 @@ Machine-readable source: research/playbook.json.
  ],
  "example": "Mug 11oz $25.99 -> worst-case profit $6.22",
  "shopify_margin_floor": 0.3,
- "personalized_price_uplift": 0.2,
  "printify_free_shipping_toggle": "sales_channel_properties.free_shipping=true (API)",
  "mug_price": 15.99,
  "worst_case_at_15_99": "≈$4.09 (fees 6.5%+3%+$0.25 payment+$0.20 listing and 12% offsite ads on item+shipping; shipping passed through to Printify); ≈$6.89 without offsite ads",
  "note": "Dom accepted the lower margin (2026-10-11). Free-shipping pricing rules retired."
 }
 ```
+
 ## timing
 ```json
 {
@@ -47,6 +53,7 @@ Machine-readable source: research/playbook.json.
  ]
 }
 ```
+
 ## description
 ```json
 {
@@ -64,6 +71,7 @@ Machine-readable source: research/playbook.json.
  "note": "No AI wording in descriptions; the Etsy AI flag is set separately in listing settings."
 }
 ```
+
 ## production_partner
 ```json
 {
@@ -71,6 +79,7 @@ Machine-readable source: research/playbook.json.
  "description_note": "description may still say printed and shipped by Printify (transparency)"
 }
 ```
+
 ## title
 ```json
 {
@@ -102,6 +111,7 @@ Machine-readable source: research/playbook.json.
  ]
 }
 ```
+
 ## tags
 ```json
 {
@@ -110,6 +120,7 @@ Machine-readable source: research/playbook.json.
  "unique": true
 }
 ```
+
 ## photos
 ```json
 {
@@ -130,6 +141,7 @@ Machine-readable source: research/playbook.json.
  "verify_after_sync": "after publish, verify selected Printify images >=5 and Etsy shows the same order (browser check until Etsy OAuth is live)"
 }
 ```
+
 ## design
 ```json
 {
@@ -141,6 +153,7 @@ Machine-readable source: research/playbook.json.
  "no_drawn_products": "Design prompts ask for flat standalone print artwork; never \"mug wrap\"; no mugs/panels/boxes/frames/overlays in the art. Print artifact check (vision + pixel) at design step and in the gate."
 }
 ```
+
 ## consistency
 ```json
 {
@@ -148,6 +161,7 @@ Machine-readable source: research/playbook.json.
  "qa": "xAI vision compares each generated asset to the mockup (same shape, handle, design, text spelled identically); mismatches are rejected before use."
 }
 ```
+
 ## lifestyle
 ```json
 {
@@ -159,6 +173,7 @@ Machine-readable source: research/playbook.json.
  ]
 }
 ```
+
 ## video
 ```json
 {
@@ -173,12 +188,14 @@ Machine-readable source: research/playbook.json.
  "enabled_by_default": false
 }
 ```
+
 ## branding
 ```json
 {
  "banner": "Etsy shop banner 3360x840 with all text in the center band (safe on mobile crop)"
 }
 ```
+
 ## etsy_post_publish_checklist
 ```json
 [
@@ -192,39 +209,269 @@ Machine-readable source: research/playbook.json.
  "After EVERY new upload/publish: open the Etsy listing's improvement suggestions (search visibility factors, listing health, attribute suggestions, pricing warnings) and APPLY them - synced fields (title, tags, description, price, photos) in Printify first then republish; Etsy-only items (attributes, category details, settings) directly in Etsy"
 ]
 ```
-## personalization
+
+## lessons
 ```json
-{
- "enabled_every_release": true,
- "api": "Captured from Printify editor 2026-10-11 (Sleigh All Day): sales_channel_properties.personalisation = {instructions, buyer_response_limit: 50}. Worker sets it on every new product; audit flags any mismatch.",
- "pricing": "personalized option ~20% higher, still >= $5.50 worst-case profit",
- "pipeline": [
-  "Personalized orders are detected (on-hold) by the hourly worker",
-  "Custom design generated from the buyer request + playbook rules; consistency QA vs the original mockup",
-  "Proof emailed to Dom (queued until email provider) + shown in Live Ops approvals",
-  "On approval: new Printify order with the custom design, original on-hold order cancelled"
- ],
- "buyer_instructions": "Please add only the text you want printed on your product. Reach out to us directly for any additional requests.",
- "printify_format": {
-  "instructions": "Please add only the text you want printed on your product. Reach out to us directly for any additional requests.",
-  "buyer_response_limit": 50
+[
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Shop is a general gift store, not dog-focused."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Always free US shipping, baked into price; keep 30% margin floor."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Etsy",
+  "lesson": "Etsy flagged repeated title words ('christmas', 'mug'): never repeat words; product word once with synonyms."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Remove AI wording from descriptions; AI disclosure is a listing setting only."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "QA",
+  "lesson": "Video with big camera moves morphed the product (handle vanished, marshmallows appeared): use locked-off camera, subtle motion only, start from final-scene still."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Product consistency across ALL images/videos: generate from the real Printify mockup; exact plain glossy white 11oz mug, C-handle, identical design; QA-reject mismatches."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Main (first) listing photo must be a styled lifestyle scene, never a plain white mockup."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Listings need 5-10 photos; Etsy auto-renew on."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Enable Printify free Standard shipping ($7.29) and Etsy Offsite Ads (12%) on every release; price so worst-case margin (incl. ads) stays >= 30% (mug $29.99)."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Every lifestyle photo/video must start from the real Printify mockup; automated vision QA rejects mismatched mugs."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Price competitively at/slightly below benchmarks; margins don't need to be high; floor = $5-6 worst-case profit (incl. 12% offsite ads). Sleigh All Day stays $25.99."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Enable personalization on every release (~20% higher price for personalized); proofs need Dom approval before production."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Printify delayed orders auto-send to production; flag held orders in the digest."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Standard release checks = Dom's Printify store settings (auto-send delayed orders, 1-hour auto submission incl. personalized, details-to-publish: mockups and shipping profile OFF). Verify per-product settings before publish + daily audit; monthly confirm store settings."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "QA",
+  "lesson": "Conflict: personalized orders auto-submit after 1 hour, so worker proofs may arrive after production starts - proofs are best-effort unless Dom changes that setting."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Personalized orders set to Manual in Printify so proofs are approved before production (resolves the auto-submit conflict)."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Deleted 'Cozy Electric Sparks' electrician mug draft: did not meet requirements (1 photo, no lifestyle main photo, personalization off). Only release ideas that pass the full playbook."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Standard personalization buyer instructions: \"Please add only the text you want printed on your product. Reach out to us directly for any additional requests.\" (Printify format captured; applied to every release)."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Mandatory pre-publish review gate: vision review of every photo + full listing-details review; any failure blocks publish and goes to Dom with reasons."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Teacher Elves published with only 1 photo synced: the API cannot select mockups (PUT images is ignored) and Printify keeps only the default mockup selected; store 'details to publish: mockups' is OFF. Fix: select all mockups in the Printify editor (or turn store mockups ON) before publish; gate blocks <5 selected; post-publish sync check flags it."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Mountain Man (worker draft) was NOT published: it waited for approval because guardrails failed (4 photos, 68-char title, no lifestyle main photo). Its Printify photo 1 is a plain white mockup, so photo 1 must be a QA'd lifestyle upload."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Etsy 'How it's made > What tools are used' must have ONLY 'An AI generator' checked; not readable via API, so daily digest reminds."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Fairway Birthday Throw print file had a gray semi-transparent mug/panel over the right half (the image model drew a mug because the prompt said 'mug wrap'). Every print file now gets a vision + pixel artifact check in the design step and the pre-publish gate; prompts ask for flat artwork only."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Design prompts must never ask for a 'mug wrap' - the image model drew a gray mug/panel into the Fairway art. Flat artwork only + print artifact check (vision + pixel)."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Photo QA must compare LAYOUT/arrangement, not just elements present (Teacher gift photo split the single cluster into two and still passed the old QA)."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Never use Printify's front camera (seam view between the two design copies) as a listing photo; exclude/deselect it (Teacher last photo, Fairway #4)."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "All mugs: design on both sides (two copies), handle-left and handle-right views each show one full design."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Photo #2 = styled shot of the other side with the handle opposite photo #1."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Styled lifestyle photo is ALWAYS #1; 5+ photos; verify after sync that Etsy shows them in order."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Never click Publish without the pre-publish gate (Mountain Man was published by an accidental click and skipped the gate)."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Etsy checklist after every release: NiftyNestGifts free shipping profile, 'What tools are used' = ONLY 'An AI generator', Renewal = Automatic.",
+  "superseded": "2026-10-11: free shipping retired"
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "No Etsy production partner for now (Dom's choice)."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Never upload/edit photos or designs in Etsy; ALL photo/design changes happen in Printify (Mockup Library supports custom uploads in the UI, not the API) and sync to Etsy."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "After every release review all flags on Etsy (listing health, search visibility, pricing warnings, attribute suggestions, recommendations) and Printify (listing health e.g. 'Pricing: Too high', publish status); collect Etsy recommendations into the playbook."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Preview contact sheet of all photos in order before every publish; weekly cleanup of all live products."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Free shipping retired (Dom, 2026-10-11 4:41 PM): mugs $15.99 + buyer-paid Printify Standard shipping (US $7.29 first / $3.09 additional). Worst-case profit floor $4.00 (≈$4.09 at $15.99). Never say 'free shipping' in listings."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Shipping = Printify Standard profile published from Printify (publish setting 'Shipping profile' ON), not a custom Etsy profile.",
+  "superseded": "2026-10-11: shipping profile publish setting OFF; Etsy 'NiftyNestGifts' paid profile"
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Order of operations: all updates in Printify first, publish from Printify, then change in Etsy only what Printify cannot sync."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Printify republish with 'Shipping profile' ON can reassign the Etsy listing to Printify's 'Standard: SPOKE...' profile (happened on Fairway). Keep publish setting 'Shipping profile' OFF; after every republish the flags review verifies the Etsy profile is 'NiftyNestGifts' ($7.29/$3.09)."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "New mugs default to blueprint 478 (SPOKE, provider 1) with both 11oz and 15oz white variants in one listing; two-sided print file 2475x1155. Printify cannot change an existing product's blueprint."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "New mugs = sizes + colors: Accent Coffee Mug (635, Printify Choice) 11oz $15.99 / 15oz $19.49 in all colors; white companion on 478 (SPOKE) 11oz $16.49 / 15oz $19.99. Costs read from temporary drafts (deleted)."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Sell COLOR mugs only (635 accent, all colors, 11oz $15.99 / 15oz $21.49). White-only listings are retired once the color versions are live."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "After every new upload, check Etsy improvement suggestions and apply them: Printify-first for synced fields, Etsy-only for attributes/settings."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Titles: <=14 words, aim 60-90 chars, no non-essential occasion phrases ('holiday gift') and no 'accent mug in 10 colors' filler; sizes as '(11oz/15oz)'."
+ },
+ {
+  "date": "2026-10-11",
+  "source": "Dom",
+  "lesson": "Research competitors per new product type (variants, buyer price incl. shipping, personalization, styles, reviews) with cited sources and real Printify costs before drafting; wait for Dom's go."
+ },
+ {
+  "date": "2026-10-11",
+  "lesson": "New product types (ornaments, sweatshirts, totes, tumblers) need a per-type competitor research report and Dom's go before any draft."
+ },
+ {
+  "date": "2026-10-11",
+  "lesson": "Post-checkout sim: proofs must use the product's real blueprint (635 two-sided), Printify has no order-edit/reprint API (browser tasks), Printify auto-imports Etsy orders (never create a second order), and 'pending' within the 1h auto-submit window is not 'held'."
+ },
+ {
+  "date": "2026-10-11",
+  "lesson": "Dom removed personalization from all products."
+ },
+ {
+  "date": "2026-10-11",
+  "lesson": "Never retire seasonal listings; only roll/remove the order-by line."
  }
-}
+]
 ```
+
 ## orders
 ```json
 {
  "delayed_orders": "Dom set Printify to auto-send delayed orders to production; the worker flags any held/on-hold orders in the daily digest."
 }
 ```
+
 ## release_checks
 ```json
 {
  "store_settings_monthly_confirm": {
   "delayed_orders": "auto send to production",
   "order_submission": "automatically (1 hour)",
-  "personalized_orders": "MANUAL (so the worker proof step can run before production)",
-  "auto_submit_buyer_approved_personalization": true,
   "skip_review_imported_other_orders": false,
   "publishing": {
    "hide_in_store": false,
@@ -243,11 +490,10 @@ Machine-readable source: research/playbook.json.
  },
  "per_product": {
   "free_shipping": false,
-  "personalization": true,
+  "personalization": false,
   "visible": true,
   "min_photos": 5,
-  "offsite_ads": "Etsy checklist (shop setting)",
-  "personalization_instructions": "Please add only the text you want printed on your product. Reach out to us directly for any additional requests."
+  "offsite_ads": "Etsy checklist (shop setting)"
  },
  "publish_payload": {
   "first_publish": "all details",
@@ -264,6 +510,7 @@ Machine-readable source: research/playbook.json.
  "audit": "Worker verifies readable per-product settings before every publish and in a daily audit of all products; mismatches are flagged in the digest (free_shipping auto-fixed)."
 }
 ```
+
 ## pre_publish_review
 ```json
 {
@@ -281,7 +528,7 @@ Machine-readable source: research/playbook.json.
   "no AI wording",
   "worst-case profit >= $5.50 (12% offsite ads)",
   "free shipping on",
-  "personalization on with Dom exact text",
+  "",
   "5+ photos selected for publishing",
   "print file passes artifact check (vision + pixel)",
   "no front seam mockup selected",
@@ -292,6 +539,7 @@ Machine-readable source: research/playbook.json.
  "post_publish": "verify photos that actually synced (Printify selected images >= 5); flag in audit/digest if fewer"
 }
 ```
+
 ## memory
 ```json
 {
@@ -328,6 +576,7 @@ Machine-readable source: research/playbook.json.
  ]
 }
 ```
+
 ## print_artifacts
 ```json
 {
@@ -341,11 +590,12 @@ Machine-readable source: research/playbook.json.
  "prompt_rule": "Design prompts say \"flat standalone print artwork, NOT a product photo\"; never ask the image model for a \"mug wrap\" (it draws a mug into the art)."
 }
 ```
+
 ## release_flow
 ```json
 [
  "generate design (flat art, both sides) -> artifact check",
- "create Printify draft (title/tags/desc/price/free ship/personalization)",
+ "",
  "generate styled #1 (handle right) and #2 (handle left) from exact mockups -> layout QA",
  "contact sheet preview (all photos in order, numbered, title/price) -> approval item/email/Live Ops",
  "browser: Printify Mockup Library upload + order + deselect seam view",
@@ -354,10 +604,12 @@ Machine-readable source: research/playbook.json.
  "post-publish: sync verify (photos/order), flags review, Etsy checklist"
 ]
 ```
+
 ## weekly_cleanup
 ```json
-"Mondays: recheck every live product (flags, photo count/order, no seam view, free shipping, personalization text, price floor, settings drift) -> digest."
+"Mondays: recheck every live product (flags, photo count/order, no seam view, free shipping, price floor, settings drift) -> digest."
 ```
+
 ## etsy_recommendations
 ```json
 {
@@ -365,6 +617,7 @@ Machine-readable source: research/playbook.json.
  "note": "Record Etsy's listing recommendations (attribute suggestions, search visibility tips) per listing during the post-release flags review and add durable ones here as rules."
 }
 ```
+
 ## etsy_oauth
 ```json
 {
@@ -374,6 +627,7 @@ Machine-readable source: research/playbook.json.
  "scopes": "listings_r listings_w listings_d transactions_r transactions_w shops_r shops_w email_r"
 }
 ```
+
 ## shipping
 ```json
 {
@@ -389,6 +643,7 @@ Machine-readable source: research/playbook.json.
  "listing_text": "never mention free shipping; keep timing line \"Made to order: ships in 2-7 business days, then 2-5 business days US delivery (standard shipping).\""
 }
 ```
+
 ## order_of_operations
 ```json
 [
@@ -398,6 +653,7 @@ Machine-readable source: research/playbook.json.
  "Never upload/edit photos, designs, prices or descriptions in Etsy."
 ]
 ```
+
 ## products
 ```json
 {
@@ -455,6 +711,7 @@ Machine-readable source: research/playbook.json.
  }
 }
 ```
+
 ## removal
 ```json
 {
@@ -464,6 +721,7 @@ Machine-readable source: research/playbook.json.
  "api": "POST /products/{id}/unpublish.json only NOTIFIES Printify that a custom channel removed it - it does not touch Etsy; DELETE /products/{id}.json deletes in Printify (help docs: also removes from the sales channel)"
 }
 ```
+
 ## etsy_improvements
 ```json
 {
@@ -491,10 +749,11 @@ Machine-readable source: research/playbook.json.
  "record": "note applied suggestions as a lesson if they generalize"
 }
 ```
+
 ## new_product_types
 ```json
 {
- "rule": "Before drafting ANY new product type: research competitors (typical sizes/colors/variants, buyer price item+shipping, free vs paid shipping, personalization, top styles, review themes) from real public sources with links + dates (Etsy pages where fetchable, eRank/Marmalead/RankHero, articles; never invent numbers), read real Printify costs via a temporary draft (then delete), compute worst-case profit (>= $4), and get Dom's go before drafts.",
+ "rule": "Before drafting ANY new product type: research competitors (typical sizes/colors/variants, buyer price item+shipping, free vs paid shipping, top styles, review themes) from real public sources with links + dates (Etsy pages where fetchable, eRank/Marmalead/RankHero, articles; never invent numbers), read real Printify costs via a temporary draft (then delete), compute worst-case profit (>= $4), and get Dom's go before drafts.",
  "status": {
   "ornament": "researched 2026-10-11, awaiting Dom",
   "sweatshirt": "researched 2026-10-11, awaiting Dom",
@@ -503,66 +762,28 @@ Machine-readable source: research/playbook.json.
  }
 }
 ```
-## Lessons
-- 2026-10-11 (Dom): Shop is a general gift store, not dog-focused.
-- 2026-10-11 (Dom): Always free US shipping, baked into price; keep 30% margin floor.
-- 2026-10-11 (Etsy): Etsy flagged repeated title words ('christmas', 'mug'): never repeat words; product word once with synonyms.
-- 2026-10-11 (Dom): Remove AI wording from descriptions; AI disclosure is a listing setting only.
-- 2026-10-11 (QA): Video with big camera moves morphed the product (handle vanished, marshmallows appeared): use locked-off camera, subtle motion only, start from final-scene still.
-- 2026-10-11 (Dom): Product consistency across ALL images/videos: generate from the real Printify mockup; exact plain glossy white 11oz mug, C-handle, identical design; QA-reject mismatches.
-- 2026-10-11 (Dom): Main (first) listing photo must be a styled lifestyle scene, never a plain white mockup.
-- 2026-10-11 (Dom): Listings need 5-10 photos; Etsy auto-renew on.
-- 2026-10-11 (Dom): Enable Printify free Standard shipping ($7.29) and Etsy Offsite Ads (12%) on every release; price so worst-case margin (incl. ads) stays >= 30% (mug $29.99).
-- 2026-10-11 (Dom): Every lifestyle photo/video must start from the real Printify mockup; automated vision QA rejects mismatched mugs.
-- 2026-10-11 (Dom): Price competitively at/slightly below benchmarks; margins don't need to be high; floor = $5-6 worst-case profit (incl. 12% offsite ads). Sleigh All Day stays $25.99.
-- 2026-10-11 (Dom): Enable personalization on every release (~20% higher price for personalized); proofs need Dom approval before production.
-- 2026-10-11 (Dom): Printify delayed orders auto-send to production; flag held orders in the digest.
-- 2026-10-11 (Dom): Standard release checks = Dom's Printify store settings (auto-send delayed orders, 1-hour auto submission incl. personalized, details-to-publish: mockups and shipping profile OFF). Verify per-product settings before publish + daily audit; monthly confirm store settings.
-- 2026-10-11 (QA): Conflict: personalized orders auto-submit after 1 hour, so worker proofs may arrive after production starts - proofs are best-effort unless Dom changes that setting.
-- 2026-10-11 (Dom): Personalized orders set to Manual in Printify so proofs are approved before production (resolves the auto-submit conflict).
-- 2026-10-11 (Dom): Deleted 'Cozy Electric Sparks' electrician mug draft: did not meet requirements (1 photo, no lifestyle main photo, personalization off). Only release ideas that pass the full playbook.
-- 2026-10-11 (Dom): Standard personalization buyer instructions: "Please add only the text you want printed on your product. Reach out to us directly for any additional requests." (Printify format captured; applied to every release).
-- 2026-10-11 (Dom): Mandatory pre-publish review gate: vision review of every photo + full listing-details review; any failure blocks publish and goes to Dom with reasons.
-- 2026-10-11 (Dom): Teacher Elves published with only 1 photo synced: the API cannot select mockups (PUT images is ignored) and Printify keeps only the default mockup selected; store 'details to publish: mockups' is OFF. Fix: select all mockups in the Printify editor (or turn store mockups ON) before publish; gate blocks <5 selected; post-publish sync check flags it.
-- 2026-10-11 (Dom): Mountain Man (worker draft) was NOT published: it waited for approval because guardrails failed (4 photos, 68-char title, no lifestyle main photo). Its Printify photo 1 is a plain white mockup, so photo 1 must be a QA'd lifestyle upload.
-- 2026-10-11 (Dom): Etsy 'How it's made > What tools are used' must have ONLY 'An AI generator' checked; not readable via API, so daily digest reminds.
-- 2026-10-11 (Dom): Fairway Birthday Throw print file had a gray semi-transparent mug/panel over the right half (the image model drew a mug because the prompt said 'mug wrap'). Every print file now gets a vision + pixel artifact check in the design step and the pre-publish gate; prompts ask for flat artwork only.
-- 2026-10-11 (Dom): Design prompts must never ask for a 'mug wrap' - the image model drew a gray mug/panel into the Fairway art. Flat artwork only + print artifact check (vision + pixel).
-- 2026-10-11 (Dom): Photo QA must compare LAYOUT/arrangement, not just elements present (Teacher gift photo split the single cluster into two and still passed the old QA).
-- 2026-10-11 (Dom): Never use Printify's front camera (seam view between the two design copies) as a listing photo; exclude/deselect it (Teacher last photo, Fairway #4).
-- 2026-10-11 (Dom): All mugs: design on both sides (two copies), handle-left and handle-right views each show one full design.
-- 2026-10-11 (Dom): Photo #2 = styled shot of the other side with the handle opposite photo #1.
-- 2026-10-11 (Dom): Styled lifestyle photo is ALWAYS #1; 5+ photos; verify after sync that Etsy shows them in order.
-- 2026-10-11 (Dom): Never click Publish without the pre-publish gate (Mountain Man was published by an accidental click and skipped the gate).
-- 2026-10-11 (Dom): Etsy checklist after every release: NiftyNestGifts free shipping profile, 'What tools are used' = ONLY 'An AI generator', Renewal = Automatic. [SUPERSEDED: 2026-10-11: free shipping retired]
-- 2026-10-11 (Dom): No Etsy production partner for now (Dom's choice).
-- 2026-10-11 (Dom): Never upload/edit photos or designs in Etsy; ALL photo/design changes happen in Printify (Mockup Library supports custom uploads in the UI, not the API) and sync to Etsy.
-- 2026-10-11 (Dom): After every release review all flags on Etsy (listing health, search visibility, pricing warnings, attribute suggestions, recommendations) and Printify (listing health e.g. 'Pricing: Too high', publish status); collect Etsy recommendations into the playbook.
-- 2026-10-11 (Dom): Preview contact sheet of all photos in order before every publish; weekly cleanup of all live products.
-- 2026-10-11 (Dom): Free shipping retired (Dom, 2026-10-11 4:41 PM): mugs $15.99 + buyer-paid Printify Standard shipping (US $7.29 first / $3.09 additional). Worst-case profit floor $4.00 (≈$4.09 at $15.99). Never say 'free shipping' in listings.
-- 2026-10-11 (Dom): Shipping = Printify Standard profile published from Printify (publish setting 'Shipping profile' ON), not a custom Etsy profile. [SUPERSEDED: 2026-10-11: shipping profile publish setting OFF; Etsy 'NiftyNestGifts' paid profile]
-- 2026-10-11 (Dom): Order of operations: all updates in Printify first, publish from Printify, then change in Etsy only what Printify cannot sync.
-- 2026-10-11 (Dom): Printify republish with 'Shipping profile' ON can reassign the Etsy listing to Printify's 'Standard: SPOKE...' profile (happened on Fairway). Keep publish setting 'Shipping profile' OFF; after every republish the flags review verifies the Etsy profile is 'NiftyNestGifts' ($7.29/$3.09).
-- 2026-10-11 (Dom): New mugs default to blueprint 478 (SPOKE, provider 1) with both 11oz and 15oz white variants in one listing; two-sided print file 2475x1155. Printify cannot change an existing product's blueprint.
-- 2026-10-11 (Dom): New mugs = sizes + colors: Accent Coffee Mug (635, Printify Choice) 11oz $15.99 / 15oz $19.49 in all colors; white companion on 478 (SPOKE) 11oz $16.49 / 15oz $19.99. Costs read from temporary drafts (deleted).
-- 2026-10-11 (Dom): Sell COLOR mugs only (635 accent, all colors, 11oz $15.99 / 15oz $21.49). White-only listings are retired once the color versions are live.
-- 2026-10-11 (Dom): After every new upload, check Etsy improvement suggestions and apply them: Printify-first for synced fields, Etsy-only for attributes/settings.
-- 2026-10-11 (Dom): Titles: <=14 words, aim 60-90 chars, no non-essential occasion phrases ('holiday gift') and no 'accent mug in 10 colors' filler; sizes as '(11oz/15oz)'.
-- 2026-10-11 (Dom): Research competitors per new product type (variants, buyer price incl. shipping, personalization, styles, reviews) with cited sources and real Printify costs before drafting; wait for Dom's go.
 
-## New product types (v1.16.0, 2026-10-11)
-Before drafting ANY new product type: research competitors per type (variants, buyer price incl. shipping, free vs paid shipping, personalization, top styles, review themes) from real public sources with links+dates, never invented; compare to real Printify cost; worst-case profit >= $4 (12% offsite ads, buyer-paid shipping); wait for Dom's go before drafts.
-
-## Orders (v1.17.0, 2026-10-11)
-- **personalized**: Printify API cannot edit order artwork: never cancel+recreate (unlinks Etsy, breaks tracking). Proof -> Dom approves -> browser task: swap artwork on the ORIGINAL held order (both sides) -> Send to production.
-- **personalization_profit**: No per-personalization upcharge on the same Etsy listing. Chosen: flag any personalized order whose worst-case profit incl. ~$0.57 proof AI cost is under the $4 floor (digest). Option for Dom: separate 'Personalized' listings ~20% higher.
-- **webhooks**: Printify order events update order state + Live Ops feed (created, production, shipped+tracking, delivered, cancelled, address issue).
-- **late**: No ship after 7 business days in production -> delay message DRAFT for Dom (never auto-sent; Etsy messages sent by Dom).
-- **damaged_misprint**: Prepare Printify 'Report a problem' reprint request (browser, within 30 days, customer photo) + buyer reply draft.
-- **address**: Keep order on hold, email Dom, buyer address-confirmation draft.
-- **cancellation**: Flag in digest + confirmation draft.
-- **proof_cap**: Approved proofs bypass the daily publish cap.
-
-## v1.18.0 (2026-10-11)
-- **No personalization** on any product (setting off, no wording); personalized-text orders only flagged.
-- **Never retire seasonal listings**: after order-by date, only update/roll the order-by line via Printify.
+## rules
+```json
+{
+ "new_product_types": {
+  "rule": "Before drafting ANY new product type, research competitors for that type independently (typical sizes/colors/variants, buyer price item+shipping, free vs paid shipping, top-seller styles, review themes) from real public sources with links+dates; never invent numbers. Compare to real Printify cost (temp draft, then delete), keep worst-case profit >= $4 with 12% offsite ads and buyer-paid shipping, and wait for Dom's go before drafts.",
+  "since": "2026-10-11"
+ },
+ "orders": {
+  "webhooks": "Printify order events update order state + Live Ops feed (created, production, shipped+tracking, delivered, cancelled, address issue).",
+  "late": "No ship after 7 business days in production -> delay message DRAFT for Dom (never auto-sent; Etsy messages sent by Dom).",
+  "damaged_misprint": "Prepare Printify 'Report a problem' reprint request (browser, within 30 days, customer photo) + buyer reply draft.",
+  "address": "Keep order on hold, email Dom, buyer address-confirmation draft.",
+  "cancellation": "Flag in digest + confirmation draft."
+ },
+ "personalization": {
+  "rule": "NO personalization on any product (Dom 2026-10-11). personalisation=null, no wording; personalized-text orders only flagged in digest.",
+  "since": "2026-10-11"
+ },
+ "seasonal": {
+  "rule": "NEVER retire, deactivate or delete seasonal listings - always keep them live. After the order-by date passes, only update the description's order-by line via Printify (remove it or roll it to next year's date), then republish description only.",
+  "since": "2026-10-11"
+ }
+}
+```
