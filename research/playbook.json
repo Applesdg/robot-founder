@@ -507,7 +507,7 @@
  },
  "release_flow": [
   "generate design (flat art, both sides) -> artifact check",
-  "",
+  "create Printify draft (title/tags/desc/price; free shipping OFF; personalization OFF)",
   "generate styled #1 (handle right) and #2 (handle left) from exact mockups -> layout QA",
   "contact sheet preview (all photos in order, numbered, title/price) -> approval item/email/Live Ops",
   "browser: Printify Mockup Library upload + order + deselect seam view",
