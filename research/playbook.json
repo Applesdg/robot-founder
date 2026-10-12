@@ -55,9 +55,9 @@
   "description_note": "description may still say printed and shipped by Printify (transparency)"
  },
  "title": {
-  "pattern": "<Design/phrase> Mug, <design detail>, <recipient/occasion only if essential> (11oz/15oz)",
-  "min": 60,
-  "max": 90,
+  "pattern": "<Literal subject/what's pictured> <Product type>, <concrete objects in the design>, <material/size detail> (11oz/15oz)",
+  "min": 45,
+  "max": 80,
   "keyword_within": 40,
   "no_repeated_words": true,
   "product_word_once": true,
@@ -76,11 +76,23 @@
    "colorful mug"
   ],
   "examples": [
+   "Halloween Pet Parent Mug, Witch Cat Pumpkin Dog, Ceramic Coffee Cup (11oz/15oz)",
+   "Spooky Teacher Coffee Mug, Halloween Ghost at Chalkboard (11oz/15oz)",
+   "Kawaii Spooky Ghosts Coffee Mug, Minimal Halloween Ceramic Cup (11oz/15oz)",
    "Boho Christmas Mug, Eucalyptus Berry Wreath, Sleigh All Day (11oz or 15oz)",
    "Teacher of Little Elves Mug, Watercolor Apple, Holly, Elf Hat, 11oz/15oz",
    "Mountain Man Birthday Mug, Line Art Hiking Coffee Cup, Outdoorsy Gift (11oz/15oz)",
    "Disc Golf Birthday Mug, Watercolor Fairway Throw, Ceramic Coffee Cup (11oz/15oz)"
-  ]
+  ],
+  "lead_rule": "Start with the literal subject + product type (e.g. 'Halloween Pet Parent Mug, Witch Cat Pumpkin Dog...'); name the concrete objects in the design; no vague style words up front (Cute, Illustration, Illustrated, Minimal). Gate also runs a vision+text check that the title names what is pictured. (Dom 2026-10-12, Etsy 'Make your titles even clearer')",
+  "vague_lead_words": [
+   "cute",
+   "illustration",
+   "illustrated",
+   "minimal",
+   "minimalist"
+  ],
+  "fix_process": "Etsy search-visibility title flags: change the title in PRINTIFY and republish title-only; never use Etsy's 'Update titles' button"
  },
  "tags": {
   "count": 13,
@@ -397,6 +409,11 @@
    "date": "2026-10-12",
    "source": "Dom",
    "lesson": "Standing rules: (1) Etsy shipping profile = Printify's synced Standard profile (whatever Printify names it); never flag it, flag any other profile incl. a custom 'NiftyNestGifts' one. (2) Production partner = Printify on EVERY listing; flag any listing missing it. (3) Photos = 5-6 styled photos; flag >8 (white Printify views slipped through)."
+  },
+  {
+   "date": "2026-10-12",
+   "source": "Dom",
+   "lesson": "Titles: lead with the literal subject + product type, name concrete design objects, no vague lead words (Cute/Illustration/Illustrated/Minimal), <= ~80 chars. Etsy 'Make your titles even clearer' flags are fixed in Printify + title-only republish (never Etsy's Update titles). Weekly: check Etsy Search visibility in the browser."
   }
  ],
  "orders": {
@@ -539,8 +556,14 @@
   "etsy_profile_live": {
    "id": 317232032449,
    "name": "Standard: Printify Choice, Generic brand Accent Coffee Mug (11, 15oz), average costs",
-   "us": [8.34, 3.54],
-   "ca": [15.49, 6.79],
+   "us": [
+    8.34,
+    3.54
+   ],
+   "ca": [
+    15.49,
+    6.79
+   ],
    "read": "2026-10-12 via Etsy API; all 9 live listings assigned"
   },
   "printify_rates_us_11oz_mug": {
