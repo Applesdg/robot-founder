@@ -562,3 +562,7 @@ Before drafting ANY new product type: research competitors per type (variants, b
 - **address**: Keep order on hold, email Dom, buyer address-confirmation draft.
 - **cancellation**: Flag in digest + confirmation draft.
 - **proof_cap**: Approved proofs bypass the daily publish cap.
+
+## v1.18.0 (2026-10-11)
+- **No personalization** on any product (setting off, no wording); personalized-text orders only flagged.
+- **Never retire seasonal listings**: after order-by date, only update/roll the order-by line via Printify.
