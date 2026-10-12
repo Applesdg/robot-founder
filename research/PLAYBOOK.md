@@ -634,7 +634,14 @@ Generated from playbook.json - edit the JSON, not this file.
 {
  "free_shipping": false,
  "who_pays": "buyer",
- "profile": "Printify's Standard shipping profile synced to Etsy (buyer-paid, $7.29 first / $3.09 additional, US), never a custom 'NiftyNestGifts' Etsy profile (Dom 2026-10-12).",
+ "profile": "Printify's Standard shipping profile synced to Etsy (buyer-paid, US $8.34 first / $3.54 additional; CA $15.49 / $6.79), never a custom 'NiftyNestGifts' Etsy profile (Dom 2026-10-12).",
+  "etsy_profile_live": {
+   "id": 317232032449,
+   "name": "Standard: Printify Choice, Generic brand Accent Coffee Mug (11, 15oz), average costs",
+   "us": [8.34, 3.54],
+   "ca": [15.49, 6.79],
+   "read": "2026-10-12 via Etsy API; all 9 live listings assigned"
+  },
  "printify_rates_us_11oz_mug": {
   "first_item": 7.29,
   "additional_item": 3.09,
@@ -659,7 +666,7 @@ Generated from playbook.json - edit the JSON, not this file.
 ```json
 {
  "mug_default": {
-  "note": "Dom 2026-10-11 6:10 PM: sell COLOR mugs only. Every mug idea = ONE Accent Coffee Mug (635, Printify Choice) with all colors, 11oz $15.99 / 15oz $21.49, Printify Standard shipping profile $7.29/$3.09 (Dom 2026-10-12). No white products, no cross-links to white versions.",
+  "note": "Dom 2026-10-11 6:10 PM: sell COLOR mugs only. Every mug idea = ONE Accent Coffee Mug (635, Printify Choice) with all colors, 11oz $15.99 / 15oz $21.49, Printify Standard shipping profile US $8.34/$3.54 (Dom 2026-10-12). No white products, no cross-links to white versions.",
   "accent": {
    "blueprint_id": 635,
    "print_provider_id": 99,
