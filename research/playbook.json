@@ -1,5 +1,5 @@
 {
- "version": "1.16.0",
+ "version": "1.17.0",
  "updated": "2026-10-11",
  "shop": {
   "name": "NiftyNestGifts",
@@ -380,6 +380,10 @@
   {
    "date": "2026-10-11",
    "lesson": "New product types (ornaments, sweatshirts, totes, tumblers) need a per-type competitor research report and Dom's go before any draft."
+  },
+  {
+   "date": "2026-10-11",
+   "lesson": "Post-checkout sim: proofs must use the product's real blueprint (635 two-sided), Printify has no order-edit/reprint API (browser tasks), Printify auto-imports Etsy orders (never create a second order), and 'pending' within the 1h auto-submit window is not 'held'."
   }
  ],
  "personalization": {
@@ -649,6 +653,16 @@
   "new_product_types": {
    "rule": "Before drafting ANY new product type, research competitors for that type independently (typical sizes/colors/variants, buyer price item+shipping, free vs paid shipping, personalization, top-seller styles, review themes) from real public sources with links+dates; never invent numbers. Compare to real Printify cost (temp draft, then delete), keep worst-case profit >= $4 with 12% offsite ads and buyer-paid shipping, and wait for Dom's go before drafts.",
    "since": "2026-10-11"
+  },
+  "orders": {
+   "personalized": "Printify API cannot edit order artwork: never cancel+recreate (unlinks Etsy, breaks tracking). Proof -> Dom approves -> browser task: swap artwork on the ORIGINAL held order (both sides) -> Send to production.",
+   "personalization_profit": "No per-personalization upcharge on the same Etsy listing. Chosen: flag any personalized order whose worst-case profit incl. ~$0.57 proof AI cost is under the $4 floor (digest). Option for Dom: separate 'Personalized' listings ~20% higher.",
+   "webhooks": "Printify order events update order state + Live Ops feed (created, production, shipped+tracking, delivered, cancelled, address issue).",
+   "late": "No ship after 7 business days in production -> delay message DRAFT for Dom (never auto-sent; Etsy messages sent by Dom).",
+   "damaged_misprint": "Prepare Printify 'Report a problem' reprint request (browser, within 30 days, customer photo) + buyer reply draft.",
+   "address": "Keep order on hold, email Dom, buyer address-confirmation draft.",
+   "cancellation": "Flag in digest + confirmation draft.",
+   "proof_cap": "Approved proofs bypass the daily publish cap."
   }
  }
 }

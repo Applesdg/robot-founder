@@ -552,3 +552,13 @@ Machine-readable source: research/playbook.json.
 
 ## New product types (v1.16.0, 2026-10-11)
 Before drafting ANY new product type: research competitors per type (variants, buyer price incl. shipping, free vs paid shipping, personalization, top styles, review themes) from real public sources with links+dates, never invented; compare to real Printify cost; worst-case profit >= $4 (12% offsite ads, buyer-paid shipping); wait for Dom's go before drafts.
+
+## Orders (v1.17.0, 2026-10-11)
+- **personalized**: Printify API cannot edit order artwork: never cancel+recreate (unlinks Etsy, breaks tracking). Proof -> Dom approves -> browser task: swap artwork on the ORIGINAL held order (both sides) -> Send to production.
+- **personalization_profit**: No per-personalization upcharge on the same Etsy listing. Chosen: flag any personalized order whose worst-case profit incl. ~$0.57 proof AI cost is under the $4 floor (digest). Option for Dom: separate 'Personalized' listings ~20% higher.
+- **webhooks**: Printify order events update order state + Live Ops feed (created, production, shipped+tracking, delivered, cancelled, address issue).
+- **late**: No ship after 7 business days in production -> delay message DRAFT for Dom (never auto-sent; Etsy messages sent by Dom).
+- **damaged_misprint**: Prepare Printify 'Report a problem' reprint request (browser, within 30 days, customer photo) + buyer reply draft.
+- **address**: Keep order on hold, email Dom, buyer address-confirmation draft.
+- **cancellation**: Flag in digest + confirmation draft.
+- **proof_cap**: Approved proofs bypass the daily publish cap.
