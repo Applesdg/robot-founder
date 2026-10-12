@@ -1,4 +1,4 @@
-# NiftyNestGifts AI founder playbook v1.21.0
+# NiftyNestGifts AI founder playbook v1.22.0
 
 Generated from playbook.json - edit the JSON, not this file.
 
@@ -804,6 +804,10 @@ Generated from playbook.json - edit the JSON, not this file.
  "risk_layer": {
   "rule": "Daily: final-state audit + Printify-vs-Etsy drift, ops risks (blanks/colors, payments), seasonal order-by roll (never retire). Weekly: platform watch of official Etsy/Printify policy & fee pages.",
   "since": "2026-10-11"
+ },
+ "tee_pricing": {
+  "rule": "Tees: $24.99 S-XL, $27.99 2XL, $29.99 3XL, $34.99 4XL (4XL at $31.99 would only clear $2.30) - every size must clear $4 worst case.",
+  "since": "2026-10-12"
  }
 }
 ```
@@ -968,6 +972,79 @@ Generated from playbook.json - edit the JSON, not this file.
    "text": "Etsy listing uses 'NiftyNestGifts' $7.29/$3.09 (republish can reassign it)",
    "check": "manual"
   }
+ ]
+}
+```
+
+## tees
+```json
+{
+ "since": "2026-10-12",
+ "approved_by": "Dom 2026-10-12",
+ "product": "Comfort Colors 1717 garment-dyed tee - Printify blueprint 706, provider Monster Digital (29), US",
+ "colors": [
+  "Black",
+  "White",
+  "Pepper",
+  "Ivory",
+  "Blue Jean",
+  "Moss"
+ ],
+ "sizes": "S M L XL 2XL 3XL 4XL",
+ "pricing": [
+  {
+   "size": "S",
+   "cost": 13.04,
+   "price": 24.99
+  },
+  {
+   "size": "M",
+   "cost": 13.04,
+   "price": 24.99
+  },
+  {
+   "size": "L",
+   "cost": 13.04,
+   "price": 24.99
+  },
+  {
+   "size": "XL",
+   "cost": 13.04,
+   "price": 24.99
+  },
+  {
+   "size": "2XL",
+   "cost": 14.28,
+   "price": 27.99
+  },
+  {
+   "size": "3XL",
+   "cost": 16.44,
+   "price": 29.99
+  },
+  {
+   "size": "4XL",
+   "cost": 21.4,
+   "price": 34.99
+  }
+ ],
+ "shipping": "buyer pays Printify US rate $4.49 first / $2.09 each additional; no free shipping",
+ "profit_floor": "worst case ≥ $4/unit after Etsy 6.5% transaction + 3% + $0.25 processing + $0.20 listing + 12% offsite ads (on item+shipping)",
+ "comps": "Etsy 2026-10-12 (Dom): funny teacher Comfort Colors tees sell $15-17 on sale, originally ~$26 -> we list $24.99 S-XL with no fake sale",
+ "photos": [
+  "1 main: FRONT design, real Printify flat/ghost mockup composited on a styled on-theme scene",
+  "2: model/lifestyle shot or back/flat-lay (real mockup)",
+  "3: color chart from real mockups of all 6 colors",
+  "4: size chart (S-4XL body length/width from Printify spec)",
+  "5: styled lifestyle (real mockup)"
+ ],
+ "rules": [
+  "no personalization",
+  "AI-generator disclosure",
+  "Printify production partner",
+  "auto-renew ON",
+  "design text readable at thumbnail size; print area front only",
+  "growth target: about 10 tees"
  ]
 }
 ```
