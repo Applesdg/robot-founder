@@ -1,0 +1,31 @@
+// Drafts awaiting Dom's approval - FIRST thing in Ops (Dom 2026-10-11). Key-authed via WLINK (shared key in tab memory only).
+(function(){const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const css=`#aprq{margin:0 0 14px}#aprq .ag{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}#aprq .ac{background:#14202b;border:2px solid #c96a1e;border-radius:12px;padding:10px;color:#eee}
+#aprq .ac img{width:100%;border-radius:8px;background:#fff;cursor:pointer}#aprq .ok{color:#5d5}#aprq .bad{color:#f77}#aprq button{font-size:15px;padding:8px 14px;margin:4px 6px 0 0;border-radius:8px;border:0;cursor:pointer}
+#aprq .ap{background:#2e8b3e;color:#fff}#aprq .rj{background:#a33;color:#fff}#aprq .vw{background:#345;color:#fff}#aprq textarea{width:100%;margin-top:6px}
+#aprfull{position:fixed;inset:0;background:#0b1117;z-index:9999;overflow:auto;color:#eee;padding:10px 12px 40px}#aprfull .gal{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:8px}#aprfull .gal img{flex:0 0 100%;max-width:100%;scroll-snap-align:center;border-radius:10px;background:#fff}
+#aprfull table{border-collapse:collapse;width:100%;font-size:14px}#aprfull td{border-bottom:1px solid #263544;padding:4px}#aprfull .x{position:sticky;top:0;float:right;font-size:22px;background:#333;color:#fff;border:0;border-radius:8px;padding:4px 12px}
+#aprfull .tag{display:inline-block;background:#223;padding:3px 8px;border-radius:10px;margin:2px;font-size:13px}#aprfull pre{white-space:pre-wrap;font-family:inherit;background:#111a22;padding:10px;border-radius:8px}
+@media(max-width:600px){#aprq .ag{grid-template-columns:1fr}}`;
+const gateHtml=g=>!g?'<span>Gate: not run yet</span>':g.ok?'<span class="ok">✔ Gate passed</span>':`<span class="bad">✖ Gate: ${g.fails.length} issue(s)</span><ul>${g.fails.slice(0,8).map(f=>`<li>${esc(f)}</li>`).join('')}</ul>`;
+const price=a=>(String(a.title).match(/\$[\d.]+[^—]*$/)||[''])[0];
+async function decide(id,decision,note,el){try{const r=await WLINK.call('POST',`/api/approvals/${id}/decide`,{decision,note});alert(decision==='approve'?'Approved - the worker publishes after the gate passes (photo upload task queued if needed).':'Rejected'+(r.correction&&r.correction.rule?` - new rule: "${r.correction.rule.text}"`:''));document.getElementById('aprfull')?.remove();mount(el)}catch(e){alert('Failed: '+e.message)}}
+function buttons(a){return `<button class="ap" data-ap="${a.id}">✔ Approve</button><button class="rj" data-rj="${a.id}">✖ Reject</button><textarea data-note="${a.id}" rows="2" placeholder="Reject note (optional) - becomes a rule he follows from now on"></textarea>`}
+function wire(root,el){root.querySelectorAll('[data-ap]').forEach(b=>b.onclick=()=>{if(confirm('Approve this listing?'))decide(b.dataset.ap,'approve','',el)});root.querySelectorAll('[data-rj]').forEach(b=>b.onclick=()=>decide(b.dataset.rj,'reject',(root.querySelector(`[data-note="${b.dataset.rj}"]`)||{}).value||'',el));root.querySelectorAll('[data-vw]').forEach(b=>b.onclick=()=>full(b.dataset.vw,el))}
+async function full(id,el){const o=document.createElement('div');o.id='aprfull';o.innerHTML='Loading full listing…';document.body.appendChild(o);
+ try{const L=await WLINK.call('GET',`/api/approvals/${id}/listing`);const ph=(L.photos||[]).filter(u=>!/\.svg$/.test(u));const cols=[...new Set(L.variants.map(v=>v.title.split(' / ')[1]))],sizes=[...new Set(L.variants.map(v=>v.title.split(' / ')[0]))];
+  o.innerHTML=`<button class="x">✕</button><h2 style="margin:4px 0 10px">${esc(L.title)}</h2><div class="gal">${ph.map((u,i)=>`<img src="${esc(u)}" alt="photo ${i+1}" loading="lazy">`).join('')}</div><small>${ph.length} photos · swipe → (in listing order)</small>
+  <h3>Price per variant</h3><p>${sizes.map(s=>`<b>${esc(s)}</b>: ${esc('$'+(L.variants.find(v=>v.title.startsWith(s))||{}).price)}`).join(' · ')} — colors: ${cols.map(esc).join(', ')}</p>
+  <table>${L.variants.map(v=>`<tr><td>${esc(v.title)}</td><td>$${v.price.toFixed(2)}</td></tr>`).join('')}</table>
+  <h3>Description</h3><pre>${esc(L.description)}</pre><h3>Tags (${L.tags.length})</h3><div>${L.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
+  <h3>Shipping & processing</h3><p>${esc(L.shipping.profile)} — US $${L.shipping.us_first} first / $${L.shipping.us_additional} each additional. ${esc(L.processing)}.</p>
+  <h3>Settings</h3><table>${Object.entries(L.settings).map(([k,v])=>`<tr><td>${esc(k.replace(/_/g,' '))}</td><td>${esc(v)}</td></tr>`).join('')}</table>
+  <h3>Checks</h3>${gateHtml(L.gate)}${L.critique?`<p>Independent reviewer: ${L.critique.pass?'passed':'issues'} (${L.critique.rounds||0} round(s))</p>`:''}${L.upload_task?`<p><small>After approval: ${esc(L.upload_task)}</small></p>`:''}
+  <div id="aq" style="margin-top:12px">${buttons({id})}</div>`;o.querySelector('.x').onclick=()=>o.remove();wire(o,el)}catch(e){o.innerHTML=`<button class="x">✕</button>Failed: ${esc(e.message)}`;o.querySelector('.x').onclick=()=>o.remove()}}
+async function mount(el){if(!el)return;if(!document.getElementById('aprcss')){const s=document.createElement('style');s.id='aprcss';s.textContent=css;document.head.appendChild(s)}
+ if(!window.WLINK||!WLINK.hasKey()){el.innerHTML='<h3>🗳️ Drafts awaiting your approval</h3><p>🔐 Connect with your key (What he\'s doing now tab, or the worker box below) to see drafts.</p>';return}
+ el.innerHTML='<h3>🗳️ Drafts awaiting your approval</h3>Loading…';
+ try{const A=(await WLINK.call('GET','/api/approvals')).filter(a=>a.state==='waiting'&&/\/publish$/.test(a.path||'')).sort((a,b)=>b.at-a.at);
+  el.innerHTML=`<h3>🗳️ Drafts awaiting your approval (${A.length})</h3>${A.length?'':'<p>Nothing waiting.</p>'}<div class="ag">${A.map(a=>`<div class="ac"><img src="${esc(a.sheet||'')}" alt="all photos in order" data-vw="${a.id}"><div style="margin:6px 0"><b>${esc(String(a.title).replace(/^Publish (COLOR sibling )?to Etsy: /,'').replace(/ — \$.*$/,''))}</b></div>
+   <div>${esc(price(a))} · 10 colors · 11oz / 15oz</div><div style="margin:6px 0">${gateHtml(a.gate)}</div><button class="vw" data-vw="${a.id}">🔎 View full listing</button>${buttons(a)}</div>`).join('')}</div>`;wire(el,el)}catch(e){el.innerHTML='<h3>🗳️ Drafts awaiting your approval</h3>Failed: '+esc(e.message)}}
+window.APRQ={mount}})();

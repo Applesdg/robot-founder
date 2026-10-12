@@ -1,4 +1,4 @@
-# NiftyNestGifts AI founder playbook v1.18.0
+# NiftyNestGifts AI founder playbook v1.19.0
 
 Generated from playbook.json - edit the JSON, not this file.
 
@@ -783,6 +783,10 @@ Generated from playbook.json - edit the JSON, not this file.
  },
  "seasonal": {
   "rule": "NEVER retire, deactivate or delete seasonal listings - always keep them live. After the order-by date passes, only update the description's order-by line via Printify (remove it or roll it to next year's date), then republish description only.",
+  "since": "2026-10-11"
+ },
+ "variation_order": {
+  "rule": "Every mug: variations Size FIRST, then Color; price varies by Size only ($15.99 11oz / $21.49 15oz). Printify blueprint 635 already orders options size > color (not settable via API); verify in Etsy Variations that Size is first and 'Prices vary for each' = Size only.",
   "since": "2026-10-11"
  }
 }
