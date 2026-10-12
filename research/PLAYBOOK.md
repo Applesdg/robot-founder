@@ -1,4 +1,4 @@
-# NiftyNestGifts AI founder playbook v1.20.0
+# NiftyNestGifts AI founder playbook v1.21.0
 
 Generated from playbook.json - edit the JSON, not this file.
 
@@ -21,7 +21,7 @@ Generated from playbook.json - edit the JSON, not this file.
  "free_us_shipping": true,
  "shipping_baked_into_price": true,
  "strategy": "Price competitively: at or slightly below competitor benchmarks (research/competitors.json). Margins don't need to be high.",
- "min_profit_worst_case": 4.0,
+ "min_profit_worst_case": 4,
  "worst_case_includes": [
   "Etsy fees 6.5% + 3% + $0.45",
   "Printify item cost",
@@ -796,6 +796,178 @@ Generated from playbook.json - edit the JSON, not this file.
  "styled_only": {
   "rule": "EVERY photo has a styled background (main, side2, swatch, size compare, lifestyle); photo 1 shows the design straight on from the front. Printify's plain white views are deselected; at least 5 styled photos.",
   "since": "2026-10-11"
+ },
+ "self_critique": {
+  "rule": "Before anything reaches Dom, an independent strict reviewer grades photos+listing against the rule list, fixes listing text via Printify and re-checks, up to 3 rounds.",
+  "since": "2026-10-11"
+ },
+ "risk_layer": {
+  "rule": "Daily: final-state audit + Printify-vs-Etsy drift, ops risks (blanks/colors, payments), seasonal order-by roll (never retire). Weekly: platform watch of official Etsy/Printify policy & fee pages.",
+  "since": "2026-10-11"
  }
+}
+```
+
+## corrections_log
+```json
+{
+ "note": "Every Dom correction as a machine-checked rule (src/rules.js). auto = checked in the pre-publish gate (blocks publish); manual = Etsy-only, on the browser checklist; Dom can add more via Live Ops > Teach him a rule.",
+ "rules": [
+  {
+   "id": "styled_all",
+   "text": "Every photo has a styled background (no plain white anywhere, incl. side2, swatch, size compare)",
+   "check": "auto"
+  },
+  {
+   "id": "main_front",
+   "text": "Photo 1 shows the design straight on from the front, handle to the side, fully readable",
+   "check": "auto"
+  },
+  {
+   "id": "two_sided",
+   "text": "Mugs: design on BOTH sides (two copies at x=.25/.75)",
+   "check": "auto"
+  },
+  {
+   "id": "side2_flipped",
+   "text": "Photo 2 = other side, handle opposite photo 1",
+   "check": "auto"
+  },
+  {
+   "id": "props_on_theme",
+   "text": "Every background prop relates to the product theme (no random/confusing objects)",
+   "check": "auto"
+  },
+  {
+   "id": "no_seam",
+   "text": "Never use the front seam mockup view",
+   "check": "auto"
+  },
+  {
+   "id": "art_match",
+   "text": "Photos match the print art exactly (layout, colors, spelling)",
+   "check": "auto"
+  },
+  {
+   "id": "no_free_shipping",
+   "text": "No free shipping (buyer-paid Printify Standard)",
+   "check": "auto"
+  },
+  {
+   "id": "prices",
+   "text": "Mugs $15.99 (11oz) / $21.49 (15oz)",
+   "check": "auto"
+  },
+  {
+   "id": "color_only",
+   "text": "Mugs: colored accent mugs only (blueprint 635), all colors enabled",
+   "check": "auto"
+  },
+  {
+   "id": "variation_order",
+   "text": "Variations: Size FIRST, then Color; price varies by size only",
+   "check": "auto"
+  },
+  {
+   "id": "etsy_variation_order",
+   "text": "Etsy Variations: Size listed first; Prices vary for each = Size only (check in Etsy)",
+   "check": "manual"
+  },
+  {
+   "id": "no_personalization",
+   "text": "No personalization (setting off, no wording)",
+   "check": "auto"
+  },
+  {
+   "id": "offsite_profit",
+   "text": "Worst-case profit >= $4 incl. 12% offsite ads, buyer-paid shipping",
+   "check": "auto"
+  },
+  {
+   "id": "title_rules",
+   "text": "Title 60-90 chars, <=14 words, no repeats, no filler",
+   "check": "auto"
+  },
+  {
+   "id": "tags",
+   "text": "13 tags, each <=20 chars, no duplicates",
+   "check": "auto"
+  },
+  {
+   "id": "timing_line",
+   "text": "Description has the production/delivery timing line, no AI wording",
+   "check": "auto"
+  },
+  {
+   "id": "order_by",
+   "text": "Seasonal items carry an honest, future order-by line (rolled/removed after it passes; never retired)",
+   "check": "auto"
+  },
+  {
+   "id": "photo_count",
+   "text": "At least 5 styled photos",
+   "check": "auto"
+  },
+  {
+   "id": "preview_sheet",
+   "text": "One preview image of all photos in order exists before Dom sees it",
+   "check": "auto"
+  },
+  {
+   "id": "trademark",
+   "text": "No trademarked/copyrighted terms (pre-mortem)",
+   "check": "auto"
+  },
+  {
+   "id": "claims",
+   "text": "No misleading/unsupported claims (pre-mortem)",
+   "check": "auto"
+  },
+  {
+   "id": "duplicate",
+   "text": "No duplicate/near-duplicate listings (pre-mortem)",
+   "check": "auto"
+  },
+  {
+   "id": "print_dpi",
+   "text": "Print file covers the 2475x1155 print area (pre-mortem: DPI/bleed)",
+   "check": "auto"
+  },
+  {
+   "id": "research_new_type",
+   "text": "New product types need competitor research + Dom go before drafting",
+   "check": "auto"
+  },
+  {
+   "id": "ai_checkbox",
+   "text": "Etsy 'How it's made > tools': ONLY 'An AI generator'",
+   "check": "manual"
+  },
+  {
+   "id": "auto_renew",
+   "text": "Etsy renewal = Automatic",
+   "check": "manual"
+  },
+  {
+   "id": "offsite_ads",
+   "text": "Etsy offsite ads enrolled (12% fee assumed in pricing)",
+   "check": "manual"
+  },
+  {
+   "id": "printify_first",
+   "text": "All changes in Printify first, publish from Printify; Etsy only for what Printify cannot sync",
+   "check": "process"
+  },
+  {
+   "id": "etsy_suggestions",
+   "text": "After every upload: open Etsy improvement suggestions and apply them",
+   "check": "manual"
+  },
+  {
+   "id": "shipping_profile",
+   "text": "Etsy listing uses 'NiftyNestGifts' $7.29/$3.09 (republish can reassign it)",
+   "check": "manual"
+  }
+ ]
 }
 ```
