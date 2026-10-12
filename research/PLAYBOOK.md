@@ -1,4 +1,4 @@
-# NiftyNestGifts AI founder playbook v1.19.0
+# NiftyNestGifts AI founder playbook v1.20.0
 
 Generated from playbook.json - edit the JSON, not this file.
 
@@ -787,6 +787,14 @@ Generated from playbook.json - edit the JSON, not this file.
  },
  "variation_order": {
   "rule": "Every mug: variations Size FIRST, then Color; price varies by Size only ($15.99 11oz / $21.49 15oz). Printify blueprint 635 already orders options size > color (not settable via API); verify in Etsy Variations that Size is first and 'Prices vary for each' = Size only.",
+  "since": "2026-10-11"
+ },
+ "props_on_theme": {
+  "rule": "Every background prop in every photo relates to the product theme (or coffee/gifting) - no random or confusing objects (e.g. a ring in a disc golf scene). Vision-checked per photo in the gate.",
+  "since": "2026-10-11"
+ },
+ "styled_only": {
+  "rule": "EVERY photo has a styled background (main, side2, swatch, size compare, lifestyle); photo 1 shows the design straight on from the front. Printify's plain white views are deselected; at least 5 styled photos.",
   "since": "2026-10-11"
  }
 }
