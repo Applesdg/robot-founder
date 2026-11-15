@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-14T17:01:44+00:00",
+ "generated": "2026-11-15T17:41:10+00:00",
  "window": [
   "2024-10-01",
   "2026-10-31"
@@ -97,11 +97,11 @@
     ],
     [
      "202607",
-     30461
+     30471
     ],
     [
      "202608",
-     28314
+     28467
     ],
     [
      "202609",
@@ -112,7 +112,7 @@
      25784
     ]
    ],
-   "avg_monthly_12m": 30348,
+   "avg_monthly_12m": 30361,
    "yoy": -0.387,
    "peak_month": "202511",
    "akc_rank_2025": 1,
@@ -209,11 +209,11 @@
     ],
     [
      "202607",
-     56351
+     56291
     ],
     [
      "202608",
-     59581
+     59513
     ],
     [
      "202609",
@@ -224,8 +224,8 @@
      53302
     ]
    ],
-   "avg_monthly_12m": 58427,
-   "yoy": -0.26,
+   "avg_monthly_12m": 58416,
+   "yoy": -0.261,
    "peak_month": "202511",
    "akc_rank_2025": 2,
    "score": 0.538
@@ -321,11 +321,11 @@
     ],
     [
      "202607",
-     64332
+     64389
     ],
     [
      "202608",
-     63325
+     63664
     ],
     [
      "202609",
@@ -336,7 +336,7 @@
      53269
     ]
    ],
-   "avg_monthly_12m": 63227,
+   "avg_monthly_12m": 63260,
    "yoy": -0.219,
    "peak_month": "202511",
    "akc_rank_2025": 3,
@@ -433,11 +433,11 @@
     ],
     [
      "202607",
-     93323
+     93408
     ],
     [
      "202608",
-     85742
+     86416
     ],
     [
      "202609",
@@ -448,8 +448,8 @@
      85658
     ]
    ],
-   "avg_monthly_12m": 87539,
-   "yoy": -0.091,
+   "avg_monthly_12m": 87602,
+   "yoy": -0.09,
    "peak_month": "202607",
    "akc_rank_2025": 5,
    "score": 0.417
@@ -545,11 +545,11 @@
     ],
     [
      "202607",
-     60479
+     60553
     ],
     [
      "202608",
-     59908
+     60607
     ],
     [
      "202609",
@@ -560,8 +560,8 @@
      57671
     ]
    ],
-   "avg_monthly_12m": 64792,
-   "yoy": -0.273,
+   "avg_monthly_12m": 64857,
+   "yoy": -0.272,
    "peak_month": "202601",
    "akc_rank_2025": 4,
    "score": 0.401
@@ -657,11 +657,11 @@
     ],
     [
      "202607",
-     71807
+     71676
     ],
     [
      "202608",
-     80686
+     80372
     ],
     [
      "202609",
@@ -672,11 +672,11 @@
      76749
     ]
    ],
-   "avg_monthly_12m": 78852,
-   "yoy": -0.267,
+   "avg_monthly_12m": 78815,
+   "yoy": -0.268,
    "peak_month": "202601",
    "akc_rank_2025": null,
-   "score": 0.313
+   "score": 0.312
   },
   {
    "article": "Cane_Corso",
@@ -769,11 +769,11 @@
     ],
     [
      "202607",
-     106620
+     106759
     ],
     [
      "202608",
-     85303
+     85955
     ],
     [
      "202609",
@@ -784,7 +784,7 @@
      91649
     ]
    ],
-   "avg_monthly_12m": 100893,
+   "avg_monthly_12m": 100959,
    "yoy": -0.285,
    "peak_month": "202601",
    "akc_rank_2025": 11,
@@ -881,11 +881,11 @@
     ],
     [
      "202607",
-     60626
+     60744
     ],
     [
      "202608",
-     55357
+     56005
     ],
     [
      "202609",
@@ -896,8 +896,8 @@
      43053
     ]
    ],
-   "avg_monthly_12m": 59235,
-   "yoy": -0.203,
+   "avg_monthly_12m": 59299,
+   "yoy": -0.202,
    "peak_month": "202601",
    "akc_rank_2025": 8,
    "score": 0.271
@@ -993,11 +993,11 @@
     ],
     [
      "202607",
-     36736
+     36740
     ],
     [
      "202608",
-     34989
+     35183
     ],
     [
      "202609",
@@ -1008,7 +1008,7 @@
      32702
     ]
    ],
-   "avg_monthly_12m": 36359,
+   "avg_monthly_12m": 36376,
    "yoy": -0.243,
    "peak_month": "202511",
    "akc_rank_2025": 6,
@@ -1105,11 +1105,11 @@
     ],
     [
      "202607",
-     38389
+     38415
     ],
     [
      "202608",
-     36973
+     37190
     ],
     [
      "202609",
@@ -1120,7 +1120,7 @@
      33485
     ]
    ],
-   "avg_monthly_12m": 37163,
+   "avg_monthly_12m": 37184,
    "yoy": -0.196,
    "peak_month": "202605",
    "akc_rank_2025": 7,
@@ -1217,11 +1217,11 @@
     ],
     [
      "202607",
-     36414
+     36437
     ],
     [
      "202608",
-     40003
+     40165
     ],
     [
      "202609",
@@ -1232,7 +1232,7 @@
      36795
     ]
    ],
-   "avg_monthly_12m": 36085,
+   "avg_monthly_12m": 36100,
    "yoy": -0.165,
    "peak_month": "202511",
    "akc_rank_2025": null,
@@ -1329,11 +1329,11 @@
     ],
     [
      "202607",
-     31589
+     31632
     ],
     [
      "202608",
-     32811
+     33047
     ],
     [
      "202609",
@@ -1344,7 +1344,7 @@
      31331
     ]
    ],
-   "avg_monthly_12m": 31293,
+   "avg_monthly_12m": 31316,
    "yoy": -0.247,
    "peak_month": "202511",
    "akc_rank_2025": null,
@@ -1441,11 +1441,11 @@
     ],
     [
      "202607",
-     30271
+     30374
     ],
     [
      "202608",
-     28599
+     28865
     ],
     [
      "202609",
@@ -1456,8 +1456,8 @@
      29742
     ]
    ],
-   "avg_monthly_12m": 30322,
-   "yoy": -0.203,
+   "avg_monthly_12m": 30352,
+   "yoy": -0.202,
    "peak_month": "202601",
    "akc_rank_2025": null,
    "score": 0.194
@@ -1553,11 +1553,11 @@
     ],
     [
      "202607",
-     26960
+     26968
     ],
     [
      "202608",
-     26820
+     26967
     ],
     [
      "202609",
@@ -1568,7 +1568,7 @@
      22982
     ]
    ],
-   "avg_monthly_12m": 28657,
+   "avg_monthly_12m": 28670,
    "yoy": -0.29,
    "peak_month": "202511",
    "akc_rank_2025": 10,
@@ -1665,11 +1665,11 @@
     ],
     [
      "202607",
-     32280
+     32262
     ],
     [
      "202608",
-     33329
+     33395
     ],
     [
      "202609",
@@ -1680,7 +1680,7 @@
      31722
     ]
    ],
-   "avg_monthly_12m": 32139,
+   "avg_monthly_12m": 32143,
    "yoy": -0.241,
    "peak_month": "202511",
    "akc_rank_2025": 12,
@@ -1777,11 +1777,11 @@
     ],
     [
      "202607",
-     35702
+     35736
     ],
     [
      "202608",
-     31912
+     32073
     ],
     [
      "202609",
@@ -1792,7 +1792,7 @@
      24985
     ]
    ],
-   "avg_monthly_12m": 33871,
+   "avg_monthly_12m": 33888,
    "yoy": -0.32,
    "peak_month": "202601",
    "akc_rank_2025": 14,
@@ -1889,11 +1889,11 @@
     ],
     [
      "202607",
-     48495
+     48548
     ],
     [
      "202608",
-     43733
+     43999
     ],
     [
      "202609",
@@ -1904,7 +1904,7 @@
      42488
     ]
    ],
-   "avg_monthly_12m": 47536,
+   "avg_monthly_12m": 47562,
    "yoy": -0.197,
    "peak_month": "202511",
    "akc_rank_2025": 21,
@@ -2001,11 +2001,11 @@
     ],
     [
      "202607",
-     15596
+     15602
     ],
     [
      "202608",
-     15410
+     15430
     ],
     [
      "202609",
@@ -2016,7 +2016,7 @@
      14471
     ]
    ],
-   "avg_monthly_12m": 15203,
+   "avg_monthly_12m": 15206,
    "yoy": -0.22,
    "peak_month": "202511",
    "akc_rank_2025": 9,
@@ -2113,11 +2113,11 @@
     ],
     [
      "202607",
-     21486
+     21493
     ],
     [
      "202608",
-     21249
+     21434
     ],
     [
      "202609",
@@ -2128,8 +2128,8 @@
      18816
     ]
    ],
-   "avg_monthly_12m": 21608,
-   "yoy": -0.348,
+   "avg_monthly_12m": 21624,
+   "yoy": -0.347,
    "peak_month": "202511",
    "akc_rank_2025": 13,
    "score": 0.128
@@ -2225,11 +2225,11 @@
     ],
     [
      "202607",
-     42554
+     42607
     ],
     [
      "202608",
-     42074
+     42455
     ],
     [
      "202609",
@@ -2240,8 +2240,8 @@
      36422
     ]
    ],
-   "avg_monthly_12m": 41490,
-   "yoy": -0.221,
+   "avg_monthly_12m": 41526,
+   "yoy": -0.22,
    "peak_month": "202601",
    "akc_rank_2025": 26,
    "score": 0.126
@@ -2337,11 +2337,11 @@
     ],
     [
      "202607",
-     21715
+     21728
     ],
     [
      "202608",
-     23612
+     23800
     ],
     [
      "202609",
@@ -2352,7 +2352,7 @@
      22446
     ]
    ],
-   "avg_monthly_12m": 25253,
+   "avg_monthly_12m": 25270,
    "yoy": -0.258,
    "peak_month": "202601",
    "akc_rank_2025": 30,
@@ -2449,11 +2449,11 @@
     ],
     [
      "202607",
-     30312
+     30348
     ],
     [
      "202608",
-     28155
+     28345
     ],
     [
      "202609",
@@ -2464,8 +2464,8 @@
      25585
     ]
    ],
-   "avg_monthly_12m": 30964,
-   "yoy": -0.25,
+   "avg_monthly_12m": 30983,
+   "yoy": -0.249,
    "peak_month": "202511",
    "akc_rank_2025": 38,
    "score": 0.09
@@ -2561,11 +2561,11 @@
     ],
     [
      "202607",
-     11931
+     11928
     ],
     [
      "202608",
-     11694
+     11739
     ],
     [
      "202609",
@@ -2576,7 +2576,7 @@
      10312
     ]
    ],
-   "avg_monthly_12m": 12668,
+   "avg_monthly_12m": 12672,
    "yoy": -0.209,
    "peak_month": "202603",
    "akc_rank_2025": 16,
@@ -2673,11 +2673,11 @@
     ],
     [
      "202607",
-     1318
+     1319
     ],
     [
      "202608",
-     1224
+     1209
     ],
     [
      "202609",
@@ -2688,8 +2688,8 @@
      1061
     ]
    ],
-   "avg_monthly_12m": 1140,
-   "yoy": 0.02,
+   "avg_monthly_12m": 1139,
+   "yoy": 0.019,
    "peak_month": "202609",
    "akc_rank_2025": 24,
    "score": 0.022
@@ -2785,11 +2785,11 @@
     ],
     [
      "202607",
-     233
+     236
     ],
     [
      "202608",
-     240
+     236
     ],
     [
      "202609",
@@ -2899,11 +2899,11 @@
     ],
     [
      "202607",
-     28827
+     28373
     ],
     [
      "202608",
-     36753
+     34290
     ],
     [
      "202609",
@@ -2914,8 +2914,8 @@
      57026
     ]
    ],
-   "avg_monthly_12m": 96746,
-   "yoy": -0.283,
+   "avg_monthly_12m": 96503,
+   "yoy": -0.285,
    "peak_month": "202512"
   },
   {
@@ -3009,11 +3009,11 @@
     ],
     [
      "202607",
-     723
+     719
     ],
     [
      "202608",
-     1016
+     710
     ],
     [
      "202609",
@@ -3024,8 +3024,8 @@
      1247
     ]
    ],
-   "avg_monthly_12m": 2170,
-   "yoy": -0.211,
+   "avg_monthly_12m": 2144,
+   "yoy": -0.22,
    "peak_month": "202512"
   },
   {
@@ -3119,11 +3119,11 @@
     ],
     [
      "202607",
-     17338
+     17161
     ],
     [
      "202608",
-     25901
+     24794
     ],
     [
      "202609",
@@ -3134,8 +3134,8 @@
      85752
     ]
    ],
-   "avg_monthly_12m": 96096,
-   "yoy": -0.299,
+   "avg_monthly_12m": 95989,
+   "yoy": -0.3,
    "peak_month": "202511"
   },
   {
@@ -3229,11 +3229,11 @@
     ],
     [
      "202607",
-     13863
+     13750
     ],
     [
      "202608",
-     16386
+     15984
     ],
     [
      "202609",
@@ -3244,7 +3244,7 @@
      42903
     ]
    ],
-   "avg_monthly_12m": 88206,
+   "avg_monthly_12m": 88163,
    "yoy": -0.147,
    "peak_month": "202512"
   },
@@ -3339,11 +3339,11 @@
     ],
     [
      "202607",
-     7591
+     7030
     ],
     [
      "202608",
-     9345
+     7340
     ],
     [
      "202609",
@@ -3354,8 +3354,8 @@
      8698
     ]
    ],
-   "avg_monthly_12m": 45285,
-   "yoy": 0.009,
+   "avg_monthly_12m": 45071,
+   "yoy": 0.005,
    "peak_month": "202512"
   },
   {
@@ -3449,11 +3449,11 @@
     ],
     [
      "202607",
-     16813
+     16409
     ],
     [
      "202608",
-     21083
+     18353
     ],
     [
      "202609",
@@ -3464,8 +3464,8 @@
      20664
     ]
    ],
-   "avg_monthly_12m": 105681,
-   "yoy": -0.35,
+   "avg_monthly_12m": 105420,
+   "yoy": -0.351,
    "peak_month": "202602"
   },
   {
@@ -3559,11 +3559,11 @@
     ],
     [
      "202607",
-     11742
+     11569
     ],
     [
      "202608",
-     12899
+     12183
     ],
     [
      "202609",
@@ -3574,7 +3574,7 @@
      12010
     ]
    ],
-   "avg_monthly_12m": 86706,
+   "avg_monthly_12m": 86632,
    "yoy": -0.26,
    "peak_month": "202605"
   },
@@ -3669,11 +3669,11 @@
     ],
     [
      "202607",
-     29195
+     28524
     ],
     [
      "202608",
-     18956
+     17883
     ],
     [
      "202609",
@@ -3684,8 +3684,8 @@
      8282
     ]
    ],
-   "avg_monthly_12m": 71240,
-   "yoy": -0.224,
+   "avg_monthly_12m": 71094,
+   "yoy": -0.226,
    "peak_month": "202606"
   },
   {
@@ -3779,11 +3779,11 @@
     ],
     [
      "202607",
-     34604
+     34427
     ],
     [
      "202608",
-     50180
+     49382
     ],
     [
      "202609",
@@ -3794,8 +3794,8 @@
      694069
     ]
    ],
-   "avg_monthly_12m": 124730,
-   "yoy": -0.201,
+   "avg_monthly_12m": 124648,
+   "yoy": -0.202,
    "peak_month": "202610"
   },
   {
@@ -3889,11 +3889,11 @@
     ],
     [
      "202607",
-     67
+     65
     ],
     [
      "202608",
-     69
+     62
     ],
     [
      "202609",
@@ -3905,7 +3905,7 @@
     ]
    ],
    "avg_monthly_12m": 69,
-   "yoy": -0.575,
+   "yoy": -0.579,
    "peak_month": "202605"
   }
  ],
@@ -4073,7 +4073,7 @@
    "price_basis": "economics.js POD variant price",
    "keyword": "thanksgiving gift idea",
    "kind": "general",
-   "why": "Holidays & Occasions: 'Thanksgiving' ~96,096 Wikipedia views/mo (real interest proxy), season ratio 3 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
+   "why": "Holidays & Occasions: 'Thanksgiving' ~95,989 Wikipedia views/mo (real interest proxy), season ratio 3 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
    "brief": "Original illustrated Thanksgiving design with short witty phrase, cohesive house palette, gift-ready.",
    "prompt": "original flat illustration celebrating Thanksgiving, warm palette, clean composition, room for short phrase, no logos or trademarks",
    "sources": [
@@ -4090,7 +4090,7 @@
    "price_basis": "economics.js POD variant price",
    "keyword": "hanukkah gift idea",
    "kind": "general",
-   "why": "Holidays & Occasions: 'Hanukkah' ~88,206 Wikipedia views/mo (real interest proxy), season ratio 3 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
+   "why": "Holidays & Occasions: 'Hanukkah' ~88,163 Wikipedia views/mo (real interest proxy), season ratio 3 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
    "brief": "Original illustrated Hanukkah design with short witty phrase, cohesive house palette, gift-ready.",
    "prompt": "original flat illustration celebrating Hanukkah, warm palette, clean composition, room for short phrase, no logos or trademarks",
    "sources": [
@@ -4107,7 +4107,7 @@
    "price_basis": "economics.js POD variant price",
    "keyword": "christmas gift idea",
    "kind": "general",
-   "why": "Holidays & Occasions: 'Christmas' ~96,746 Wikipedia views/mo (real interest proxy), season ratio 2.8 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
+   "why": "Holidays & Occasions: 'Christmas' ~96,503 Wikipedia views/mo (real interest proxy), season ratio 2.81 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
    "brief": "Original illustrated Christmas design with short witty phrase, cohesive house palette, gift-ready.",
    "prompt": "original flat illustration celebrating Christmas, warm palette, clean composition, room for short phrase, no logos or trademarks",
    "sources": [
@@ -4124,7 +4124,7 @@
    "price_basis": "economics.js POD variant price",
    "keyword": "kwanzaa gift idea",
    "kind": "general",
-   "why": "Holidays & Occasions: 'Kwanzaa' ~79,756 Wikipedia views/mo (real interest proxy), season ratio 3 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
+   "why": "Holidays & Occasions: 'Kwanzaa' ~79,748 Wikipedia views/mo (real interest proxy), season ratio 3 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
    "brief": "Original illustrated Kwanzaa design with short witty phrase, cohesive house palette, gift-ready.",
    "prompt": "original flat illustration celebrating Kwanzaa, warm palette, clean composition, room for short phrase, no logos or trademarks",
    "sources": [
@@ -4141,7 +4141,7 @@
    "price_basis": "economics.js POD variant price",
    "keyword": "new year's gift idea",
    "kind": "general",
-   "why": "Holidays & Occasions: 'New Year's' ~45,285 Wikipedia views/mo (real interest proxy), season ratio 3 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
+   "why": "Holidays & Occasions: 'New Year's' ~45,071 Wikipedia views/mo (real interest proxy), season ratio 3 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
    "brief": "Original illustrated New Year's design with short witty phrase, cohesive house palette, gift-ready.",
    "prompt": "original flat illustration celebrating New Year's, warm palette, clean composition, room for short phrase, no logos or trademarks",
    "sources": [
@@ -4158,7 +4158,7 @@
    "price_basis": "economics.js POD variant price",
    "keyword": "veterans day gift idea",
    "kind": "general",
-   "why": "Holidays & Occasions: 'Veterans Day' ~42,992 Wikipedia views/mo (real interest proxy), season ratio 3 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
+   "why": "Holidays & Occasions: 'Veterans Day' ~42,949 Wikipedia views/mo (real interest proxy), season ratio 3 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
    "brief": "Original illustrated Veterans Day design with short witty phrase, cohesive house palette, gift-ready.",
    "prompt": "original flat illustration celebrating Veterans Day, warm palette, clean composition, room for short phrase, no logos or trademarks",
    "sources": [
@@ -4175,7 +4175,7 @@
    "price_basis": "economics.js POD variant price",
    "keyword": "teacher gift",
    "kind": "general",
-   "why": "Professions: 'teacher' ~12,905 Wikipedia views/mo (real interest proxy), season ratio 1.45 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
+   "why": "Professions: 'teacher' ~12,890 Wikipedia views/mo (real interest proxy), season ratio 1.45 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
    "brief": "Original illustrated teacher design with short witty phrase, cohesive house palette, gift-ready.",
    "prompt": "original flat illustration celebrating teacher, warm palette, clean composition, room for short phrase, no logos or trademarks",
    "sources": [
@@ -4192,7 +4192,7 @@
    "price_basis": "economics.js POD variant price",
    "keyword": "pickleball gift",
    "kind": "general",
-   "why": "Hobbies: 'pickleball' ~95,912 Wikipedia views/mo (real interest proxy), season ratio 1.08 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
+   "why": "Hobbies: 'pickleball' ~95,996 Wikipedia views/mo (real interest proxy), season ratio 1.08 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
    "brief": "Original illustrated pickleball design with short witty phrase, cohesive house palette, gift-ready.",
    "prompt": "original flat illustration celebrating pickleball, warm palette, clean composition, room for short phrase, no logos or trademarks",
    "sources": [
@@ -4209,7 +4209,7 @@
    "price_basis": "economics.js POD variant price",
    "keyword": "diwali gift idea",
    "kind": "general",
-   "why": "Holidays & Occasions: 'Diwali' ~87,141 Wikipedia views/mo (real interest proxy), season ratio 1.18 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
+   "why": "Holidays & Occasions: 'Diwali' ~87,001 Wikipedia views/mo (real interest proxy), season ratio 1.18 for the next 3 months. Etsy: shoppers search by recipient and occasion (Etsy holiday guide).",
    "brief": "Original illustrated Diwali design with short witty phrase, cohesive house palette, gift-ready.",
    "prompt": "original flat illustration celebrating Diwali, warm palette, clean composition, room for short phrase, no logos or trademarks",
    "sources": [
@@ -4225,7 +4225,7 @@
    "price": 24,
    "price_basis": "economics.js POD variant price",
    "keyword": "french bulldog mom mug",
-   "why": "French Bulldog: ~30,348 Wikipedia views/mo (real, interest proxy; YoY -39%). Breed-specific designs scale across products (catalogpush); illustrated designs out-pull name-only items (listadum).",
+   "why": "French Bulldog: ~30,361 Wikipedia views/mo (real, interest proxy; YoY -39%). Breed-specific designs scale across products (catalogpush); illustrated designs out-pull name-only items (listadum).",
    "brief": "Watercolor illustration of a French Bulldog dog, head-and-shoulders, warm pastel palette, white background, generous margin for Mug 11oz.",
    "prompt": "watercolor painting of a French Bulldog dog, soft pastel colors, loose brush strokes, white background, centered portrait, high detail eyes, no text",
    "sources": [
@@ -4242,7 +4242,7 @@
    "price": 69,
    "price_basis": "economics.js POD variant price",
    "keyword": "labrador retriever gift",
-   "why": "Labrador Retriever: ~58,427 Wikipedia views/mo (real, interest proxy; YoY -26%). Breed-specific designs scale across products (catalogpush); illustrated designs out-pull name-only items (listadum).",
+   "why": "Labrador Retriever: ~58,416 Wikipedia views/mo (real, interest proxy; YoY -26%). Breed-specific designs scale across products (catalogpush); illustrated designs out-pull name-only items (listadum).",
    "brief": "Watercolor illustration of a Labrador Retriever dog, head-and-shoulders, warm pastel palette, white background, generous margin for Canvas 12x16.",
    "prompt": "watercolor painting of a Labrador Retriever dog, soft pastel colors, loose brush strokes, white background, centered portrait, high detail eyes, no text",
    "sources": [
@@ -4262,7 +4262,7 @@
     "url": "https://en.wikipedia.org/wiki/Van_life",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Van_life/monthly/2024100100/2026103100",
     "avg_monthly_12m": 293,
-    "yoy": 1.447,
+    "yoy": 1.44,
     "peak_month": "202601",
     "niche": "Van life",
     "auto_add": false,
@@ -4272,8 +4272,8 @@
     "article": "Journaling",
     "url": "https://en.wikipedia.org/wiki/Journaling",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Journaling/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 685,
-    "yoy": 0.881,
+    "avg_monthly_12m": 609,
+    "yoy": 0.674,
     "peak_month": "202608",
     "niche": "Journaling",
     "auto_add": true,
@@ -4284,7 +4284,7 @@
     "url": "https://en.wikipedia.org/wiki/Thrifting",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Thrifting/monthly/2024100100/2026103100",
     "avg_monthly_12m": 66,
-    "yoy": 0.537,
+    "yoy": 0.539,
     "peak_month": "202604",
     "niche": "Thrifting",
     "auto_add": false,
@@ -4295,7 +4295,7 @@
     "url": "https://en.wikipedia.org/wiki/Rucking",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Rucking/monthly/2024100100/2026103100",
     "avg_monthly_12m": 79,
-    "yoy": 0.215,
+    "yoy": 0.206,
     "peak_month": "202601",
     "niche": "Rucking",
     "auto_add": false,
@@ -4305,7 +4305,7 @@
     "article": "Mahjong",
     "url": "https://en.wikipedia.org/wiki/Mahjong",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Mahjong/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 79030,
+    "avg_monthly_12m": 79013,
     "yoy": 0.084,
     "peak_month": "202605",
     "niche": "Mahjong",
@@ -4316,8 +4316,8 @@
     "article": "Gravel_cycling",
     "url": "https://en.wikipedia.org/wiki/Gravel_cycling",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Gravel_cycling/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 1637,
-    "yoy": 0.016,
+    "avg_monthly_12m": 1639,
+    "yoy": 0.018,
     "peak_month": "202604",
     "niche": "Gravel cycling",
     "auto_add": true,
@@ -4327,8 +4327,8 @@
     "article": "Bouldering",
     "url": "https://en.wikipedia.org/wiki/Bouldering",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Bouldering/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 10044,
-    "yoy": -0.002,
+    "avg_monthly_12m": 10030,
+    "yoy": -0.003,
     "peak_month": "202601",
     "niche": "Bouldering",
     "auto_add": false,
@@ -4338,7 +4338,7 @@
     "article": "Polaroid",
     "url": "https://en.wikipedia.org/wiki/Polaroid",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Polaroid/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 2406,
+    "avg_monthly_12m": 2404,
     "yoy": -0.024,
     "peak_month": "202512",
     "niche": "Polaroid",
@@ -4360,21 +4360,10 @@
     "article": "Cottagecore",
     "url": "https://en.wikipedia.org/wiki/Cottagecore",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Cottagecore/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 9116,
-    "yoy": -0.113,
+    "avg_monthly_12m": 9108,
+    "yoy": -0.114,
     "peak_month": "202512",
     "niche": "Cottagecore",
-    "auto_add": false,
-    "blocked": null
-   },
-   {
-    "article": "Tiny_house_movement",
-    "url": "https://en.wikipedia.org/wiki/Tiny_house_movement",
-    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Tiny_house_movement/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 627,
-    "yoy": -0.117,
-    "peak_month": "202512",
-    "niche": "Tiny house movement",
     "auto_add": false,
     "blocked": null
    },
@@ -4382,10 +4371,21 @@
     "article": "Crochet",
     "url": "https://en.wikipedia.org/wiki/Crochet",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Crochet/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 12523,
-    "yoy": -0.122,
+    "avg_monthly_12m": 12456,
+    "yoy": -0.127,
     "peak_month": "202601",
     "niche": "Crochet",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Tiny_house_movement",
+    "url": "https://en.wikipedia.org/wiki/Tiny_house_movement",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Tiny_house_movement/monthly/2024100100/2026103100",
+    "avg_monthly_12m": 618,
+    "yoy": -0.129,
+    "peak_month": "202512",
+    "niche": "Tiny house movement",
     "auto_add": false,
     "blocked": null
    },
@@ -4393,8 +4393,8 @@
     "article": "Birdwatching",
     "url": "https://en.wikipedia.org/wiki/Birdwatching",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Birdwatching/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 5761,
-    "yoy": -0.141,
+    "avg_monthly_12m": 5751,
+    "yoy": -0.142,
     "peak_month": "202605",
     "niche": "Birdwatching",
     "auto_add": false,
@@ -4404,7 +4404,7 @@
     "article": "Astrology",
     "url": "https://en.wikipedia.org/wiki/Astrology",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Astrology/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 36558,
+    "avg_monthly_12m": 36545,
     "yoy": -0.167,
     "peak_month": "202601",
     "niche": "Astrology",
@@ -4415,21 +4415,10 @@
     "article": "Trail_running",
     "url": "https://en.wikipedia.org/wiki/Trail_running",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Trail_running/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 2647,
-    "yoy": -0.181,
+    "avg_monthly_12m": 2634,
+    "yoy": -0.185,
     "peak_month": "202609",
     "niche": "Trail running",
-    "auto_add": false,
-    "blocked": null
-   },
-   {
-    "article": "Cornhole",
-    "url": "https://en.wikipedia.org/wiki/Cornhole",
-    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Cornhole/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 14839,
-    "yoy": -0.182,
-    "peak_month": "202603",
-    "niche": "Cornhole",
     "auto_add": false,
     "blocked": null
    },
@@ -4437,10 +4426,21 @@
     "article": "Axe_throwing",
     "url": "https://en.wikipedia.org/wiki/Axe_throwing",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Axe_throwing/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 1733,
-    "yoy": -0.186,
+    "avg_monthly_12m": 1730,
+    "yoy": -0.187,
     "peak_month": "202603",
     "niche": "Axe throwing",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Cornhole",
+    "url": "https://en.wikipedia.org/wiki/Cornhole",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Cornhole/monthly/2024100100/2026103100",
+    "avg_monthly_12m": 14751,
+    "yoy": -0.187,
+    "peak_month": "202603",
+    "niche": "Cornhole",
     "auto_add": false,
     "blocked": null
    },
@@ -4448,8 +4448,8 @@
     "article": "Embroidery",
     "url": "https://en.wikipedia.org/wiki/Embroidery",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Embroidery/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 8830,
-    "yoy": -0.187,
+    "avg_monthly_12m": 8795,
+    "yoy": -0.19,
     "peak_month": "202601",
     "niche": "Embroidery",
     "auto_add": false,
@@ -4459,7 +4459,7 @@
     "article": "Padel",
     "url": "https://en.wikipedia.org/wiki/Padel",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Padel/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 53970,
+    "avg_monthly_12m": 54009,
     "yoy": -0.202,
     "peak_month": "202601",
     "niche": "Padel",
@@ -4470,8 +4470,8 @@
     "article": "Minimalism",
     "url": "https://en.wikipedia.org/wiki/Minimalism",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Minimalism/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 10928,
-    "yoy": -0.207,
+    "avg_monthly_12m": 10883,
+    "yoy": -0.21,
     "peak_month": "202605",
     "niche": "Minimalism",
     "auto_add": false,
@@ -4481,8 +4481,8 @@
     "article": "Foraging",
     "url": "https://en.wikipedia.org/wiki/Foraging",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Foraging/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 3036,
-    "yoy": -0.212,
+    "avg_monthly_12m": 3033,
+    "yoy": -0.213,
     "peak_month": "202605",
     "niche": "Foraging",
     "auto_add": false,
@@ -4492,21 +4492,10 @@
     "article": "Pottery",
     "url": "https://en.wikipedia.org/wiki/Pottery",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Pottery/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 13406,
-    "yoy": -0.217,
+    "avg_monthly_12m": 13390,
+    "yoy": -0.218,
     "peak_month": "202511",
     "niche": "Pottery",
-    "auto_add": false,
-    "blocked": null
-   },
-   {
-    "article": "Tarot",
-    "url": "https://en.wikipedia.org/wiki/Tarot",
-    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Tarot/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 62543,
-    "yoy": -0.218,
-    "peak_month": "202608",
-    "niche": "Tarot",
     "auto_add": false,
     "blocked": null
    },
@@ -4514,7 +4503,7 @@
     "article": "Charcuterie",
     "url": "https://en.wikipedia.org/wiki/Charcuterie",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Charcuterie/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 15424,
+    "avg_monthly_12m": 15422,
     "yoy": -0.218,
     "peak_month": "202512",
     "niche": "Charcuterie",
@@ -4522,10 +4511,21 @@
     "blocked": null
    },
    {
+    "article": "Tarot",
+    "url": "https://en.wikipedia.org/wiki/Tarot",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Tarot/monthly/2024100100/2026103100",
+    "avg_monthly_12m": 62064,
+    "yoy": -0.224,
+    "peak_month": "202511",
+    "niche": "Tarot",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
     "article": "Sim_racing",
     "url": "https://en.wikipedia.org/wiki/Sim_racing",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Sim_racing/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 3942,
+    "avg_monthly_12m": 3938,
     "yoy": -0.228,
     "peak_month": "202512",
     "niche": "Sim racing",
@@ -4536,8 +4536,8 @@
     "article": "Vinyl_revival",
     "url": "https://en.wikipedia.org/wiki/Vinyl_revival",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Vinyl_revival/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 3867,
-    "yoy": -0.228,
+    "avg_monthly_12m": 3862,
+    "yoy": -0.229,
     "peak_month": "202601",
     "niche": "Vinyl revival",
     "auto_add": false,
@@ -4547,8 +4547,8 @@
     "article": "Pickleball",
     "url": "https://en.wikipedia.org/wiki/Pickleball",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Pickleball/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 95912,
-    "yoy": -0.251,
+    "avg_monthly_12m": 95996,
+    "yoy": -0.25,
     "peak_month": "202601",
     "niche": "Pickleball",
     "auto_add": false,
@@ -4558,8 +4558,8 @@
     "article": "Film_photography",
     "url": "https://en.wikipedia.org/wiki/Film_photography",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Film_photography/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 161,
-    "yoy": -0.254,
+    "avg_monthly_12m": 160,
+    "yoy": -0.258,
     "peak_month": "202605",
     "niche": "Film photography",
     "auto_add": false,
@@ -4569,7 +4569,7 @@
     "article": "Pilates",
     "url": "https://en.wikipedia.org/wiki/Pilates",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Pilates/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 45857,
+    "avg_monthly_12m": 45871,
     "yoy": -0.259,
     "peak_month": "202601",
     "niche": "Pilates",
@@ -4580,8 +4580,8 @@
     "article": "Lego_Technic",
     "url": "https://en.wikipedia.org/wiki/Lego_Technic",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Lego_Technic/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 3282,
-    "yoy": -0.269,
+    "avg_monthly_12m": 3274,
+    "yoy": -0.271,
     "peak_month": "202512",
     "niche": "Lego Technic",
     "auto_add": false,
@@ -4591,21 +4591,10 @@
     "article": "Disc_golf",
     "url": "https://en.wikipedia.org/wiki/Disc_golf",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Disc_golf/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 8133,
-    "yoy": -0.274,
+    "avg_monthly_12m": 8122,
+    "yoy": -0.275,
     "peak_month": "202606",
     "niche": "Disc golf",
-    "auto_add": false,
-    "blocked": null
-   },
-   {
-    "article": "Kayak_fishing",
-    "url": "https://en.wikipedia.org/wiki/Kayak_fishing",
-    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Kayak_fishing/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 194,
-    "yoy": -0.286,
-    "peak_month": "202604",
-    "niche": "Kayak fishing",
     "auto_add": false,
     "blocked": null
    },
@@ -4613,8 +4602,8 @@
     "article": "Hydroponics",
     "url": "https://en.wikipedia.org/wiki/Hydroponics",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Hydroponics/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 12776,
-    "yoy": -0.298,
+    "avg_monthly_12m": 12749,
+    "yoy": -0.299,
     "peak_month": "202601",
     "niche": "Hydroponics",
     "auto_add": false,
@@ -4624,10 +4613,21 @@
     "article": "Bonsai",
     "url": "https://en.wikipedia.org/wiki/Bonsai",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Bonsai/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 18450,
-    "yoy": -0.3,
+    "avg_monthly_12m": 18364,
+    "yoy": -0.303,
     "peak_month": "202511",
     "niche": "Bonsai",
+    "auto_add": false,
+    "blocked": null
+   },
+   {
+    "article": "Kayak_fishing",
+    "url": "https://en.wikipedia.org/wiki/Kayak_fishing",
+    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Kayak_fishing/monthly/2024100100/2026103100",
+    "avg_monthly_12m": 188,
+    "yoy": -0.308,
+    "peak_month": "202604",
+    "niche": "Kayak fishing",
     "auto_add": false,
     "blocked": null
    },
@@ -4635,8 +4635,8 @@
     "article": "Upcycling",
     "url": "https://en.wikipedia.org/wiki/Upcycling",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Upcycling/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 3124,
-    "yoy": -0.31,
+    "avg_monthly_12m": 3108,
+    "yoy": -0.313,
     "peak_month": "202511",
     "niche": "Upcycling",
     "auto_add": false,
@@ -4646,8 +4646,8 @@
     "article": "Homesteading",
     "url": "https://en.wikipedia.org/wiki/Homesteading",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Homesteading/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 3476,
-    "yoy": -0.317,
+    "avg_monthly_12m": 3469,
+    "yoy": -0.319,
     "peak_month": "202601",
     "niche": "Homesteading",
     "auto_add": false,
@@ -4657,8 +4657,8 @@
     "article": "Cold_plunge",
     "url": "https://en.wikipedia.org/wiki/Cold_plunge",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Cold_plunge/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 75,
-    "yoy": -0.32,
+    "avg_monthly_12m": 74,
+    "yoy": -0.326,
     "peak_month": "202511",
     "niche": "Cold plunge",
     "auto_add": false,
@@ -4668,8 +4668,8 @@
     "article": "Overlanding",
     "url": "https://en.wikipedia.org/wiki/Overlanding",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Overlanding/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 1847,
-    "yoy": -0.323,
+    "avg_monthly_12m": 1839,
+    "yoy": -0.326,
     "peak_month": "202511",
     "niche": "Overlanding",
     "auto_add": false,
@@ -4679,8 +4679,8 @@
     "article": "Beekeeping",
     "url": "https://en.wikipedia.org/wiki/Beekeeping",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Beekeeping/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 7137,
-    "yoy": -0.353,
+    "avg_monthly_12m": 7119,
+    "yoy": -0.355,
     "peak_month": "202602",
     "niche": "Beekeeping",
     "auto_add": false,
@@ -4690,8 +4690,8 @@
     "article": "Crystal_healing",
     "url": "https://en.wikipedia.org/wiki/Crystal_healing",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Crystal_healing/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 3389,
-    "yoy": -0.371,
+    "avg_monthly_12m": 3382,
+    "yoy": -0.372,
     "peak_month": "202603",
     "niche": "Crystal healing",
     "auto_add": false,
@@ -4701,8 +4701,8 @@
     "article": "Barre_(exercise)",
     "url": "https://en.wikipedia.org/wiki/Barre_(exercise)",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Barre_(exercise)/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 5514,
-    "yoy": -0.371,
+    "avg_monthly_12m": 5506,
+    "yoy": -0.372,
     "peak_month": "202603",
     "niche": "Barre",
     "auto_add": false,
@@ -4712,8 +4712,8 @@
     "article": "Bullet_journal",
     "url": "https://en.wikipedia.org/wiki/Bullet_journal",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Bullet_journal/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 3898,
-    "yoy": -0.383,
+    "avg_monthly_12m": 3891,
+    "yoy": -0.384,
     "peak_month": "202601",
     "niche": "Bullet journal",
     "auto_add": false,
@@ -4723,7 +4723,7 @@
     "article": "Sourdough",
     "url": "https://en.wikipedia.org/wiki/Sourdough",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Sourdough/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 35040,
+    "avg_monthly_12m": 35005,
     "yoy": -0.392,
     "peak_month": "202511",
     "niche": "Sourdough",
@@ -4734,7 +4734,7 @@
     "article": "Hot_yoga",
     "url": "https://en.wikipedia.org/wiki/Hot_yoga",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Hot_yoga/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 3621,
+    "avg_monthly_12m": 3617,
     "yoy": -0.425,
     "peak_month": "202601",
     "niche": "Hot yoga",
@@ -4745,8 +4745,8 @@
     "article": "Spikeball",
     "url": "https://en.wikipedia.org/wiki/Spikeball",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Spikeball/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 100,
-    "yoy": -0.441,
+    "avg_monthly_12m": 99,
+    "yoy": -0.444,
     "peak_month": "202601",
     "niche": "Spikeball",
     "auto_add": false,
@@ -4756,7 +4756,7 @@
     "article": "Matcha",
     "url": "https://en.wikipedia.org/wiki/Matcha",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Matcha/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 76849,
+    "avg_monthly_12m": 76882,
     "yoy": -0.464,
     "peak_month": "202511",
     "niche": "Matcha",
@@ -4767,7 +4767,7 @@
     "article": "Terrarium",
     "url": "https://en.wikipedia.org/wiki/Terrarium",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Terrarium/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 4059,
+    "avg_monthly_12m": 4053,
     "yoy": -0.502,
     "peak_month": "202512",
     "niche": "Terrarium",
@@ -4778,8 +4778,8 @@
     "article": "Kombucha",
     "url": "https://en.wikipedia.org/wiki/Kombucha",
     "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Kombucha/monthly/2024100100/2026103100",
-    "avg_monthly_12m": 56579,
-    "yoy": -0.521,
+    "avg_monthly_12m": 56602,
+    "yoy": -0.52,
     "peak_month": "202601",
     "niche": "Kombucha",
     "auto_add": false,
@@ -4821,8 +4821,8 @@
    "article": "Thanksgiving",
    "url": "https://en.wikipedia.org/wiki/Thanksgiving",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Thanksgiving/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 96096,
-   "yoy": -0.299,
+   "avg_monthly_12m": 95989,
+   "yoy": -0.3,
    "peak_month": "202511",
    "monthly": [
     [
@@ -4907,11 +4907,11 @@
     ],
     [
      "202607",
-     17338
+     17161
     ],
     [
      "202608",
-     25901
+     24794
     ],
     [
      "202609",
@@ -4923,7 +4923,7 @@
     ]
    ],
    "season_ratio": 3,
-   "score": 2.861
+   "score": 2.863
   },
   {
    "category": "holidays & occasions",
@@ -4931,7 +4931,7 @@
    "article": "Hanukkah",
    "url": "https://en.wikipedia.org/wiki/Hanukkah",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Hanukkah/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 88206,
+   "avg_monthly_12m": 88163,
    "yoy": -0.147,
    "peak_month": "202512",
    "monthly": [
@@ -5017,11 +5017,11 @@
     ],
     [
      "202607",
-     13863
+     13750
     ],
     [
      "202608",
-     16386
+     15984
     ],
     [
      "202609",
@@ -5033,7 +5033,7 @@
     ]
    ],
    "season_ratio": 3,
-   "score": 2.741
+   "score": 2.743
   },
   {
    "category": "holidays & occasions",
@@ -5041,8 +5041,8 @@
    "article": "Christmas",
    "url": "https://en.wikipedia.org/wiki/Christmas",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Christmas/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 96746,
-   "yoy": -0.283,
+   "avg_monthly_12m": 96503,
+   "yoy": -0.285,
    "peak_month": "202512",
    "monthly": [
     [
@@ -5127,11 +5127,11 @@
     ],
     [
      "202607",
-     28827
+     28373
     ],
     [
      "202608",
-     36753
+     34290
     ],
     [
      "202609",
@@ -5142,8 +5142,8 @@
      57026
     ]
    ],
-   "season_ratio": 2.8,
-   "score": 2.679
+   "season_ratio": 2.81,
+   "score": 2.689
   },
   {
    "category": "holidays & occasions",
@@ -5151,8 +5151,8 @@
    "article": "Kwanzaa",
    "url": "https://en.wikipedia.org/wiki/Kwanzaa",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Kwanzaa/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 79756,
-   "yoy": -0.149,
+   "avg_monthly_12m": 79748,
+   "yoy": -0.15,
    "peak_month": "202512",
    "monthly": [
     [
@@ -5237,11 +5237,11 @@
     ],
     [
      "202607",
-     34758
+     34731
     ],
     [
      "202608",
-     18599
+     18532
     ],
     [
      "202609",
@@ -5253,7 +5253,7 @@
     ]
    ],
    "season_ratio": 3,
-   "score": 2.606
+   "score": 2.609
   },
   {
    "category": "holidays & occasions",
@@ -5261,8 +5261,8 @@
    "article": "New_Year%27s_Eve",
    "url": "https://en.wikipedia.org/wiki/New_Year%27s_Eve",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/New_Year%27s_Eve/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 45285,
-   "yoy": 0.009,
+   "avg_monthly_12m": 45071,
+   "yoy": 0.005,
    "peak_month": "202512",
    "monthly": [
     [
@@ -5347,11 +5347,11 @@
     ],
     [
      "202607",
-     7591
+     7030
     ],
     [
      "202608",
-     9345
+     7340
     ],
     [
      "202609",
@@ -5363,7 +5363,7 @@
     ]
    ],
    "season_ratio": 3,
-   "score": 1.964
+   "score": 1.962
   },
   {
    "category": "holidays & occasions",
@@ -5371,7 +5371,7 @@
    "article": "Veterans_Day",
    "url": "https://en.wikipedia.org/wiki/Veterans_Day",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Veterans_Day/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 42992,
+   "avg_monthly_12m": 42949,
    "yoy": -0.264,
    "peak_month": "202511",
    "monthly": [
@@ -5457,11 +5457,11 @@
     ],
     [
      "202607",
-     5964
+     5870
     ],
     [
      "202608",
-     7045
+     6622
     ],
     [
      "202609",
@@ -5473,7 +5473,7 @@
     ]
    ],
    "season_ratio": 3,
-   "score": 1.913
+   "score": 1.915
   },
   {
    "category": "professions",
@@ -5481,7 +5481,7 @@
    "article": "Teacher",
    "url": "https://en.wikipedia.org/wiki/Teacher",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Teacher/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 12905,
+   "avg_monthly_12m": 12890,
    "yoy": -0.484,
    "peak_month": "202511",
    "monthly": [
@@ -5567,11 +5567,11 @@
     ],
     [
      "202607",
-     9248
+     9213
     ],
     [
      "202608",
-     11144
+     10997
     ],
     [
      "202609",
@@ -5583,7 +5583,7 @@
     ]
    ],
    "season_ratio": 1.45,
-   "score": 1.45
+   "score": 1.412
   },
   {
    "category": "hobbies",
@@ -5591,8 +5591,8 @@
    "article": "Pickleball",
    "url": "https://en.wikipedia.org/wiki/Pickleball",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Pickleball/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 95912,
-   "yoy": -0.251,
+   "avg_monthly_12m": 95996,
+   "yoy": -0.25,
    "peak_month": "202601",
    "monthly": [
     [
@@ -5677,11 +5677,11 @@
     ],
     [
      "202607",
-     108794
+     108876
     ],
     [
      "202608",
-     98480
+     99400
     ],
     [
      "202609",
@@ -5701,7 +5701,7 @@
    "article": "Diwali",
    "url": "https://en.wikipedia.org/wiki/Diwali",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Diwali/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 87141,
+   "avg_monthly_12m": 87001,
    "yoy": -0.659,
    "peak_month": "202610",
    "monthly": [
@@ -5787,11 +5787,11 @@
     ],
     [
      "202607",
-     30724
+     30428
     ],
     [
      "202608",
-     47969
+     46581
     ],
     [
      "202609",
@@ -5811,8 +5811,8 @@
    "article": "Father",
    "url": "https://en.wikipedia.org/wiki/Father",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Father/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 9735,
-   "yoy": -0.188,
+   "avg_monthly_12m": 9722,
+   "yoy": -0.19,
    "peak_month": "202606",
    "monthly": [
     [
@@ -5897,11 +5897,11 @@
     ],
     [
      "202607",
-     9538
+     9509
     ],
     [
      "202608",
-     9562
+     9437
     ],
     [
      "202609",
@@ -5916,12 +5916,122 @@
    "score": 1.07
   },
   {
+   "category": "humor",
+   "niche": "pun",
+   "article": "Pun",
+   "url": "https://en.wikipedia.org/wiki/Pun",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Pun/monthly/2024100100/2026103100",
+   "avg_monthly_12m": 9293,
+   "yoy": -0.181,
+   "peak_month": "202511",
+   "monthly": [
+    [
+     "202411",
+     13145
+    ],
+    [
+     "202412",
+     11823
+    ],
+    [
+     "202501",
+     13661
+    ],
+    [
+     "202502",
+     11559
+    ],
+    [
+     "202503",
+     11313
+    ],
+    [
+     "202504",
+     10676
+    ],
+    [
+     "202505",
+     11921
+    ],
+    [
+     "202506",
+     9778
+    ],
+    [
+     "202507",
+     10247
+    ],
+    [
+     "202508",
+     10398
+    ],
+    [
+     "202509",
+     10752
+    ],
+    [
+     "202510",
+     10815
+    ],
+    [
+     "202511",
+     10453
+    ],
+    [
+     "202512",
+     8979
+    ],
+    [
+     "202601",
+     9150
+    ],
+    [
+     "202602",
+     8843
+    ],
+    [
+     "202603",
+     9541
+    ],
+    [
+     "202604",
+     8567
+    ],
+    [
+     "202605",
+     9471
+    ],
+    [
+     "202606",
+     8775
+    ],
+    [
+     "202607",
+     8392
+    ],
+    [
+     "202608",
+     9423
+    ],
+    [
+     "202609",
+     10087
+    ],
+    [
+     "202610",
+     9840
+    ]
+   ],
+   "season_ratio": 1.03,
+   "score": 1.03
+  },
+  {
    "category": "family roles",
    "niche": "mom",
    "article": "Mother",
    "url": "https://en.wikipedia.org/wiki/Mother",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Mother/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 9704,
+   "avg_monthly_12m": 9701,
    "yoy": -0.146,
    "peak_month": "202605",
    "monthly": [
@@ -6007,11 +6117,11 @@
     ],
     [
      "202607",
-     8283
+     8280
     ],
     [
      "202608",
-     8549
+     8515
     ],
     [
      "202609",
@@ -6023,7 +6133,7 @@
     ]
    ],
    "season_ratio": 1.03,
-   "score": 1.028
+   "score": 1.029
   },
   {
    "category": "professions",
@@ -6031,8 +6141,8 @@
    "article": "Physician",
    "url": "https://en.wikipedia.org/wiki/Physician",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Physician/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 10734,
-   "yoy": -0.584,
+   "avg_monthly_12m": 10713,
+   "yoy": -0.585,
    "peak_month": "202512",
    "monthly": [
     [
@@ -6117,11 +6227,11 @@
     ],
     [
      "202607",
-     9201
+     9123
     ],
     [
      "202608",
-     9503
+     9331
     ],
     [
      "202609",
@@ -6133,227 +6243,7 @@
     ]
    ],
    "season_ratio": 1.12,
-   "score": 1.021
-  },
-  {
-   "category": "humor",
-   "niche": "pun",
-   "article": "Pun",
-   "url": "https://en.wikipedia.org/wiki/Pun",
-   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Pun/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 9327,
-   "yoy": -0.178,
-   "peak_month": "202511",
-   "monthly": [
-    [
-     "202411",
-     13145
-    ],
-    [
-     "202412",
-     11823
-    ],
-    [
-     "202501",
-     13661
-    ],
-    [
-     "202502",
-     11559
-    ],
-    [
-     "202503",
-     11313
-    ],
-    [
-     "202504",
-     10676
-    ],
-    [
-     "202505",
-     11921
-    ],
-    [
-     "202506",
-     9778
-    ],
-    [
-     "202507",
-     10247
-    ],
-    [
-     "202508",
-     10398
-    ],
-    [
-     "202509",
-     10752
-    ],
-    [
-     "202510",
-     10815
-    ],
-    [
-     "202511",
-     10453
-    ],
-    [
-     "202512",
-     8979
-    ],
-    [
-     "202601",
-     9150
-    ],
-    [
-     "202602",
-     8843
-    ],
-    [
-     "202603",
-     9541
-    ],
-    [
-     "202604",
-     8567
-    ],
-    [
-     "202605",
-     9471
-    ],
-    [
-     "202606",
-     8775
-    ],
-    [
-     "202607",
-     8398
-    ],
-    [
-     "202608",
-     9815
-    ],
-    [
-     "202609",
-     10087
-    ],
-    [
-     "202610",
-     9840
-    ]
-   ],
-   "season_ratio": 1.02,
-   "score": 1.02
-  },
-  {
-   "category": "professions",
-   "niche": "dentist",
-   "article": "Dentist",
-   "url": "https://en.wikipedia.org/wiki/Dentist",
-   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Dentist/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 12455,
-   "yoy": -0.497,
-   "peak_month": "202608",
-   "monthly": [
-    [
-     "202411",
-     29459
-    ],
-    [
-     "202412",
-     30696
-    ],
-    [
-     "202501",
-     39893
-    ],
-    [
-     "202502",
-     31742
-    ],
-    [
-     "202503",
-     25242
-    ],
-    [
-     "202504",
-     20018
-    ],
-    [
-     "202505",
-     28526
-    ],
-    [
-     "202506",
-     22601
-    ],
-    [
-     "202507",
-     18493
-    ],
-    [
-     "202508",
-     17487
-    ],
-    [
-     "202509",
-     17832
-    ],
-    [
-     "202510",
-     15166
-    ],
-    [
-     "202511",
-     12580
-    ],
-    [
-     "202512",
-     11230
-    ],
-    [
-     "202601",
-     13498
-    ],
-    [
-     "202602",
-     15955
-    ],
-    [
-     "202603",
-     15199
-    ],
-    [
-     "202604",
-     11769
-    ],
-    [
-     "202605",
-     11699
-    ],
-    [
-     "202606",
-     8596
-    ],
-    [
-     "202607",
-     13879
-    ],
-    [
-     "202608",
-     16221
-    ],
-    [
-     "202609",
-     7878
-    ],
-    [
-     "202610",
-     10961
-    ]
-   ],
-   "season_ratio": 1.0,
-   "score": 0.982
+   "score": 0.994
   },
   {
    "category": "humor",
@@ -6361,8 +6251,8 @@
    "article": "Sarcasm",
    "url": "https://en.wikipedia.org/wiki/Sarcasm",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Sarcasm/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 8157,
-   "yoy": -0.269,
+   "avg_monthly_12m": 8149,
+   "yoy": -0.27,
    "peak_month": "202604",
    "monthly": [
     [
@@ -6447,11 +6337,11 @@
     ],
     [
      "202607",
-     7647
+     7616
     ],
     [
      "202608",
-     7949
+     7884
     ],
     [
      "202609",
@@ -6463,7 +6353,7 @@
     ]
    ],
    "season_ratio": 1.05,
-   "score": 0.982
+   "score": 0.983
   },
   {
    "category": "humor",
@@ -6471,8 +6361,8 @@
    "article": "Dad_joke",
    "url": "https://en.wikipedia.org/wiki/Dad_joke",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Dad_joke/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 6342,
-   "yoy": -0.212,
+   "avg_monthly_12m": 6289,
+   "yoy": -0.219,
    "peak_month": "202601",
    "monthly": [
     [
@@ -6557,11 +6447,11 @@
     ],
     [
      "202607",
-     5463
+     5260
     ],
     [
      "202608",
-     5991
+     5553
     ],
     [
      "202609",
@@ -6572,118 +6462,118 @@
      5045
     ]
    ],
-   "season_ratio": 1.15,
-   "score": 0.948
+   "season_ratio": 1.16,
+   "score": 0.954
   },
   {
    "category": "professions",
-   "niche": "police officer",
-   "article": "Police_officer",
-   "url": "https://en.wikipedia.org/wiki/Police_officer",
-   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Police_officer/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 8337,
-   "yoy": -0.187,
-   "peak_month": "202601",
+   "niche": "dentist",
+   "article": "Dentist",
+   "url": "https://en.wikipedia.org/wiki/Dentist",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Dentist/monthly/2024100100/2026103100",
+   "avg_monthly_12m": 13591,
+   "yoy": -0.451,
+   "peak_month": "202608",
    "monthly": [
     [
      "202411",
-     10115
+     29459
     ],
     [
      "202412",
-     10117
+     30696
     ],
     [
      "202501",
-     10881
+     39893
     ],
     [
      "202502",
-     9684
+     31742
     ],
     [
      "202503",
-     11516
+     25242
     ],
     [
      "202504",
-     10252
+     20018
     ],
     [
      "202505",
-     11098
+     28526
     ],
     [
      "202506",
-     10446
+     22601
     ],
     [
      "202507",
-     9289
+     18493
     ],
     [
      "202508",
-     10289
+     17487
     ],
     [
      "202509",
-     10299
+     17832
     ],
     [
      "202510",
-     9150
+     15166
     ],
     [
      "202511",
-     9083
+     12580
     ],
     [
      "202512",
-     9291
+     11230
     ],
     [
      "202601",
-     9710
+     13498
     ],
     [
      "202602",
-     8050
+     15955
     ],
     [
      "202603",
-     8304
+     15199
     ],
     [
      "202604",
-     8248
+     11769
     ],
     [
      "202605",
-     8485
+     11699
     ],
     [
      "202606",
-     7585
+     8596
     ],
     [
      "202607",
-     7475
+     17451
     ],
     [
      "202608",
-     7943
+     26275
     ],
     [
      "202609",
-     7644
+     7878
     ],
     [
      "202610",
-     8231
+     10961
     ]
    ],
-   "season_ratio": 1.12,
-   "score": 0.9
+   "season_ratio": 0.92,
+   "score": 0.92
   },
   {
    "category": "humor",
@@ -6691,8 +6581,8 @@
    "article": "Humour",
    "url": "https://en.wikipedia.org/wiki/Humour",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Humour/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 7861,
-   "yoy": -0.154,
+   "avg_monthly_12m": 7848,
+   "yoy": -0.156,
    "peak_month": "202605",
    "monthly": [
     [
@@ -6777,11 +6667,11 @@
     ],
     [
      "202607",
-     7173
+     7133
     ],
     [
      "202608",
-     7862
+     7740
     ],
     [
      "202609",
@@ -6792,8 +6682,118 @@
      8315
     ]
    ],
-   "season_ratio": 0.97,
-   "score": 0.891
+   "season_ratio": 0.98,
+   "score": 0.901
+  },
+  {
+   "category": "professions",
+   "niche": "police officer",
+   "article": "Police_officer",
+   "url": "https://en.wikipedia.org/wiki/Police_officer",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Police_officer/monthly/2024100100/2026103100",
+   "avg_monthly_12m": 8348,
+   "yoy": -0.186,
+   "peak_month": "202601",
+   "monthly": [
+    [
+     "202411",
+     10115
+    ],
+    [
+     "202412",
+     10117
+    ],
+    [
+     "202501",
+     10881
+    ],
+    [
+     "202502",
+     9684
+    ],
+    [
+     "202503",
+     11516
+    ],
+    [
+     "202504",
+     10252
+    ],
+    [
+     "202505",
+     11098
+    ],
+    [
+     "202506",
+     10446
+    ],
+    [
+     "202507",
+     9289
+    ],
+    [
+     "202508",
+     10289
+    ],
+    [
+     "202509",
+     10299
+    ],
+    [
+     "202510",
+     9150
+    ],
+    [
+     "202511",
+     9083
+    ],
+    [
+     "202512",
+     9291
+    ],
+    [
+     "202601",
+     9710
+    ],
+    [
+     "202602",
+     8050
+    ],
+    [
+     "202603",
+     8304
+    ],
+    [
+     "202604",
+     8248
+    ],
+    [
+     "202605",
+     8485
+    ],
+    [
+     "202606",
+     7585
+    ],
+    [
+     "202607",
+     7513
+    ],
+    [
+     "202608",
+     8033
+    ],
+    [
+     "202609",
+     7644
+    ],
+    [
+     "202610",
+     8231
+    ]
+   ],
+   "season_ratio": 1.12,
+   "score": 0.878
   },
   {
    "category": "professions",
@@ -6801,7 +6801,7 @@
    "article": "Firefighter",
    "url": "https://en.wikipedia.org/wiki/Firefighter",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Firefighter/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 8926,
+   "avg_monthly_12m": 8928,
    "yoy": -0.315,
    "peak_month": "202511",
    "monthly": [
@@ -6887,11 +6887,11 @@
     ],
     [
      "202607",
-     8491
+     8482
     ],
     [
      "202608",
-     9170
+     9198
     ],
     [
      "202609",
@@ -6903,7 +6903,7 @@
     ]
    ],
    "season_ratio": 1.05,
-   "score": 0.873
+   "score": 0.851
   },
   {
    "category": "family roles",
@@ -6911,8 +6911,8 @@
    "article": "Uncle",
    "url": "https://en.wikipedia.org/wiki/Uncle",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Uncle/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 4589,
-   "yoy": -0.224,
+   "avg_monthly_12m": 4588,
+   "yoy": -0.225,
    "peak_month": "202511",
    "monthly": [
     [
@@ -6997,11 +6997,11 @@
     ],
     [
      "202607",
-     4017
+     4009
     ],
     [
      "202608",
-     4175
+     4171
     ],
     [
      "202609",
@@ -7021,8 +7021,8 @@
    "article": "Winter",
    "url": "https://en.wikipedia.org/wiki/Winter",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Winter/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 18896,
-   "yoy": -0.316,
+   "avg_monthly_12m": 18866,
+   "yoy": -0.317,
    "peak_month": "202512",
    "monthly": [
     [
@@ -7107,11 +7107,11 @@
     ],
     [
      "202607",
-     10572
+     10511
     ],
     [
      "202608",
-     12237
+     11935
     ],
     [
      "202609",
@@ -7124,6 +7124,226 @@
    ],
    "season_ratio": 1.83,
    "score": 0.774
+  },
+  {
+   "category": "family roles",
+   "niche": "daughter",
+   "article": "Daughter",
+   "url": "https://en.wikipedia.org/wiki/Daughter",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Daughter/monthly/2024100100/2026103100",
+   "avg_monthly_12m": 3204,
+   "yoy": -0.26,
+   "peak_month": "202512",
+   "monthly": [
+    [
+     "202411",
+     4050
+    ],
+    [
+     "202412",
+     4662
+    ],
+    [
+     "202501",
+     5475
+    ],
+    [
+     "202502",
+     4710
+    ],
+    [
+     "202503",
+     4533
+    ],
+    [
+     "202504",
+     4704
+    ],
+    [
+     "202505",
+     4513
+    ],
+    [
+     "202506",
+     3722
+    ],
+    [
+     "202507",
+     3976
+    ],
+    [
+     "202508",
+     4027
+    ],
+    [
+     "202509",
+     3757
+    ],
+    [
+     "202510",
+     3803
+    ],
+    [
+     "202511",
+     4300
+    ],
+    [
+     "202512",
+     4352
+    ],
+    [
+     "202601",
+     3934
+    ],
+    [
+     "202602",
+     3131
+    ],
+    [
+     "202603",
+     2774
+    ],
+    [
+     "202604",
+     2778
+    ],
+    [
+     "202605",
+     2810
+    ],
+    [
+     "202606",
+     3062
+    ],
+    [
+     "202607",
+     2773
+    ],
+    [
+     "202608",
+     2618
+    ],
+    [
+     "202609",
+     3025
+    ],
+    [
+     "202610",
+     2897
+    ]
+   ],
+   "season_ratio": 1.31,
+   "score": 0.752
+  },
+  {
+   "category": "family roles",
+   "niche": "sister",
+   "article": "Sister",
+   "url": "https://en.wikipedia.org/wiki/Sister",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Sister/monthly/2024100100/2026103100",
+   "avg_monthly_12m": 3098,
+   "yoy": -0.2,
+   "peak_month": "202512",
+   "monthly": [
+    [
+     "202411",
+     3880
+    ],
+    [
+     "202412",
+     4273
+    ],
+    [
+     "202501",
+     4061
+    ],
+    [
+     "202502",
+     3574
+    ],
+    [
+     "202503",
+     3780
+    ],
+    [
+     "202504",
+     4007
+    ],
+    [
+     "202505",
+     3960
+    ],
+    [
+     "202506",
+     3588
+    ],
+    [
+     "202507",
+     3556
+    ],
+    [
+     "202508",
+     4076
+    ],
+    [
+     "202509",
+     3814
+    ],
+    [
+     "202510",
+     3889
+    ],
+    [
+     "202511",
+     4265
+    ],
+    [
+     "202512",
+     4355
+    ],
+    [
+     "202601",
+     3785
+    ],
+    [
+     "202602",
+     3101
+    ],
+    [
+     "202603",
+     2863
+    ],
+    [
+     "202604",
+     2673
+    ],
+    [
+     "202605",
+     2839
+    ],
+    [
+     "202606",
+     2466
+    ],
+    [
+     "202607",
+     2814
+    ],
+    [
+     "202608",
+     2694
+    ],
+    [
+     "202609",
+     2694
+    ],
+    [
+     "202610",
+     2632
+    ]
+   ],
+   "season_ratio": 1.33,
+   "score": 0.751
   },
   {
    "category": "professions",
@@ -7217,11 +7437,11 @@
     ],
     [
      "202607",
-     6325
+     6317
     ],
     [
      "202608",
-     6077
+     6092
     ],
     [
      "202609",
@@ -7233,337 +7453,7 @@
     ]
    ],
    "season_ratio": 1.06,
-   "score": 0.763
-  },
-  {
-   "category": "family roles",
-   "niche": "daughter",
-   "article": "Daughter",
-   "url": "https://en.wikipedia.org/wiki/Daughter",
-   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Daughter/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 3209,
-   "yoy": -0.258,
-   "peak_month": "202512",
-   "monthly": [
-    [
-     "202411",
-     4050
-    ],
-    [
-     "202412",
-     4662
-    ],
-    [
-     "202501",
-     5475
-    ],
-    [
-     "202502",
-     4710
-    ],
-    [
-     "202503",
-     4533
-    ],
-    [
-     "202504",
-     4704
-    ],
-    [
-     "202505",
-     4513
-    ],
-    [
-     "202506",
-     3722
-    ],
-    [
-     "202507",
-     3976
-    ],
-    [
-     "202508",
-     4027
-    ],
-    [
-     "202509",
-     3757
-    ],
-    [
-     "202510",
-     3803
-    ],
-    [
-     "202511",
-     4300
-    ],
-    [
-     "202512",
-     4352
-    ],
-    [
-     "202601",
-     3934
-    ],
-    [
-     "202602",
-     3131
-    ],
-    [
-     "202603",
-     2774
-    ],
-    [
-     "202604",
-     2778
-    ],
-    [
-     "202605",
-     2810
-    ],
-    [
-     "202606",
-     3062
-    ],
-    [
-     "202607",
-     2787
-    ],
-    [
-     "202608",
-     2660
-    ],
-    [
-     "202609",
-     3025
-    ],
-    [
-     "202610",
-     2897
-    ]
-   ],
-   "season_ratio": 1.31,
-   "score": 0.752
-  },
-  {
-   "category": "family roles",
-   "niche": "sister",
-   "article": "Sister",
-   "url": "https://en.wikipedia.org/wiki/Sister",
-   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Sister/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 3101,
-   "yoy": -0.199,
-   "peak_month": "202512",
-   "monthly": [
-    [
-     "202411",
-     3880
-    ],
-    [
-     "202412",
-     4273
-    ],
-    [
-     "202501",
-     4061
-    ],
-    [
-     "202502",
-     3574
-    ],
-    [
-     "202503",
-     3780
-    ],
-    [
-     "202504",
-     4007
-    ],
-    [
-     "202505",
-     3960
-    ],
-    [
-     "202506",
-     3588
-    ],
-    [
-     "202507",
-     3556
-    ],
-    [
-     "202508",
-     4076
-    ],
-    [
-     "202509",
-     3814
-    ],
-    [
-     "202510",
-     3889
-    ],
-    [
-     "202511",
-     4265
-    ],
-    [
-     "202512",
-     4355
-    ],
-    [
-     "202601",
-     3785
-    ],
-    [
-     "202602",
-     3101
-    ],
-    [
-     "202603",
-     2863
-    ],
-    [
-     "202604",
-     2673
-    ],
-    [
-     "202605",
-     2839
-    ],
-    [
-     "202606",
-     2466
-    ],
-    [
-     "202607",
-     2820
-    ],
-    [
-     "202608",
-     2718
-    ],
-    [
-     "202609",
-     2694
-    ],
-    [
-     "202610",
-     2632
-    ]
-   ],
-   "season_ratio": 1.33,
-   "score": 0.751
-  },
-  {
-   "category": "professions",
-   "niche": "veterinarian",
-   "article": "Veterinarian",
-   "url": "https://en.wikipedia.org/wiki/Veterinarian",
-   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Veterinarian/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 12692,
-   "yoy": -0.044,
-   "peak_month": "202603",
-   "monthly": [
-    [
-     "202411",
-     16689
-    ],
-    [
-     "202412",
-     18014
-    ],
-    [
-     "202501",
-     15390
-    ],
-    [
-     "202502",
-     13420
-    ],
-    [
-     "202503",
-     13658
-    ],
-    [
-     "202504",
-     12070
-    ],
-    [
-     "202505",
-     13822
-    ],
-    [
-     "202506",
-     11965
-    ],
-    [
-     "202507",
-     9631
-    ],
-    [
-     "202508",
-     12591
-    ],
-    [
-     "202509",
-     11365
-    ],
-    [
-     "202510",
-     10718
-    ],
-    [
-     "202511",
-     8876
-    ],
-    [
-     "202512",
-     8396
-    ],
-    [
-     "202601",
-     8933
-    ],
-    [
-     "202602",
-     8305
-    ],
-    [
-     "202603",
-     22727
-    ],
-    [
-     "202604",
-     22686
-    ],
-    [
-     "202605",
-     13616
-    ],
-    [
-     "202606",
-     10249
-    ],
-    [
-     "202607",
-     9329
-    ],
-    [
-     "202608",
-     11416
-    ],
-    [
-     "202609",
-     15650
-    ],
-    [
-     "202610",
-     12126
-    ]
-   ],
-   "season_ratio": 0.69,
-   "score": 0.684
+   "score": 0.743
   },
   {
    "category": "holidays & occasions",
@@ -7571,7 +7461,7 @@
    "article": "Mardi_Gras",
    "url": "https://en.wikipedia.org/wiki/Mardi_Gras",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Mardi_Gras/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 66792,
+   "avg_monthly_12m": 66784,
    "yoy": -0.319,
    "peak_month": "202602",
    "monthly": [
@@ -7657,11 +7547,11 @@
     ],
     [
      "202607",
-     27143
+     27101
     ],
     [
      "202608",
-     29468
+     29413
     ],
     [
      "202609",
@@ -7673,117 +7563,7 @@
     ]
    ],
    "season_ratio": 0.85,
-   "score": 0.676
-  },
-  {
-   "category": "professions",
-   "niche": "pharmacist",
-   "article": "Pharmacist",
-   "url": "https://en.wikipedia.org/wiki/Pharmacist",
-   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Pharmacist/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 5116,
-   "yoy": -0.434,
-   "peak_month": "202511",
-   "monthly": [
-    [
-     "202411",
-     14197
-    ],
-    [
-     "202412",
-     14936
-    ],
-    [
-     "202501",
-     11084
-    ],
-    [
-     "202502",
-     7946
-    ],
-    [
-     "202503",
-     9899
-    ],
-    [
-     "202504",
-     8877
-    ],
-    [
-     "202505",
-     8486
-    ],
-    [
-     "202506",
-     6389
-    ],
-    [
-     "202507",
-     5501
-    ],
-    [
-     "202508",
-     7088
-    ],
-    [
-     "202509",
-     7478
-    ],
-    [
-     "202510",
-     6653
-    ],
-    [
-     "202511",
-     5598
-    ],
-    [
-     "202512",
-     5203
-    ],
-    [
-     "202601",
-     5595
-    ],
-    [
-     "202602",
-     4796
-    ],
-    [
-     "202603",
-     5134
-    ],
-    [
-     "202604",
-     4938
-    ],
-    [
-     "202605",
-     5430
-    ],
-    [
-     "202606",
-     4654
-    ],
-    [
-     "202607",
-     4608
-    ],
-    [
-     "202608",
-     5345
-    ],
-    [
-     "202609",
-     5557
-    ],
-    [
-     "202610",
-     4532
-    ]
-   ],
-   "season_ratio": 1.07,
-   "score": 0.674
+   "score": 0.677
   },
   {
    "category": "hobbies",
@@ -7791,8 +7571,8 @@
    "article": "Marathon",
    "url": "https://en.wikipedia.org/wiki/Marathon",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Marathon/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 52518,
-   "yoy": -0.096,
+   "avg_monthly_12m": 52501,
+   "yoy": -0.097,
    "peak_month": "202604",
    "monthly": [
     [
@@ -7877,11 +7657,11 @@
     ],
     [
      "202607",
-     33749
+     33591
     ],
     [
      "202608",
-     42428
+     42383
     ],
     [
      "202609",
@@ -7896,13 +7676,233 @@
    "score": 0.673
   },
   {
+   "category": "professions",
+   "niche": "veterinarian",
+   "article": "Veterinarian",
+   "url": "https://en.wikipedia.org/wiki/Veterinarian",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Veterinarian/monthly/2024100100/2026103100",
+   "avg_monthly_12m": 12660,
+   "yoy": -0.047,
+   "peak_month": "202603",
+   "monthly": [
+    [
+     "202411",
+     16689
+    ],
+    [
+     "202412",
+     18014
+    ],
+    [
+     "202501",
+     15390
+    ],
+    [
+     "202502",
+     13420
+    ],
+    [
+     "202503",
+     13658
+    ],
+    [
+     "202504",
+     12070
+    ],
+    [
+     "202505",
+     13822
+    ],
+    [
+     "202506",
+     11965
+    ],
+    [
+     "202507",
+     9631
+    ],
+    [
+     "202508",
+     12591
+    ],
+    [
+     "202509",
+     11365
+    ],
+    [
+     "202510",
+     10718
+    ],
+    [
+     "202511",
+     8876
+    ],
+    [
+     "202512",
+     8396
+    ],
+    [
+     "202601",
+     8933
+    ],
+    [
+     "202602",
+     8305
+    ],
+    [
+     "202603",
+     22727
+    ],
+    [
+     "202604",
+     22686
+    ],
+    [
+     "202605",
+     13616
+    ],
+    [
+     "202606",
+     10249
+    ],
+    [
+     "202607",
+     9166
+    ],
+    [
+     "202608",
+     11188
+    ],
+    [
+     "202609",
+     15650
+    ],
+    [
+     "202610",
+     12126
+    ]
+   ],
+   "season_ratio": 0.69,
+   "score": 0.666
+  },
+  {
+   "category": "professions",
+   "niche": "pharmacist",
+   "article": "Pharmacist",
+   "url": "https://en.wikipedia.org/wiki/Pharmacist",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Pharmacist/monthly/2024100100/2026103100",
+   "avg_monthly_12m": 5110,
+   "yoy": -0.435,
+   "peak_month": "202511",
+   "monthly": [
+    [
+     "202411",
+     14197
+    ],
+    [
+     "202412",
+     14936
+    ],
+    [
+     "202501",
+     11084
+    ],
+    [
+     "202502",
+     7946
+    ],
+    [
+     "202503",
+     9899
+    ],
+    [
+     "202504",
+     8877
+    ],
+    [
+     "202505",
+     8486
+    ],
+    [
+     "202506",
+     6389
+    ],
+    [
+     "202507",
+     5501
+    ],
+    [
+     "202508",
+     7088
+    ],
+    [
+     "202509",
+     7478
+    ],
+    [
+     "202510",
+     6653
+    ],
+    [
+     "202511",
+     5598
+    ],
+    [
+     "202512",
+     5203
+    ],
+    [
+     "202601",
+     5595
+    ],
+    [
+     "202602",
+     4796
+    ],
+    [
+     "202603",
+     5134
+    ],
+    [
+     "202604",
+     4938
+    ],
+    [
+     "202605",
+     5430
+    ],
+    [
+     "202606",
+     4654
+    ],
+    [
+     "202607",
+     4601
+    ],
+    [
+     "202608",
+     5279
+    ],
+    [
+     "202609",
+     5557
+    ],
+    [
+     "202610",
+     4532
+    ]
+   ],
+   "season_ratio": 1.07,
+   "score": 0.656
+  },
+  {
    "category": "pets",
    "niche": "Maine Coon",
    "article": "Maine_Coon",
    "url": "https://en.wikipedia.org/wiki/Maine_Coon",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Maine_Coon/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 78852,
-   "yoy": -0.267,
+   "avg_monthly_12m": 78815,
+   "yoy": -0.268,
    "peak_month": "202601",
    "monthly": [
     [
@@ -7987,11 +7987,11 @@
     ],
     [
      "202607",
-     71807
+     71676
     ],
     [
      "202608",
-     80686
+     80372
     ],
     [
      "202609",
@@ -8003,7 +8003,7 @@
     ]
    ],
    "season_ratio": 1.15,
-   "score": 0.655
+   "score": 0.654
   },
   {
    "category": "pets",
@@ -8011,8 +8011,8 @@
    "article": "Dachshund",
    "url": "https://en.wikipedia.org/wiki/Dachshund",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Dachshund/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 87539,
-   "yoy": -0.091,
+   "avg_monthly_12m": 87602,
+   "yoy": -0.09,
    "peak_month": "202607",
    "monthly": [
     [
@@ -8097,11 +8097,11 @@
     ],
     [
      "202607",
-     93323
+     93408
     ],
     [
      "202608",
-     85742
+     86416
     ],
     [
      "202609",
@@ -8121,7 +8121,7 @@
    "article": "Aunt",
    "url": "https://en.wikipedia.org/wiki/Aunt",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Aunt/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 2862,
+   "avg_monthly_12m": 2863,
    "yoy": -0.206,
    "peak_month": "202605",
    "monthly": [
@@ -8207,11 +8207,11 @@
     ],
     [
      "202607",
-     2686
+     2683
     ],
     [
      "202608",
-     2650
+     2659
     ],
     [
      "202609",
@@ -8317,11 +8317,11 @@
     ],
     [
      "202607",
-     2755
+     2764
     ],
     [
      "202608",
-     2700
+     2693
     ],
     [
      "202609",
@@ -8333,7 +8333,7 @@
     ]
    ],
    "season_ratio": 1.08,
-   "score": 0.602
+   "score": 0.603
   },
   {
    "category": "hobbies",
@@ -8341,7 +8341,7 @@
    "article": "Tennis",
    "url": "https://en.wikipedia.org/wiki/Tennis",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Tennis/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 34391,
+   "avg_monthly_12m": 34361,
    "yoy": -0.276,
    "peak_month": "202607",
    "monthly": [
@@ -8427,11 +8427,11 @@
     ],
     [
      "202607",
-     47276
+     47203
     ],
     [
      "202608",
-     29361
+     29065
     ],
     [
      "202609",
@@ -8443,7 +8443,7 @@
     ]
    ],
    "season_ratio": 0.97,
-   "score": 0.581
+   "score": 0.58
   },
   {
    "category": "holidays & occasions",
@@ -8451,8 +8451,8 @@
    "article": "Valentine%27s_Day",
    "url": "https://en.wikipedia.org/wiki/Valentine%27s_Day",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Valentine%27s_Day/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 105681,
-   "yoy": -0.35,
+   "avg_monthly_12m": 105420,
+   "yoy": -0.351,
    "peak_month": "202602",
    "monthly": [
     [
@@ -8537,11 +8537,11 @@
     ],
     [
      "202607",
-     16813
+     16409
     ],
     [
      "202608",
-     21083
+     18353
     ],
     [
      "202609",
@@ -8561,8 +8561,8 @@
    "article": "German_Shepherd",
    "url": "https://en.wikipedia.org/wiki/German_Shepherd",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/German_Shepherd/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 64792,
-   "yoy": -0.273,
+   "avg_monthly_12m": 64857,
+   "yoy": -0.272,
    "peak_month": "202601",
    "monthly": [
     [
@@ -8647,11 +8647,11 @@
     ],
     [
      "202607",
-     60479
+     60553
     ],
     [
      "202608",
-     59908
+     60607
     ],
     [
      "202609",
@@ -8671,8 +8671,8 @@
    "article": "Labrador_Retriever",
    "url": "https://en.wikipedia.org/wiki/Labrador_Retriever",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Labrador_Retriever/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 58427,
-   "yoy": -0.26,
+   "avg_monthly_12m": 58416,
+   "yoy": -0.261,
    "peak_month": "202511",
    "monthly": [
     [
@@ -8757,11 +8757,11 @@
     ],
     [
      "202607",
-     56351
+     56291
     ],
     [
      "202608",
-     59581
+     59513
     ],
     [
      "202609",
@@ -8781,8 +8781,8 @@
    "article": "World_Kindness_Day",
    "url": "https://en.wikipedia.org/wiki/World_Kindness_Day",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/World_Kindness_Day/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 3421,
-   "yoy": -0.07,
+   "avg_monthly_12m": 3416,
+   "yoy": -0.071,
    "peak_month": "202511",
    "monthly": [
     [
@@ -8867,11 +8867,11 @@
     ],
     [
      "202607",
-     531
+     527
     ],
     [
      "202608",
-     811
+     762
     ],
     [
      "202609",
@@ -8891,7 +8891,7 @@
    "article": "Golden_Retriever",
    "url": "https://en.wikipedia.org/wiki/Golden_Retriever",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Golden_Retriever/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 63227,
+   "avg_monthly_12m": 63260,
    "yoy": -0.219,
    "peak_month": "202511",
    "monthly": [
@@ -8977,11 +8977,11 @@
     ],
     [
      "202607",
-     64332
+     64389
     ],
     [
      "202608",
-     63325
+     63664
     ],
     [
      "202609",
@@ -9001,8 +9001,8 @@
    "article": "Golf",
    "url": "https://en.wikipedia.org/wiki/Golf",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Golf/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 26721,
-   "yoy": -0.241,
+   "avg_monthly_12m": 26612,
+   "yoy": -0.244,
    "peak_month": "202604",
    "monthly": [
     [
@@ -9087,11 +9087,11 @@
     ],
     [
      "202607",
-     28766
+     28429
     ],
     [
      "202608",
-     24616
+     23642
     ],
     [
      "202609",
@@ -9103,7 +9103,7 @@
     ]
    ],
    "season_ratio": 1.0,
-   "score": 0.528
+   "score": 0.527
   },
   {
    "category": "family roles",
@@ -9111,7 +9111,7 @@
    "article": "Son",
    "url": "https://en.wikipedia.org/wiki/Son",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Son/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 2867,
+   "avg_monthly_12m": 2864,
    "yoy": -0.013,
    "peak_month": "202605",
    "monthly": [
@@ -9197,11 +9197,11 @@
     ],
     [
      "202607",
-     3073
+     3099
     ],
     [
      "202608",
-     2775
+     2722
     ],
     [
      "202609",
@@ -9221,8 +9221,8 @@
    "article": "Papa",
    "url": "https://en.wikipedia.org/wiki/Papa",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Papa/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 1519,
-   "yoy": -0.015,
+   "avg_monthly_12m": 1516,
+   "yoy": -0.017,
    "peak_month": "202601",
    "monthly": [
     [
@@ -9307,11 +9307,11 @@
     ],
     [
      "202607",
-     1383
+     1376
     ],
     [
      "202608",
-     1198
+     1166
     ],
     [
      "202609",
@@ -9326,13 +9326,123 @@
    "score": 0.47
   },
   {
+   "category": "holidays & occasions",
+   "niche": "Easter",
+   "article": "Easter",
+   "url": "https://en.wikipedia.org/wiki/Easter",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Easter/monthly/2024100100/2026103100",
+   "avg_monthly_12m": 85445,
+   "yoy": -0.273,
+   "peak_month": "202604",
+   "monthly": [
+    [
+     "202411",
+     40718
+    ],
+    [
+     "202412",
+     54586
+    ],
+    [
+     "202501",
+     65870
+    ],
+    [
+     "202502",
+     75953
+    ],
+    [
+     "202503",
+     203759
+    ],
+    [
+     "202504",
+     786862
+    ],
+    [
+     "202505",
+     46716
+    ],
+    [
+     "202506",
+     29413
+    ],
+    [
+     "202507",
+     23290
+    ],
+    [
+     "202508",
+     25842
+    ],
+    [
+     "202509",
+     27131
+    ],
+    [
+     "202510",
+     30545
+    ],
+    [
+     "202511",
+     32432
+    ],
+    [
+     "202512",
+     41658
+    ],
+    [
+     "202601",
+     46524
+    ],
+    [
+     "202602",
+     74699
+    ],
+    [
+     "202603",
+     222250
+    ],
+    [
+     "202604",
+     485386
+    ],
+    [
+     "202605",
+     30371
+    ],
+    [
+     "202606",
+     17877
+    ],
+    [
+     "202607",
+     15544
+    ],
+    [
+     "202608",
+     17408
+    ],
+    [
+     "202609",
+     19924
+    ],
+    [
+     "202610",
+     21264
+    ]
+   ],
+   "season_ratio": 0.5,
+   "score": 0.45
+  },
+  {
    "category": "professions",
    "niche": "dental hygienist",
    "article": "Dental_hygienist",
    "url": "https://en.wikipedia.org/wiki/Dental_hygienist",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Dental_hygienist/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 2886,
-   "yoy": -0.379,
+   "avg_monthly_12m": 2871,
+   "yoy": -0.383,
    "peak_month": "202608",
    "monthly": [
     [
@@ -9417,11 +9527,11 @@
     ],
     [
      "202607",
-     2590
+     2558
     ],
     [
      "202608",
-     3648
+     3492
     ],
     [
      "202609",
@@ -9432,8 +9542,8 @@
      3060
     ]
    ],
-   "season_ratio": 0.96,
-   "score": 0.454
+   "season_ratio": 0.97,
+   "score": 0.446
   },
   {
    "category": "professions",
@@ -9441,7 +9551,7 @@
    "article": "Dispatcher",
    "url": "https://en.wikipedia.org/wiki/Dispatcher",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Dispatcher/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 1787,
+   "avg_monthly_12m": 1788,
    "yoy": -0.299,
    "peak_month": "202511",
    "monthly": [
@@ -9527,11 +9637,11 @@
     ],
     [
      "202607",
-     1499
+     1494
     ],
     [
      "202608",
-     1647
+     1657
     ],
     [
      "202609",
@@ -9543,117 +9653,7 @@
     ]
    ],
    "season_ratio": 1.22,
-   "score": 0.454
-  },
-  {
-   "category": "holidays & occasions",
-   "niche": "Easter",
-   "article": "Easter",
-   "url": "https://en.wikipedia.org/wiki/Easter",
-   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Easter/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 85566,
-   "yoy": -0.272,
-   "peak_month": "202604",
-   "monthly": [
-    [
-     "202411",
-     40718
-    ],
-    [
-     "202412",
-     54586
-    ],
-    [
-     "202501",
-     65870
-    ],
-    [
-     "202502",
-     75953
-    ],
-    [
-     "202503",
-     203759
-    ],
-    [
-     "202504",
-     786862
-    ],
-    [
-     "202505",
-     46716
-    ],
-    [
-     "202506",
-     29413
-    ],
-    [
-     "202507",
-     23290
-    ],
-    [
-     "202508",
-     25842
-    ],
-    [
-     "202509",
-     27131
-    ],
-    [
-     "202510",
-     30545
-    ],
-    [
-     "202511",
-     32432
-    ],
-    [
-     "202512",
-     41658
-    ],
-    [
-     "202601",
-     46524
-    ],
-    [
-     "202602",
-     74699
-    ],
-    [
-     "202603",
-     222250
-    ],
-    [
-     "202604",
-     485386
-    ],
-    [
-     "202605",
-     30371
-    ],
-    [
-     "202606",
-     17877
-    ],
-    [
-     "202607",
-     15853
-    ],
-    [
-     "202608",
-     18551
-    ],
-    [
-     "202609",
-     19924
-    ],
-    [
-     "202610",
-     21264
-    ]
-   ],
-   "season_ratio": 0.5,
-   "score": 0.45
+   "score": 0.443
   },
   {
    "category": "hobbies",
@@ -9661,8 +9661,8 @@
    "article": "Surfing",
    "url": "https://en.wikipedia.org/wiki/Surfing",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Surfing/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 11782,
-   "yoy": -0.244,
+   "avg_monthly_12m": 11768,
+   "yoy": -0.245,
    "peak_month": "202511",
    "monthly": [
     [
@@ -9747,11 +9747,11 @@
     ],
     [
      "202607",
-     10712
+     10656
     ],
     [
      "202608",
-     11957
+     11849
     ],
     [
      "202609",
@@ -9771,7 +9771,7 @@
    "article": "Friendsgiving",
    "url": "https://en.wikipedia.org/wiki/Friendsgiving",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Friendsgiving/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 2111,
+   "avg_monthly_12m": 2112,
    "yoy": -0.218,
    "peak_month": "202511",
    "monthly": [
@@ -9857,11 +9857,11 @@
     ],
     [
      "202607",
-     606
+     604
     ],
     [
      "202608",
-     723
+     737
     ],
     [
      "202609",
@@ -9873,7 +9873,7 @@
     ]
    ],
    "season_ratio": 2.88,
-   "score": 0.407
+   "score": 0.408
   },
   {
    "category": "pets",
@@ -9881,7 +9881,7 @@
    "article": "French_Bulldog",
    "url": "https://en.wikipedia.org/wiki/French_Bulldog",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/French_Bulldog/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 30348,
+   "avg_monthly_12m": 30361,
    "yoy": -0.387,
    "peak_month": "202511",
    "monthly": [
@@ -9967,11 +9967,11 @@
     ],
     [
      "202607",
-     30461
+     30471
     ],
     [
      "202608",
-     28314
+     28467
     ],
     [
      "202609",
@@ -9986,123 +9986,13 @@
    "score": 0.403
   },
   {
-   "category": "professions",
-   "niche": "nurse",
-   "article": "Nurse",
-   "url": "https://en.wikipedia.org/wiki/Nurse",
-   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Nurse/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 1675,
-   "yoy": -0.159,
-   "peak_month": "202601",
-   "monthly": [
-    [
-     "202411",
-     1902
-    ],
-    [
-     "202412",
-     1831
-    ],
-    [
-     "202501",
-     2055
-    ],
-    [
-     "202502",
-     1841
-    ],
-    [
-     "202503",
-     1926
-    ],
-    [
-     "202504",
-     2119
-    ],
-    [
-     "202505",
-     2147
-    ],
-    [
-     "202506",
-     2127
-    ],
-    [
-     "202507",
-     1783
-    ],
-    [
-     "202508",
-     1933
-    ],
-    [
-     "202509",
-     1992
-    ],
-    [
-     "202510",
-     2256
-    ],
-    [
-     "202511",
-     1691
-    ],
-    [
-     "202512",
-     1648
-    ],
-    [
-     "202601",
-     2048
-    ],
-    [
-     "202602",
-     1584
-    ],
-    [
-     "202603",
-     1848
-    ],
-    [
-     "202604",
-     1690
-    ],
-    [
-     "202605",
-     1871
-    ],
-    [
-     "202606",
-     1508
-    ],
-    [
-     "202607",
-     1436
-    ],
-    [
-     "202608",
-     1537
-    ],
-    [
-     "202609",
-     1568
-    ],
-    [
-     "202610",
-     1674
-    ]
-   ],
-   "season_ratio": 1.07,
-   "score": 0.385
-  },
-  {
    "category": "family roles",
    "niche": "nana",
    "article": "Nana",
    "url": "https://en.wikipedia.org/wiki/Nana",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Nana/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 974,
-   "yoy": -0.204,
+   "avg_monthly_12m": 971,
+   "yoy": -0.206,
    "peak_month": "202511",
    "monthly": [
     [
@@ -10187,11 +10077,11 @@
     ],
     [
      "202607",
-     990
+     982
     ],
     [
      "202608",
-     856
+     834
     ],
     [
      "202609",
@@ -10202,8 +10092,118 @@
      880
     ]
    ],
-   "season_ratio": 1.21,
-   "score": 0.383
+   "season_ratio": 1.22,
+   "score": 0.386
+  },
+  {
+   "category": "professions",
+   "niche": "nurse",
+   "article": "Nurse",
+   "url": "https://en.wikipedia.org/wiki/Nurse",
+   "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Nurse/monthly/2024100100/2026103100",
+   "avg_monthly_12m": 1672,
+   "yoy": -0.161,
+   "peak_month": "202601",
+   "monthly": [
+    [
+     "202411",
+     1902
+    ],
+    [
+     "202412",
+     1831
+    ],
+    [
+     "202501",
+     2055
+    ],
+    [
+     "202502",
+     1841
+    ],
+    [
+     "202503",
+     1926
+    ],
+    [
+     "202504",
+     2119
+    ],
+    [
+     "202505",
+     2147
+    ],
+    [
+     "202506",
+     2127
+    ],
+    [
+     "202507",
+     1783
+    ],
+    [
+     "202508",
+     1933
+    ],
+    [
+     "202509",
+     1992
+    ],
+    [
+     "202510",
+     2256
+    ],
+    [
+     "202511",
+     1691
+    ],
+    [
+     "202512",
+     1648
+    ],
+    [
+     "202601",
+     2048
+    ],
+    [
+     "202602",
+     1584
+    ],
+    [
+     "202603",
+     1848
+    ],
+    [
+     "202604",
+     1690
+    ],
+    [
+     "202605",
+     1871
+    ],
+    [
+     "202606",
+     1508
+    ],
+    [
+     "202607",
+     1421
+    ],
+    [
+     "202608",
+     1515
+    ],
+    [
+     "202609",
+     1568
+    ],
+    [
+     "202610",
+     1674
+    ]
+   ],
+   "season_ratio": 1.07,
+   "score": 0.375
   },
   {
    "category": "holidays & occasions",
@@ -10211,8 +10211,8 @@
    "article": "Earth_Day",
    "url": "https://en.wikipedia.org/wiki/Earth_Day",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Earth_Day/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 33551,
-   "yoy": -0.224,
+   "avg_monthly_12m": 33479,
+   "yoy": -0.225,
    "peak_month": "202604",
    "monthly": [
     [
@@ -10297,11 +10297,11 @@
     ],
     [
      "202607",
-     6893
+     6676
     ],
     [
      "202608",
-     7566
+     6918
     ],
     [
      "202609",
@@ -10321,8 +10321,8 @@
    "article": "Fly_fishing",
    "url": "https://en.wikipedia.org/wiki/Fly_fishing",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Fly_fishing/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 8676,
-   "yoy": -0.259,
+   "avg_monthly_12m": 8671,
+   "yoy": -0.26,
    "peak_month": "202605",
    "monthly": [
     [
@@ -10407,11 +10407,11 @@
     ],
     [
      "202607",
-     9551
+     9542
     ],
     [
      "202608",
-     9384
+     9332
     ],
     [
      "202609",
@@ -10431,8 +10431,8 @@
    "article": "Mimi",
    "url": "https://en.wikipedia.org/wiki/Mimi",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Mimi/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 499,
-   "yoy": -0.111,
+   "avg_monthly_12m": 497,
+   "yoy": -0.114,
    "peak_month": "202512",
    "monthly": [
     [
@@ -10517,11 +10517,11 @@
     ],
     [
      "202607",
-     413
+     410
     ],
     [
      "202608",
-     526
+     508
     ],
     [
      "202609",
@@ -10533,7 +10533,7 @@
     ]
    ],
    "season_ratio": 1.2,
-   "score": 0.272
+   "score": 0.271
   },
   {
    "category": "hobbies",
@@ -10541,8 +10541,8 @@
    "article": "Running",
    "url": "https://en.wikipedia.org/wiki/Running",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Running/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 21806,
-   "yoy": 0.482,
+   "avg_monthly_12m": 21783,
+   "yoy": 0.481,
    "peak_month": "202609",
    "monthly": [
     [
@@ -10627,11 +10627,11 @@
     ],
     [
      "202607",
-     8141
+     8093
     ],
     [
      "202608",
-     20970
+     20740
     ],
     [
      "202609",
@@ -10643,7 +10643,7 @@
     ]
    ],
    "season_ratio": 0.53,
-   "score": 0.253
+   "score": 0.252
   },
   {
    "category": "holidays & occasions",
@@ -10651,8 +10651,8 @@
    "article": "Pi_Day",
    "url": "https://en.wikipedia.org/wiki/Pi_Day",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Pi_Day/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 26151,
-   "yoy": 0.298,
+   "avg_monthly_12m": 26128,
+   "yoy": 0.296,
    "peak_month": "202603",
    "monthly": [
     [
@@ -10737,11 +10737,11 @@
     ],
     [
      "202607",
-     8282
+     8207
     ],
     [
      "202608",
-     3727
+     3534
     ],
     [
      "202609",
@@ -10762,7 +10762,7 @@
    "url": "https://en.wikipedia.org/wiki/Grandmother",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Grandmother/monthly/2024100100/2026103100",
    "avg_monthly_12m": 523,
-   "yoy": -0.135,
+   "yoy": -0.136,
    "peak_month": "202605",
    "monthly": [
     [
@@ -10847,11 +10847,11 @@
     ],
     [
      "202607",
-     464
+     468
     ],
     [
      "202608",
-     552
+     544
     ],
     [
      "202609",
@@ -10863,7 +10863,7 @@
     ]
    ],
    "season_ratio": 1.05,
-   "score": 0.243
+   "score": 0.244
   },
   {
    "category": "hobbies",
@@ -10871,8 +10871,8 @@
    "article": "Hiking",
    "url": "https://en.wikipedia.org/wiki/Hiking",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Hiking/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 13744,
-   "yoy": 0.304,
+   "avg_monthly_12m": 13719,
+   "yoy": 0.302,
    "peak_month": "202609",
    "monthly": [
     [
@@ -10957,11 +10957,11 @@
     ],
     [
      "202607",
-     6809
+     6736
     ],
     [
      "202608",
-     11625
+     11402
     ],
     [
      "202609",
@@ -10973,7 +10973,7 @@
     ]
    ],
    "season_ratio": 0.58,
-   "score": 0.22
+   "score": 0.219
   },
   {
    "category": "family roles",
@@ -10981,8 +10981,8 @@
    "article": "Gigi",
    "url": "https://en.wikipedia.org/wiki/Gigi",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Gigi/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 1368,
-   "yoy": 0.696,
+   "avg_monthly_12m": 1366,
+   "yoy": 0.694,
    "peak_month": "202605",
    "monthly": [
     [
@@ -11067,11 +11067,11 @@
     ],
     [
      "202607",
-     805
+     799
     ],
     [
      "202608",
-     913
+     895
     ],
     [
      "202609",
@@ -11091,8 +11091,8 @@
    "article": "Fishing",
    "url": "https://en.wikipedia.org/wiki/Fishing",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Fishing/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 16913,
-   "yoy": 0.62,
+   "avg_monthly_12m": 16888,
+   "yoy": 0.618,
    "peak_month": "202609",
    "monthly": [
     [
@@ -11177,11 +11177,11 @@
     ],
     [
      "202607",
-     8453
+     8374
     ],
     [
      "202608",
-     15144
+     14927
     ],
     [
      "202609",
@@ -11201,8 +11201,8 @@
    "article": "Grandfather",
    "url": "https://en.wikipedia.org/wiki/Grandfather",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Grandfather/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 218,
-   "yoy": 0.03,
+   "avg_monthly_12m": 217,
+   "yoy": 0.022,
    "peak_month": "202512",
    "monthly": [
     [
@@ -11291,7 +11291,7 @@
     ],
     [
      "202608",
-     184
+     165
     ],
     [
      "202609",
@@ -11302,8 +11302,8 @@
      164
     ]
    ],
-   "season_ratio": 1.37,
-   "score": 0.205
+   "season_ratio": 1.38,
+   "score": 0.206
   },
   {
    "category": "hobbies",
@@ -11311,7 +11311,7 @@
    "article": "Mountain_biking",
    "url": "https://en.wikipedia.org/wiki/Mountain_biking",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Mountain_biking/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 4257,
+   "avg_monthly_12m": 4256,
    "yoy": -0.154,
    "peak_month": "202605",
    "monthly": [
@@ -11397,11 +11397,11 @@
     ],
     [
      "202607",
-     3954
+     3942
     ],
     [
      "202608",
-     3868
+     3869
     ],
     [
      "202609",
@@ -11421,8 +11421,8 @@
    "article": "Kayaking",
    "url": "https://en.wikipedia.org/wiki/Kayaking",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Kayaking/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 2916,
-   "yoy": -0.387,
+   "avg_monthly_12m": 2909,
+   "yoy": -0.388,
    "peak_month": "202608",
    "monthly": [
     [
@@ -11507,11 +11507,11 @@
     ],
     [
      "202607",
-     3149
+     3115
     ],
     [
      "202608",
-     3451
+     3397
     ],
     [
      "202609",
@@ -11522,8 +11522,8 @@
      2411
     ]
    ],
-   "season_ratio": 1.03,
-   "score": 0.18
+   "season_ratio": 1.04,
+   "score": 0.181
   },
   {
    "category": "professions",
@@ -11531,8 +11531,8 @@
    "article": "Physical_therapist",
    "url": "https://en.wikipedia.org/wiki/Physical_therapist",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Physical_therapist/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 389,
-   "yoy": -0.02,
+   "avg_monthly_12m": 387,
+   "yoy": -0.025,
    "peak_month": "202601",
    "monthly": [
     [
@@ -11617,11 +11617,11 @@
     ],
     [
      "202607",
-     413
+     412
     ],
     [
      "202608",
-     406
+     385
     ],
     [
      "202609",
@@ -11632,8 +11632,8 @@
      381
     ]
    ],
-   "season_ratio": 1.01,
-   "score": 0.175
+   "season_ratio": 1.02,
+   "score": 0.172
   },
   {
    "category": "hobbies",
@@ -11641,8 +11641,8 @@
    "article": "Camping",
    "url": "https://en.wikipedia.org/wiki/Camping",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Camping/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 9766,
-   "yoy": 0.613,
+   "avg_monthly_12m": 9751,
+   "yoy": 0.61,
    "peak_month": "202610",
    "monthly": [
     [
@@ -11727,11 +11727,11 @@
     ],
     [
      "202607",
-     5170
+     5221
     ],
     [
      "202608",
-     7196
+     6964
     ],
     [
      "202609",
@@ -11743,7 +11743,7 @@
     ]
    ],
    "season_ratio": 0.5,
-   "score": 0.16
+   "score": 0.159
   },
   {
    "category": "hobbies",
@@ -11751,8 +11751,8 @@
    "article": "Cycling",
    "url": "https://en.wikipedia.org/wiki/Cycling",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Cycling/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 9256,
-   "yoy": 0.514,
+   "avg_monthly_12m": 9204,
+   "yoy": 0.505,
    "peak_month": "202609",
    "monthly": [
     [
@@ -11837,11 +11837,11 @@
     ],
     [
      "202607",
-     4679
+     4556
     ],
     [
      "202608",
-     5981
+     5478
     ],
     [
      "202609",
@@ -11852,8 +11852,8 @@
      24146
     ]
    ],
-   "season_ratio": 0.5,
-   "score": 0.155
+   "season_ratio": 0.51,
+   "score": 0.158
   },
   {
    "category": "holidays & occasions",
@@ -11861,8 +11861,8 @@
    "article": "Galentine's_Day",
    "url": "https://en.wikipedia.org/wiki/Galentine's_Day",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Galentine's_Day/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 1051,
-   "yoy": -0.552,
+   "avg_monthly_12m": 1043,
+   "yoy": -0.556,
    "peak_month": "202602",
    "monthly": [
     [
@@ -11947,11 +11947,11 @@
     ],
     [
      "202607",
-     235
+     216
     ],
     [
      "202608",
-     231
+     147
     ],
     [
      "202609",
@@ -11962,7 +11962,7 @@
      164
     ]
    ],
-   "season_ratio": 1.15,
+   "season_ratio": 1.16,
    "score": 0.115
   },
   {
@@ -11971,8 +11971,8 @@
    "article": "St._Patrick's_Day",
    "url": "https://en.wikipedia.org/wiki/St._Patrick's_Day",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/St._Patrick's_Day/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 817,
-   "yoy": -0.223,
+   "avg_monthly_12m": 814,
+   "yoy": -0.226,
    "peak_month": "202603",
    "monthly": [
     [
@@ -12057,11 +12057,11 @@
     ],
     [
      "202607",
-     526
+     517
     ],
     [
      "202608",
-     550
+     521
     ],
     [
      "202609",
@@ -12081,8 +12081,8 @@
    "article": "Leap_Day",
    "url": "https://en.wikipedia.org/wiki/Leap_Day",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Leap_Day/monthly/2024100100/2026103100",
-   "avg_monthly_12m": 158,
-   "yoy": 0.187,
+   "avg_monthly_12m": 157,
+   "yoy": 0.177,
    "peak_month": "202512",
    "monthly": [
     [
@@ -12167,11 +12167,11 @@
     ],
     [
      "202607",
-     83
+     82
     ],
     [
      "202608",
-     100
+     85
     ],
     [
      "202609",
@@ -12182,7 +12182,7 @@
      124
     ]
    ],
-   "season_ratio": 1.85,
+   "season_ratio": 1.86,
    "score": 0.072
   },
   {
@@ -12192,7 +12192,7 @@
    "url": "https://en.wikipedia.org/wiki/Vet_tech",
    "api": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Vet_tech/monthly/2024100100/2026103100",
    "avg_monthly_12m": 29,
-   "yoy": 0.729,
+   "yoy": 0.714,
    "peak_month": "202610",
    "monthly": [
     [
@@ -12281,7 +12281,7 @@
     ],
     [
      "202608",
-     12
+     9
     ],
     [
      "202609",
@@ -12293,7 +12293,7 @@
     ]
    ],
    "season_ratio": 0.66,
-   "score": 0.031
+   "score": 0.03
   }
  ],
  "niche_method": "Score = sqrt(views / top views in its category) x season ratio (last-year views for the coming 3 months / 12-month average, capped 0.5-3) x category weight (pets 0.6, others 1). Our heuristic, labeled. Wikipedia pageviews = public interest proxy, NOT sales. Keyword volumes shown are third-party ESTIMATES with links.",
@@ -12387,7 +12387,7 @@
    "Etsy Open API findAllListingsActive (real live competitor prices) \u2014 needs Etsy key",
    "eBay Browse API (sold-price ranges) \u2014 needs eBay key"
   ],
-  "age_days": 35,
+  "age_days": 36,
   "stale": false
  }
 }
