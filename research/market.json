@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-27T19:55:26+00:00",
+ "generated": "2026-11-28T18:53:51+00:00",
  "window": [
   "2024-10-01",
   "2026-10-31"
@@ -12387,7 +12387,7 @@
    "Etsy Open API findAllListingsActive (real live competitor prices) \u2014 needs Etsy key",
    "eBay Browse API (sold-price ranges) \u2014 needs eBay key"
   ],
-  "age_days": 48,
+  "age_days": 49,
   "stale": false
  }
 }
